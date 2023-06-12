@@ -3,7 +3,15 @@ from django.http import HttpResponse
 # Create your views here.
 def index (request):
     return render (request,"homePage/index.html")
+
 def help (request):
     return render(request,"homePage/help.html")
+
 def login (request):
     return render(request,"homePage/login.html")
+
+def about (request):
+    return render(request,"homePage/about.html")
+    
+def contact (request):
+    return render(request,"homePage/contact.html")

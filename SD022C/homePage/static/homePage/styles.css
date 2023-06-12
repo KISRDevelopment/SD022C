@@ -1,0 +1,14 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.btn-primary{
+    background-color: rgb(30, 102, 133);
+    width: 220px;
+    height: 60px;
+    text-align: left;
+}
+
+.pageTitle{
+    font-size: 50px;
+}

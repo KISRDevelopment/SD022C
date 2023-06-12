@@ -21,9 +21,9 @@
             </div>
         </div>
         <div>
-            <button type="button" class="btn">Home</button>
-            <button type="button" class="btn">Help</button>
-            <button type="button" class="btn">Login</button> 
+            <a href="{% url 'homePage:index' %}"> Home </a>
+            <a href="{% url 'homePage:help' %}"> Help </a>
+            <a href="{% url 'homePage:login' %}"> Login </a>
         </div>    
         <div>
             <h1>to send a request please press the button</h1>

@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "primary",
-    "homePage",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

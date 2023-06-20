@@ -1,0 +1,33 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Requestpage</title>
+        <link rel="stylesheet" href="{% static 'primary/styles.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+
+    <body>
+
+        <h1 class="right">ارسل طلب للحصول على الخدمة</h1>
+
+        <h3 class="right"> حقل مطلوب * </h3>
+    
+        <div class="formControl">
+            <form method="post" action="sendRequest.php">
+                <label for="name" class="form-label starlabel label:after formAlign">  الأسم / الجهة </label>
+                <input type="text" class="form-control formAlign" id="nameBox" placeholder="Enter Name/Organization">
+
+                <label for="email" class="form-label starlabel label:after formAlign"> البريد الالكتروني </label>
+                <input type="email" class="form-control formAlign" id="emailBox" placeholder="Enter Email">
+
+                <label for="message" class="form-label starlabel label:after formAlign">  الرسالة</label>
+                <textarea type="text" class="form-control" id="textAreaBox" rows="3"></textarea>
+                <a id="sendrequestBtn" role="button" class="btn btn-primary submitBtn">أرسل</a>
+            </form>    
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+</html>

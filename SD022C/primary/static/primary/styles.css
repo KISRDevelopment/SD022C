@@ -24,3 +24,25 @@
     margin-right: 30px;
     margin-top: 30px;
 }
+
+.formControl{
+    float: right;
+    text-align: right;    
+    margin-right: 30px;
+    margin-top: 30px;
+    width: 400px;
+}
+
+.formAlign{
+    padding-top: 40px;
+    text-align: right;
+}
+
+.submitBtn{
+    margin-top: 40px;
+}
+
+.starlabel label:after {
+    content:" *";
+    color: red;
+}

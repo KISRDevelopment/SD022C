@@ -3,11 +3,82 @@
 <html lang="en">
     <head>
         <title>ContactUs</title>
-        <link rel="stylesheet" href="{% static 'primary/styles.css' %}">
+
+        <link rel="stylesheet" href="{% static 'primary/styles.css' %}"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     </head>
     <body>
-        <h1>!تواصل معنا</h1>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<h1></h1>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<div style="font-family: 'Scheherazade', serif; font-size:20px" >
+        <nav class="navbar navbar-expand-lg" style="background-color:#337DFF" >
+    <div class="container-fluid">
+      <div class="navbar-header">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+      <div class="navbar-brand pull-right" id="navbarNavAltMarkup" style="font-size:25px">
+        <div class="navbar-nav">
+
+
+          <a class="nav-link" href="{% url 'primary:login' %}" > دخول </a>
+            <a class="nav-link" href="{% url 'primary:help' %}" > مساعدة </a>
+          <a class="nav-link" href="{% url 'primary:index' %}" > الرئيسية </a>
+
+        </div>
+      </div>
+
+  </div>
+</nav>
+<br>
+
+<div class="container">
+  <div class="text-center">
+<h2 class="display-5">تواصل معنا</h2>
+<br>
+<div class="text-center">
+
+<address>
+  <strong>مركز تقويم وتعليم الطفل</strong><br>
+  الكويت - السرة - قطعة 4 - شارع 14<br>
+  ص.ب. 5453 الصفاة
+  <br>
+  رمز بريدي: 13055 الكويت
+<br>
+  <span class="Phone" title="Phone">Phone:</span>+965-183-2000<br>
+  <span class="Mobile" title="Mobile">Mobile:</span>+965-60362896<br>
+
+</address>
+
+<address>
+  <strong>CCET</strong><br>
+  <a href="mailto:#">info@ccetkuwait.org</a>
+</address>
+</div>
+</div>
+
+<footer class="footer">
+  <nav class="navbar-left">
+
+<a href="https://twitter.com/ccetkuwait" class="icoTwitter"  title="Twitter"><i class="fa fa-twitter"></i></a>
+<a href="https://www.facebook.com/ccetkuwait.org/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+<a href="https://www.youtube.com/channel/UCnPMSDakNbuzB6otuW_rLpQ" class="icoYoutube" title="Youtube"><i class="fa fa-youtube"></i></a>
+<a href="https://www.instagram.com/ccetkuwait/" class="icoInstagram"  title="Instagram"><i class="fa fa-instagram"></i></a>
+  </div></li>
+
+
+  </nav>
+
+</footer>
+
+</div>
+
+
+
     </body>
 </html>

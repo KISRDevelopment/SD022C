@@ -2,27 +2,34 @@
     display: flex;
     flex-wrap: wrap;
 }
-.btn-primary{
+
+.btn-primary {
     background-color: rgb(30, 102, 133);
     width: 100px;
     height: 60px;
     text-align: left;
 }
 
-.pageTitle{
+.pageTitle {
     font-size: 50px;
     padding-top: 20px;
 }
 
-.center{
+.center {
     text-align: center;
     margin-top: 30px;
 }
 
-.right{
+.right {
     text-align: end;
     margin-right: 30px;
     margin-top: 30px;
+}
+
+
+.btn-lg {
+    background-color: #0059a0!important;
+    font-size: 18px;
 }
 
 .formControl{
@@ -46,3 +53,4 @@
     content:" *";
     color: red;
 }
+

@@ -25,7 +25,26 @@
         </div>
     </header>
 
-    <div class="container">
+
+    <div class="container-fluid bg-body-tertiary" data-bs-theme="dark">
+
+        <div class="container">
+            <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
+                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> دخول </a></li>
+                <li class="nav-link "><a href="{% url 'primary:help' %} " class="nav-link text-body-emphasis fs-5"> مساعدة </a></li>
+                <li class="nav-link"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <hr class="container">
+
+
+
+    <!--<div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <div class="container-fluid bg-body-tertiary" data-bs-theme="dark">
                 <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
@@ -36,8 +55,8 @@
             </div>
         </header>
 
-    </div>
-    <div class="container my-5">
+    </div>-->
+    <div class="container my-3">
         <div class="p-5 text-center bg-body-tertiary rounded-3 h-100 border">
             <h2 class="text-body-emphasis py-5">لطلب الخدمة يرجى ارسال الطلب</h2>
 

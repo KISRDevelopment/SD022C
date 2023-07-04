@@ -14,3 +14,6 @@ def about (request):
     
 def contact (request):
     return render (request,"primary/contact.html")
+
+def requestPage (request):
+    return render (request,"primary/requestPage.html")

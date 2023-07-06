@@ -1,0 +1,72 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="{% static 'primary/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header class="1h-1 py-3">
+        <div class="row flex-nowrap justify-content-md-between align-items-center px-5">
+            <div class="col-4 pt-1">
+                <a href="https://www.kisr.edu.kw"><img src="{% static 'images/kisrlogo.png' %}" width="200" height="100" class="rounded float-start" alt="kisrlogo"></a>
+            </div>
+            <div class="col-4 text-center fs-2 pageTitle fst-italic">
+                اختبار معالجة الأصوات المقنن للأطفال
+            </div>
+            <div class=" col-4 d-flex justify-content-end align-items-center px-5 ">
+                <a href="https://www.ccetkuwait.org"><img src="{% static 'images/ccet.jpeg' %} " width="150 " height="150 " class="rounded float-end " alt="ccetLOGO "></a>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="container-fluid bg-body-tertiary" data-bs-theme="dark">
+
+        <div class="container">
+            <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
+                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> الحساب </a></li>
+                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> الأدلة </a></li>
+                <li class="nav-link "><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
+                <li class="nav-link"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+    <hr class="container">
+
+
+
+    <div class="container my-5">
+        <div class="p-5 text-center bg-body-tertiary rounded-3 h-100 border">
+            <h2 class="text-body-emphasis py-5">لطلب الخدمة يرجى ارسال الطلب</h2>
+
+            <a href="{% url 'primary:requestPage'%} " type="button" class="btn btn-danger mb-5 btn-lg border-0 p-3">أرسل طلب</a>
+
+        </div>
+
+    </div>
+    <div class="container-fluid mt-auto bg-body-tertiary" data-bs-theme="dark">
+        <footer>
+            <div class="container-fluid d-flex flex-column mt-3">
+                <ul class="nav justify-content-center mb-3">
+                    <li class="nav-item"><a href="{% url 'primary:about' %} " class="nav-link text-body-emphasis fw-bolder"> من نحن </a></li>
+                    <li class="nav-item"><a href="{% url 'primary:contact' %} " class="nav-link text-body-emphasis fw-bolder"> تواصل معنا </a></li>
+                </ul>
+                <p class="text-center text-body-emphasis mt-auto"> 2023 &copy طور بواسطة معهد الكويت للأبحاث العلمية</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js " integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz " crossorigin="anonymous "></script>
+</body>
+
+</html>

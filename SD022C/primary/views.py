@@ -1,3 +1,5 @@
+import sys
+import os
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -58,15 +60,14 @@ def registerSuperUser(request):
         organization = request.POST['organization']
 
         if password==confirm_password:
-            if User.objects.filter(username=username).exists():
+            if Superusers.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already taken')
                 return redirect("primary/signupSuperUser.html")
             else:
-                user = User.objects.create_user(username=username, password=password, 
-                                name=name, speciality=speciality, organization=organization)
-                user = Superusers(username="username",password="password",name="name", speciality="speciality", organization="organization")
+                user = Superusers.create_user(username="zahraaali", password="zali", confirm_password="zali",
+                                name="zahraa", speciality="engineer", organization="KISR")
                 user.save()
-                return redirect("primary/superusers.html")
+                return redirect("primary/index.html")
         else:
             messages.info(request, 'Both passwords are not matching')
             return redirect("primary/signupSuperUser.html")

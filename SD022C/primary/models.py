@@ -8,3 +8,6 @@ class Superusers(models.Model):
     name = models.CharField(max_length=60)
     speciality = models.CharField(max_length=60)
     organization = models.CharField(max_length=60)
+
+    def __str__(self):
+        return f"{self.id}: {self.username} to {self.organization}"

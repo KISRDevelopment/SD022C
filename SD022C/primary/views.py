@@ -1,6 +1,6 @@
 import sys
 import os
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
@@ -14,13 +14,46 @@ def adminPage (request):
     return render (request,"primary/adminPage.html")
 
 def signupSuperUser (request):
-    return render (request,"primary/signupSuperUser.html")
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        name = request.POST['name']
+        speciality = request.POST['speciality']
+        organization = request.POST['organization']
+
+        if password==confirm_password:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, 'Username is already taken')
+                return HttpResponseRedirect("signupSuperUser")
+            else:
+                user = Superusers.objects.create(username=username, password=password, confirm_password=confirm_password, name=name, speciality=speciality, organization=organization)
+                user.save()
+                return HttpResponseRedirect("superusers")
+        else:
+            messages.info(request, 'Both passwords are not matching')
+            return HttpResponseRedirect("signupSuperUser")
+    else:
+        return render (request,"primary/signupSuperUser.html")
 
 def help (request):
     return render (request,"primary/help.html")
 
 def login (request):
-    return render (request,"primary/login.html")
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return HttpResponseRedirect("adminPage")
+        else:
+            messages.info(request, 'Invalid Username or Password')
+            return HttpResponseRedirect("login")
+    else:
+        return render(request, "primary/login.html")
 
 def about (request):
     return render (request,"primary/about.html")
@@ -34,43 +67,3 @@ def requestPage (request):
 def superusers (request):
     return render (request,"primary/superusers.html")
 
-def login_user(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            return redirect("primary/adminPage.html")
-        else:
-            messages.info(request, 'Invalid Username or Password')
-            return redirect("primary/login.html")
-    else:
-        return render(request, "primary/login.html")
-
-def registerSuperUser(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
-        name = request.POST['name']
-        speciality = request.POST['speciality']
-        organization = request.POST['organization']
-
-        if password==confirm_password:
-            if Superusers.objects.filter(username=username).exists():
-                messages.info(request, 'Username is already taken')
-                return redirect("primary/signupSuperUser.html")
-            else:
-                user = Superusers.create_user(username="zahraaali", password="zali", confirm_password="zali",
-                                name="zahraa", speciality="engineer", organization="KISR")
-                user.save()
-                return redirect("primary/index.html")
-        else:
-            messages.info(request, 'Both passwords are not matching')
-            return redirect("primary/signupSuperUser.html")
-            
-    else:
-        return render(request, "primary/signupSuperUser.html")

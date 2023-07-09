@@ -23,7 +23,7 @@ def signupSuperUser (request):
         organization = request.POST['organization']
 
         if password==confirm_password:
-            if User.objects.filter(username=username).exists():
+            if Superusers.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already taken')
                 return HttpResponseRedirect("signupSuperUser")
             else:
@@ -65,5 +65,7 @@ def requestPage (request):
     return render (request,"primary/requestPage.html")
 
 def superusers (request):
-    return render (request,"primary/superusers.html")
+    return render (request,"primary/superusers.html", {
+        "superusers": Superusers.objects.all()
+    })
 

@@ -10,49 +10,51 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     </head>
     <body>
-        <form action="" method="POST" class="form-horizontal">
-            {% csrf_token%}
-            <div class="mx-auto" style="width: 400px;">
-    
-                <div class="col-xs-8 col-xs-offset-4">
-                    <h2 style="text-align:center;">تسجيل مستخدم جديد</h2>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label for="username">: اسم المستخدم</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username"
-                        Required>
-                </div>
-                <div class="form-group">
-                    <label for="password">: كلمة المرور</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password"
-                        Required>
-                </div>
-                <div class="form-group">
-                    <label for="confirm_password">: ادخل كلمة المرور مرة اخرى </label>
-                    <input type="password" class="form-control" name="confirm_password" id="confirm_password"
-                        placeholder="Confirm Your Password" Required>
-                </div>
-                <div class="form-group">
-                    <label for="name">: الاسم</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name"
-                        Required>
-                </div>
-                <div class="form-group">
-                    <label for="speciality">: التخصص</label>
-                    <input type="text" class="form-control" name="speciality" id="speciality" placeholder="Enter speciality"
-                        Required>
-                </div>
-                <div class="form-group">
-                    <label for="speciality">: الجهة</label>
-                    <input type="text" class="form-control" name="organization" id="organization" placeholder="Enter organization name"
-                        Required>
-                </div>
-                
+        <div class="container my-5"> 
+            <form action="" method="POST" class="form-horizontal" style="text-align: right;">
+                {% csrf_token%}
+                <div class="mx-auto" style="width: 400px;">
+        
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <h2 style="text-align:center;">تسجيل مستخدم جديد</h2>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <label for="username">: اسم المستخدم</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter a Username"
+                            Required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">: كلمة المرور</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter a Password"
+                            Required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">: ادخل كلمة المرور مرة اخرى </label>
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_password"
+                            placeholder="Confirm the Password" Required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">: الاسم</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter a Full Name"
+                            Required>
+                    </div>
+                    <div class="form-group">
+                        <label for="speciality">: التخصص</label>
+                        <input type="text" class="form-control" name="speciality" id="speciality" placeholder="Enter a speciality"
+                            Required>
+                    </div>
+                    <div class="form-group">
+                        <label for="speciality">: الجهة</label>
+                        <input type="text" class="form-control" name="organization" id="organization" placeholder="Enter the organization name"
+                            Required>
+                    </div>
+                    
 
-                <button type="submit" class="btn btn-primary">تسجيل مستخدم جديد</button> 
-            </div>
-        </form>
+                    <button type="submit" class="btn btn-primary">تسجيل  </button> 
+                </div>
+            </form>
+        </div>
         <div class="form-group">
             {% for message in messages %}
             <div class="alert alert-danger" role="alert">

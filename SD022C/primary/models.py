@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Superusers(models.Model):
+class Examiner(models.Model):
     username = models.CharField(max_length=60)
     password = models.CharField(max_length=50)
     confirm_password = models.CharField(max_length=50)
@@ -10,4 +10,4 @@ class Superusers(models.Model):
     organization = models.CharField(max_length=60)
 
     def __str__(self):
-        return f"{self.id}: {self.username}"
+        return f"{self.id}: {self.name}"

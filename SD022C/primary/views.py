@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
-from .models import Superusers
+from .models import Examiner
 
 # Create your views here.
 def index (request):
@@ -23,21 +23,20 @@ def signupSuperUser (request):
         organization = request.POST['organization']
 
         if password==confirm_password:
-            if Superusers.objects.filter(username=username).exists():
+            if User.objects.filter(username=username).exists():
                 messages.info(request, 'Username is already taken')
                 return HttpResponseRedirect("signupSuperUser")
             else:
-                user = Superusers.objects.create(username=username, password=password, confirm_password=confirm_password, name=name, speciality=speciality, organization=organization)
+                user = User.objects.create_user(username=username, password=password)
                 user.save()
+                examiner = Examiner.objects.create(username=username, password=password, name=name, speciality=speciality, organization=organization)
+                examiner.save()
                 return HttpResponseRedirect("superusers")
         else:
             messages.info(request, 'Both passwords are not matching')
             return HttpResponseRedirect("signupSuperUser")
     else:
         return render (request,"primary/signupSuperUser.html")
-
-def help (request):
-    return render (request,"primary/help.html")
 
 def login (request):
     if request.method == "POST":
@@ -55,6 +54,9 @@ def login (request):
     else:
         return render(request, "primary/login.html")
 
+def help (request):
+    return render (request,"primary/help.html")
+
 def about (request):
     return render (request,"primary/about.html")
     
@@ -66,6 +68,6 @@ def requestPage (request):
 
 def superusers (request):
     return render (request,"primary/superusers.html", {
-        "superusers": Superusers.objects.all()
+        "superusers": Examiner.objects.all()
     })
 

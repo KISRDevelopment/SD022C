@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Superusers
+from .models import Examiner
 # Register your models here.
-admin.site.register(Superusers)
+admin.site.register(Examiner)
+

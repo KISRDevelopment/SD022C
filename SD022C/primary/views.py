@@ -68,6 +68,6 @@ def requestPage (request):
 
 def superusers (request):
     return render (request,"primary/superusers.html", {
-        "superusers": Examiner.objects.all()
+        "examiners": Examiner.objects.all()
     })
 

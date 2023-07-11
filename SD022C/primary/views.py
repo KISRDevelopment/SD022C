@@ -17,24 +17,20 @@ def signupSuperUser (request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        confirm_password = request.POST['confirm_password']
         name = request.POST['name']
         speciality = request.POST['speciality']
         organization = request.POST['organization']
-
-        if password==confirm_password:
-            if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username is already taken')
-                return HttpResponseRedirect("signupSuperUser")
-            else:
-                user = User.objects.create_user(username=username, password=password)
-                user.save()
-                examiner = Examiner.objects.create(username=username, password=password, name=name, speciality=speciality, organization=organization)
-                examiner.save()
-                return HttpResponseRedirect("superusers")
-        else:
-            messages.info(request, 'Both passwords are not matching')
+        
+        if User.objects.filter(username=username).exists():
+            messages.info(request, 'Username is already taken')
             return HttpResponseRedirect("signupSuperUser")
+        else:
+            user = User.objects.create_user(username=username, password=password)
+            user.save()
+            examiner = Examiner.objects.create(username=username, password=password, name=name, speciality=speciality, organization=organization)
+            examiner.save()
+            return HttpResponseRedirect("superusers")
+        
     else:
         return render (request,"primary/signupSuperUser.html")
 

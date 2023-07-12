@@ -27,7 +27,7 @@ def signupSuperUser (request):
         else:
             user = User.objects.create_user(username=username, password=password)
             user.save()
-            examiner = Examiner.objects.create(username=username, password=password, name=name, speciality=speciality, organization=organization)
+            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, user_id=user.id)
             examiner.save()
             return HttpResponseRedirect("superusers")
         

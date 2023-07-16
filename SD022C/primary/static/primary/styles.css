@@ -31,25 +31,25 @@
     font-size: 18px;
 }
 
-.formControl{
+.formControl {
     float: right;
-    text-align: right;    
+    text-align: right;
     margin-right: 30px;
     margin-top: 30px;
     width: 400px;
 }
 
-.formAlign{
+.formAlign {
     padding-top: 40px;
     text-align: right;
 }
 
-.submitBtn{
+.submitBtn {
     margin-top: 40px;
 }
 
 .starlabel label:after {
-    content:" *";
+    content: " *";
     color: red;
 }
 
@@ -62,3 +62,6 @@
     background-color: #0059a0;
 }
 
+input {
+    text-align: right;
+}

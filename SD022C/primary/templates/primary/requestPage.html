@@ -3,11 +3,13 @@
 {%load static%}
 {%block content%}
 
-<h1 class="right">ارسل طلب للحصول على الخدمة</h1>
 
-<h3 class="right"> حقل مطلوب * </h3>
+<div class="container my-5">
+  <h1 class="right">ارسل طلب للحصول على الخدمة</h1>
 
-<div class="formControl">
+  <h3 class="right"> حقل مطلوب * </h3>
+
+  <div class="formControl">
     <form method="post" action="sendRequest.php">
         <label for="name" class="form-label starlabel label:after formAlign">  الأسم / الجهة </label>
         <input type="text" class="form-control formAlign" id="nameBox" placeholder="Enter Name/Organization">
@@ -19,6 +21,11 @@
         <textarea type="text" class="form-control" id="textAreaBox" rows="3"></textarea>
         <a id="sendrequestBtn" role="button" class="btn btn-primary submitBtn">أرسل</a>
     </form>    
+  </div>
 </div>
 
 {%endblock%}
+
+
+
+

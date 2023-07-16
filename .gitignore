@@ -7,6 +7,9 @@ db.sqlite3
 media
 */migrations/
 
+# Ds store
+*.DS_Store
+
 # Backup files # 
 *.bak 
 

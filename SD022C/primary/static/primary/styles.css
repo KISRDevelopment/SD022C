@@ -53,3 +53,12 @@
     color: red;
 }
 
+.table {
+    text-align: right;
+}
+
+.newUserBtn {
+    direction: rtl;
+    background-color: #0059a0;
+}
+

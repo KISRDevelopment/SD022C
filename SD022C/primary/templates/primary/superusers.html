@@ -1,52 +1,45 @@
-
-
-
 {%extends 'primary/base.html'%}
 {%load static%}
 {%block content%}
-<div class="table-responsive">
-    <table class="table table-striped"  style="direction: rtl;">
-        <thead>
-            <tr>
-                <th>الاسم</th>
-                <th>التخصص</th>
-                <th>الجهة</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for Examiners in examiners %}
-            <tr>
-                <td>
-                    {{Examiners.name}}
-                </td>
-                <td>
-                    {{Examiners.speciality}}
-                </td>
-                <td>
-                    {{Examiners.organization}}
-                </td>
-                <td>
-                    <a href="" >edit</a>
-                </td>
-                <td>
-                    <a href="" > delete</a>
-                </td>
-            </tr>
-            {%endfor%}
-        </tbody>             
-    </table>
+
+<div class="container"> 
+    <a type="button" class="btn btn-danger" style="float: right; margin-top: 20px;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a>
 </div>
-</div>
-<div class="container-fluid mt-auto bg-body-tertiary" data-bs-theme="dark">
-<footer>
-    <div class="container-fluid d-flex flex-column mt-3">
-        <ul class="nav justify-content-center mb-3">
-            <li class="nav-item"><a href="{% url 'primary:about' %} " class="nav-link text-body-emphasis fw-bolder"> من نحن </a></li>
-            <li class="nav-item"><a href="{% url 'primary:contact' %} " class="nav-link text-body-emphasis fw-bolder"> تواصل معنا </a></li>
-        </ul>
-        <p class="text-center text-body-emphasis mt-auto"> 2023 &copy طور بواسطة معهد الكويت للأبحاث العلمية</p>
+
+<div class="container my-5">
+    <div class="table-responsive">
+        <table class="table table-striped"  style="direction: rtl;">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>التخصص</th>
+                    <th>الجهة</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Examiners in examiners %}
+                <tr>
+                    <td>
+                        {{Examiners.name}}
+                    </td>
+                    <td>
+                        {{Examiners.speciality}}
+                    </td>
+                    <td>
+                        {{Examiners.organization}}
+                    </td>
+                    <td>
+                        <a href="" >edit</a>
+                    </td>
+                    <td>
+                        <a href="" > delete</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>             
+        </table>
     </div>
-</footer>
 </div>
+
 
 {%endblock%}

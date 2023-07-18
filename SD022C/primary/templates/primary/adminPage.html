@@ -27,19 +27,30 @@
     </header>
 
 
-    <div class="container-fluid bg-body-tertiary" data-bs-theme="dark">
-
+    <div class="navbar navbar-expand bg-body-tertiary py-0" data-bs-theme="dark">
         <div class="container">
-            <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
-                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> الحساب </a></li>
-                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> الأدلة </a></li>
-                <li class="nav-link "><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
-                <li class="nav-link"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
-            </ul>
+            <div class="nav justify-content-start">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> {{user}} </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="nav justify-content-end">
+                <ul class="navbar-nav">
+                    <li class="nav-link mx-3"><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> الحساب </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> الأدلة </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
+                </ul>
+            </div>
         </div>
-
-
     </div>
+
+
+
+
 
 
     <hr class="container">

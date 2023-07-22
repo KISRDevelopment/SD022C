@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
+from django.urls import reverse
 
 # Create your views here.
 def index (request):
@@ -66,4 +67,16 @@ def superusers (request):
     return render (request,"primary/superusers.html", {
         "examiners": Examiner.objects.all()
     })
+
+def delete(request, id):
+    user = Examiner.objects.filter(id=id)
+    context = {"examiners": user}
+
+    if request.method == "POST":
+        user.delete()
+
+        return redirect(reverse('primary:superusers'))
+
+    return render(request, 'primary/superusers.html', context)
+
 

@@ -11,4 +11,5 @@ urlpatterns = [
     path("adminPage",views.adminPage, name="adminPage"),
     path("superusers",views.superusers, name="superusers"),
     path("signupSuperUser",views.signupSuperUser, name="signupSuperUser"),
+    path('delete/<int:id>', views.delete, name='delete'),
 ]

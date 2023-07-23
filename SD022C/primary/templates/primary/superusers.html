@@ -148,7 +148,7 @@
     <!--modal for the edit part-->
     {% for Examiners in examiners %}
     <div class="modal fade" id="ModalEdit{{Examiners.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <form action="{% url 'primary:delete' Examiners.pk %}" method="POST">
+        <form action="{% url 'primary:edit' Examiners.pk %}" method="POST">
             {% csrf_token %}
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-3 shadow">
@@ -161,15 +161,15 @@
 
                             <div class="form-group mb-3">
                                 <label for="name" class="pe-3 fs-5 ">: الاسم</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="{{Examiners.name}}" Required>
+                                <input type="text" class="form-control" name="name" id="name" value="{{Examiners.name}}" Required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
-                                <input type="text" class="form-control" name="speciality" id="speciality" placeholder="{{Examiners.speciality}}" Required>
+                                <input type="text" class="form-control" name="speciality" id="speciality" value="{{Examiners.speciality}}" Required>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
-                                <input type="text" class="form-control" name="organization" id="organization" placeholder="{{Examiners.organization}}" Required>
+                                <input type="text" class="form-control" name="organization" id="organization" value="{{Examiners.organization}}" Required>
                             </div>
 
 

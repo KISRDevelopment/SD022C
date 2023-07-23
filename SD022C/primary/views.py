@@ -79,4 +79,16 @@ def delete(request, id):
 
     return render(request, 'primary/superusers.html', context)
 
+def edit(request, id):
+    if request.method == "POST":
+        name = request.POST['name']
+        speciality = request.POST['speciality']
+        organization = request.POST['organization']
+        user = Examiner.objects.filter(id=id)
+        user.update(name=name, speciality= speciality, organization=organization)
+
+        return redirect(reverse('primary:superusers'))
+    else:
+        return render(request, 'primary/superusers.html')
+
 

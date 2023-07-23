@@ -93,6 +93,6 @@ def edit(request, id):
 
 def logout(request):
     auth.logout(request)
-    return redirect(reverse('primary:adminPage'))
+    return redirect(reverse('primary:index'))
 
 

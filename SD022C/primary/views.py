@@ -69,10 +69,10 @@ def superusers (request):
     })
 
 def delete(request, id):
-    user = Examiner.objects.filter(id=id)
+    userAccount = User.objects.filter(id=id)
 
     if request.method == "POST":
-        user.delete()
+        userAccount.delete()
 
         return redirect(reverse('primary:superusers'))
 

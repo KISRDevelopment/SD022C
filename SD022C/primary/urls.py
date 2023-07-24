@@ -12,6 +12,7 @@ urlpatterns = [
     path("superusers",views.superusers, name="superusers"),
     path("signupSuperUser",views.signupSuperUser, name="signupSuperUser"),
     path('delete/<int:id>', views.delete, name='delete'),
+    #path('delete/<str:username>', views.delete, name='delete'),
     path('edit/<int:id>', views.edit, name='edit'),
     path('logout/', views.logout, name='logout'),
 ]

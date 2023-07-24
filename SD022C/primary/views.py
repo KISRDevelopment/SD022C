@@ -70,14 +70,13 @@ def superusers (request):
 
 def delete(request, id):
     user = Examiner.objects.filter(id=id)
-    context = {"examiners": user}
 
     if request.method == "POST":
         user.delete()
 
         return redirect(reverse('primary:superusers'))
 
-    return render(request, 'primary/superusers.html', context)
+    return render(request, 'primary/superusers.html')
 
 def edit(request, id):
     if request.method == "POST":

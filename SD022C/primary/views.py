@@ -45,7 +45,7 @@ def login (request):
         if user is not None:
             auth.login(request, user)
             if request.user.is_staff:
-                return HttpResponseRedirect("adminPage")
+                return HttpResponseRedirect("superusers")
             else:
                 return HttpResponseRedirect("examinerPage")
         else:

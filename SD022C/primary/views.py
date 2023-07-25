@@ -44,7 +44,10 @@ def login (request):
 
         if user is not None:
             auth.login(request, user)
-            return HttpResponseRedirect("adminPage")
+            if request.user.is_staff:
+                return HttpResponseRedirect("adminPage")
+            else:
+                return HttpResponseRedirect("examinerPage")
         else:
             messages.info(request, 'Invalid Username or Password')
             return HttpResponseRedirect("login")
@@ -93,5 +96,8 @@ def edit(request, id):
 def logout(request):
     auth.logout(request)
     return redirect(reverse('primary:index'))
+
+def examinerPage (request):
+    return render (request,"primary/examinerPage.html")
 
 

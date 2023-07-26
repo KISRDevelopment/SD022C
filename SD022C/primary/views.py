@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
 from django.urls import reverse
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def index (request):
@@ -83,10 +84,14 @@ def delete(request, id):
 
 def edit(request, id):
     if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
         name = request.POST['name']
         speciality = request.POST['speciality']
         organization = request.POST['organization']
         user = Examiner.objects.filter(id=id)
+        userAccount = User.objects.filter(id=id)
+        userAccount.update(username = username, password = make_password(password))
         user.update(name=name, speciality= speciality, organization=organization)
 
         return redirect(reverse('primary:superusers'))

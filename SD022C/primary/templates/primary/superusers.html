@@ -87,7 +87,7 @@
 <!--modal for the edit part-->
 {% for Examiners in examiners %}
 <div class="modal fade" id="ModalEdit{{Examiners.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:edit' Examiners.user_id %}" method="POST" novalidate>
+    <form action="{% url 'primary:edit' Examiners.user_id %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -103,7 +103,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
-                            <input type="text" class="form-control" name="password" id="password" placeholder="تغيير كلمة المرور" Required>
+                            <input type="text" class="form-control" name="password" id="password" placeholder="تغيير كلمة المرور">
                         </div>
 
 
@@ -128,12 +128,15 @@
                     </div>
 
                 </div>
+
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
                     <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #0059a0; border-color: #0059a0">تحديث</button>
                 </div>
+
             </div>
         </div>
+
     </form>
 </div>
 {%endfor%}{%endblock%}

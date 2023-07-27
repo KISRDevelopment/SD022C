@@ -89,11 +89,13 @@ def edit(request, id):
         name = request.POST['name']
         speciality = request.POST['speciality']
         organization = request.POST['organization']
-        user = Examiner.objects.filter(id=id)
+        user = Examiner.objects.filter(user_id=id)
         userAccount = User.objects.filter(id=id)
+        
         userAccount.update(username = username)
         if password:
-            userAccount.update(password = password)
+            userAccount.update(password = make_password(password))
+
         user.update(name=name, speciality= speciality, organization=organization)
 
         return redirect(reverse('primary:superusers'))

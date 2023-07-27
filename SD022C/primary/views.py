@@ -91,7 +91,9 @@ def edit(request, id):
         organization = request.POST['organization']
         user = Examiner.objects.filter(id=id)
         userAccount = User.objects.filter(id=id)
-        userAccount.update(username = username, password = make_password(password))
+        userAccount.update(username = username)
+        if password:
+            userAccount.update(password = password)
         user.update(name=name, speciality= speciality, organization=organization)
 
         return redirect(reverse('primary:superusers'))

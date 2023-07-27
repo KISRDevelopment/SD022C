@@ -91,10 +91,14 @@ def edit(request, id):
         organization = request.POST['organization']
         user = Examiner.objects.filter(user_id=id)
         userAccount = User.objects.filter(id=id)
+        userDetails = User.objects.get(id=id)
         
-        userAccount.update(username = username)
         if password:
             userAccount.update(password = make_password(password))
+        if User.objects.filter(username=username).exists() and username != userDetails.username:
+                messages.info(request, 'Username is already taken')
+        else:
+            userAccount.update(username = username)
 
         user.update(name=name, speciality= speciality, organization=organization)
 

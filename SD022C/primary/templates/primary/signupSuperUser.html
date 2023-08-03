@@ -1,53 +1,47 @@
+ {%extends 'primary/base.html'%} {%load static%} {%block content%}
+<div class="card card-signin my-5 bg-body-tertiary mx-auto" style="width: 500px;">
+    <div class="card-body">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right;">
+            {% csrf_token%}
+            <div class="mx-auto" style="width: 400px;">
+
+                <div class="col-xs-8 col-xs-offset-4 m-3">
+                    <h2 class="card-title text-center fs-2">تسجيل مستخدم جديد</h2>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
+                    <input type="text" class="form-control " name="username" id="username" placeholder="أدخل اسم المستخدم الخاص بك" Required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="أدخل كلمة المرور الخاصة بك هنا" Required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name" class="pe-3 fs-5 ">: الاسم</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="أدخل الاسم الكامل" Required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
+                    <input type="text" class="form-control" name="speciality" id="speciality" placeholder="أدخل التخصص" Required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
+                    <input type="text" class="form-control" name="organization" id="organization" placeholder="أدخل اسم الجهة" Required>
+                </div>
 
 
-{%extends 'primary/base.html'%}
-{%load static%}
-{%block content%}
-<div class="container my-5"> 
-    <form action="" method="POST" class="form-horizontal" style="text-align: right;">
-        {% csrf_token%}
-        <div class="mx-auto" style="width: 400px;">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-danger mb-5 btn-lg border-0 p-3">تسجيل  </button>
+                </div>
 
-            <div class="col-xs-8 col-xs-offset-4">
-                <h2 style="text-align:center;">تسجيل مستخدم جديد</h2>
-            </div>
-            <hr />
-            <div class="form-group">
-                <label for="username">: اسم المستخدم</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Enter a Username"
-                    Required>
-            </div>
-            <div class="form-group">
-                <label for="password">: كلمة المرور</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Enter a Password"
-                    Required>
-            </div>
-            <div class="form-group">
-                <label for="name">: الاسم</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter a Full Name"
-                    Required>
-            </div>
-            <div class="form-group">
-                <label for="speciality">: التخصص</label>
-                <input type="text" class="form-control" name="speciality" id="speciality" placeholder="Enter a speciality"
-                    Required>
-            </div>
-            <div class="form-group">
-                <label for="speciality">: الجهة</label>
-                <input type="text" class="form-control" name="organization" id="organization" placeholder="Enter the organization name"
-                    Required>
-            </div>
-            
-
-            <button type="submit" class="btn btn-primary">تسجيل  </button> 
-
-            {% for message in messages %}
+                {% for message in messages %}
                 <div class="alert alert-danger" role="alert">
                     {{message}}
                 </div>
-            {% endfor %}
-        </div>
-    </form>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
 </div>
 
 {%endblock%}

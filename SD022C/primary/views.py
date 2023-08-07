@@ -68,12 +68,18 @@ def requestPage (request):
     return render (request,"primary/requestPage.html")
 
 def superusers (request):
-    if request.user.is_staff:
-        return render(request,"primary/superusers.html", {
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return render(request,"primary/superusers.html", {
             "examiners": Examiner.objects.all()
         })
+        else:
+            return redirect(reverse('primary:examinerPage'))
+
     
-    return redirect(reverse('primary:examinerPage'))
+    return redirect(reverse('primary:index'))
+
+
 
 def delete(request, id):
     userAccount = User.objects.filter(id=id)
@@ -114,9 +120,12 @@ def logout(request):
     return redirect(reverse('primary:index'))
 
 def examinerPage (request):
-    if request.user.is_staff:
-        return redirect(reverse('primary:superusers'))
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect(reverse('primary:superusers'))
+        else:
+            return render(request,"primary/examinerPage.html")
     
-    return render(request,"primary/examinerPage.html")
+    return redirect(reverse('primary:index'))
 
 

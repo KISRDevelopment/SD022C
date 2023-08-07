@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from .models import Examiner
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index (request):
@@ -15,6 +16,7 @@ def index (request):
 def adminPage (request):
     return render (request,"primary/adminPage.html")
 
+@login_required
 def signupSuperUser (request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -67,6 +69,7 @@ def contact (request):
 def requestPage (request):
     return render (request,"primary/requestPage.html")
 
+
 def superusers (request):
     if request.user.is_authenticated:
         if request.user.is_staff:
@@ -118,6 +121,7 @@ def edit(request, id):
 def logout(request):
     auth.logout(request)
     return redirect(reverse('primary:index'))
+
 
 def examinerPage (request):
     if request.user.is_authenticated:

@@ -16,7 +16,7 @@ def index (request):
 def adminPage (request):
     return render (request,"primary/adminPage.html")
 
-@login_required
+@login_required(login_url="/primary/login")
 def signupSuperUser (request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -83,7 +83,7 @@ def superusers (request):
     return redirect(reverse('primary:index'))
 
 
-@login_required
+@login_required(login_url="/primary/login")
 def delete(request, id):
     userAccount = User.objects.filter(id=id)
 
@@ -94,7 +94,7 @@ def delete(request, id):
 
     return render(request, 'primary/superusers.html')
 
-@login_required
+@login_required(login_url="/primary/login")
 def edit(request, id):
     if request.method == "POST":
         username = request.POST["username"]

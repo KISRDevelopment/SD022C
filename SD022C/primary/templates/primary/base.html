@@ -52,9 +52,42 @@
                 </div>
             </div>
             <div class="nav justify-content-end">
+                
                 <ul class="navbar-nav">
-                    <!--<li class="nav-link mx-3"><a href="#" class="nav-link text-body-emphasis fs-5"> الأدلة </a></li>-->
-                    <li class="nav-link mx-3"><a href="{%static 'pdf/الفقرات التدريبيه.pdf'%}" class="nav-link text-body-emphasis fs-5"> الأدلة </a></li>
+
+                    <div class="dropdown">
+                        <li class="nav-link mx-3 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            الأدلة
+                            <li class="bi bi-person-fill mx-3"></li>
+                        </a></li>
+        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
+
+                            <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/الفقرات التدريبيه.pdf'%}"id="styleDropDown">
+                               الفقرات التدريبيه
+                               
+                                
+                            </a>
+                           
+                            <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/النموذج التدريبي.pdf'%}" id="styleDropDown">
+                              النموذج التدريبي
+                             
+                                  </a>
+
+                            <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/نموذج أ.pdf'%}" id="styleDropDown">
+                                نموذج أ
+                               
+                              </a>
+
+                              <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/نموذج ب.pdf'%}" id="styleDropDown">
+                                نموذج ب
+                             
+                              </a>
+        
+                        </div>
+                    </div>
+                                        
+
                     {% if user.is_staff %}
                     <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
                     {% else %}
@@ -93,3 +126,10 @@
 </body>
 
 </html>
+
+
+
+
+
+
+

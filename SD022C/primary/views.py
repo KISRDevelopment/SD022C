@@ -83,7 +83,7 @@ def superusers (request):
     return redirect(reverse('primary:index'))
 
 
-
+@login_required
 def delete(request, id):
     userAccount = User.objects.filter(id=id)
 
@@ -94,6 +94,7 @@ def delete(request, id):
 
     return render(request, 'primary/superusers.html')
 
+@login_required
 def edit(request, id):
     if request.method == "POST":
         username = request.POST["username"]

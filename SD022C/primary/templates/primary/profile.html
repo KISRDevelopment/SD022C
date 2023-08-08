@@ -1,0 +1,40 @@
+{%extends 'primary/base.html'%} {%load static%} {%block content%}
+
+{% if user.is_authenticated %}
+
+
+<div class="container my-5">
+    <h1 class="text-body-emphasis py-5" >حسابي</h1>
+
+    <table align="center">
+        <tr>
+          <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
+        </tr>
+        <tr>
+            <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
+        </tr>
+
+        {% if user.is_staff %}
+          <tr>
+            <td style="font-size:110%; direction: rtl;">الصلاحية: Admin</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td style="font-size:110%; direction: rtl;">الاسم:</td>
+          </tr>
+          <tr>
+            <td style="font-size:110%; direction: rtl;">التخصص:</td>
+          </tr>
+          <tr>
+            <td style="font-size:110%; direction: rtl;">الجهة:</td>
+          </tr>
+          <tr>
+            <td style="font-size:110%; direction: rtl;">الصلاحية: Examiner</td>
+          </tr>
+        {% endif %}
+    </table>
+</div>
+
+{% endif %} 
+
+{%endblock%}

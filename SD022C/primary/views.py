@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from .models import Examiner
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index (request):
@@ -15,6 +16,7 @@ def index (request):
 def adminPage (request):
     return render (request,"primary/adminPage.html")
 
+@login_required(login_url="/primary/login")
 def signupSuperUser (request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -67,11 +69,21 @@ def contact (request):
 def requestPage (request):
     return render (request,"primary/requestPage.html")
 
-def superusers (request):
-    return render (request,"primary/superusers.html", {
-        "examiners": Examiner.objects.all()
-    })
 
+def superusers (request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return render(request,"primary/superusers.html", {
+            "examiners": Examiner.objects.all()
+        })
+        else:
+            return redirect(reverse('primary:examinerPage'))
+
+    
+    return redirect(reverse('primary:index'))
+
+
+@login_required(login_url="/primary/login")
 def delete(request, id):
     userAccount = User.objects.filter(id=id)
 
@@ -82,6 +94,7 @@ def delete(request, id):
 
     return render(request, 'primary/superusers.html')
 
+@login_required(login_url="/primary/login")
 def edit(request, id):
     if request.method == "POST":
         username = request.POST["username"]
@@ -110,7 +123,14 @@ def logout(request):
     auth.logout(request)
     return redirect(reverse('primary:index'))
 
+
 def examinerPage (request):
-    return render (request,"primary/examinerPage.html")
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect(reverse('primary:superusers'))
+        else:
+            return render(request,"primary/examinerPage.html")
+    
+    return redirect(reverse('primary:index'))
 
 

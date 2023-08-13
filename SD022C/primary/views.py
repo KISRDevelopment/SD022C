@@ -114,6 +114,11 @@ def examinerPage (request):
     return render (request,"primary/examinerPage.html")
 
 def profile (request):
-    return render (request,"primary/profile.html")
+    return render (request,"primary/profile.html", {
+        "examiners": Examiner.objects.all()
+    })
+
+
+
 
 

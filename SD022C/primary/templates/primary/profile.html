@@ -2,36 +2,30 @@
 
 {% if user.is_authenticated %}
 
-<div class="container my-5">
+<div class="container my-5" >
     <h1 class="text-body-emphasis py-5" >حسابي</h1>
 
     {%if user.is_staff%}
+
     <table align="center" id="Modal{{Users.id}}">
-        
         <tr>
             <td>{{user}}</td>
             <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
+        </tr>  
+        <tr><td style="font-size:110%; direction: rtl;">الصلاحية: Admin</td>
         </tr>
         <tr>
             <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
-        </tr>    
-          <tr>
-            <td style="font-size:110%; direction: rtl;">الصلاحية: Admin</td>
-          </tr>
+        </tr>  
           
     </table> 
-
-    
     {%else%}
-    <table align="center" id="Modal{{Examiners.user_id}}">
-        {% for Examiners in examiners %}
+    
+    <table align="center" id="Modal{{Examiners.user_id}}" >
+        {%for Examiners in examiners%}
         <tr>
-            <td>{{Examiners.user.username}}</td>
             <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
-        </tr>
-        <tr>
-            <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
-        </tr>    
+        </tr>   
         <tr>
             <td>{{Examiners.name}}</td>
             <td style="font-size:110%; direction: rtl;">الاسم:</td>
@@ -47,16 +41,52 @@
           <tr>
             <td style="font-size:110%; direction: rtl;">الصلاحية: Examiner</td>
           </tr>
-          {%endfor%}
-    </table> 
-
-    {%endif%}
-
+          {%endfor%} 
+    </table>  
     
-    
+
 </div>
+{%endif%}
 
+<!--
+<div class="card card-signin my-5 bg-body-tertiary mx-auto" style="width: 500px;" id="{{Examiners.user_id}}">
+    <div class="card-body">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right;">
+            {% csrf_token%}
+            <div class="mx-auto" style="width: 400px;">
+
+                <div class="col-xs-8 col-xs-offset-4 m-3">
+                    <h2 class="card-title text-center fs-2">حسابي</h2>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
+                    <input type="text" class="form-control " name="username" id="username">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
+                    
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name" class="pe-3 fs-5 ">: الاسم</label>
+                    
+                </div>
+                <div class="form-group mb-3">
+                    <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
+                    
+                </div>
+                <div class="form-group mb-3">
+                    <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->
 
 {% endif %} 
 
 {%endblock%}
+
+<!--
+
+-->

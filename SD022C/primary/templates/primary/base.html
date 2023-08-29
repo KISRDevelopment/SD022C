@@ -38,7 +38,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
-                    <a class="dropdown-item d-flex justify-content-end fs-5" href="{% url 'primary:profile'%}" id="styleDropDown">
+                    <a class="dropdown-item d-flex justify-content-end fs-5" href="{% url 'primary:profile' %}" method="POST" id="styleDropDown" value={{Examiners.user_id}} >
                         الحساب
                         <li class="bi bi-person-fill mx-3"></li>
                         

@@ -22,26 +22,24 @@
     {%else%}
     
     <table align="center" id="Modal{{Examiners.user_id}}" >
-        {%for Examiners in examiners%}
         <tr>
             <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
         </tr>   
         <tr>
-            <td>{{Examiners.name}}</td>
+            <td>{{examiners.name}}</td>
             <td style="font-size:110%; direction: rtl;">الاسم:</td>
           </tr>
           <tr>
-            <td>{{Examiners.speciality}}</td>
+            <td>{{examiners.speciality}}</td>
             <td style="font-size:110%; direction: rtl;">التخصص:</td>
           </tr>
           <tr>
-            <td>{{Examiners.organization}}</td>
+            <td>{{examiners.organization}}</td>
             <td style="font-size:110%; direction: rtl;">الجهة:</td>
           </tr>
           <tr>
             <td style="font-size:110%; direction: rtl;">الصلاحية: Examiner</td>
           </tr>
-          {%endfor%} 
     </table>  
     
 

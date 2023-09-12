@@ -113,11 +113,13 @@ def logout(request):
 def examinerPage (request):
     return render (request,"primary/examinerPage.html")
 
-def profile (request, id):
- 
-        return render(request, "primary/profile.html",{
-        "examiners": Examiner.objects.get(user_id=id)
-    })
+def profile (request):
+    if (request.user.is_staff):
+        return render(request, 'primary/profile.html')
+    else:
+        return render(request, "primary/profile.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
+
 
 
 

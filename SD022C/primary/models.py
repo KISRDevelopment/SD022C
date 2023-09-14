@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Examiner(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='admin_id')
     name = models.CharField(max_length=60)
     speciality = models.CharField(max_length=60)
     organization = models.CharField(max_length=60)

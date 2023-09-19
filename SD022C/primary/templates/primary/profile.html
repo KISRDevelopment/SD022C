@@ -1,90 +1,99 @@
-{%extends 'primary/base.html'%} {%load static%} {%block content%}
+{%extends 'primary/base.html'%}
+{%load static%}
+{%block content%}
 
 {% if user.is_authenticated %}
 
-<div class="container my-5" >
-    <h1 class="text-body-emphasis py-5" >حسابي</h1>
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3 h-100 border">
+
+
+    <h1 class="text-body-emphasis py-5">حسابي</h1>
 
     {%if user.is_staff%}
 
-    <table align="center" id="Modal{{Users.id}}">
-        <tr>
+    <table align="center" id="ModalAdmin{{Users.id}}">
+        <tr align="right">
             <td>{{user}}</td>
             <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
         </tr>  
-        <tr><td style="font-size:110%; direction: rtl;">الصلاحية: Admin</td>
+        <tr align="right">
+            <td style="font-size:100%; direction: rtl;">Admin</td>
+            <td style="font-size:110%; direction: rtl;">الصلاحية: </td>
         </tr>
-        <tr>
+        <tr align="right">
             <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
         </tr>  
           
     </table> 
     {%else%}
     
-    <table align="center" id="Modal{{Examiners.user_id}}" >
-        <tr>
+    <table align="center" id="#ModalExaminer{{Examiners.user_id}}" >
+        <tr align="right">
+            <td>{{examiners.user}}</td>
             <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
         </tr>   
-        <tr>
+        <tr align="right">
             <td>{{examiners.name}}</td>
             <td style="font-size:110%; direction: rtl;">الاسم:</td>
           </tr>
-          <tr>
+          <tr align="right">
             <td>{{examiners.speciality}}</td>
             <td style="font-size:110%; direction: rtl;">التخصص:</td>
           </tr>
-          <tr>
+          <tr align="right">
             <td>{{examiners.organization}}</td>
             <td style="font-size:110%; direction: rtl;">الجهة:</td>
           </tr>
-          <tr>
-            <td style="font-size:110%; direction: rtl;">الصلاحية: Examiner</td>
+          <tr align="right">
+            <td style="font-size:100%; direction: rtl;">Examiner</td>
+            <td style="font-size:110%; direction: rtl;">الصلاحية:</td>
           </tr>
-    </table>  
-    
-
+          <tr align="right">
+            <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
+        </tr> 
+    </table> 
+    {%endif%} 
 </div>
-{%endif%}
+</div>
 
-<!--
-<div class="card card-signin my-5 bg-body-tertiary mx-auto" style="width: 500px;" id="{{Examiners.user_id}}">
-    <div class="card-body">
-        <form action="" method="POST" class="form-horizontal" style="text-align: right;">
-            {% csrf_token%}
-            <div class="mx-auto" style="width: 400px;">
-
-                <div class="col-xs-8 col-xs-offset-4 m-3">
-                    <h2 class="card-title text-center fs-2">حسابي</h2>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
-                    <input type="text" class="form-control " name="username" id="username">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
-                    
-                </div>
-                <div class="form-group mb-3">
-                    <label for="name" class="pe-3 fs-5 ">: الاسم</label>
-                    
-                </div>
-                <div class="form-group mb-3">
-                    <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
-                    
-                </div>
-                <div class="form-group mb-3">
-                    <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
-                    
-                </div>
-            </div>
-        </form>
-    </div>
-</div> -->
-
-{% endif %} 
-
+{%endif%} 
 {%endblock%}
 
+
 <!--
 
+<div class="modal fade" id="ModalExaminer{{Examiners.user_id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:password' Examiners.user_id %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2">تغيير كلمة المرور</h2>
+                </div>
+                <div class="modal-body" style="text-align: right;">
+                    <div class="mx-auto" style="width: 400px;">
+
+                        <div class="form-group mb-3">
+                            <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
+                            <input type="text" class="form-control" name="username" id="username" value="{{examiners.user}}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="pe-3 fs-5 ">: كلمة المرور الجديدة</label>
+                            <input type="text" class="form-control" name="password" id="password" placeholder="كلمة المرور الجديدة">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer flex-nowrap p-0">
+                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #0059a0; border-color: #0059a0">تغيير</button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</div>
 -->

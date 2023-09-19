@@ -47,6 +47,7 @@
     </div>
 </div>
 
+
 <!--modal for the delete part-->
 {% for Examiners in examiners %}
 <div class="modal fade" id="Modal{{Examiners.user_id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -91,6 +92,7 @@
     </form>
 </div>
 {%endfor%}
+
 <!--modal for the edit part-->
 {% for Examiners in examiners %}
 <div class="modal fade" id="ModalEdit{{Examiners.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">

@@ -119,6 +119,27 @@ def profile (request):
     else:
         return render(request, "primary/profile.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})
+        
+        
+
+''' 
+def password(request, id):
+    if request.method == "POST":
+        if(request.user.is_staff):
+         password = request.POST["password"]
+         user = user.objects.filter(id=id)
+         if password: user.update(password = make_password(password)) 
+         
+        else:
+         password = request.POST["password"]
+         examiner = Examiner.objects.filter(id=id)
+         if password: examiner.update(password = make_password(password)) 
+              
+        return redirect(reverse('primary:profile/'))
+    else:
+        return render(request, 'primary/profile.html', {
+        "examiners": Examiner.objects.get(user_id=request.user.id)}) '''
+
 
 
 

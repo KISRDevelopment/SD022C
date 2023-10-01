@@ -42,7 +42,7 @@
                     <a class="dropdown-item d-flex justify-content-end fs-5" href="#" id="styleDropDown">
                         الحساب
                         <li class="bi bi-person-fill mx-3"></li>
-                        
+
                     </a>
                     <hr>
                     <a class="dropdown-item d-flex justify-content-end fs-5" href="{% url 'primary:logout' %}" id="styleDropDown">
@@ -53,8 +53,35 @@
                 </div>
             </div>
             <div class="nav justify-content-end">
-                <ul class="navbar-nav">
-                    <li class="nav-link mx-3"><a href="#" class="nav-link text-body-emphasis fs-5"> الأدلة </a></li>
+
+              <div class="navbar navbar">
+
+                    <div class="dropdown">
+                      <a class="link-body-emphasis fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0 "href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      الأدلة
+                      </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
+
+                          <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/التسمية السريعة للاشكال.pdf'%}" id="styleDropDown">
+              التسمية السريعة للأشكال
+                                </a>
+                        
+                            <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/التسمية السريعة للحروف.pdf'%}" id="styleDropDown">
+التسمية السريعة للحروف
+                              </a>
+                              <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/اختبار دقة قراءة الكلمات غير الحقيقية.pdf'%}"id="styleDropDown">
+  اختبار دقة قراءة الكلمات غير الحقيقية
+
+                              </a>
+
+
+
+
+                        </div>
+                    </div>
+</div>
+
                     {% if user.is_staff %}
                     <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
                     {% else %}

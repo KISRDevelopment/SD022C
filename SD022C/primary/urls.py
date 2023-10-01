@@ -15,4 +15,6 @@ urlpatterns = [
     path('edit/<int:id>', views.edit, name='edit'),
     path('logout/', views.logout, name='logout'),
     path('examinerPage/', views.examinerPage, name='examinerPage'),
+    path('profile/', views.profile, name='profile'),
+    #path('password/<int:id>', views.password, name='password'),
 ]

@@ -31,7 +31,7 @@ def signupSuperUser (request):
         else:
             user = User.objects.create_user(username=username, password=password)
             user.save()
-            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, user_id=user.id)
+            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, user_id=user.id, admin_id=request.user.id)
             examiner.save()
             return HttpResponseRedirect("superusers")
         
@@ -69,19 +69,14 @@ def contact (request):
 def requestPage (request):
     return render (request,"primary/requestPage.html")
 
-
+@login_required(login_url="/primary/login")
 def superusers (request):
-    if request.user.is_authenticated:
-        if request.user.is_staff:
-            return render(request,"primary/superusers.html", {
-            "examiners": Examiner.objects.all()
+    if request.user.is_staff:
+        return render(request,"primary/superusers.html", {
+            "examiners": Examiner.objects.filter(admin_id=request.user.id)
         })
-        else:
-            return redirect(reverse('primary:examinerPage'))
-
-    
-    return redirect(reverse('primary:index'))
-
+    else:
+        return redirect(reverse('primary:examinerPage'))
 
 @login_required(login_url="/primary/login")
 def delete(request, id):

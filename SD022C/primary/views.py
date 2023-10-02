@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
+from .models import Student
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
@@ -37,7 +38,31 @@ def signupSuperUser (request):
         
     else:
         return render (request,"primary/signupSuperUser.html")
+    
+@login_required(login_url="/primary/login")
+def signupStudents (request):
+    if request.method == 'POST':
+        studentName = request.POST['studentName']
+        sex = request.POST['sex']
+        schoolName = request.POST['schoolName']
+        grade = request.POST['grade']
+        eduDistrict = request.POST['eduDistrict']
+        nationality = request.POST['nationality']
+        examDate  = request.POST['examDate']
+        birthDate = request.POST['birthDate']
+        age = request.POST['age']
 
+        if Student.objects.filter(studentName=studentName).exists():
+            messages.info(request, 'student Name is already taken')
+            return HttpResponseRedirect("signupStudents")
+        else:
+            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age)
+            student.save()
+            return HttpResponseRedirect("students")
+        
+    else:
+        return render (request,"primary/signupStudents.html")
+    
 def login (request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -77,6 +102,11 @@ def superusers (request):
         })
     else:
         return redirect(reverse('primary:examinerPage'))
+      
+def students (request):
+    return render(request,"primary/students.html", {
+        "students": Student.objects.all()
+    })
 
 @login_required(login_url="/primary/login")
 def delete(request, id):

@@ -11,3 +11,17 @@ class Examiner(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.name}"
+    
+class Student(models.Model):
+    studentName = models.CharField(max_length=60)
+    sex = models.CharField(max_length=60)
+    schoolName = models.CharField(max_length=60)
+    grade = models.CharField(max_length=60)
+    eduDistrict = models.CharField(max_length=60)
+    nationality = models.CharField(max_length=60)
+    examDate = models.CharField(max_length=60)
+    birthDate = models.CharField(max_length=60)
+    age = models.CharField(max_length=60)
+
+    def __str__(self):
+        return f"{self.id}: {self.studentName}"

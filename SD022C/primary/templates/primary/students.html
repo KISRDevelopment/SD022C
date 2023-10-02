@@ -1,0 +1,147 @@
+{%extends 'primary/base.html'%} {%load static%} {%block content%}
+
+
+<div class="container">
+    <a type="button" class="btn btn-danger" style="float: right; margin-top: 20px;" href="{% url 'primary:signupStudents' %} ">إضافة طالب جديد  </a>
+</div>
+
+<div class="container my-5">
+    <div class="table-responsive">
+        <table class="table table-striped" style="direction: rtl;">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>العمر</th>
+                    <th>الصف</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Students in students %}
+                <tr>
+                    <td>
+                        {{Students.studentName}}
+                    </td>
+                    <td>
+                        {{Students.age}}
+                    </td>
+                    <td>
+                        {{Students.grade}}
+                    </td>
+                    <!-- <td>
+                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Students.pk}}"><i class="bi bi-pencil-square " style="color:#0059a0;"></i> تحرير </a>
+                    </td>
+                    <td>
+                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#Modal{{Students.user_id}}"><i class="bi bi-trash-fill " style="color:#0059a0;"></i> حذف</a>
+                    </td> -->
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group">
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!--modal for the delete part-->
+<!-- {% for Students in students %}
+<div class="modal fade" id="Modal{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:delete' Students.id %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4" id="labelText" style="color: #0059a0">
+                    <h5 class="modal-title mb-0 w-100 text-center fs-3"> هل أنت متأكد من حذف المستخدم؟</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped" style="direction: rtl;">
+                        <thead>
+                            <tr>
+                                <th>الاسم</th>
+                                <th>الجنس</th>
+                                <th>الصف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{Students.studentName}}
+                                </td>
+                                <td>
+                                    {{Students.sex}}
+                                </td>
+                                <td>
+                                    {{Students.grade}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit">حذف</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{%endfor%} -->
+
+<!--modal for the edit part-->
+<!-- {% for Students in students %}
+<div class="modal fade" id="ModalEdit{{Students.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:edit' Students.id %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2">تحرير المعلومات</h2>
+                </div>
+                <div class="modal-body" style="text-align: right;">
+                    <div class="mx-auto" style="width: 400px;">
+
+                        <div class="form-group mb-3">
+                            <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
+                            <input type="text" class="form-control " name="username" id="username" value="{{Examiners.user.username}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
+                            <input type="text" class="form-control" name="password" id="password" placeholder="تغيير كلمة المرور">
+                        </div>
+
+
+
+                        <div class="form-group mb-3">
+                            <label for="name" class="pe-3 fs-5 ">: الاسم</label>
+                            <input type="text" class="form-control" name="name" id="name" value="{{Examiners.name}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
+                            <input type="text" class="form-control" name="speciality" id="speciality" value="{{Examiners.speciality}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
+                            <input type="text" class="form-control" name="organization" id="organization" value="{{Examiners.organization}}" Required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer flex-nowrap p-0">
+                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #0059a0; border-color: #0059a0">تحديث</button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+{%endfor%} -->
+{%endblock%}

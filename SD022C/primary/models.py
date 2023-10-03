@@ -13,6 +13,7 @@ class Examiner(models.Model):
         return f"{self.id}: {self.name}"
     
 class Student(models.Model):
+    examiner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='examiner_id')
     studentName = models.CharField(max_length=60)
     sex = models.CharField(max_length=60)
     schoolName = models.CharField(max_length=60)

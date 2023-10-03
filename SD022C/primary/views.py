@@ -56,7 +56,7 @@ def signupStudents (request):
             messages.info(request, 'student Name is already taken')
             return HttpResponseRedirect("signupStudents")
         else:
-            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age)
+            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)
             student.save()
             return HttpResponseRedirect("students")
         

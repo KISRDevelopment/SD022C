@@ -105,7 +105,7 @@ def superusers (request):
       
 def students (request):
     return render(request,"primary/students.html", {
-        "students": Student.objects.all()
+        "students": Student.objects.filter(examiner_id=request.user.id)
     })
 
 @login_required(login_url="/primary/login")

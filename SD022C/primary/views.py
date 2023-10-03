@@ -43,7 +43,7 @@ def signupSuperUser (request):
 def signupStudents (request):
     if request.method == 'POST':
         studentName = request.POST['studentName']
-        sex = request.POST['sex']
+        sex = request.POST['gender']
         schoolName = request.POST['schoolName']
         grade = request.POST['grade']
         eduDistrict = request.POST['eduDistrict']

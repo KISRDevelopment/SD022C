@@ -8,22 +8,22 @@
     <div class="p-5 text-center bg-body-tertiary rounded-3 h-100 border">
 
 
-    <h1 class="text-body-emphasis py-5">حسابي</h1>
+    <h1 class="display-4" style="text-align: center; font-weight:normal; padding-bottom:50px" >حسابي</h1>
 
     {%if user.is_staff%}
 
     <table align="center" id="ModalAdmin{{Users.id}}">
         <tr align="right">
             <td>{{user}}</td>
-            <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;">اسم المستخدم:</td>
         </tr>  
         <tr align="right">
             <td style="font-size:100%; direction: rtl;">Admin</td>
-            <td style="font-size:110%; direction: rtl;">الصلاحية: </td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold;">الصلاحية: </td>
         </tr>
-        <tr align="right">
+       <!-- <tr align="right">
             <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
-        </tr>  
+        </tr>  -->
           
     </table> 
     {%else%}
@@ -31,31 +31,32 @@
     <table align="center" id="#ModalExaminer{{Examiners.user_id}}" >
         <tr align="right">
             <td>{{examiners.user}}</td>
-            <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;">اسم المستخدم: </td>
         </tr>   
         <tr align="right">
             <td>{{examiners.name}}</td>
-            <td style="font-size:110%; direction: rtl;">الاسم:</td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold;">الاسم: </td>
           </tr>
           <tr align="right">
             <td>{{examiners.speciality}}</td>
-            <td style="font-size:110%; direction: rtl;">التخصص:</td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold;">التخصص: </td>
           </tr>
           <tr align="right">
             <td>{{examiners.organization}}</td>
-            <td style="font-size:110%; direction: rtl;">الجهة:</td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold;">الجهة: </td>
           </tr>
           <tr align="right">
-            <td style="font-size:100%; direction: rtl;">Examiner</td>
-            <td style="font-size:110%; direction: rtl;">الصلاحية:</td>
+            <td style="font-size:100%; direction: rtl; ">Examiner</td>
+            <td style="font-size:110%; direction: rtl; font-weight:bold;">الصلاحية: </td>
           </tr>
-          <tr align="right">
+        <!--  <tr align="right">
             <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
-        </tr> 
+        </tr> -->
     </table> 
     {%endif%} 
 </div>
 </div>
+
 
 {%endif%} 
 {%endblock%}

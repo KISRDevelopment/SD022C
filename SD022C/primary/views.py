@@ -54,11 +54,11 @@ def signupStudents (request):
 
         if Student.objects.filter(studentName=studentName).exists():
             messages.info(request, 'student Name is already taken')
-            return HttpResponseRedirect("signupStudents")
+            return redirect("primary:signupStudents")
         else:
             student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)
             student.save()
-            return HttpResponseRedirect("students")
+            return redirect("primary:students")
         
     else:
         return render (request,"primary/signupStudents.html")
@@ -105,7 +105,7 @@ def superusers (request):
       
 def students (request):
     return render(request,"primary/students.html", {
-        "students": Student.objects.all()
+        "students": Student.objects.filter(examiner_id=request.user.id)
     })
 
 @login_required(login_url="/primary/login")

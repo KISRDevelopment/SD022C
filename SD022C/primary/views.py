@@ -9,6 +9,8 @@ from .models import Student
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+from dateutil import relativedelta
 
 # Create your views here.
 def index (request):
@@ -43,14 +45,20 @@ def signupSuperUser (request):
 def signupStudents (request):
     if request.method == 'POST':
         studentName = request.POST['studentName']
-        sex = request.POST['sex']
+        sex = request.POST['gender']
         schoolName = request.POST['schoolName']
         grade = request.POST['grade']
         eduDistrict = request.POST['eduDistrict']
         nationality = request.POST['nationality']
         examDate  = request.POST['examDate']
         birthDate = request.POST['birthDate']
-        age = request.POST['age']
+
+        examdate = datetime.strptime(request.POST['examDate'], '%Y-%m-%d')
+        birthdate = datetime.strptime(request.POST['birthDate'], '%Y-%m-%d')
+
+        delta = relativedelta.relativedelta(examdate, birthdate)
+        print(delta.years, 'Years,', delta.months, 'months,', delta.days, 'days')
+        age = str(delta.years) + "-" + str(delta.months) +"-"+str(delta.days)
 
         if Student.objects.filter(studentName=studentName).exists():
             messages.info(request, 'student Name is already taken')

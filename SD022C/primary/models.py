@@ -20,8 +20,8 @@ class Student(models.Model):
     grade = models.CharField(max_length=60)
     eduDistrict = models.CharField(max_length=60)
     nationality = models.CharField(max_length=60)
-    examDate = models.CharField(max_length=60)
-    birthDate = models.CharField(max_length=60)
+    examDate = models.DateField(max_length=60)
+    birthDate = models.DateField(max_length=60)
     age = models.CharField(max_length=60)
 
     def __str__(self):

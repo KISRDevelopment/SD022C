@@ -18,6 +18,7 @@ class Student(models.Model):
     sex = models.CharField(max_length=60)
     schoolName = models.CharField(max_length=60)
     grade = models.CharField(max_length=60)
+    civilID = models.IntegerField()
     eduDistrict = models.CharField(max_length=60)
     nationality = models.CharField(max_length=60)
     examDate = models.DateField(max_length=60)

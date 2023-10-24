@@ -48,6 +48,7 @@ def signupStudents (request):
         sex = request.POST['gender']
         schoolName = request.POST['schoolName']
         grade = request.POST['grade']
+        civilID = request.POST ['civilID']
         eduDistrict = request.POST['eduDistrict']
         nationality = request.POST['nationality']
         examDate  = request.POST['examDate']
@@ -60,11 +61,11 @@ def signupStudents (request):
         print(delta.years, 'Years,', delta.months, 'months,', delta.days, 'days')
         age = str(delta.years) + "-" + str(delta.months) +"-"+str(delta.days)
 
-        if Student.objects.filter(studentName=studentName).exists():
-            messages.info(request, 'student Name is already taken')
+        if Student.objects.filter(civilID=civilID).exists():
+            messages.info(request, 'Student is already exist')
             return redirect("primary:signupStudents")
         else:
-            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)
+            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, civilID=civilID, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)
             student.save()
             return redirect("primary:students")
         

@@ -1,52 +1,62 @@
  {%extends 'primary/base.html'%} {%load static%} {%block content%}
-<div class="card card-signin my-5 bg-body-tertiary mx-auto" style="width: 500px;">
+<div class="card card-signin my-3  mx-auto" style="width: 800px; border-color:#99CC00;">
     <div class="card-body">
-        <form action="" method="POST" class="form-horizontal" style="text-align: right;">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right; direction: rtl;">
             {% csrf_token%}
-            <div class="mx-auto" style="width: 400px;">
-
+            <div class="row g-3" style="width: 700px;">
                 <div class="col-xs-8 col-xs-offset-4 m-3">
-                    <h2 class="card-title text-center fs-2">تسجيل طالب جديد</h2>
+                    <h2 class="card-title text-center fs-2" style="color:#99CC00;">البيانات الشخصية لتسجيل طالب جديد</h2>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="studentName" class="pe-3 fs-5 ">: اسم الطالب</label>
-                    <input type="text" class="form-control " name="studentName" id="studentName" placeholder="أدخل اسم الطالب الرباعي" Required>
+                <div class="col-md-6">
+                    <label for="studentName" class="fs-5 text-black" > اسم المفحوص رباعيا </label>
+                    <input type="text" class="form-control " name="studentName" id="studentName"  Required>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="sex" class="pe-3 fs-5 ">: الجنس </label>
-                    <select name="gender" class="form-control" id="sex" Required>
-                        <option value="">--  اختر--</option>
+                <div class="col-md-6">
+                    <label for="sex" class=" fs-5 text-black"> جنس المفحوص </label>
+                    <select name="gender" class="form-select" id="sex" Required>
+                        <option value="">اختر</option>
                         <option value="male">ذكر</option>
                         <option value="female">انثى</option>
                     </select>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="schoolName" class="pe-3 fs-5 ">: اسم المدرسة</label>
-                    <input type="text" class="form-control" name="schoolName" id="schoolName" placeholder="أدخل اسم المدرسة" Required>
+                <div class="col-md-6">
+                    <label for="schoolName" class=" fs-5 text-black"> اسم المدرسة</label>
+                    <input type="text" class="form-control" name="schoolName" id="schoolName"  Required>
+                </div>
+                <div class="col-md-6">
+                    <label for="grade" class=" fs-5 text-black"> الصف الدراسي</label>
+                    <input type="text" class="form-control" name="grade" id="grade"  Required>
+                </div>
+                <div class="col-md-6">
+                    <label for="civilID" class=" fs-5 text-black"> الرقم المدني </label>
+                    <input type="text" class="form-control" name="civilID" id="civilID"  Required>
+                </div>
+                <div class="col-md-6">
+                    <label for="eduDistrict" class=" fs-5 text-black"> المنطقة التعليمية</label>
+                    <select name="eduDistrict" class="form-select" id="eduDistrict" Required>
+                        <option value="">اختر</option>
+                        <option value="">العاصمة</option>
+                        <option value="">حولي</option>
+                        <option value="">الفروانية</option>
+                        <option value="">الجهراء</option>
+                        <option value="">مبارك الكبير</option>
+                        <option value="">الأحمدي</option>
+                    </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="grade" class="pe-3 fs-5 ">: الصف الدراسي</label>
-                    <input type="text" class="form-control" name="grade" id="grade" placeholder="أدخل الصف الدراسي" Required>
+                    <label for="examDate" class=" fs-5 text-black">  تاريخ اجراء الاختبار</label>
+                    <input type="date" class="form-control" name="examDate" id="examDate"  Required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="eduDistrict" class="pe-3 fs-5 ">: المنطقة التعليمية</label>
-                    <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" placeholder="أدخل اسم المنطقة" Required>
+                    <label for="birthDate" class=" fs-5 text-black"> تاريخ ميلاد المفحوص </label>
+                    <input type="date" class="form-control" name="birthDate" id="birthDate"  Required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="nationality" class="pe-3 fs-5 ">: الجنسية </label>
-                    <input type="text" class="form-control" name="nationality" id="nationality" placeholder="أدخل الجنسية " Required>
+                    <label for="nationality" class="fs-5 text-black"> الجنسية </label>
+                    <input type="text" class="form-control" name="nationality" id="nationality"  Required>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="examDate" class="pe-3 fs-5 ">:  تاريخ الاختبار</label>
-                    <input type="date" class="form-control" name="examDate" id="examDate" placeholder="أدخل تاريخ الاختبار " Required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="birthDate" class="pe-3 fs-5 ">: تاريخ الميلاد </label>
-                    <input type="date" class="form-control" name="birthDate" id="birthDate" placeholder="أدخل تاريخ الميلاد " Required>
-                </div>
-
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-danger mb-5 btn-lg border-0 p-3">تسجيل  </button>
+                <div class="d-grid gap-2 col-3 mx-auto">
+                    <button type="submit" class="btn fs-5 border-0 p-3" style="background-color: #99CC00; color: white; font-weight: bold;">تسجيل  </button>
                 </div>
 
                 {% for message in messages %}

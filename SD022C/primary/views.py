@@ -62,7 +62,7 @@ def signupStudents (request):
         age = str(delta.years) + "-" + str(delta.months) +"-"+str(delta.days)
 
         if Student.objects.filter(civilID=civilID).exists():
-            messages.info(request, 'Student is already exist')
+            messages.info(request, 'لقد تم تسجيل الطالب مسبقاً')
             return redirect("primary:signupStudents")
         else:
             student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, civilID=civilID, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)

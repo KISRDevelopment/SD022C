@@ -7,6 +7,11 @@
                 <div class="col-xs-8 col-xs-offset-4 m-3">
                     <h2 class="card-title text-center fs-2" style="color:#99CC00;">البيانات الشخصية لتسجيل طالب جديد</h2>
                 </div>
+                {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
                 <div class="col-md-6">
                     <label for="studentName" class="fs-5 text-black" > اسم المفحوص رباعيا </label>
                     <input type="text" class="form-control " name="studentName" id="studentName"  Required>
@@ -69,11 +74,6 @@
                     <button type="submit" class="btn fs-5 border-0 p-3" style="background-color: #99CC00; color: white; font-weight: bold;">تسجيل  </button>
                 </div>
 
-                {% for message in messages %}
-                <div class="alert alert-danger" role="alert">
-                    {{message}}
-                </div>
-                {% endfor %}
             </div>
         </form>
     </div>

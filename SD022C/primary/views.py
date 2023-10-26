@@ -210,7 +210,14 @@ def profile (request):
         return render(request, "primary/profile.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})
         
-        
+def testsPage (request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect(reverse('primary:testsPage'))
+        else:
+            return render(request,"primary/testsPage.html")
+    
+    return redirect(reverse('primary:index'))        
 
 ''' 
 def password(request, id):

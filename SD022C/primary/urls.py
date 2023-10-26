@@ -18,5 +18,8 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('students/', views.students, name='students'),
     path('signupStudents/', views.signupStudents, name='signupStudents'),
+    path('deleteStudent/<int:id>', views.deleteStudent, name='deleteStudent'),
+    #path('editStudent/<int:id>', views.editStudent, name='editStudent'),
+
     #path('password/<int:id>', views.password, name='password'),
 ]

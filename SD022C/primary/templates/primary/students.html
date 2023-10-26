@@ -2,7 +2,7 @@
 
 
 <div class="container">
-    <a type="button" class="btn btn-danger" style="float: right; margin-top: 20px;" href="{% url 'primary:signupStudents' %} ">إضافة طالب جديد  </a>
+    <a type="button" class="btn" style="float: right; margin-top: 20px; background-color: #99CC00;" href="{% url 'primary:signupStudents' %} ">إضافة طالب جديد  </a>
 </div>
 
 <div class="container my-5">
@@ -14,7 +14,6 @@
                     <th>العمر: يوم / شهر / سنة</th>
                     <th> الصف الدراسي</th>
                     <th>الرقم المدني</th>
-                   
                 </tr>
             </thead>
             <tbody>
@@ -33,12 +32,15 @@
                         {{Students.civilID}}
                     </td>
 
-                    <!-- <td>
+<!--                     <td>
                         <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Students.pk}}"><i class="bi bi-pencil-square " style="color:#0059a0;"></i> تحرير </a>
+                    </td> -->
+                    <td>
+                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="" data-target=""><i class="bi bi-pencil-square" style="color:#0059a0;"></i> بدء الاختبار</a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#Modal{{Students.user_id}}"><i class="bi bi-trash-fill " style="color:#0059a0;"></i> حذف</a>
-                    </td> -->
+                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill " style="color:#0059a0;"></i> حذف</a>
+                    </td>
                 </tr>
                 {%endfor%}
             </tbody>
@@ -53,11 +55,10 @@
     </div>
 </div>
 
-
 <!--modal for the delete part-->
-<!-- {% for Students in students %}
+{% for Students in students %}
 <div class="modal fade" id="Modal{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:delete' Students.id %}" method="POST">
+    <form action="{% url 'primary:deleteStudent' Students.id%}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -69,8 +70,9 @@
                         <thead>
                             <tr>
                                 <th>الاسم</th>
-                                <th>الجنس</th>
-                                <th>الصف</th>
+                                <th>العمر: يوم / شهر / سنة</th>
+                                <th> الصف الدراسي</th>
+                                <th>الرقم المدني</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,15 +81,17 @@
                                     {{Students.studentName}}
                                 </td>
                                 <td>
-                                    {{Students.sex}}
+                                    {{Students.age}}
                                 </td>
                                 <td>
                                     {{Students.grade}}
                                 </td>
+                                <td>
+                                    {{Students.civilID}}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
@@ -97,12 +101,12 @@
         </div>
     </form>
 </div>
-{%endfor%} -->
+{%endfor%}
 
 <!--modal for the edit part-->
 <!-- {% for Students in students %}
 <div class="modal fade" id="ModalEdit{{Students.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:edit' Students.id %}" method="POST">
+    <form action="{% url 'primary:edit' Students.examiner_id %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -113,27 +117,36 @@
                     <div class="mx-auto" style="width: 400px;">
 
                         <div class="form-group mb-3">
-                            <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
-                            <input type="text" class="form-control " name="username" id="username" value="{{Examiners.user.username}}" Required>
+                            <label for="studentName" class="pe-3 fs-5 ">: اسم المفحوص رباعيا</label>
+                            <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.studentName}}" Required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
-                            <input type="text" class="form-control" name="password" id="password" placeholder="تغيير كلمة المرور">
-                        </div>
-
-
-
-                        <div class="form-group mb-3">
-                            <label for="name" class="pe-3 fs-5 ">: الاسم</label>
-                            <input type="text" class="form-control" name="name" id="name" value="{{Examiners.name}}" Required>
+                            <label for="sex" class="pe-3 fs-5 ">: جنس المفحوص</label>
+                            <input type="text" class="form-control" name="gender" id="sex" value="{{Students.sex}}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
-                            <input type="text" class="form-control" name="speciality" id="speciality" value="{{Examiners.speciality}}" Required>
+                            <label for="schoolName" class="pe-3 fs-5 ">: اسم المدرسة</label>
+                            <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.schoolName}}" Required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
-                            <input type="text" class="form-control" name="organization" id="organization" value="{{Examiners.organization}}" Required>
+                            <label for="grade" class="pe-3 fs-5 ">: الصف الدراسي</label>
+                            <input type="text" class="form-control" name="grade" id="grade" value="{{Students.grade}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="civilID" class="pe-3 fs-5 ">: الرقم المدني </label>
+                            <input type="text" class="form-control" name="civilID" id="civilID" value="{{Students.civilID}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="eduDistrict" class="pe-3 fs-5 ">: المنطقة التعليمية</label>
+                            <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" value="{{Students.eduDistrict}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="birthDate" class="pe-3 fs-5 ">: تاريخ ميلاد المفحوص</label>
+                            <input type="text" class="form-control" name="birthDate" id="birthDate" value="{{Students.birthDate}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="nationality" class="pe-3 fs-5 ">: الجنسية </label>
+                            <input type="text" class="form-control" name="nationality" id="nationality" value="{{Students.nationality}}" Required>
                         </div>
                     </div>
 

@@ -59,7 +59,7 @@ def signupStudents (request):
 
         delta = relativedelta.relativedelta(examdate, birthdate)
         print(delta.years, 'Years,', delta.months, 'months,', delta.days, 'days')
-        age = str(delta.years) + "-" + str(delta.months) +"-"+str(delta.days)
+        age = str(delta.years) + "/" + str(delta.months) +"/"+str(delta.days)
 
         if Student.objects.filter(civilID=civilID).exists():
             messages.info(request, 'لقد تم تسجيل الطالب مسبقاً')
@@ -128,6 +128,42 @@ def delete(request, id):
 
     return render(request, 'primary/superusers.html')
 
+@login_required(login_url="/primary/login")
+def deleteStudent(request,id):
+    studentAccount = Student.objects.filter(id=id)
+
+    if request.method == "POST":
+        studentAccount.delete()
+        return redirect(reverse('primary:students'))
+
+    return render(request, "primary/students.html")
+
+""" @login_required(login_url="/primary/login")
+def editStudent(request, id):
+    if request.method == "POST":
+        studentName = request.POST['studentName']
+        sex = request.POST['gender']
+        schoolName = request.POST['schoolName']
+        grade = request.POST['grade']
+        civilID = request.POST ['civilID']
+        eduDistrict = request.POST['eduDistrict']
+        nationality = request.POST['nationality']
+        birthDate = request.POST['birthDate']
+
+        user = Student.objects.filter(examiner_id=id)
+        userAccount = Student.objects.filter(examiner_id=id)
+        
+        if Student.objects.filter(civilID=civilID).exists():
+                messages.info(request, 'civil ID is already exist')
+        else:
+            userAccount.update(civilID=civilID)
+
+        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality,)
+
+        return redirect(reverse('primary:students'))
+    else:
+        return render(request, 'primary/students.html') """
+    
 @login_required(login_url="/primary/login")
 def edit(request, id):
     if request.method == "POST":

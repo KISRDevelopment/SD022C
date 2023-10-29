@@ -48,6 +48,7 @@ def signupStudents (request):
         sex = request.POST['gender']
         schoolName = request.POST['schoolName']
         grade = request.POST['grade']
+        civilID = request.POST ['civilID']
         eduDistrict = request.POST['eduDistrict']
         nationality = request.POST['nationality']
         examDate  = request.POST['examDate']
@@ -58,13 +59,13 @@ def signupStudents (request):
 
         delta = relativedelta.relativedelta(examdate, birthdate)
         print(delta.years, 'Years,', delta.months, 'months,', delta.days, 'days')
-        age = str(delta.years) + "-" + str(delta.months) +"-"+str(delta.days)
+        age = str(delta.years) + "/" + str(delta.months) +"/"+str(delta.days)
 
-        if Student.objects.filter(studentName=studentName).exists():
-            messages.info(request, 'student Name is already taken')
+        if Student.objects.filter(civilID=civilID).exists():
+            messages.info(request, 'لقد تم تسجيل الطالب مسبقاً')
             return redirect("primary:signupStudents")
         else:
-            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)
+            student = Student.objects.create(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, civilID=civilID, eduDistrict=eduDistrict , nationality=nationality, examDate=examDate, birthDate=birthDate,age=age, examiner_id=request.user.id)
             student.save()
             return redirect("primary:students")
         
@@ -128,6 +129,47 @@ def delete(request, id):
     return render(request, 'primary/superusers.html')
 
 @login_required(login_url="/primary/login")
+def deleteStudent(request,id):
+    studentAccount = Student.objects.filter(id=id)
+
+    if request.method == "POST":
+        studentAccount.delete()
+        return redirect(reverse('primary:students'))
+
+    return render(request, "primary/students.html")
+
+@login_required(login_url="/primary/login")
+def startTest(request):
+    if request.method == "POST":
+        return redirect('primary:testsPage')
+    return render(request, "primary/students.html")
+""" @login_required(login_url="/primary/login")
+def editStudent(request, id):
+    if request.method == "POST":
+        studentName = request.POST['studentName']
+        sex = request.POST['gender']
+        schoolName = request.POST['schoolName']
+        grade = request.POST['grade']
+        civilID = request.POST ['civilID']
+        eduDistrict = request.POST['eduDistrict']
+        nationality = request.POST['nationality']
+        birthDate = request.POST['birthDate']
+
+        user = Student.objects.filter(examiner_id=id)
+        userAccount = Student.objects.filter(examiner_id=id)
+        
+        if Student.objects.filter(civilID=civilID).exists():
+                messages.info(request, 'civil ID is already exist')
+        else:
+            userAccount.update(civilID=civilID)
+
+        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality,)
+
+        return redirect(reverse('primary:students'))
+    else:
+        return render(request, 'primary/students.html') """
+    
+@login_required(login_url="/primary/login")
 def edit(request, id):
     if request.method == "POST":
         username = request.POST["username"]
@@ -173,7 +215,14 @@ def profile (request):
         return render(request, "primary/profile.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})
         
-        
+def testsPage (request):
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return redirect(reverse('primary:testsPage'))
+        else:
+            return render(request,"primary/testsPage.html")
+    
+    return redirect(reverse('primary:index'))        
 
 ''' 
 def password(request, id):

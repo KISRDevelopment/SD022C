@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-
 <body class="d-flex flex-column min-vh-100">
     <header class="1h-1 py-3">
         <div class="row flex-nowrap justify-content-md-between align-items-center px-5">
@@ -37,19 +36,16 @@
                 <a class="link-body-emphasis fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{user}}
                 </a>
-
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
                     <a class="dropdown-item d-flex justify-content-end fs-5" href="{% url 'primary:profile' %}" method="POST" id="styleDropDown" value={{Examiners.user_id}} >
                         الحساب
                         <li class="bi bi-person-fill mx-3"></li>
-
                     </a>
                     <hr>
                     <a class="dropdown-item d-flex justify-content-end fs-5" href="{% url 'primary:logout' %}" id="styleDropDown">
                         خروج
                         <i class="bi bi-lock-fill mx-3"></i>
                     </a>
-
                 </div>
             </div>
             <div class="nav justify-content-end">
@@ -59,7 +55,6 @@
                       الأدلة
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
-
                             <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/التسمية السريعة للاشكال.pdf'%}" id="styleDropDown">
                                 التسمية السريعة للأشكال
                             </a>

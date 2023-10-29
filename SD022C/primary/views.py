@@ -138,6 +138,11 @@ def deleteStudent(request,id):
 
     return render(request, "primary/students.html")
 
+@login_required(login_url="/primary/login")
+def startTest(request):
+    if request.method == "POST":
+        return redirect('primary:testsPage')
+    return render(request, "primary/students.html")
 """ @login_required(login_url="/primary/login")
 def editStudent(request, id):
     if request.method == "POST":

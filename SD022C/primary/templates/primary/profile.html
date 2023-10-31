@@ -13,11 +13,11 @@
     {%if user.is_staff%}
 
     <table align="center" id="ModalAdmin{{Users.id}}">
-        <tr align="right">
+        <tr align="right" style="border-bottom:1px solid black;">
             <td>{{user}}</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;">اسم المستخدم:</td>
         </tr>  
-        <tr align="right">
+        <tr align="right" style="border-bottom:1px solid black;">
             <td style="font-size:100%; direction: rtl;">Admin</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold;">الصلاحية: </td>
         </tr>
@@ -28,31 +28,56 @@
     </table> 
     {%else%}
     
+    
     <table align="center" id="#ModalExaminer{{Examiners.user_id}}" >
-        <tr align="right">
+        <tr align="right" style="border-bottom:1px solid black;">
             <td>{{examiners.user}}</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;">اسم المستخدم: </td>
         </tr>   
-        <tr align="right">
+        <tr align="right" style="border-bottom:1px solid black;">
             <td>{{examiners.name}}</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold;">الاسم: </td>
           </tr>
-          <tr align="right">
+          <tr align="right" style="border-bottom:1px solid black;">
             <td>{{examiners.speciality}}</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold;">التخصص: </td>
           </tr>
-          <tr align="right">
+          <tr align="right" style="border-bottom:1px solid black;">
             <td>{{examiners.organization}}</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold;">الجهة: </td>
           </tr>
-          <tr align="right">
+          <tr align="right" style="border-bottom:1px solid black;">
             <td style="font-size:100%; direction: rtl; ">Examiner</td>
             <td style="font-size:110%; direction: rtl; font-weight:bold;">الصلاحية: </td>
           </tr>
-        <!--  <tr align="right">
-            <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
-        </tr> -->
-    </table> 
+    </table>
+
+<!--
+<div class="container border" align="center">
+<ul style="list-style-type:none;" id="#ModalExaminer{{Examiners.user_id}}" >
+<li><ul class="list-group list-group-horizontal">
+    <li class="list-group-item">{{examiners.user}}</li>
+    <li class="list-group-item"><a style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;"> :اسم المستخدم </a></li>
+  </ul></li>
+  <li> <ul class="list-group list-group-horizontal">
+    <li class="list-group-item">{{examiners.name}}</li>
+    <li class="list-group-item"><a style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;"> :الاسم </a></li>
+</ul></li>
+<li><ul class="list-group list-group-horizontal">
+    <li class="list-group-item">{{examiners.speciality}}</li>
+    <li class="list-group-item"><a style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;"> :التخصص </a></li>
+</ul></li>
+<li><ul class="list-group list-group-horizontal">
+    <li class="list-group-item">{{examiners.organization}}</li>
+    <li class="list-group-item"><a style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;"> :الجهة </a></li>
+</ul></li>
+<li><ul class="list-group list-group-horizontal">
+    <li class="list-group-item"><a style="font-size:100%; direction: rtl; ">Examiner</a></li>
+    <li class="list-group-item"><a style="font-size:110%; direction: rtl; font-weight:bold; padding-left:15px;"> :الصلاحية </a></li>
+</ul></li>
+</ul>
+</div> -->
+    
     {%endif%} 
 </div>
 </div>

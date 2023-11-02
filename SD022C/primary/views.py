@@ -144,6 +144,11 @@ def startTest(request):
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
+@login_required(login_url="/primary/login")
+def imgNaming(request):
+    if request.method == "POST":
+        return redirect('primary:imgNaming')
+    return render(request, "primary/imgNaming.html")
 
 """ @login_required(login_url="/primary/login")
 def editStudent(request, id):

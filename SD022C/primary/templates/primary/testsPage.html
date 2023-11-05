@@ -1,5 +1,6 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
-
+<div class="container my-5">
+<div id="oldDiv">
 <div class="col-12 text-center pageTitle ">
     الاختبارات   
 </div>
@@ -15,31 +16,27 @@
             <tbody>
                 <tr>
                     <td>
-                        <a type="button" class="btn" style="font-weight: bold;" href="#">التسمية السريعة للأشكال</a>
-                      
-                        <a href="{% url 'primary:imgNaming' %} " class=" text-decoration-none" style="color:#0059a0;"> الفقرة التدريبية </a>
-        
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;">الاختبار</a>
+                        <button id="rapidNamingWords" type="button" class="btn" style="font-weight: bold;" >التسمية السريعة للأشكال</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="button" class="btn" style="font-weight: bold;">حذف المقاطع والأصوات</button>
+                        <button id="phonemeDeletion" type="button" class="btn" style="font-weight: bold;">حذف المقاطع والأصوات</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="button" class="btn" style="font-weight: bold;">التسمية السريعة للحروف</button>
+                        <button id="rapidNamingLetters" type="button" class="btn" style="font-weight: bold;">التسمية السريعة للحروف</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="button" class="btn" style="font-weight: bold;">تكرار الكلمات غير الحقيقة</button>
+                        <button id="nonWordRepetition" type="button" class="btn" style="font-weight: bold;">تكرار الكلمات غير الحقيقة</button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="button" class="btn" style="font-weight: bold;">دقة قراءة الكلمات غير الحقيقة</button>
+                        <button id="nonWordReadingAccuracy" type="button" class="btn" style="font-weight: bold;">دقة قراءة الكلمات غير الحقيقة</button>
                     </td>
                 </tr>          
             </tbody>
@@ -53,5 +50,68 @@
         {% endfor %}
     </div>
 </div>
+</div>
+
+
+<div id = "newDiv1" class=""> 
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> الفقرة التدريبية </div>  
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
+        <img src="{% static 'images/rapidNamingObjTraining.png' %}"  class="img-fluid" alt="...">
+    </div>
+    <div>
+        <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+    </div>  
+</div>
+
+<div id = "newDiv2" class=""> 
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> الفقرة التدريبية </div>  
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
+        <img src="{% static 'images/rapidNamingLetters.png' %}"  class="img-fluid" alt="...">
+    </div>
+    <div>
+        <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+    </div>  
+</div>
+</div>
+<script>
+    // select the button and the div
+    const rapidNamingWords = document.getElementById('rapidNamingWords');
+    const phonemeDeletion = document.getElementById('phonemeDeletion');
+    const rapidNamingLetters = document.getElementById('rapidNamingLetters');
+    const nonWordRepetition = document.getElementById('nonWordRepetition');
+    const nonWordReadingAccuracy = document.getElementById('nonWordReadingAccuracy');
+    const oldDiv = document.getElementById('oldDiv');
+    const newDiv1 = document.getElementById('newDiv1');
+    const newDiv2 = document.getElementById('newDiv2');
+
+    
+    // define the function to change the HTML content
+    function changeContent1() {
+        oldDiv.innerHTML = newDiv1;
+    }
+    function changeContent2() {
+        oldDiv.innerHTML = newDiv1;
+    }
+    function changeContent3() {
+        document.getElementById('newDiv2').style.visibility = "visible";
+        document.getElementById('oldDiv').style.visibility = "hidden";
+        document.getElementById('newDiv1').style.visibility = "hidden";
+        
+    }
+    function changeContent4() {
+        oldDiv.innerHTML = newDiv1;
+    }
+    function changeContent5() {
+        oldDiv.innerHTML = newDiv1;
+    }
+  
+    // add event listener to the button
+    rapidNamingWords.addEventListener('click', changeContent1);
+    phonemeDeletion.addEventListener('click', changeContent2);
+    rapidNamingLetters.addEventListener('click', changeContent3);
+    nonWordRepetition.addEventListener('click', changeContent4);
+    nonWordReadingAccuracy.addEventListener('click', changeContent5);
+
+  </script>
 
 {%endblock%}

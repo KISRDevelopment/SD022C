@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
 from .models import Student
+from .models import Result
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
@@ -145,10 +146,11 @@ def startTest(request):
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
-def imgNaming(request):
+def rapidNamingObj(request):
     if request.method == "POST":
-        return redirect('primary:imgNaming')
-    return render(request, "primary/imgNaming.html")
+        return redirect('primary:rapidNamingObj')
+    return render(request, "primary/rapidNamingObj.html")
+
 
 """ @login_required(login_url="/primary/login")
 def editStudent(request, id):
@@ -228,7 +230,7 @@ def testsPage (request):
             return redirect(reverse('primary:testsPage'))
         else:
             return render(request,"primary/testsPage.html")
-    
+
     return redirect(reverse('primary:index'))        
 
 ''' 

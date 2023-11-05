@@ -9,6 +9,7 @@ STATUS_CHOICES = (
     ('DONE', 'Done')
 )
 
+
 class Examiner(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='admin_id')
@@ -35,9 +36,8 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.id}: {self.studentName}"
     
-class Exam(models.Model):
+class Result(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    examiner = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)

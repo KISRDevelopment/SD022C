@@ -58,7 +58,15 @@
         <img src="{% static 'images/rapidNamingObjTraining1.png' %}"  class="img-fluid" alt="...">
     </div>
     <div>
-        <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+        <a id="rapidNamingNxtBtn" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit"> التالي </a>
+    </div>  
+</div>
+<div id = "rapidNamingDivNxt" class=""> 
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
+        <img src="{% static 'images/rapidNamingObjTraining2.png' %}"  class="img-fluid" alt="...">
+    </div>
+    <div>
+        <a id="rapidNamingStartTstBtn" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit"> بدء الاختبار </a>
     </div>  
 </div>
 
@@ -67,7 +75,15 @@
         <img src="{% static 'images/rapidNamingLetters1.png' %}"  class="img-fluid" alt="...">
     </div>
     <div>
-        <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+        <a id="rapidNamingLtrNxtBtn" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">التالي  </a>
+    </div>  
+</div>
+<div id = "rapidNamingLtrDivNxt" class=""> 
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
+        <img src="{% static 'images/rapidNamingLetters2.png' %}"  class="img-fluid" alt="...">
+    </div>
+    <div>
+        <a id="rapidNamingStartTstBtn" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
     </div>  
 </div>
 
@@ -89,6 +105,10 @@
     document.getElementById('rapidNamingDiv').style.display = "none";
     document.getElementById('rapidNamingLtrDiv').style.display = "none";
     document.getElementById('nonWordReadingAccuracy').style.display = "none";
+    document.getElementById('rapidNamingDivNxt').style.display = "none";
+    document.getElementById('rapidNamingLtrDivNxt').style.display = "none";
+
+
 
 
     // define the function to change the HTML content
@@ -112,14 +132,31 @@
         document.getElementById('mainDiv').style.display = 'none';
         document.getElementById('rapidNamingDiv').style.display = 'none'; 
         document.getElementById('rapidNamingLtrDiv').style.display = 'none'; 
+    }
 
+    function changeContentNxt1() {
+        document.getElementById('rapidNamingDivNxt').style.display = "block";
+        document.getElementById('mainDiv').style.display = 'none';
+        document.getElementById('rapidNamingDiv').style.display = 'none'; 
+        document.getElementById('rapidNamingLtrDiv').style.display = 'none'; 
+        document.getElementById('nonWordReadingAccuracy').style.display = "none";
+    }
+
+    function changeContentNxt3() {
+        document.getElementById('rapidNamingLtrDivNxt').style.display = "block";
+        document.getElementById('mainDiv').style.display = 'none';
+        document.getElementById('rapidNamingDiv').style.display = 'none'; 
+        document.getElementById('rapidNamingDivNxt').style.display = 'none'; 
+        document.getElementById('rapidNamingLtrDiv').style.display = 'none'; 
+        document.getElementById('nonWordReadingAccuracy').style.display = "none";
     }
   
     // add event listener to the button
     rapidNamingWords.addEventListener('click', changeContent1);
     rapidNamingLetters.addEventListener('click', changeContent3);
     nonWrdReadingAccuracy.addEventListener('click', changeContent5);
-
+    rapidNamingNxtBtn.addEventListener('click', changeContentNxt1);
+    rapidNamingLtrNxtBtn.addEventListener('click', changeContentNxt3);
   </script>
 
 {%endblock%}

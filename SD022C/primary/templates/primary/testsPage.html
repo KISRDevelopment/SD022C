@@ -1,6 +1,7 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 <div class="container my-5">
-<div id="oldDiv">
+
+<div id="mainDiv">
 <div class="col-12 text-center pageTitle ">
     الاختبارات   
 </div>
@@ -36,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button id="nonWordReadingAccuracy" type="button" class="btn" style="font-weight: bold;">دقة قراءة الكلمات غير الحقيقة</button>
+                        <button id="nonWrdReadingAccuracy" type="button" class="btn" style="font-weight: bold;">دقة قراءة الكلمات غير الحقيقة</button>
                     </td>
                 </tr>          
             </tbody>
@@ -52,64 +53,72 @@
 </div>
 </div>
 
-
-<div id = "newDiv1" class=""> 
-    <div class="col-12 text-center fs-2 pageTitle fst-italic"> الفقرة التدريبية </div>  
+<div id = "rapidNamingDiv" class=""> 
     <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
-        <img src="{% static 'images/rapidNamingObjTraining.png' %}"  class="img-fluid" alt="...">
+        <img src="{% static 'images/rapidNamingObjTraining1.png' %}"  class="img-fluid" alt="...">
     </div>
     <div>
         <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
     </div>  
 </div>
 
-<div id = "newDiv2" class=""> 
-    <div class="col-12 text-center fs-2 pageTitle fst-italic"> الفقرة التدريبية </div>  
+<div id = "rapidNamingLtrDiv" class=""> 
     <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
-        <img src="{% static 'images/rapidNamingLetters.png' %}"  class="img-fluid" alt="...">
+        <img src="{% static 'images/rapidNamingLetters1.png' %}"  class="img-fluid" alt="...">
     </div>
     <div>
         <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
     </div>  
 </div>
+
+<div id = "nonWordReadingAccuracy" class=""> 
+    <div class="col-12 text-center fs-2 pageTitle fst-italic"> 
+        <img src="{% static 'images/nonWordReadingAccuracy.png' %}"  class="img-fluid" alt="...">
+    </div>
+    <div>
+        <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+    </div>  
 </div>
+
+</div>
+
 <script>
     // select the button and the div
-    const rapidNamingWords = document.getElementById('rapidNamingWords');
-    const phonemeDeletion = document.getElementById('phonemeDeletion');
-    const rapidNamingLetters = document.getElementById('rapidNamingLetters');
-    const nonWordRepetition = document.getElementById('nonWordRepetition');
-    const nonWordReadingAccuracy = document.getElementById('nonWordReadingAccuracy');
-    const oldDiv = document.getElementById('oldDiv');
-    const newDiv1 = document.getElementById('newDiv1');
-    const newDiv2 = document.getElementById('newDiv2');
+   
+    document.getElementById('mainDiv').style.visibility = "visible";
+    document.getElementById('rapidNamingDiv').style.display = "none";
+    document.getElementById('rapidNamingLtrDiv').style.display = "none";
+    document.getElementById('nonWordReadingAccuracy').style.display = "none";
 
-    
+
     // define the function to change the HTML content
     function changeContent1() {
-        oldDiv.innerHTML = newDiv1;
+        document.getElementById('rapidNamingDiv').style.display = "block";
+        document.getElementById('mainDiv').style.display = 'none';
+        document.getElementById('rapidNamingLtrDiv').style.display = 'none'; 
+        document.getElementById('nonWordReadingAccuracy').style.display = "none";
+ 
     }
-    function changeContent2() {
-        oldDiv.innerHTML = newDiv1;
-    }
+
     function changeContent3() {
-        document.getElementById('newDiv2').style.visibility = "visible";
-        document.getElementById('oldDiv').style.display = 'none';
-        document.getElementById('newDiv1').style.display = 'none';    
+        document.getElementById('rapidNamingLtrDiv').style.display = "block";
+        document.getElementById('mainDiv').style.display = 'none';
+        document.getElementById('rapidNamingDiv').style.display = 'none'; 
+        document.getElementById('nonWordReadingAccuracy').style.display = "none";   
     }
-    function changeContent4() {
-        oldDiv.innerHTML = newDiv1;
-    }
+
     function changeContent5() {
-        oldDiv.innerHTML = newDiv1;
+        document.getElementById('nonWordReadingAccuracy').style.display = "block";
+        document.getElementById('mainDiv').style.display = 'none';
+        document.getElementById('rapidNamingDiv').style.display = 'none'; 
+        document.getElementById('rapidNamingLtrDiv').style.display = 'none'; 
+
     }
   
     // add event listener to the button
     rapidNamingWords.addEventListener('click', changeContent1);
-    phonemeDeletion.addEventListener('click', changeContent2);
     rapidNamingLetters.addEventListener('click', changeContent3);
-    nonWordRepetition.addEventListener('click', changeContent4);
-    nonWordReadingAccuracy.addEventListener('click', changeContent5);
+    nonWrdReadingAccuracy.addEventListener('click', changeContent5);
 
   </script>
 

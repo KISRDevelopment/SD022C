@@ -146,10 +146,10 @@ def startTest(request):
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
-def rapidNamingObjTst(request):
+def rpdNamingObjTst(request):
     if request.method == "POST":
-        return redirect('primary:rapidNamingObjTst')
-    return render(request, "primary/rapidNamingObjTst.html")
+        return redirect('primary:rpdNamingObjTst')
+    return render(request, "primary/rpdNamingObjTst.html")
 
 
 """ @login_required(login_url="/primary/login")

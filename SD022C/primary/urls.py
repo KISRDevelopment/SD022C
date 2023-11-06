@@ -21,7 +21,7 @@ urlpatterns = [
     path('deleteStudent/<int:id>', views.deleteStudent, name='deleteStudent'),
     path('testsPage/', views.testsPage, name='testsPage'),
     path('startTest/', views.startTest, name='startTest'),
-    path('rapidNamingObjTst/', views.rapidNamingObjTst, name='rapidNamingObjTst'),
+    path('rpdNamingObjTst/', views.rpdNamingObjTst, name='rpdNamingObjTst'),
     #path('editStudent/<int:id>', views.editStudent, name='editStudent'),
 
     #path('password/<int:id>', views.password, name='password'),

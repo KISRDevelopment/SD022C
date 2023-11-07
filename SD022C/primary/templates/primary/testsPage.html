@@ -131,7 +131,7 @@
         <img src="{% static 'images/ltrInst3.png' %}"  class="img-fluid" style="width: 80%;">
     </div>
     <div>
-        <a id="" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+        <a id="" href="{% url 'primary:rpdNamingLtrTst'%}" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
     </div>  
 </div>
 
@@ -158,7 +158,7 @@
         <img src="{% static 'images/nonWordInst2.png' %}"  class="img-fluid" style="width: 80%;">
     </div>
     <div>
-        <a class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
+        <a href="{% url 'primary:nonWrdAccuracyTst'%}" class="btn col-3 d-grid mx-auto" style="float:none; margin-top: 20px; background-color: #99CC00; " type="submit">بدء الاختبار </a>
     </div>  
 </div>
 

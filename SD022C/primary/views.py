@@ -1,5 +1,5 @@
 import sys
-import os
+import time
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
@@ -140,22 +140,30 @@ def deleteStudent(request,id):
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
-def startTest(request):
+def startTest(request,id):
     if request.method == "POST":
+        result = Result.objects.create(student_id=id)
+        result.save()
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
     if request.method == "POST":
+        result = Result.objects.get(student_id=2)
+        result.start_time1A = time.strftime("%H:%M:%S")
+        result.save()
+
         return redirect('primary:rpdNamingObjTst')
     return render(request, "primary/rpdNamingObjTst.html")
+
 @login_required(login_url="/primary/login")
 def rpdNamingLtrTst(request):
     if request.method == "POST":
         return redirect('primary:rpdNamingLtrTst')
     return render(request, "primary/rpdNamingLtrTst.html")
 @login_required(login_url="/primary/login")
+
 def nonWrdAccuracyTst(request):
     if request.method == "POST":
         return redirect('primary:nonWrdAccuracyTst')

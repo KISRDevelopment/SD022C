@@ -38,6 +38,7 @@ class Student(models.Model):
     
 class Result(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    start_time = models.DateTimeField(auto_now_add=True)
-    end_time = models.DateTimeField(null=True, blank=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    start_time1A = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    end_time1A = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    status1A = models.CharField(max_length=20, choices=STATUS_CHOICES, null=True)
+    wrong1A = models.IntegerField(null=True)

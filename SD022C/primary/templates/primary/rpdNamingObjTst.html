@@ -1,11 +1,105 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 
-<div class="container my-5"> 
-    <div class="col-12 text-center fs-2 pageTitle ">  اختبار التسمية السريعة للأشكال </div>  
+<div class="container my-5">
+
+    <div class="col-12 text-center fs-3 pageTitle ">  اختبار التسمية السريعة للأشكال </div>  
     <div>
-        <a class="btn col-1 d-grid mx-auto" style="float:right; margin-top: 20px; background-color: #99CC00; " type="submit"> start time</a>
-    </div>  
+        <a class="btn col-12 d-grid mx-auto" style="float:right; margin-top: 20px; background-color: #99CC00; width: fit-content;" type="submit"> start time</a>
+    </div>
+    <div class="card card-signin my-3  mx-auto" style="width: 750px; border-color:#99CC00;">
+        <div class="card-body text-center">
+            <form action="" method="POST" class="form-horizontal" >
+                <div class="col-xs-8 col-xs-offset-4 m-3">
+                    <h2 class="card-title text-center fs-5" style="color:white; background-color: #99CC00; height: 35px;" >النموذج (أ)</h2>
+                </div>
+                <div class="form-check" style="direction:rtl ;" >
+                    <input type="checkbox" class="btn-check" id="flower" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;"  for="flower">وردة </label>
+                    <input type="checkbox" class="btn-check" id="ball" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="ball">كرة </label>
+                    <input type="checkbox" class="btn-check" id="rabbit" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="rabbit"> أرنب</label>
+                    <input type="checkbox" class="btn-check" id="fish" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="fish"> سمكة</label>
+                    <input type="checkbox" class="btn-check" id="hand" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="hand"> يد</label>
+                    <input type="checkbox" class="btn-check" id="duck" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="duck"> بطة</label>
+                    <input type="checkbox" class="btn-check" id="door" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="door"> باب</label>
+                    <input type="checkbox" class="btn-check" id="key" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="key">مفتاح </label>
+                    <input type="checkbox" class="btn-check" id="house" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="house"> بيت</label>
+                    
+                </div>
+                <div class="form-check" style="direction:rtl; margin-top: 20px" >
+                    <input type="checkbox" class="btn-check" id="rabbit2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;"  for="rabbit2">أرنب </label>
+                    <input type="checkbox" class="btn-check" id="hand2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="hand2"> يد</label>
+                    <input type="checkbox" class="btn-check" id="fish2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="fish2"> سمكة</label>
+                    <input type="checkbox" class="btn-check" id="house2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="house2"> بيت</label>
+                    <input type="checkbox" class="btn-check" id="tree" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="tree"> شجرة</label>
+                    <input type="checkbox" class="btn-check" id="door2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="door2"> باب</label>
+                    <input type="checkbox" class="btn-check" id="pin" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="pin"> قلم</label>
+                    <input type="checkbox" class="btn-check" id="chair" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="chair"> كرسي</label>
+                    <input type="checkbox" class="btn-check" id="key2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="key2">مفتاح </label>
+                </div>
+                <div class="form-check" style="direction:rtl; margin-top: 20px" >
+                    <input type="checkbox" class="btn-check" id="door3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;"  for="door3">باب </label>
+                    <input type="checkbox" class="btn-check" id="tree2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="tree2"> شجرة</label>
+                    <input type="checkbox" class="btn-check" id="house3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="house3"> بيت</label>
+                    <input type="checkbox" class="btn-check" id="flower2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="flower2"> وردة</label>
+                    <input type="checkbox" class="btn-check" id="rabbit3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="rabbit3"> أرنب</label>
+                    <input type="checkbox" class="btn-check" id="pin2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="pin2"> قلم</label>
+                    <input type="checkbox" class="btn-check" id="ball2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="ball2"> كرة</label>
+                    <input type="checkbox" class="btn-check" id="duck2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="duck2"> بطة</label>
+                    <input type="checkbox" class="btn-check" id="chair2" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="chair2">كرسي </label>
+                </div>
+                <div class="form-check" style="direction:rtl; margin-top: 20px" >
+                    <input type="checkbox" class="btn-check" id="tree3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;"  for="tree3">شجرة </label>
+                    <input type="checkbox" class="btn-check" id="pin3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="pin3"> قلم</label>
+                    <input type="checkbox" class="btn-check" id="key3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="key3"> مفتاح</label>
+                    <input type="checkbox" class="btn-check" id="chair3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="chair3"> كرسي</label>
+                    <input type="checkbox" class="btn-check" id="duck3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="duck3"> بطة</label>
+                    <input type="checkbox" class="btn-check" id="fish3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="fish3"> سمكة</label>
+                    <input type="checkbox" class="btn-check" id="flower3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="flower3"> وردة</label>
+                    <input type="checkbox" class="btn-check" id="ball3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="ball3"> كرة</label>
+                    <input type="checkbox" class="btn-check" id="hand3" autocomplete="off">
+                    <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black;" for="hand3">يد </label>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 </div>
+
+
 
 
 {%endblock%}

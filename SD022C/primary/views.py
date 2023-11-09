@@ -85,7 +85,7 @@ def login (request):
             if request.user.is_staff:
                 return HttpResponseRedirect("superusers")
             else:
-                return HttpResponseRedirect("examinerPage")
+                return HttpResponseRedirect("students")
         else:
             messages.info(request, 'Invalid Username or Password')
             return HttpResponseRedirect("login")

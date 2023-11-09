@@ -114,6 +114,7 @@ def superusers (request):
         return redirect(reverse('primary:examinerPage'))
       
 def students (request):
+    request.session['student'] = 0
     return render(request,"primary/students.html", {
         "students": Student.objects.filter(examiner_id=request.user.id)
     })
@@ -141,21 +142,20 @@ def deleteStudent(request,id):
 
 @login_required(login_url="/primary/login")
 def startTest(request,id):
+    request.session['student'] = id
     if request.method == "POST":
         if not Result.objects.filter(student_id=id).exists():
             result = Result.objects.create(student_id=id)
             result.save()
-            return redirect('primary:testsPage')
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
     if request.method == "POST":
-        result = Result.objects.get(student_id=2)
+        result = Result.objects.get(student_id=request.session['student'])
         result.start_time1A = time.strftime("%H:%M:%S")
         result.save()
-
         return redirect('primary:rpdNamingObjTst')
     return render(request, "primary/rpdNamingObjTst.html")
 

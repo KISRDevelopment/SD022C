@@ -142,8 +142,10 @@ def deleteStudent(request,id):
 @login_required(login_url="/primary/login")
 def startTest(request,id):
     if request.method == "POST":
-        result = Result.objects.create(student_id=id)
-        result.save()
+        if not Result.objects.filter(student_id=id).exists():
+            result = Result.objects.create(student_id=id)
+            result.save()
+            return redirect('primary:testsPage')
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 

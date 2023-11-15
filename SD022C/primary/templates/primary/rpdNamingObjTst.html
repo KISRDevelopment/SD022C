@@ -92,20 +92,42 @@
                     <input type="checkbox" class="btn-check" id="hand3" autocomplete="off">
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
-                <div id = "startTime">
-                    <button id = {{Student.id}} class="btn col-12 d-grid mx-auto" style="float:right; margin-top: 20px; background-color: #99CC00; width: fit-content;"  type="submit" > Start Time</button>
+                <div class="col-12 mx-auto">
+                    <button onclick="startTime()" name="startTimeBtn" id = 'startTimeBtn' type="button"  class="btn col-12 d-grid mx-auto" style="float:right; margin-top: 20px; background-color: #99CC00; width: fit-content;" >Start Time</button>
+                    <button onclick="endTime()" name="endTimeBtn" id = 'endTimeBtn' type="button" class="btn col-12 d-grid mx-auto" style="float:right; margin-top: 20px; background-color: #99CC00; width: fit-content;" >End Time</button>
+                </div>
+                <div >
+                    <button type="submit" class="btn col-12 d-grid mx-auto" style="background-color: #99CC00; color: white; font-weight: bold;">ارسال </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<!-- <script>
-    function changeBtn(){
-        document.getElementById('startTimeBtn').innerText = "End Time"
+<script type="text/javascript">
+    function startTime(){
+        let today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        let stime = h + ":" + m + ":" + s;
+        document.getElementById('startTimeBtn').innerHTML = stime;
     }
-    startTimeBtn.addEventListener('click', changeBtn);
-</script> -->
+    function endTime(){
+        let today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+        let etime = h + ":" + m + ":" + s;
+        document.getElementById('endTimeBtn').innerHTML = etime;
+    }
+</script>
 
 
 

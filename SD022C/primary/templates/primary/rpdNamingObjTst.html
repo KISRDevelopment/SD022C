@@ -93,15 +93,14 @@
                     <input type="checkbox" class="btn-check" id="hand3" value="hand3" name = "selection" autocomplete="off">
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
-                <button onclick="startTime()" name="startTimeBtn1" id = 'startTimeBtn' type="button" class="btn" style="float:right;  background-color: #CC99CC; " >Start Time</button>
-
                 <div>
                     <button type="submit" class="btn col-6" style="background-color: #99CC00; color: white; font-weight: bold; margin-top: 20px;">ارسال </button>
                 </div>
                 
             </form>
+            <label id="minutes">00</label>:<label id="seconds">00</label>
             <div class="btn col-2 d-grid gap-3 mx-auto" style="margin-top:20px ;" >
-               
+                <button onclick="startTime()" name="startTimeBtn1" id = 'startTimeBtn' type="button" class="btn" style="float:right;  background-color: #CC99CC; " >Start Time</button>
                 <button onclick="endTime()" name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button>
             </div>
             
@@ -111,8 +110,28 @@
 </div>
 
 <script type="text/javascript">
+    var minutesLabel = document.getElementById("minutes");
+    var secondsLabel = document.getElementById("seconds");
+    var totalSeconds = 0;
+    setInterval(setTime, 1000);
+
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    }
+    function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
+
     function startTime(){
-        let today = new Date();
+
+        /* let today = new Date();
         let h = today.getHours();
         let m = today.getMinutes();
         let s = today.getSeconds();
@@ -120,8 +139,9 @@
         m = m < 10 ? "0" + m : m;
         s = s < 10 ? "0" + s : s;
         let stime = h + ":" + m + ":" + s;
-        return stime
-        //document.getElementById('startTimeBtn').innerHTML = stime;
+        document.getElementById('startTimeBtn').innerHTML = stime;
+        return stime */
+
     }
     function endTime(){
         let today = new Date();
@@ -133,6 +153,7 @@
         s = s < 10 ? "0" + s : s;
         let etime = h + ":" + m + ":" + s;
         document.getElementById('endTimeBtn').innerHTML = etime;
+        return etime;
     }
 
 </script>

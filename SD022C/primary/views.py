@@ -155,12 +155,19 @@ def rpdNamingObjTst(request):
 
     if request.method == "POST":
         result = Result.objects.get(student_id=request.session['student'])
-        #starttime = request.GET['stime']
+        img = []
+        img.extend(request.POST.getlist('selection'))
+        print(img)
+        count = len(img)
+        print(count)
+        result.wrong1A=count
+        result.save()
+        """ if 'startTimeBtn1' in request.POST:
+            starttime = request.POST['startTimeBtn1']
+            print(starttime) """
         #endtime = request.GET['etime']
         #result.start_time1A = time.strftime("%H:%M:%S")
         #result.end_time1A = time.strftime("%H:%M:%S")
-        #result.objects.create(starttime1A=starttime, endTime1A=endtime)
-        result.save()
         return redirect('primary:rpdNamingObjTst')
     return render(request, "primary/rpdNamingObjTst.html")
 

@@ -11,9 +11,7 @@
             <thead>
                 <tr>
                     <th>الاسم</th>
-                    <th>العمر: يوم / شهر / سنة</th>
-                    <th> الصف الدراسي</th>
-                    <th>الرقم المدني</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -22,19 +20,10 @@
                     <td>
                         {{Students.studentName}}
                     </td>
-                    <td>
-                        {{Students.age}}
-                    </td>
-                    <td>
-                        {{Students.grade}}
-                    </td>
-                    <td>
-                        {{Students.civilID}}
-                    </td>
 
-                    <!--<td>
+                    <td>
                         <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Students.pk}}"><i class="bi bi-pencil-square " style="color:#0059a0;"></i> تحرير </a>
-                    </td> -->
+                    </td>
                     <td>
                         <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalstartTest{{Students.id}}"><i class="bi bi-pencil-square" style="color:#0059a0;"></i> بدء الاختبار</a>
                     </td>

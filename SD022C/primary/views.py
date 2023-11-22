@@ -163,15 +163,11 @@ def rpdNamingObjTst(request):
             result.wrong1A=count
             result.end_time1A = time.strftime("%H:%M:%S")
             result.save()
-            return redirect('primary:testsPage')
+            return redirect('primary:rpdNamingObjTst')
         if request.POST.get("form_type") == 'formTwo':
-            result = Result.objects.get(student_id=request.session['student'])
             result.start_time1A = time.strftime("%H:%M:%S")
             result.save()
-            
-        #endtime = request.GET['etime']
-        #result.start_time1A = time.strftime("%H:%M:%S")
-        return redirect('primary:rpdNamingObjTst')
+            return redirect('primary:rpdNamingObjTst')
     return render(request, "primary/rpdNamingObjTst.html")
 
 """ if 'startTimeBtn1' in request.POST:

@@ -6,15 +6,15 @@
 
     <div class="card my-3  mx-auto" style="width:900px; border-color:#99CC00;">
         <h2 class="card-title text-center fs-5" style="color:white; background-color: #99CC00; height: 35px;" >النموذج (أ)</h2>
-        <div class="d-grid gap-3 mx-auto" style="margin-top:20px ;" >
-            <form action="" method="POST"  class="form-horizontal col-12" style="float:right;" id="formTwo">
+        <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
+            <form action="" method="POST"  class="form-horizontal "  id="formTwo">
                 {% csrf_token%}
-                <button type="submit" name="form_type" value="formTwo" class="btn" style="float:right;  background-color: #CC99CC; " > بدء الاختبار</button>
+                <button onclick="startTime()" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button>
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
         </div>
         <div class="card-body text-center">   
-            <form action="" method="POST" id="selectBox" class="form-horizontal col-12" style="float:right;" id="formOne">
+            <form action="" method="POST" id="selectBox" class="form-horizontal col-10" style="float:right;" id="formOne">
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
                 </div>
@@ -98,40 +98,57 @@
                     <input type="checkbox" class="btn-check" id="hand3" value="hand3" name = "selection" autocomplete="off">
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
-                <div>
-                    <button type="submit" name="form_type" value="formOne" class="btn col-6" style="background-color: #99CC00; color: white; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button>
+                <div style="padding-right: 480px;">
+                    <button id="endBTN" type="submit" name="form_type" value="formOne" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button>
                 </div>
+                
             </form>
             <!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
+            <div class="col-2 d-grid mx-auto" >
+                <span class="input-group-text" style="border-color:#99CC00; background-color: #99CC00;">الزمن</span>
+                <input id="time" type="text" class="form-control" aria-label="Server" style="border-color: #CC99CC; background-color: white;  padding-top: 12px; padding-bottom: 12px;"></input>
+                <span class="input-group-text" style="border-color:#99CC00; background-color: #99CC00;"> عدد الاخطاء</span>
+                <input id="mistakes" type="text" class="form-control" aria-label="Server" style="border-color: #CC99CC; background-color: white;  padding-top: 12px; padding-bottom: 12px;"></input>
+                <span class="input-group-text" style="border-color:#99CC00; background-color: #99CC00;">الزمن مع الاخطاء </span>
+                <input id="tMistakes" type="text" class="form-control" aria-label="Server" style="border-color: #CC99CC; background-color: white;  padding-top: 12px; padding-bottom: 12px;"></input>              
+            </div>
         </div>
-       
+
     </div>
+    
 </div>
 
 <script type="text/javascript">
+    
+    let today = new Date();
+    // let h = today.getHours();
+    // let m = today.getMinutes();
+    // let s = today.getSeconds();
+    // h = h < 10 ? "0" + h : h;
+    // m = m < 10 ? "0" + m : m;
+    // s = s < 10 ? "0" + s : s;
+
     function startTime(){
-        let today = new Date();
-        let h = today.getHours();
-        let m = today.getMinutes();
-        let s = today.getSeconds();
-        h = h < 10 ? "0" + h : h;
-        m = m < 10 ? "0" + m : m;
-        s = s < 10 ? "0" + s : s;
-        let stime = h + ":" + m + ":" + s;
-        return stime;
+
+        //t1 =  today.getSeconds()
+        //var date1 = new Date();
+        var today1 = new Date().toTimeString().split(" ")[0];
+        return today1;
     }
     function endTime(){
-        let today = new Date();
-        let h = today.getHours();
-        let m = today.getMinutes();
-        let s = today.getSeconds();
-        h = h < 10 ? "0" + h : h;
-        m = m < 10 ? "0" + m : m;
-        s = s < 10 ? "0" + s : s;
-        let etime = h + ":" + m + ":" + s;
-        document.getElementById('endTimeBtn').innerHTML = etime;
-        return etime;
+
+        //t2 =  today.getSeconds()
+        //var date2 = new Date();
+        //var diff = Math.abs(date2 - startTime())/1000;
+        var today2 = new Date().toTimeString().split(" ")[0];
+        diff = today2 - startTime();
+        return diff;
     }
+    /* document.getElementById("endBTN").addEventListener("click", function(event){
+        event.preventDefault();
+        document.getElementById('time').value = endTime();
+    }); */
+
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
     var totalSeconds = 0;

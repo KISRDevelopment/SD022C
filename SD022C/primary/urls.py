@@ -21,8 +21,7 @@ urlpatterns = [
     path('testsPage/', views.testsPage, name='testsPage'),
     path('startTest/<int:id>', views.startTest, name='startTest'),
     path('rpdNamingObjTst/<int:id>', views.rpdNamingObjTst, name='rpdNamingObjTst'),
-        path('rpdNamingObjTst/', views.rpdNamingObjTst, name='rpdNamingObjTst'),
-
+    path('rpdNamingObjTst/', views.rpdNamingObjTst, name='rpdNamingObjTst'),
     path('rpdNamingLtrTst/', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
     path('nonWrdAccuracyTst/', views.nonWrdAccuracyTst, name='nonWrdAccuracyTst'),
 

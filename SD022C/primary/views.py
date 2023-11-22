@@ -152,25 +152,32 @@ def startTest(request,id):
 
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
-
     if request.method == "POST":
         result = Result.objects.get(student_id=request.session['student'])
-        img = []
-        img.extend(request.POST.getlist('selection'))
-        print(img)
-        count = len(img)
-        print(count)
-        result.wrong1A=count
-        result.save()
-        """ if 'startTimeBtn1' in request.POST:
-            starttime = request.POST['startTimeBtn1']
-            print(starttime) """
+        if request.POST.get("form_type") == 'formOne':
+            img = []
+            img.extend(request.POST.getlist('selection'))
+            print(img)
+            count = len(img)
+            print(count)
+            result.wrong1A=count
+            result.end_time1A = time.strftime("%H:%M:%S")
+            result.save()
+            return redirect('primary:testsPage')
+        if request.POST.get("form_type") == 'formTwo':
+            result = Result.objects.get(student_id=request.session['student'])
+            result.start_time1A = time.strftime("%H:%M:%S")
+            result.save()
+            
         #endtime = request.GET['etime']
         #result.start_time1A = time.strftime("%H:%M:%S")
-        #result.end_time1A = time.strftime("%H:%M:%S")
         return redirect('primary:rpdNamingObjTst')
     return render(request, "primary/rpdNamingObjTst.html")
 
+""" if 'startTimeBtn1' in request.POST:
+        starttime = request.POST['startTimeBtn1']
+        print(starttime) """
+    
 @login_required(login_url="/primary/login")
 def rpdNamingLtrTst(request):
     if request.method == "POST":

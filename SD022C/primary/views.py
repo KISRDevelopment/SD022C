@@ -85,7 +85,9 @@ def login (request):
             if request.user.is_staff:
                 return HttpResponseRedirect("superusers")
             else:
-                return HttpResponseRedirect("examinerPage")
+                return render(request,"primary/examinerPage.html", {
+                    "stage": (Examiner.objects.get(user_id=request.user.id).stage)
+                    })
         else:
             messages.info(request, 'Invalid Username or Password')
             return HttpResponseRedirect("login")
@@ -115,7 +117,7 @@ def superusers (request):
       
 def students (request):
     return render(request,"primary/students.html", {
-        "students": Student.objects.filter(examiner_id=request.user.id)
+        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage)
     })
 
 @login_required(login_url="/primary/login")

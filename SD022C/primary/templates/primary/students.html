@@ -149,7 +149,7 @@
 <!--modal for the edit part-->
 {% for Students in students %}
 <div class="modal fade" id="ModalEdit{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:edit' Students.examiner_id %}" method="POST">
+    <form action="{% url 'primary:editStudent' Students.examiner_id %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -177,7 +177,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="civilID" class="pe-3 fs-5 ">: الرقم المدني </label>
-                            <input type="text" class="form-control" name="civilID" id="civilID" value="{{Students.civilID}}" Required>
+                            <input type="text" class="form-control" name="civilID" id="civilID" value="{{Students.civilID}}" disabled>
                         </div>
                         <div class="form-group mb-3">
                             <label for="eduDistrict" class="pe-3 fs-5 ">: المنطقة التعليمية</label>

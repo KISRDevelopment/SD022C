@@ -147,8 +147,8 @@
 {%endfor%}
 
 <!--modal for the edit part-->
-<!-- {% for Students in students %}
-<div class="modal fade" id="ModalEdit{{Students.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+{% for Students in students %}
+<div class="modal fade" id="ModalEdit{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <form action="{% url 'primary:edit' Students.examiner_id %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
@@ -197,7 +197,7 @@
 
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #0059a0; border-color: #0059a0">تحديث</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #99cc00; border-color: #99cc00; color: black;">تحديث</button>
                 </div>
 
             </div>
@@ -205,5 +205,4 @@
 
     </form>
 </div>
-{%endfor%} -->
-{%endblock%}
+{%endfor%} {%endblock%}

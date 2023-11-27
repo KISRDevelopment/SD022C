@@ -122,7 +122,6 @@
 </div>
 
 <script type="text/javascript">
-    
     let today = new Date();
     // let h = today.getHours();
     // let m = today.getMinutes();
@@ -132,44 +131,23 @@
     // s = s < 10 ? "0" + s : s;
 
     function startTime(){
-
         //t1 =  today.getSeconds()
         //var date1 = new Date();
         var today1 = new Date().toTimeString().split(" ")[0];
         return today1;
     }
     function endTime(){
-
         //t2 =  today.getSeconds()
         //var date2 = new Date();
         //var diff = Math.abs(date2 - startTime())/1000;
         var today2 = new Date().toTimeString().split(" ")[0];
-        diff = today2 - startTime();
-        return diff;
+        return today2;
     }
     /* document.getElementById("endBTN").addEventListener("click", function(event){
         event.preventDefault();
         document.getElementById('time').value = endTime();
     }); */
 
-    var minutesLabel = document.getElementById("minutes");
-    var secondsLabel = document.getElementById("seconds");
-    var totalSeconds = 0;
-    setInterval(setTime, 1000);
-
-    function setTime() {
-        ++totalSeconds;
-        secondsLabel.innerHTML = pad(totalSeconds % 60);
-        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-    }
-    function pad(val) {
-        var valString = val + "";
-        if (valString.length < 2) {
-            return "0" + valString;
-        } else {
-            return valString;
-        }
-    }
 </script>
 
 

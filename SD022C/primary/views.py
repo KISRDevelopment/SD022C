@@ -25,6 +25,7 @@ def signupSuperUser (request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        stage = request.POST['stage']
         name = request.POST['name']
         speciality = request.POST['speciality']
         organization = request.POST['organization']
@@ -35,7 +36,7 @@ def signupSuperUser (request):
         else:
             user = User.objects.create_user(username=username, password=password)
             user.save()
-            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, user_id=user.id, admin_id=request.user.id)
+            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, stage=stage, user_id=user.id, admin_id=request.user.id)
             examiner.save()
             return HttpResponseRedirect("superusers")
         
@@ -86,6 +87,7 @@ def login (request):
                 return HttpResponseRedirect("superusers")
             else:
                 return HttpResponseRedirect("students")
+
         else:
             messages.info(request, 'Invalid Username or Password')
             return HttpResponseRedirect("login")
@@ -116,7 +118,7 @@ def superusers (request):
 def students (request):
     request.session['student'] = 0
     return render(request,"primary/students.html", {
-        "students": Student.objects.filter(examiner_id=request.user.id)
+        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage)
     })
 
 @login_required(login_url="/primary/login")

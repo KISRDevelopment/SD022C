@@ -113,8 +113,9 @@ def superusers (request):
         return redirect(reverse('primary:examinerPage'))
       
 def students (request):
+
     return render(request,"primary/students.html", {
-        "students": Student.objects.filter(examiner_id=request.user.id)
+        "students": Student.objects.filter(examiner_id=request.user.id) 
     })
 
 @login_required(login_url="/primary/login")
@@ -143,17 +144,6 @@ def startTest(request):
     if request.method == "POST":
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
-
-"""parse date to string Example: July need different format than Nov. which is three letters"""
-def parse_date_string(date_str):
-    formats = ['%b. %d, %Y', '%B %d, %Y']
-
-    for fmt in formats:
-        try:
-            return datetime.strptime(date_str, fmt).strftime('%Y-%m-%d')
-        except ValueError:
-            pass
-    raise ValueError("Invalid date format")
     
 
 @login_required(login_url="/primary/login")
@@ -166,23 +156,12 @@ def editStudent(request, id):
         eduDistrict = request.POST['eduDistrict']
         nationality = request.POST['nationality']
         
-        #birthDate_str = request.POST['birthDate']
-
-
-        if 'birthDate' in request.POST:
-            birthDate = request.POST['birthDate']
-            try:
-                birthdate_obj = parse_date_string(birthDate)
-            except ValueError:
-                return HttpResponse(f"Invalid date format: {birthDate}")
-
-
-        
+        birthDate_str = request.POST['birthDate']
 
         user = Student.objects.filter(id=id)
         userAccount = Student.objects.filter(examiner_id=id)
 
-        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthdate_obj)
+        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthDate_str)
 
         return redirect(reverse('primary:students'))
     else:

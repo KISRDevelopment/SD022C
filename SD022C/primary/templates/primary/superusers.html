@@ -1,8 +1,8 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 
-
 <div class="container">
-    <a type="button" class="btn btn-danger" style="float: right; margin-top: 20px;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a>
+    <a type="button" class="btn-green " style="float: right; margin-top: 20px;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a>
+    <!-- <a type="button" class="btn btn-danger" style="float: right; margin-top: 20px;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a> -->
 </div>
 
 <div class="container my-5">
@@ -28,10 +28,10 @@
                         {{Examiners.organization}}
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Examiners.pk}}"><i class="bi bi-pencil-square " style="color:#0059a0;"></i> تحرير </a>
+                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Examiners.pk}}"><i class="bi bi-pencil-square "></i> تحرير </a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#Modal{{Examiners.user_id}}"><i class="bi bi-trash-fill " style="color:#0059a0;"></i> حذف</a>
+                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#Modal{{Examiners.user_id}}"><i class="bi bi-trash-fill "></i> حذف</a>
                     </td>
                 </tr>
                 {%endfor%}

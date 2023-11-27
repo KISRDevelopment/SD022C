@@ -4,25 +4,32 @@
 {%block content%}
 
 
-<div class="container my-5">
-  <h1 class="right">ارسل طلب للحصول على الخدمة</h1>
+<div class="container-box">
+  <h1 class="text-lg-g right">ارسل طلب للحصول على الخدمة</h1>
 
-  <h3 class="right"> حقل مطلوب * </h3>
+  <h3 class="text-lg-g fs-4 right"> حقل مطلوب * </h3>
 
   <div class="formControl">
     <form method="post" action="sendRequest.php">
-        <label for="name" class="form-label starlabel label:after formAlign">  الأسم   </label>
+        <!--<label for="name" class="form-label starlabel label:after formAlign">  الأسم   </label>-->
+        <label for="name" class="text-m-b">  الأسم   </label>
         <input type="text" class="form-control formAlign" id="nameBox" placeholder="Enter a Name">
 
-        <label for="name" class="form-label starlabel label:after formAlign">  الجهة </label>
+        <!--<label for="name" class="form-label starlabel label:after formAlign">  الجهة </label>-->
+        <label for="name" class="text-m-b">  الجهة </label>
         <input type="text" class="form-control formAlign" id="nameBox" placeholder="Enter an Organization">
 
-        <label for="email" class="form-label starlabel label:after formAlign"> البريد الالكتروني </label>
+        <!--<label for="email" class="form-label starlabel label:after formAlign"> البريد الالكتروني </label>-->
+        <label for="email" class="text-m-b"> البريد الالكتروني </label>
         <input type="email" class="form-control formAlign" id="emailBox" placeholder="Enter Email">
 
-        <label for="message" class="form-label starlabel label:after formAlign">  الرسالة</label>
+        <!--<label for="message" class="form-label starlabel label:after formAlign">  الرسالة</label>-->
+        <label for="message" class="text-m-b">  الرسالة</label>
         <textarea type="text" class="form-control" id="textAreaBox" rows="3"></textarea>
-        <a id="sendrequestBtn" role="button" class="btn btn-primary submitBtn">أرسل</a>
+        <div class="container my-5"></div>
+        <a id="sendrequestBtn" role="button" class="btn-green p-3 ">أرسل</a>
+        <!-- <a id="sendrequestBtn" role="button" class="btn btn-primary submitBtn">أرسل</a> -->
+
     </form>    
   </div>
 </div>

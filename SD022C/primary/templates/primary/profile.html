@@ -4,25 +4,24 @@
 
 {% if user.is_authenticated %}
 
-<div class="container my-5">
-    <div class="p-5 text-center bg-body-tertiary rounded-3 h-100 border">
+<div class="container-box" style="width:500px">
 
 
-    <h1 class="text-body-emphasis py-5">حسابي</h1>
+    <h1 class="text-lg-g mb-4">حسابي</h1>
 
     {%if user.is_staff%}
 
     <table align="center" id="ModalAdmin{{Users.id}}">
         <tr align="right">
-            <td>{{user}}</td>
-            <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
+            <td class="text-m-b fw-light">{{user}}</td>
+            <td class="text-m-b" style="direction:rtl;">اسم المستخدم:</td>
         </tr>  
         <tr align="right">
-            <td style="font-size:100%; direction: rtl;">Admin</td>
-            <td style="font-size:110%; direction: rtl;">الصلاحية: </td>
+            <td class="text-m-b fw-light" style="direction: rtl;">Admin</td>
+            <td class="text-m-b" style="direction:rtl;">الصلاحية: </td>
         </tr>
         <tr align="right">
-            <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
+            <td><button class="btn-green" type="reset" value="Reset">تغيير كلمة المرور</button></td>
         </tr>  
           
     </table> 
@@ -30,31 +29,30 @@
     
     <table align="center" id="#ModalExaminer{{Examiners.user_id}}" >
         <tr align="right">
-            <td>{{examiners.user}}</td>
-            <td style="font-size:110%; direction: rtl;">اسم المستخدم:</td>
+            <td class="text-m-b fw-light">{{examiners.user}}</td>
+            <td class="text-m-b" style="direction:rtl;">اسم المستخدم:</td>
         </tr>   
         <tr align="right">
-            <td>{{examiners.name}}</td>
-            <td style="font-size:110%; direction: rtl;">الاسم:</td>
+            <td class="text-m-b fw-light">{{examiners.name}}</td>
+            <td class="text-m-b" style="direction:rtl;">الاسم:</td>
           </tr>
           <tr align="right">
-            <td>{{examiners.speciality}}</td>
-            <td style="font-size:110%; direction: rtl;">التخصص:</td>
+            <td class="text-m-b fw-light">{{examiners.speciality}}</td>
+            <td class="text-m-b" style="direction:rtl;">التخصص:</td>
           </tr>
           <tr align="right">
-            <td>{{examiners.organization}}</td>
-            <td style="font-size:110%; direction: rtl;">الجهة:</td>
+            <td class="text-m-b fw-light">{{examiners.organization}}</td>
+            <td class="text-m-b" style="direction:rtl;">الجهة:</td>
           </tr>
           <tr align="right">
-            <td style="font-size:100%; direction: rtl;">Examiner</td>
-            <td style="font-size:110%; direction: rtl;">الصلاحية:</td>
+            <td class="text-m-b fw-light" style="direction: rtl;">Examiner</td>
+            <td class="text-m-b" style="direction:rtl;">الصلاحية:</td>
           </tr>
           <tr align="right">
-            <td><button type="reset" value="Reset">تغيير كلمة المرور</button></td>
+            <td><button class="btn-green" type="reset" value="Reset">تغيير كلمة المرور</button></td>
         </tr> 
     </table> 
     {%endif%} 
-</div>
 </div>
 
 {%endif%} 

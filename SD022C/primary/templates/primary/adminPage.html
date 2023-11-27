@@ -1,11 +1,11 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 <hr class="container">
 
-<div class="container my-5">
-    <div class="p-5 text-center bg-body-tertiary rounded-3 h-100 border">
-        <h2 class="text-body-emphasis py-5">لطلب الخدمة يرجى ارسال الطلب</h2>
-
-        <a href="{% url 'primary:requestPage'%} " type="button" class="btn btn-danger mb-5 btn-lg border-0 p-3">أرسل طلب</a>
+<div class="container-box" style="width:700px">
+    <div>
+        <h2 class="text-lg-g">لطلب الخدمة يرجى ارسال الطلب</h2>
+        <a href="{% url 'primary:requestPage'%} " type="button" class="btn-green fs-2">أرسل طلب</a>
+        <!-- <a href="{% url 'primary:requestPage'%} " type="button" class="btn btn-danger mb-5 btn-lg border-0 p-3">أرسل طلب</a> -->
 
     </div>
 

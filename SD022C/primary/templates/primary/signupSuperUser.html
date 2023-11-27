@@ -1,37 +1,38 @@
  {%extends 'primary/base.html'%} {%load static%} {%block content%}
-<div class="card card-signin my-5 bg-body-tertiary mx-auto" style="width: 500px;">
+<div class="container-box card-signin" style="width: 500px;">
     <div class="card-body">
         <form action="" method="POST" class="form-horizontal" style="text-align: right;">
             {% csrf_token%}
             <div class="mx-auto" style="width: 400px;">
 
                 <div class="col-xs-8 col-xs-offset-4 m-3">
-                    <h2 class="card-title text-center fs-2">تسجيل مستخدم جديد</h2>
+                    <h2 class="text-lg-g">تسجيل مستخدم جديد</h2>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
+                    <label for="username" class="text-m-b">: اسم المستخدم</label>
                     <input type="text" class="form-control " name="username" id="username" placeholder="أدخل اسم المستخدم الخاص بك" Required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
+                    <label for="password" class="text-m-b">: كلمة المرور</label>
                     <input type="password" class="form-control" name="password" id="password" placeholder="أدخل كلمة المرور الخاصة بك هنا" Required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="name" class="pe-3 fs-5 ">: الاسم</label>
+                    <label for="name" class="text-m-b">: الاسم</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="أدخل الاسم الكامل" Required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
+                    <label for="speciality" class="text-m-b">: التخصص</label>
                     <input type="text" class="form-control" name="speciality" id="speciality" placeholder="أدخل التخصص" Required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
+                    <label for="speciality" class="text-m-b">: الجهة</label>
                     <input type="text" class="form-control" name="organization" id="organization" placeholder="أدخل اسم الجهة" Required>
                 </div>
 
 
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-danger mb-5 btn-lg border-0 p-3">تسجيل  </button>
+                    <button type="submit" class="btn-green mb-3 p-2 fs-5">تسجيل  </button>
+                    <!-- <button type="submit" class="btn btn-danger mb-5 btn-lg border-0 p-3">تسجيل  </button> -->
                 </div>
 
                 {% for message in messages %}

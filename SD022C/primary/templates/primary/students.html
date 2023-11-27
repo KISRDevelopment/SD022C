@@ -178,7 +178,16 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="grade" class="pe-3 fs-5 ">: الصف الدراسي</label>
-                            <input type="text" class="form-control" name="grade" id="grade" value="{{Students.grade}}" Required>
+                            <select name="grade" class="form-select" id="grade" Required>
+                                <option value="2" {% if Students.grade == "2" %} selected {% endif %}>2</option>
+                                <option value="3" {% if Students.grade == "3" %} selected {% endif %}>3</option>
+                                <option value="4" {% if Students.grade == "4" %} selected {% endif %}>4</option>
+                                <option value="5" {% if Students.grade == "5" %} selected {% endif %}>5</option>
+                                <option value="6" {% if Students.grade == "6" %} selected {% endif %}>6</option>
+                                <option value="7" {% if Students.grade == "7" %} selected {% endif %}>7</option>
+                                <option value="8" {% if Students.grade == "8" %} selected {% endif %}>8</option>
+                                <option value="9" {% if Students.grade == "9" %} selected {% endif %}>9</option>
+                            </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="civilID" class="pe-3 fs-5 ">: الرقم المدني </label>
@@ -187,6 +196,14 @@
                         <div class="form-group mb-3">
                             <label for="eduDistrict" class="pe-3 fs-5 ">: المنطقة التعليمية</label>
                             <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" value="{{Students.eduDistrict}}" Required>
+                            <select name="eduDistrict" class="form-select" id="eduDistrict" Required>
+                                <option value="العاصمة" {% if Students.eduDistrict == "العاصمة" %} selected {% endif %}>العاصمة</option>
+                                <option value="حولي" {% if Students.eduDistrict == "حولي" %} selected {% endif %}>حولي</option>
+                                <option value="الفروانية" {% if Students.eduDistrict == "الفروانية" %} selected {% endif %}>الفروانية</option>
+                                <option value="الجهراء" {% if Students.eduDistrict == "الجهراء" %} selected {% endif %}>الجهراء</option>
+                                <option value="مبارك الكبير" {% if Students.eduDistrict == "مبارك الكبير" %} selected {% endif %}>مبارك الكبير</option>
+                                <option value="الأحمدي" {% if Students.eduDistrict == "الأحمدي" %} selected {% endif %}>الأحمدي</option>
+                            </select>
                         </div>
                         <div class="form-group mb-3">
                             <label for="birthDate" class="pe-3 fs-5 ">: تاريخ ميلاد المفحوص</label>

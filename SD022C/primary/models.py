@@ -4,11 +4,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Examiner(models.Model):
+    STAGE_CHOICES = (
+    ('PRIMARY','Primary School'),
+    ('SECONDARY','Secondary School'),
+    ('BOTH','Primary/Secondary')
+)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name='admin_id')
     name = models.CharField(max_length=60)
     speciality = models.CharField(max_length=60)
     organization = models.CharField(max_length=60)
+    stage = models.CharField(max_length=20,
+                  choices=STAGE_CHOICES,
+                  default="PRIMARY")
 
     def __str__(self):
         return f"{self.id}: {self.name}"

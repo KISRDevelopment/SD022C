@@ -68,9 +68,15 @@
                     </div>
                 </div>
                 {% if user.is_staff %}
-                <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
                 {% else %}
-                <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-body-emphasis fs-5"> الطلاب </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-body-emphasis fs-5"> الطلاب </a></li>
+                    {% if stage == "SECNDARY" or stage == "BOTH" %}
+                        <li class="nav-link mx-3"><a href="" class="nav-link text-body-emphasis fs-5"> اختبارات المرحلة المتوسطة </a></li>
+                    {% endif %} 
+                    {% if stage == "PRIMARY" or stage == "BOTH" %}
+                        <li class="nav-link mx-3"><a href="{% url 'primary:students'%}" class="nav-link text-body-emphasis fs-5"> اختبارات المرحلة الابتدائية  </a></li>
+                    {% endif %} 
                 {% endif %}
                 <li class="nav-link mx-3"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
                 </ul>

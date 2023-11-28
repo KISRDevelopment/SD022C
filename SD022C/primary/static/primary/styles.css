@@ -28,7 +28,8 @@
     text-align: center;
     border: 1px solid #99CC00;
     border-radius: 10px;
-    margin: 25px 50px 25px 50px;
+    margin: auto;
+    margin-bottom: 25px;
     padding: 15px 25px 15px 25px;
 }
 

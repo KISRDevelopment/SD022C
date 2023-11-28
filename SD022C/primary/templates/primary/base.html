@@ -31,7 +31,7 @@
     </header>
 
     {% if user.is_authenticated %}
-    <div class="navbar navbar-expand py-0" style="background-color:rebeccapurple;">
+    <div class="navbar navbar-expand py-0 mb-4" style="background-color:rebeccapurple;">
         <div class="container">
             <div class="dropdown">
                 <a class="link-light fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +80,7 @@
     </div>
 
     {% else %}
-    <div class="container-fluid" style="background-color:rebeccapurple;">
+    <div class="container-fluid mb-4" style="background-color:rebeccapurple;">
         <div class="container">
             <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
                 <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-light fs-5"> دخول </a></li>

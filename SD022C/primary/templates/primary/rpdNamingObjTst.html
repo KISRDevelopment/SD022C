@@ -104,19 +104,24 @@
                 
             </form>
             <!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
-            <div class="col-2 d-grid mx-auto" >
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن</span>
-                <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
-                <br>
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white;border-radius: 0%; direction: rtl;"> عدد الاخطاء</span>
-                <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
-                <br>
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white;border-radius: 0%; direction: rtl;">الزمن مع الاخطاء </span>
-                <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
-
-            </div>
+            
         </div>
-
+        <div hx-post="primary/rpdNamingObjTst" hx-trigger="click" hx-target="#feedback-div" hx-swap="innerHTML" class="col-2 d-grid mx-auto" >
+            <!-- <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن</span>
+            <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+            <br>
+            <span class="input-group-text" style="border-color:#CC99CC; background-color: white;border-radius: 0%; direction: rtl;"> عدد الاخطاء</span>
+            <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+            <br>
+            <span class="input-group-text" style="border-color:#CC99CC; background-color: white;border-radius: 0%; direction: rtl;">الزمن مع الاخطاء </span>
+            <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label> -->
+            <input  type="text"  id="feedback"   placeholder="Your feedback here...">
+            <button type="submit"> Submit Feedback</button>
+        </div>              
+        <div id="feedback-div" >
+            <h>Hello</h>
+        </div>
+    
     </div>
     
 </div>

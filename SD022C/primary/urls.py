@@ -14,7 +14,6 @@ urlpatterns = [
     path('delete/<int:id>', views.delete, name='delete'),
     path('edit/<int:id>', views.edit, name='edit'),
     path('logout/', views.logout, name='logout'),
-    path('examinerPage/', views.examinerPage, name='examinerPage'),
     path('profile/', views.profile, name='profile'),
     path('students/', views.students, name='students'),
     path('signupStudents/', views.signupStudents, name='signupStudents'),
@@ -22,6 +21,11 @@ urlpatterns = [
     path('testsPage/', views.testsPage, name='testsPage'),
     path('startTest/', views.startTest, name='startTest'),
     path('editStudent/<int:id>', views.editStudent, name='editStudent'),
-
+    path('startTest/<int:id>', views.startTest, name='startTest'),
+    path('rpdNamingObjTst/<int:id>', views.rpdNamingObjTst, name='rpdNamingObjTst'),
+    path('rpdNamingObjTst/', views.rpdNamingObjTst, name='rpdNamingObjTst'),
+    path('rpdNamingLtrTst/', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
+    path('nonWrdAccuracyTst/', views.nonWrdAccuracyTst, name='nonWrdAccuracyTst'),
+    #path('editStudent/<int:id>', views.editStudent, name='editStudent'),
     #path('password/<int:id>', views.password, name='password'),
 ]

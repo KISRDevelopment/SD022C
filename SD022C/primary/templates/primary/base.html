@@ -55,7 +55,7 @@
                       الأدلة
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
-                            <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/التسمية السريعة للاشكال.pdf'%}" id="styleDropDown">
+                            <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/التسمية السريعة للأشكال.pdf'%}" id="styleDropDown">
                                 التسمية السريعة للأشكال
                             </a>
                             <a class="dropdown-item d-flex justify-content-end fs-5" href="{%static 'pdf/التسمية السريعة للحروف.pdf'%}" id="styleDropDown">
@@ -68,9 +68,15 @@
                     </div>
                 </div>
                 {% if user.is_staff %}
-                <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
                 {% else %}
-                <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-body-emphasis fs-5"> الطلاب </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-body-emphasis fs-5"> الطلاب </a></li>
+                    {% if stage == "SECNDARY" or stage == "BOTH" %}
+                        <li class="nav-link mx-3"><a href="" class="nav-link text-body-emphasis fs-5"> اختبارات المرحلة المتوسطة </a></li>
+                    {% endif %} 
+                    {% if stage == "PRIMARY" or stage == "BOTH" %}
+                        <li class="nav-link mx-3"><a href="{% url 'primary:students'%}" class="nav-link text-body-emphasis fs-5"> اختبارات المرحلة الابتدائية  </a></li>
+                    {% endif %} 
                 {% endif %}
                 <li class="nav-link mx-3"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
                 </ul>

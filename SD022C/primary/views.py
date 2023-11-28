@@ -1,11 +1,12 @@
 import sys
-import os
+import time
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
 from .models import Student
+from .models import Result
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
@@ -24,6 +25,7 @@ def signupSuperUser (request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        stage = request.POST['stage']
         name = request.POST['name']
         speciality = request.POST['speciality']
         organization = request.POST['organization']
@@ -34,7 +36,7 @@ def signupSuperUser (request):
         else:
             user = User.objects.create_user(username=username, password=password)
             user.save()
-            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, user_id=user.id, admin_id=request.user.id)
+            examiner = Examiner.objects.create( name=name, speciality=speciality, organization=organization, stage=stage, user_id=user.id, admin_id=request.user.id)
             examiner.save()
             return HttpResponseRedirect("superusers")
         
@@ -84,7 +86,8 @@ def login (request):
             if request.user.is_staff:
                 return HttpResponseRedirect("superusers")
             else:
-                return HttpResponseRedirect("examinerPage")
+                return HttpResponseRedirect("students")
+
         else:
             messages.info(request, 'Invalid Username or Password')
             return HttpResponseRedirect("login")
@@ -113,9 +116,9 @@ def superusers (request):
         return redirect(reverse('primary:examinerPage'))
       
 def students (request):
-
+    request.session['student'] = 0
     return render(request,"primary/students.html", {
-        "students": Student.objects.filter(examiner_id=request.user.id) 
+        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage)
     })
 
 @login_required(login_url="/primary/login")
@@ -140,11 +143,51 @@ def deleteStudent(request,id):
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
-def startTest(request):
+def startTest(request,id):
+    request.session['student'] = id
     if request.method == "POST":
+        if not Result.objects.filter(student_id=id).exists():
+            result = Result.objects.create(student_id=id)
+            result.save()
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
+
+@login_required(login_url="/primary/login")
+def rpdNamingObjTst(request):
+    if request.method == "POST":
+        result = Result.objects.get(student_id=request.session['student'])
+        if request.POST.get("form_type") == 'formOne':
+            img = []
+            img.extend(request.POST.getlist('selection'))
+            print(img)
+            count = len(img)
+            print(count)
+            result.wrong1A=count
+            result.end_time1A = time.strftime("%H:%M:%S")
+            result.save()
+            return redirect('primary:rpdNamingObjTst')
+        if request.POST.get("form_type") == 'formTwo':
+            result.start_time1A = time.strftime("%H:%M:%S")
+            result.save()
+            return redirect('primary:rpdNamingObjTst')
+    return render(request, "primary/rpdNamingObjTst.html")
+
+""" if 'startTimeBtn1' in request.POST:
+        starttime = request.POST['startTimeBtn1']
+        print(starttime) """
     
+@login_required(login_url="/primary/login")
+def rpdNamingLtrTst(request):
+    if request.method == "POST":
+        return redirect('primary:rpdNamingLtrTst')
+    return render(request, "primary/rpdNamingLtrTst.html")
+@login_required(login_url="/primary/login")
+
+def nonWrdAccuracyTst(request):
+    if request.method == "POST":
+        return redirect('primary:nonWrdAccuracyTst')
+    return render(request, "primary/nonWrdAccuracyTst.html")
+
 
 @login_required(login_url="/primary/login")
 def editStudent(request, id):
@@ -219,7 +262,7 @@ def testsPage (request):
             return redirect(reverse('primary:testsPage'))
         else:
             return render(request,"primary/testsPage.html")
-    
+
     return redirect(reverse('primary:index'))        
 
 ''' 

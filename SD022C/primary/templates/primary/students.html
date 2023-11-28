@@ -19,11 +19,6 @@
                     <td>
                         {{Students.studentName}}
                     </td>
-
-
-                    <!--                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Students.pk}}"><i class="bi bi-pencil-square " style="color:#0059a0;"></i> تحرير </a>
-                    </td> -->
                     <td>
                         <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalstartTest{{Students.id}}"><i class="bi bi-pencil-square" style="color:#0059a0;"></i> بدء الاختبار</a>
                     </td>
@@ -98,7 +93,7 @@
 <!--modal for the start test -->
 {% for Students in students %}
 <div class="modal fade" id="ModalstartTest{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:startTest'%}" method="POST">
+    <form action="{% url 'primary:startTest' Students.id%}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">

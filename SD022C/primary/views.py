@@ -235,6 +235,10 @@ def edit(request, id):
     else:
         return render(request, 'primary/superusers.html')
 
+"""#show student details
+def showDetails(request, id):
+        return render(request, 'primary/students.html' )"""
+
 def logout(request):
     auth.logout(request)
     return redirect(reverse('primary:index'))

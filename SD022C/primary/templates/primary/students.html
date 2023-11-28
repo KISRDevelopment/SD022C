@@ -220,7 +220,7 @@
 <!--modal for the show details part-->
 {% for Students in students %}
 <div class="modal fade" id="ModalShowDetails{{Students.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:editStudent' Students.id%}" method="POST">
+    <form action="{% url 'primary:students'%}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">

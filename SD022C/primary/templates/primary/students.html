@@ -243,7 +243,7 @@
 
                         <div class="form-group mb-3">
                             <label for="schoolName" class="pe-3 fs-5 ">: العمر </label>
-                            <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.schoolName}}" disabled>
+                            <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.age}}" disabled>
                         </div>
 
                         <div class="form-group mb-3">
@@ -279,7 +279,7 @@
 
                         <div class="form-group mb-3">
                             <label for="birthDate" class="pe-3 fs-5 ">: تاريخ اجراء الاختبار</label>
-                            <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.birthDate|date:'Y-m-d'}}" disabled>
+                            <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.examDate|date:'Y-m-d'}}" disabled>
 
                         </div>
 
@@ -289,8 +289,8 @@
                 </div>
 
                 <div class="modal-footer flex-nowrap p-0">
-                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #99cc00; border-color: #99cc00; color: black;">تحديث</button>
+                    <button type="button" class="btn fs-6 btn-secondary col py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+
                 </div>
 
             </div>

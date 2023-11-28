@@ -1,4 +1,5 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
+<script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 
 <div class="container my-5">
 
@@ -14,7 +15,7 @@
             </form>
         </div>
         <div class="card-body text-center">   
-            <form action="" method="POST" id="selectBox" class="form-horizontal col-10" style="float:right;" id="formOne">
+            <form class="form-horizontal col-10" style="float:right;" id="formOne" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#message" hx-swap="innerHTML">
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
                 </div>
@@ -99,14 +100,31 @@
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
                 <div style="padding-right: 480px;">
-                    <button id="endBTN" type="submit" name="form_type" value="formOne" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button>
+                    <input type="submit" value=" انهاء الوقت / الاختبار" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
+                    <!-- <button id="endBTN" type="submit" name="form_type" value="formOne" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button> -->
                 </div>
-                
             </form>
+<!--             <form hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#message" hx-swap="innerHTML">
+                {% csrf_token %}
+                <input type="checkbox" class="btn-check" id="flowera" name = "selection1" value="flowera" autocomplete="off">
+                <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;"  for="flowera">وردة </label>
+                <input type="checkbox" class="btn-check" id="balla" name="selection1" value="balla" autocomplete="off">
+                <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="balla">كرة </label>
+                <input type="checkbox" class="btn-check" id="rabbita" value="rabbita" name="selection1" autocomplete="off">
+                <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="rabbita"> أرنب</label>
+                <input type="submit" value="Submit">
+            </form> -->
+            <!-- <div id="message"></div> -->
             <!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
-            
+            <div class="col-2 d-grid mx-auto">
+
+                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">عدد الأخطاء</span>
+                <label id="message" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+    
+            </div>  
         </div>
-        <div hx-post="primary/rpdNamingObjTst" hx-trigger="click" hx-target="#feedback-div" hx-swap="innerHTML" class="col-2 d-grid mx-auto" >
+
+        <!-- <div hx-post="primary/rpdNamingObjTst" hx-trigger="click" hx-target="#feedback-div" hx-swap="innerHTML" class="col-2 d-grid mx-auto" > -->
             <!-- <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن</span>
             <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
             <br>
@@ -115,18 +133,16 @@
             <br>
             <span class="input-group-text" style="border-color:#CC99CC; background-color: white;border-radius: 0%; direction: rtl;">الزمن مع الاخطاء </span>
             <label style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label> -->
-            <input  type="text"  id="feedback"   placeholder="Your feedback here...">
-            <button type="submit"> Submit Feedback</button>
-        </div>              
-        <div id="feedback-div" >
-            <h>Hello</h>
-        </div>
-    
+            <!-- <input  type="text"  id="feedback"   placeholder="Your feedback here..."> -->
+            <!-- <button type="submit"> Submit Feedback</button> -->
+        <!-- </div>               -->
+        <!-- <div id="feedback-div" > -->
+            <!-- <h>Hello</h> -->
+        <!-- </div> -->
     </div>
-    
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     let today = new Date();
     // let h = today.getHours();
     // let m = today.getMinutes();
@@ -153,7 +169,7 @@
         document.getElementById('time').value = endTime();
     }); */
 
-</script>
+</script> -->
 
 
 

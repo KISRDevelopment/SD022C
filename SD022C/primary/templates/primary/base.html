@@ -20,7 +20,8 @@
             <div class="col-4 pt-1">
                 <a href="https://www.kisr.edu.kw"><img src="{% static 'images/kisrlogo.png' %}" width="200" height="100" class="rounded float-start" alt="kisrlogo"></a>
             </div>
-            <div class="col-4 text-center fs-2 pageTitle fst-italic">
+            <!-- <div class="col-4 text-center fs-2 pageTitle"> -->
+            <div class="col-4 text-lg-g pt-1 fw-bold fs-1" style="color: rebeccapurple;">
                 اختبار معالجة الأصوات المقنن للأطفال
             </div>
             <div class=" col-4 d-flex justify-content-end align-items-center px-5 ">
@@ -30,10 +31,10 @@
     </header>
 
     {% if user.is_authenticated %}
-    <div class="navbar navbar-expand bg-body-tertiary py-0" data-bs-theme="dark">
+    <div class="navbar navbar-expand py-0 mb-4" style="background-color:rebeccapurple;">
         <div class="container">
             <div class="dropdown">
-                <a class="link-body-emphasis fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="link-light fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{user}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
@@ -51,7 +52,7 @@
             <div class="nav justify-content-end">
                 <div class="navbar navbar">
                     <div class="dropdown">
-                        <a class="link-body-emphasis fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0 "href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="link-light fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0 "href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       الأدلة
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
@@ -68,42 +69,42 @@
                     </div>
                 </div>
                 {% if user.is_staff %}
-                    <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-body-emphasis fs-5"> المستخدمين </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-light fs-5"> المستخدمين </a></li>
                 {% else %}
-                    <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-body-emphasis fs-5"> الطلاب </a></li>
+                    <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-light fs-5"> الطلاب </a></li>
                     {% if stage == "SECNDARY" or stage == "BOTH" %}
-                        <li class="nav-link mx-3"><a href="" class="nav-link text-body-emphasis fs-5"> اختبارات المرحلة المتوسطة </a></li>
+                        <li class="nav-link mx-3"><a href="" class="nav-link text-light fs-5"> اختبارات المرحلة المتوسطة </a></li>
                     {% endif %} 
                     {% if stage == "PRIMARY" or stage == "BOTH" %}
-                        <li class="nav-link mx-3"><a href="{% url 'primary:students'%}" class="nav-link text-body-emphasis fs-5"> اختبارات المرحلة الابتدائية  </a></li>
+                        <li class="nav-link mx-3"><a href="{% url 'primary:students'%}" class="nav-link text-light fs-5"> اختبارات المرحلة الابتدائية  </a></li>
                     {% endif %} 
                 {% endif %}
-                <li class="nav-link mx-3"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
+                <li class="nav-link mx-3"><a href="{% url 'primary:index' %} " class="nav-link active text-light fs-5"> الرئيسية </a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     {% else %}
-    <div class="container-fluid bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid mb-4" style="background-color:rebeccapurple;">
         <div class="container">
             <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
-                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-body-emphasis fs-5"> دخول </a></li>
-                <li class="nav-link "><a href="{% url 'primary:help' %} " class="nav-link text-body-emphasis fs-5"> مساعدة </a></li>
-                <li class="nav-link"><a href="{% url 'primary:index' %} " class="nav-link active text-body-emphasis fs-5"> الرئيسية </a></li>
+                <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-light fs-5"> دخول </a></li>
+                <li class="nav-link "><a href="{% url 'primary:help' %} " class="nav-link text-light fs-5"> مساعدة </a></li>
+                <li class="nav-link"><a href="{% url 'primary:index' %} " class="nav-link active text-light fs-5"> الرئيسية </a></li>
             </ul>
         </div>
     </div>
     {% endif %} {% block content %}{% endblock content %}
 
-    <div class="container-fluid mt-auto bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid mt-auto" style="background-color:rebeccapurple">
         <footer>
             <div class="container-fluid d-flex flex-column mt-3">
                 <ul class="nav justify-content-center mb-3">
-                    <li class="nav-item"><a href="{% url 'primary:about' %} " class="nav-link text-body-emphasis fw-bolder"> من نحن </a></li>
-                    <li class="nav-item"><a href="{% url 'primary:contact' %} " class="nav-link text-body-emphasis fw-bolder"> تواصل معنا </a></li>
+                    <li class="nav-item"><a href="{% url 'primary:about' %} " class="nav-link text-light fw-bolder"> من نحن </a></li>
+                    <li class="nav-item"><a href="{% url 'primary:contact' %} " class="nav-link text-light fw-bolder"> تواصل معنا </a></li>
                 </ul>
-                <p class="text-center text-body-emphasis mt-auto"> 2023 &copy طور بواسطة معهد الكويت للأبحاث العلمية</p>
+                <p class="text-center text-light mt-auto"> 2023 &copy طور بواسطة معهد الكويت للأبحاث العلمية</p>
             </div>
         </footer>
     </div>

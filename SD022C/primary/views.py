@@ -189,31 +189,26 @@ def nonWrdAccuracyTst(request):
     return render(request, "primary/nonWrdAccuracyTst.html")
 
 
-""" @login_required(login_url="/primary/login")
+@login_required(login_url="/primary/login")
 def editStudent(request, id):
     if request.method == "POST":
         studentName = request.POST['studentName']
         sex = request.POST['gender']
         schoolName = request.POST['schoolName']
         grade = request.POST['grade']
-        civilID = request.POST ['civilID']
         eduDistrict = request.POST['eduDistrict']
         nationality = request.POST['nationality']
-        birthDate = request.POST['birthDate']
-
-        user = Student.objects.filter(examiner_id=id)
-        userAccount = Student.objects.filter(examiner_id=id)
         
-        if Student.objects.filter(civilID=civilID).exists():
-                messages.info(request, 'civil ID is already exist')
-        else:
-            userAccount.update(civilID=civilID)
+        birthDate_str = request.POST['birthDate']
 
-        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality,)
+        user = Student.objects.filter(id=id)
+        userAccount = Student.objects.filter(examiner_id=id)
+
+        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthDate_str)
 
         return redirect(reverse('primary:students'))
     else:
-        return render(request, 'primary/students.html') """
+        return render(request, 'primary/students.html' )
     
 @login_required(login_url="/primary/login")
 def edit(request, id):

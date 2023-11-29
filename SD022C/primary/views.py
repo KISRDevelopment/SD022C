@@ -15,7 +15,8 @@ from dateutil import relativedelta
 
 # Create your views here.
 
-
+t1 = '0'
+t2 = '0'
 
 def index (request):
     return render (request,"primary/index.html")
@@ -155,33 +156,36 @@ def startTest(request,id):
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
-@login_required(login_url="/primary/login")
 
+def calcTime(enter,exit):
+    format="%H:%M:%S"
+    #Parsing the time to str and taking only the hour,minute,second 
+    #(without miliseconds)
+    enterStr = str(enter).split(".")[0]
+    exitStr = str(exit).split(".")[0]
+    #Creating enter and exit time objects from str in the format (H:M:S)
+    enterTime = datetime.strptime(enterStr, format)
+    exitTime = datetime.strptime(exitStr, format)
+    return exitTime - enterTime
+
+
+@login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
-    now = datetime.now()
-    timea = request.session.get('timeS','')
-    timeB = request.session.get('timeE','')
     result = Result.objects.get(student_id=request.session['student'])
+    global enter,exit
+    global t1 
+    global t2
     if request.POST.get("form_type") == 'formTwo':
-        timea = request.session.get('timeS',time.strftime("%H:%M:%S"))
-        global hour 
-        global minute
-        global second
-        hour = now.hour
-        minute = now.minute
-        second = now.second
-        if len(str(second)) == 1:
-            second = "0"+ str(second)
+        enter = datetime.today().time()
+        print(enter)
+        t1 = datetime.now()
         result.start_time1A = time.strftime("%H:%M:%S")
         result.save()
-        print(timea)
         return redirect('primary:rpdNamingObjTst')
     if request.method == "POST":
-        timeB = request.session.get('timeE',time.strftime("%H:%M:%S"))
-        print('-----------End test button pressed------------------')
-        print(timea)
-        print('----------------------------------------------------')
-        print(timeB)
+        exit = datetime.today().time()
+        print(exit)
+        t2 = datetime.now()
         selection = request.POST.getlist('selection','')  
         img = []
         img.extend(request.POST.getlist('selection',''))
@@ -190,29 +194,16 @@ def rpdNamingObjTst(request):
         if selection:
             result.end_time1A = time.strftime("%H:%M:%S")
             result.save()
+            duration = calcTime(enter,exit)
+            print(duration)
             return HttpResponse(count)
-        else:  
-            return HttpResponse('<p class="error">❌</p>')
-        # result = Result.objects.get(student_id=request.session['student'])
-        # if request.POST.get("form_type") == 'formOne':
-        #     img = []
-        #     img.extend(request.POST.getlist('selection'))
-        #     print(img)
-        #     count = len(img)
-        #     print(count)
-        #     result.wrong1A=count
-        #     result.end_time1A = time.strftime("%H:%M:%S")
-        #     result.save()
-        #     return redirect('primary:rpdNamingObjTst')
-        # if request.POST.get("form_type") == 'formTwo':
-        #     result.start_time1A = time.strftime("%H:%M:%S")
-        #     result.save()
-        #     return redirect('primary:rpdNamingObjTst')
+        else:
+            duration = calcTime(enter,exit)
+            print(duration)  
+            return HttpResponse('<p class="error">0</p>')  
+    
+    
     return render(request, "primary/rpdNamingObjTst.html")
-
-""" if 'startTimeBtn1' in request.POST:
-        starttime = request.POST['startTimeBtn1']
-        print(starttime) """
     
 @login_required(login_url="/primary/login")
 def rpdNamingLtrTst(request):
@@ -321,8 +312,47 @@ def password(request, id):
         return render(request, 'primary/profile.html', {
         "examiners": Examiner.objects.get(user_id=request.user.id)}) '''
 
+# result = Result.objects.get(student_id=request.session['student'])
+        # if request.POST.get("form_type") == 'formOne':
+        #     img = []
+        #     img.extend(request.POST.getlist('selection'))
+        #     print(img)
+        #     count = len(img)
+        #     print(count)
+        #     result.wrong1A=count
+        #     result.end_time1A = time.strftime("%H:%M:%S")
+        #     result.save()
+        #     return redirect('primary:rpdNamingObjTst')
+        # if request.POST.get("form_type") == 'formTwo':
+        #     result.start_time1A = time.strftime("%H:%M:%S")
+        #     result.save()
+        #     return redirect('primary:rpdNamingObjTst')
 
 
 
+""" global hour 
+        global minute
+        global second
+        hour = now.hour
+        minute = now.minute
+        second = now.second
+        if len(str(second)) == 1:
+            second = "0"+ str(second) """
 
+        # if timea == None:
+        #     timea = 1
+        # request.session['timea'] = timea
+        #timea = request.session.get('timeS',time.strftime("%H:%M:%S"))
 
+        # if timeb == None:
+        #     timeb = time.strftime("%H:%M:%S")
+        # request.session['timeb'] = timeb
+        #timeb = request.session.get('timeb',time.strftime("%H:%M:%S"))
+
+""" if 'startTimeBtn1' in request.POST:
+        starttime = request.POST['startTimeBtn1']
+        print(starttime) """
+
+    # now = datetime.now()
+    # timea = request.session.get('timea')
+    # timeb = request.session.get('timeb')

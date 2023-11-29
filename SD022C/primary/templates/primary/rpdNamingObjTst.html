@@ -15,7 +15,7 @@
             </form>
         </div>
         <div class="card-body text-center">   
-            <form class="form-horizontal col-10" style="float:right;" id="formOne" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#message" hx-swap="innerHTML">
+            <form class="form-horizontal col-10" style="float:right;" id="formOne" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#result" hx-swap="innerHTML">
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
                 </div>
@@ -107,11 +107,13 @@
 
             <!-- <div id="message"></div> -->
             <!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
-            <div class="col-2 d-grid mx-auto">
+            <div class="col-2 d-grid mx-auto" >
 
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">عدد الأخطاء</span>
-                <label id="message" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+                <label id="result" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
     
+                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;"> الزمن</span>
+                <label id="result" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
             </div>  
         </div>
 

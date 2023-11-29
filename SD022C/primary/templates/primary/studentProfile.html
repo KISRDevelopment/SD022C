@@ -1,243 +1,69 @@
-{%extends 'primary/base.html'%} {%load static%} {%block content%}
-<!--<div class="container-box card-signin" style="width: 800px;">
+{%extends 'primary/base.html'%} {%load static%} {%block content%} {% for Students in students %}
+
+<div class="container-box card-signin" style="width: 800px;">
     <div class="card-body">
         <form action="" method="POST" class="form-horizontal" style="text-align: right; direction: rtl;">
             {% csrf_token%}
             <div class="row g-3" style="width: 700px;">
-                <div class="col-xs-8 col-xs-offset-4 m-3">
-                    <h2 class="text-lg-g">البيانات الشخصية لتسجيل طالب جديد</h2>
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2"> المعلومات</h2>
                 </div>
-                {% for message in messages %}
-                <div class="alert alert-danger" role="alert">
-                    {{message}}
-                </div>
-                {% endfor %}
+
                 <div class="col-md-6">
-                    <label for="studentName" class="text-m-b" > اسم المفحوص رباعيا </label>
-                    <input type="text" class="form-control " name="studentName" id="studentName"  Required>
+                    <label for="studentName" class="text-m-b"> اسم المفحوص رباعيا </label>
+                    <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.studentName}}" disabled>
                 </div>
+
                 <div class="col-md-6">
                     <label for="sex" class="text-m-b"> جنس المفحوص </label>
-                    <select name="gender" class="form-select" id="sex" Required>
-                        <option value="">اختر</option>
-                        <option value="male">ذكر</option>
-                        <option value="female">انثى</option>
-                    </select>
+                    <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.sex}}" disabled>
                 </div>
+
+                <div class="form-group mb-3">
+                    <label for="schoolName" class="pe-3 fs-5 "> العمر </label>
+                    <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.age}}" disabled>
+                </div>
+
                 <div class="col-md-6">
                     <label for="schoolName" class="text-m-b"> اسم المدرسة</label>
-                    <input type="text" class="form-control" name="schoolName" id="schoolName"  Required>
+                    <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.schoolName}}" disabled>
                 </div>
+
                 <div class="col-md-6">
                     <label for="grade" class="text-m-b"> الصف الدراسي</label>
-                    <select name="grade" class="form-select" id="grade" Required>
-                        <option value="">اختر</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                    </select>
+                    <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.grade}}" disabled>
                 </div>
+
                 <div class="col-md-6">
                     <label for="civilID" class="text-m-b"> الرقم المدني </label>
-                    <input type="text" class="form-control" name="civilID" id="civilID"  Required>
+                    <input type="text" class="form-control" name="civilID" id="civilID" value="{{Students.civilID}}" disabled>
                 </div>
+
                 <div class="col-md-6">
                     <label for="eduDistrict" class="text-m-b"> المنطقة التعليمية</label>
-                    <select name="eduDistrict" class="form-select" id="eduDistrict" Required>
-                        <option value="">اختر</option>
-                        <option value="العاصمة">العاصمة</option>
-                        <option value="حولي">حولي</option>
-                        <option value="الفروانية">الفروانية</option>
-                        <option value="الجهراء">الجهراء</option>
-                        <option value="مبارك الكبير">مبارك الكبير</option>
-                        <option value="الأحمدي">الأحمدي</option>
-                    </select>
+                    <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" value="{{Students.eduDistrict}}" disabled>
                 </div>
+
                 <div class="form-group mb-3">
                     <label for="examDate" class="text-m-b">  تاريخ اجراء الاختبار</label>
-                    <input type="date" class="form-control" name="examDate" id="examDate"  Required>
+                    <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.examDate|date:'Y-m-d'}}" disabled>
                 </div>
+
                 <div class="form-group mb-3">
                     <label for="birthDate" class="text-m-b"> تاريخ ميلاد المفحوص </label>
-                    <input type="date" class="form-control" name="birthDate" id="birthDate"  Required>
+                    <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.birthDate|date:'Y-m-d'}}" disabled>
                 </div>
+
                 <div class="form-group mb-3">
                     <label for="nationality" class="text-m-b"> الجنسية </label>
-                    <input type="text" class="form-control" name="nationality" id="nationality"  Required>
+                    <input type="text" class="form-control" name="nationality" id="nationality" value="{{Students.nationality}}" disabled>
                 </div>
-                <div class="d-grid gap-2 col-3 mx-auto">
-                    <button type="submit" class="btn-green mb-3 p-2 fs-5">تسجيل  </button>
-                </div>
+
+
 
             </div>
         </form>
-        <form action="{% url 'primary:students'%}" method="POST">
-            {% csrf_token %}
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-3 shadow">
-                    <div class="modal-header p-4">
-                        <h2 class="modal-title mb-0 w-100 text-center fs-2">تحرير المعلومات</h2>
-                    </div>
-                    <div class="modal-body" style="text-align: right;">
-                        <div class="mx-auto" style="width: 400px;">
-
-                            <div class="form-group mb-3">
-                                <label for="studentName" class="pe-3 fs-5 ">: اسم المفحوص رباعيا</label>
-                                <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.studentName}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3" style="text-align: right; direction: rtl;">
-                                <label for="sex" class="pe-3 fs-5 ">: جنس المفحوص</label>
-                                <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.sex}}" disabled>
-                            </div>
-
-
-                            <div class="form-group mb-3">
-                                <label for="schoolName" class="pe-3 fs-5 ">: العمر </label>
-                                <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.age}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="birthDate" class="pe-3 fs-5 ">: تاريخ ميلاد المفحوص</label>
-                                <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.birthDate|date:'Y-m-d'}}" disabled>
-
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="civilID" class="pe-3 fs-5 ">: الرقم المدني </label>
-                                <input type="text" class="form-control" name="civilID" id="civilID" value="{{Students.civilID}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="nationality" class="pe-3 fs-5 ">: الجنسية </label>
-                                <input type="text" class="form-control" name="nationality" id="nationality" value="{{Students.nationality}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="schoolName" class="pe-3 fs-5 ">: اسم المدرسة</label>
-                                <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.schoolName}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3" style="text-align: right; direction: rtl;">
-                                <label for="grade" class="pe-3 fs-5 ">: الصف الدراسي</label>
-                                <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.grade}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3" style="text-align: right; direction: rtl;">
-                                <label for="eduDistrict" class="pe-3 fs-5 ">: المنطقة التعليمية</label>
-                                <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" value="{{Students.eduDistrict}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="birthDate" class="pe-3 fs-5 ">: تاريخ اجراء الاختبار</label>
-                                <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.examDate|date:'Y-m-d'}}" disabled>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer flex-nowrap p-0">
-                        <button type="button" class="btn fs-6 btn-secondary col py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </form>
-    </div>
-</div>-->
-
-<!--{% for Students in students %}-->
-<div class="container-box card-signin" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" style="width: 800px;">
-    <div class="card-body">
-        <form action="{% url 'primary:studentProfile' Students.id%}" method="POST">
-            {% csrf_token %}
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-3 shadow">
-                    <div class="modal-header p-4">
-                        <h2 class="modal-title mb-0 w-100 text-center fs-2">تحرير المعلومات</h2>
-                    </div>
-                    <div class="modal-body" style="text-align: right;">
-                        <div class="mx-auto" style="width: 400px;">
-
-                            <div class="form-group mb-3">
-                                <label for="studentName" class="pe-3 fs-5 ">: اسم المفحوص رباعيا</label>
-                                <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.studentName}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3" style="text-align: right; direction: rtl;">
-                                <label for="sex" class="pe-3 fs-5 ">: جنس المفحوص</label>
-                                <input type="text" class="form-control " name="studentName" id="studentName" value="{{Students.sex}}" disabled>
-                            </div>
-
-
-                            <div class="form-group mb-3">
-                                <label for="schoolName" class="pe-3 fs-5 ">: العمر </label>
-                                <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.age}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="birthDate" class="pe-3 fs-5 ">: تاريخ ميلاد المفحوص</label>
-                                <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.birthDate|date:'Y-m-d'}}" disabled>
-
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="civilID" class="pe-3 fs-5 ">: الرقم المدني </label>
-                                <input type="text" class="form-control" name="civilID" id="civilID" value="{{Students.civilID}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="nationality" class="pe-3 fs-5 ">: الجنسية </label>
-                                <input type="text" class="form-control" name="nationality" id="nationality" value="{{Students.nationality}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="schoolName" class="pe-3 fs-5 ">: اسم المدرسة</label>
-                                <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.schoolName}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3" style="text-align: right; direction: rtl;">
-                                <label for="grade" class="pe-3 fs-5 ">: الصف الدراسي</label>
-                                <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{Students.grade}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3" style="text-align: right; direction: rtl;">
-                                <label for="eduDistrict" class="pe-3 fs-5 ">: المنطقة التعليمية</label>
-                                <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" value="{{Students.eduDistrict}}" disabled>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="birthDate" class="pe-3 fs-5 ">: تاريخ اجراء الاختبار</label>
-                                <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.examDate|date:'Y-m-d'}}" disabled>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer flex-nowrap p-0">
-                        <button type="button" class="btn fs-6 btn-secondary col py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </form>
-
     </div>
 </div>
-<!--{%endfor%} -->
-{%endblock%}
+
+{% endfor %} {%endblock%}

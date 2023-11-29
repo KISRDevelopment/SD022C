@@ -14,6 +14,9 @@ from datetime import datetime
 from dateutil import relativedelta
 
 # Create your views here.
+
+
+
 def index (request):
     return render (request,"primary/index.html")
 
@@ -153,22 +156,32 @@ def startTest(request,id):
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
+
 def rpdNamingObjTst(request):
     now = datetime.now()
+    timea = request.session.get('timeS','')
+    timeB = request.session.get('timeE','')
     result = Result.objects.get(student_id=request.session['student'])
     if request.POST.get("form_type") == 'formTwo':
-        hour1 = now.hour
-        minute1 = now.minute
-        second1=now.second
-        if len(str(second1)) == 1:
-            second1 = "0"+ str(second1)
-        print('-----------Start test button pressed------------------')
-        print(hour1,minute1,second1)
-        print('-----------------------------')
+        timea = request.session.get('timeS',time.strftime("%H:%M:%S"))
+        global hour 
+        global minute
+        global second
+        hour = now.hour
+        minute = now.minute
+        second = now.second
+        if len(str(second)) == 1:
+            second = "0"+ str(second)
         result.start_time1A = time.strftime("%H:%M:%S")
         result.save()
+        print(timea)
         return redirect('primary:rpdNamingObjTst')
     if request.method == "POST":
+        timeB = request.session.get('timeE',time.strftime("%H:%M:%S"))
+        print('-----------End test button pressed------------------')
+        print(timea)
+        print('----------------------------------------------------')
+        print(timeB)
         selection = request.POST.getlist('selection','')  
         img = []
         img.extend(request.POST.getlist('selection',''))
@@ -180,8 +193,6 @@ def rpdNamingObjTst(request):
             return HttpResponse(count)
         else:  
             return HttpResponse('<p class="error">❌</p>')
-
-
         # result = Result.objects.get(student_id=request.session['student'])
         # if request.POST.get("form_type") == 'formOne':
         #     img = []

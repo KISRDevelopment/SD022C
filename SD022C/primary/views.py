@@ -235,9 +235,10 @@ def edit(request, id):
     else:
         return render(request, 'primary/superusers.html')
 
-"""#show student details
-def showDetails(request, id):
-        return render(request, 'primary/students.html' )"""
+#show student details
+def studentProfile(request, id):
+        return render(request, "primary/studentProfile.html", {
+        "students": Student.objects.filter(id=id)})
 
 def logout(request):
     auth.logout(request)

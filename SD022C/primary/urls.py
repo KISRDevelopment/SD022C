@@ -26,6 +26,6 @@ urlpatterns = [
     path('rpdNamingObjTst/', views.rpdNamingObjTst, name='rpdNamingObjTst'),
     path('rpdNamingLtrTst/', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
     path('nonWrdAccuracyTst/', views.nonWrdAccuracyTst, name='nonWrdAccuracyTst'),
-    #path('editStudent/<int:id>', views.editStudent, name='editStudent'),
+    path('studentProfile/<int:id>', views.studentProfile, name='studentProfile'),
     #path('password/<int:id>', views.password, name='password'),
 ]

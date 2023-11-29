@@ -24,7 +24,7 @@
                         <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalstartTest{{Students.id}}"><i class="bi bi-pencil-square" style="color:#0059a0;"></i> بدء الاختبار</a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalShowDetails{{Students.id}}"><i class="bi bi-card-list" style="color:#0059a0;"></i>  ملف الطالب</a>
+                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none " style="color:#0059a0;"><i class="bi bi-card-list" style="color:#0059a0;"></i>  ملف الطالب</a>
                     </td>
                     <td>
                         <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil " style="color:#0059a0;"></i> تحرير </a>
@@ -218,7 +218,7 @@
 {%endfor%}
 
 <!--modal for the show details part-->
-{% for Students in students %}
+<!--{% for Students in students %}
 <div class="modal fade" id="ModalShowDetails{{Students.pk}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <form action="{% url 'primary:students'%}" method="POST">
         {% csrf_token %}
@@ -298,4 +298,5 @@
 
     </form>
 </div>
-{%endfor%} {%endblock%}
+{%endfor%} -->
+{%endblock%}

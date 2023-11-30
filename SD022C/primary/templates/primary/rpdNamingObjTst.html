@@ -10,7 +10,7 @@
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
             <form action="" method="POST"  class="form-horizontal "  id="formTwo">
                 {% csrf_token%}
-                <button onclick="startTime()" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button>
+                <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button>
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
         </div>
@@ -103,19 +103,55 @@
                     <input type="submit" value=" انهاء الوقت / الاختبار" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
                     <!-- <button id="endBTN" type="submit" name="form_type" value="formOne" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button> -->
                 </div>
+                <input type="hidden" id="postId" name="postId1" value="" />
             </form>
-
-            <!-- <div id="message"></div> -->
-            <!-- <label id="minutes">00</label>:<label id="seconds">00</label> -->
             <div class="col-2 d-grid mx-auto" >
-
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">عدد الأخطاء</span>
-                <label id="result" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
-    
+                <label id="" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;"> الزمن</span>
                 <label id="result" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
             </div>  
         </div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    let today = new Date();
+
+    function startTime(enter){
+        format="%H:%M:%S"
+        enterStr = str(enter).split(".")[0]
+        enterTime = datetime.strptime(enterStr, format)
+        document.getElementById('postId').value = today;
+        //return enterTime;
+        //t1 =  today.getSeconds()
+        //var date1 = new Date();
+        //var today1 = new Date().toTimeString().split(" ")[0];
+    }
+    // function endTime(){
+    //     //t2 =  today.getSeconds()
+    //     //var date2 = new Date();
+    //     //var diff = Math.abs(date2 - startTime())/1000;
+    //     var today2 = new Date().toTimeString().split(" ")[0];
+    //     return today2;
+    // }
+</script>
+{%endblock%}
+
+<!-- 
+// let h = today.getHours();
+// let m = today.getMinutes();
+// let s = today.getSeconds();
+// h = h < 10 ? "0" + h : h;
+// m = m < 10 ? "0" + m : m;
+// s = s < 10 ? "0" + s : s; -->
+
+<!-- 
+/* document.getElementById("endBTN").addEventListener("click", function(event){
+    event.preventDefault();
+    document.getElementById('time').value = endTime();
+}); */ -->
 
         <!-- <div hx-post="primary/rpdNamingObjTst" hx-trigger="click" hx-target="#feedback-div" hx-swap="innerHTML" class="col-2 d-grid mx-auto" > -->
             <!-- <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن</span>
@@ -132,39 +168,3 @@
         <!-- <div id="feedback-div" > -->
             <!-- <h>Hello</h> -->
         <!-- </div> -->
-    </div>
-</div>
-
-<!-- <script type="text/javascript">
-    let today = new Date();
-    // let h = today.getHours();
-    // let m = today.getMinutes();
-    // let s = today.getSeconds();
-    // h = h < 10 ? "0" + h : h;
-    // m = m < 10 ? "0" + m : m;
-    // s = s < 10 ? "0" + s : s;
-
-    function startTime(){
-        //t1 =  today.getSeconds()
-        //var date1 = new Date();
-        var today1 = new Date().toTimeString().split(" ")[0];
-        return today1;
-    }
-    function endTime(){
-        //t2 =  today.getSeconds()
-        //var date2 = new Date();
-        //var diff = Math.abs(date2 - startTime())/1000;
-        var today2 = new Date().toTimeString().split(" ")[0];
-        return today2;
-    }
-    /* document.getElementById("endBTN").addEventListener("click", function(event){
-        event.preventDefault();
-        document.getElementById('time').value = endTime();
-    }); */
-
-</script> -->
-
-
-
-
-{%endblock%}

@@ -175,37 +175,38 @@ def rpdNamingObjTst(request):
     global enter,exit
     global t1 
     global t2
+
     if request.POST.get("form_type") == 'formTwo':
         enter = datetime.today().time()
-        print(enter)
         t1 = datetime.now()
         result.start_time1A = time.strftime("%H:%M:%S")
         result.save()
         return redirect('primary:rpdNamingObjTst')
-    if request.method == "POST":
+    if request.POST.get("form_type") == 'formOne':
+        postId2 = request.POST.get('postId1')
+        print('postid')
+        print(postId2)
         exit = datetime.today().time()
-        print(exit)
         t2 = datetime.now()
         selection = request.POST.getlist('selection','')  
         img = []
         img.extend(request.POST.getlist('selection',''))
         count = len(img)
         result.wrong1A=count
-        if selection:
-            result.end_time1A = time.strftime("%H:%M:%S")
-            duration = calcTime(enter,exit)
-            result.time1A=duration
-            print(duration)
-            result.save()
-            return HttpResponse(count)
-        else:
-            duration = calcTime(enter,exit)
-            result.time1A=duration
-            print(duration)  
-            result.save()
-            return HttpResponse('<p class="error">0</p>')  
-    
-    
+        # if selection:
+        #     result.end_time1A = time.strftime("%H:%M:%S")
+        #     duration = calcTime(enter,exit)
+        #     result.time1A=duration
+        #     #print(duration)
+        #     result.save()
+        #     return HttpResponse(count)
+        # else:
+        #     duration = calcTime(enter,exit)
+        #     result.time1A=duration
+        #     #print(duration)  
+        #     result.save()
+        #     return HttpResponse('<p class="error">0</p>')
+        return redirect('primary:rpdNamingLtrTst')  
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")

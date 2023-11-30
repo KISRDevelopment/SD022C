@@ -193,13 +193,16 @@ def rpdNamingObjTst(request):
         result.wrong1A=count
         if selection:
             result.end_time1A = time.strftime("%H:%M:%S")
-            result.save()
             duration = calcTime(enter,exit)
+            result.time1A=duration
             print(duration)
+            result.save()
             return HttpResponse(count)
         else:
             duration = calcTime(enter,exit)
+            result.time1A=duration
             print(duration)  
+            result.save()
             return HttpResponse('<p class="error">0</p>')  
     
     

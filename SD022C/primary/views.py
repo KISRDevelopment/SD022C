@@ -168,45 +168,45 @@ def calcTime(enter,exit):
     exitTime = datetime.strptime(exitStr, format)
     return exitTime - enterTime
 
-
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
     result = Result.objects.get(student_id=request.session['student'])
     global enter,exit
     global t1 
     global t2
-
-    if request.POST.get("form_type") == 'formTwo':
-        enter = datetime.today().time()
-        t1 = datetime.now()
-        result.start_time1A = time.strftime("%H:%M:%S")
-        result.save()
-        return redirect('primary:rpdNamingObjTst')
-    if request.POST.get("form_type") == 'formOne':
-        postId2 = request.POST.get('postId1')
-        print('postid')
-        print(postId2)
-        exit = datetime.today().time()
-        t2 = datetime.now()
-        selection = request.POST.getlist('selection','')  
-        img = []
-        img.extend(request.POST.getlist('selection',''))
-        count = len(img)
-        result.wrong1A=count
-        # if selection:
-        #     result.end_time1A = time.strftime("%H:%M:%S")
-        #     duration = calcTime(enter,exit)
-        #     result.time1A=duration
-        #     #print(duration)
-        #     result.save()
-        #     return HttpResponse(count)
-        # else:
-        #     duration = calcTime(enter,exit)
-        #     result.time1A=duration
-        #     #print(duration)  
-        #     result.save()
-        #     return HttpResponse('<p class="error">0</p>')
-        return redirect('primary:rpdNamingLtrTst')  
+    global time1
+    global time2
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            enter = datetime.today().time()
+            time1 = datetime.fromtimestamp(time.mktime(time.localtime()))
+            result.start_time1A = time.strftime("%H:%M:%S")
+            result.save()
+            return HttpResponse(time1)
+        if request.POST.get("formtype2"):
+            exit = datetime.today().time()
+            t2 = datetime.now()
+            time2 = datetime.fromtimestamp(time.mktime(time.localtime()))
+            selection = request.POST.getlist('selection','')  
+            img = []
+            img.extend(request.POST.getlist('selection',''))
+            count = len(img)
+            result.wrong1A=count
+            if selection:
+                result.end_time1A = time.strftime("%H:%M:%S")
+                duration = calcTime(enter,exit)
+                diff = time2 - time1
+                result.time1A=diff
+                diff = diff.total_seconds()
+                result.save()
+                return HttpResponse(diff+count)
+            else:
+                diff = time2 - time1
+                diff = diff.total_seconds()
+                duration = calcTime(enter,exit)
+                result.time1A=duration
+                result.save()
+                return HttpResponse(diff + count)
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")

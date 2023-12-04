@@ -93,7 +93,7 @@
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="duck3"> بطة</label>
                     <input type="checkbox" class="btn-check" id="fish3" value="fish3" name = "selection" autocomplete="off">
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="fish3"> سمكة</label>
-                    <input type="checkbox" class="btn-check" id="flower3" value="flower3" autocomplete="off">
+                    <input type="checkbox" class="btn-check" id="flower3" value="flower3" name = "selection" autocomplete="off">
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="flower3"> وردة</label>
                     <input type="checkbox" class="btn-check" id="ball3" value="ball3" name = "selection" autocomplete="off">
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="ball3"> كرة</label>
@@ -101,7 +101,7 @@
                     <label class="btn btn-outline-danger" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
                 <div style="padding-right: 480px;">
-                    <input type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
+                    <input onclick="countMistakes()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
                     <!-- <button id="endBTN" type="submit" name="" value="" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button> -->
                 </div>
                 <!-- <input type="hidden" id="startBtnVal" name="startBtnVal" value="" /> -->
@@ -120,12 +120,27 @@
 
 <script type="text/javascript">
     let today = new Date();
+    
     function startTime(enter){
         format="%H:%M:%S"
         enterStr = str(enter).split(".")[0]
         enterTime = datetime.strptime(enterStr, format)
         document.getElementById('startBtnVal').value = 30;
     }
+    function countMistakes(){
+        var x = document.getElementsByName("selection");
+        var i;
+        counter = 0;
+        for (i = 0; i < x.length; i++) {
+            if (x[i].checked == true) {
+                counter = counter + 1;
+            } else {
+                 document.getElementById('result2').innerText = counter;
+            }
+            document.getElementById('result2').innerText = counter;
+        }    
+    }
+    
     // start.addEventListener('click', startTime);
 </script>
 {%endblock%}

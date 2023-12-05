@@ -10,7 +10,7 @@
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="delete" >
                 {% csrf_token%}
-                <input id="start" type="submit" onclick="startTime(this)" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
+                <input id="start" type="submit" onclick="startTime(this)" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>

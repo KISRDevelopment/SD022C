@@ -8,17 +8,17 @@
     <div class="card my-3  mx-auto" style="width:900px; border-color:#99CC00;">
         <h2 class="card-title text-center fs-5" style="color:white; background-color: #99CC00; height: 35px;" >النموذج (أ)</h2>
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
-            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="delete" >
+            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="innerText" >
                 {% csrf_token%}
                 <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
         </div>
-        <div id="timer" style="direction: rtl; margin-right: 60px;">
+        <div id="timer" style="direction: rtl; margin-right: 60px; display: none;">
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
-        <div class="card-body text-center">   
+        <div class="card-body text-center" id="questions" style="visibility: hidden;">   
             <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#result3" hx-swap="innerHTML" >
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
@@ -129,8 +129,8 @@
     var end = null ;
     function startTime(){
         setInterval(setTime, 1000);
-        //startTimeTst = new Date().toLocaleTimeString();
-        //const start = new Date().getTime();
+        document.getElementById("questions").style.visibility="visible";
+        document.getElementById("timer").style.display="block";
         start = new Date();
         console.log(start);
     }

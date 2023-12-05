@@ -164,6 +164,7 @@ def rpdNamingObjTst(request):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))
             result.start_time1A = time.strftime("%H:%M:%S")
             result.save()
+            return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             selection = request.POST.getlist('selection','')  

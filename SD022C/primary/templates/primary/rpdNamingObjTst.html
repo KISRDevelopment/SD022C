@@ -15,6 +15,9 @@
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
         </div>
+        <div  style="direction: rtl; margin-right: 60px;">
+            <label id="seconds">00</label>:<label id="minutes">00</label>
+        </div>
         <div class="card-body text-center">   
             <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#result3" hx-swap="innerHTML" >
                 {% csrf_token%}
@@ -109,7 +112,7 @@
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن  </span>
                 <label id="result1" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;"> عدد الأخطاء </span>
-                <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+                <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">0</label>
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">  الزمن مع الأخطاء </span>
                 <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
             </div>  
@@ -119,7 +122,11 @@
 
 <script type="text/javascript">
     count = 0;
+    var minutesLabel = document.getElementById("minutes");
+    var secondsLabel = document.getElementById("seconds");
+    var totalSeconds = 0;
     function startTime(){
+        setInterval(setTime, 1000);
         startTimeTst = new Date().toLocaleTimeString();
         return startTimeTst
     }
@@ -142,6 +149,19 @@
         }
     }
     
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    }
+    function pad(val) {
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
 </script>
 {%endblock%}
 

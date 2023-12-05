@@ -15,7 +15,7 @@
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
         </div>
-        <div  style="direction: rtl; margin-right: 60px;">
+        <div id="timer" style="direction: rtl; margin-right: 60px;">
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
         <div class="card-body text-center">   
@@ -136,10 +136,9 @@
     }
     function calcDiff(){
         end = new Date();
-        document.getElementById("minutes").style.visibility="hidden";
-        document.getElementById("seconds").style.visibility="hidden";
+        document.getElementById("timer").style.visibility="hidden";
+
         dif = Math.round((end - start) / 1000);
-        console.log(dif + '');
         document.getElementById("result1").innerText =  dif + " ث " ;
     }
     function btn_clicked(btn){

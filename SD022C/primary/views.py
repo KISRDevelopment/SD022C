@@ -180,11 +180,12 @@ def rpdNamingObjTst(request):
                 result.save()
                 return HttpResponse(timeDiff+count)
             else:
+                result.end_time1A = time.strftime("%H:%M:%S")
                 timeDiff = etime - stime
                 timeDiff = timeDiff.total_seconds()
                 result.time1A=timeDiff
                 result.save()
-                return HttpResponse(timeDiff + count)
+                return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")

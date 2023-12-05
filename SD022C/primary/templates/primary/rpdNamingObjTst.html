@@ -19,7 +19,7 @@
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
         <div class="card-body text-center" id="questions" style="visibility: hidden;">   
-            <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#result3" hx-swap="innerHTML" >
+            <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#end" hx-swap="innerText" >
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
                 </div>
@@ -104,7 +104,7 @@
                     <label class="btn btn-outline-danger" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
                 <div style="padding-right: 480px;">
-                    <input onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
+                    <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
                     <!-- <button id="endBTN" type="submit" name="" value="" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button> -->
                 </div>
             </form>
@@ -114,7 +114,7 @@
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;"> عدد الأخطاء </span>
                 <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">0</label>
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">  الزمن مع الأخطاء </span>
-                <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+                <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;">----</label>
             </div>  
         </div>
     </div>
@@ -140,6 +140,8 @@
 
         dif = Math.round((end - start) / 1000);
         document.getElementById("result1").innerText =  dif + " ث " ;
+        document.getElementById("result3").innerText =  dif + count + " ثانية ";
+
     }
     function btn_clicked(btn){
         if (btn.style.backgroundColor == "") {

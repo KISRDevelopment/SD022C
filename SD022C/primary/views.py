@@ -14,6 +14,7 @@ from datetime import datetime
 from dateutil import relativedelta
 
 # Create your views here.
+
 def index (request):
     return render (request,"primary/index.html")
 
@@ -152,29 +153,40 @@ def startTest(request,id):
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
+
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
-    if request.method == "POST":
-        result = Result.objects.get(student_id=request.session['student'])
-        if request.POST.get("form_type") == 'formOne':
-            img = []
-            img.extend(request.POST.getlist('selection'))
-            print(img)
-            count = len(img)
-            print(count)
-            result.wrong1A=count
-            result.end_time1A = time.strftime("%H:%M:%S")
-            result.save()
-            return redirect('primary:rpdNamingObjTst')
-        if request.POST.get("form_type") == 'formTwo':
+    result = Result.objects.get(student_id=request.session['student'])
+    global stime
+    global etime
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            stime = datetime.fromtimestamp(time.mktime(time.localtime()))
             result.start_time1A = time.strftime("%H:%M:%S")
             result.save()
-            return redirect('primary:rpdNamingObjTst')
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            etime = datetime.fromtimestamp(time.mktime(time.localtime()))
+            selection = request.POST.getlist('selection','')  
+            img = []
+            img.extend(request.POST.getlist('selection',''))
+            count = len(img)
+            result.wrong1A=count
+            if selection:
+                result.end_time1A = time.strftime("%H:%M:%S")
+                timeDiff = etime - stime
+                result.time1A=timeDiff
+                timeDiff = int(timeDiff.total_seconds())
+                result.save()
+                return HttpResponse(timeDiff+count)
+            else:
+                result.end_time1A = time.strftime("%H:%M:%S")
+                timeDiff = etime - stime
+                timeDiff = timeDiff.total_seconds()
+                result.time1A=timeDiff
+                result.save()
+                return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjTst.html")
-
-""" if 'startTimeBtn1' in request.POST:
-        starttime = request.POST['startTimeBtn1']
-        print(starttime) """
     
 @login_required(login_url="/primary/login")
 def rpdNamingLtrTst(request):
@@ -269,27 +281,3 @@ def testsPage (request):
             return render(request,"primary/testsPage.html")
 
     return redirect(reverse('primary:index'))        
-
-''' 
-def password(request, id):
-    if request.method == "POST":
-        if(request.user.is_staff):
-         password = request.POST["password"]
-         user = user.objects.filter(id=id)
-         if password: user.update(password = make_password(password)) 
-         
-        else:
-         password = request.POST["password"]
-         examiner = Examiner.objects.filter(id=id)
-         if password: examiner.update(password = make_password(password)) 
-              
-        return redirect(reverse('primary:profile/'))
-    else:
-        return render(request, 'primary/profile.html', {
-        "examiners": Examiner.objects.get(user_id=request.user.id)}) '''
-
-
-
-
-
-

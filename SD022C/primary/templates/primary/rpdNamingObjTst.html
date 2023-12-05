@@ -10,7 +10,7 @@
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="delete" >
                 {% csrf_token%}
-                <input id="start" type="submit" onclick="startTime(this)" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
+                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
@@ -104,7 +104,7 @@
                     <label class="btn btn-outline-danger" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
                 <div style="padding-right: 480px;">
-                    <input onclick="endTime()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
+                    <input onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">
                     <!-- <button id="endBTN" type="submit" name="" value="" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button> -->
                 </div>
             </form>
@@ -125,16 +125,22 @@
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
     var totalSeconds = 0;
+    var start = null ;
+    var end = null ;
     function startTime(){
         setInterval(setTime, 1000);
-        startTimeTst = new Date().toLocaleTimeString();
-        return startTimeTst
+        //startTimeTst = new Date().toLocaleTimeString();
+        //const start = new Date().getTime();
+        start = new Date();
+        console.log(start);
     }
-    function endTime(){
-        endTimeTst = new Date().getTime();
-        console.log(endTimeTst)
-        diff = endTimeTst - startTime()
-        console.log(diff)
+    function calcDiff(){
+        end = new Date();
+        document.getElementById("minutes").style.visibility="hidden";
+        document.getElementById("seconds").style.visibility="hidden";
+        dif = Math.round((end - start) / 1000);
+        console.log(dif + '');
+        document.getElementById("result1").innerText = dif + ' sec';
     }
     function btn_clicked(btn){
         if (btn.style.backgroundColor == "") {
@@ -142,13 +148,11 @@
             btn.style.backgroundColor = "red";
             document.getElementById('result2').innerText = count;
         } else {
-            console.log('else')
             count = count - 1;
             btn.style.backgroundColor = "";
             document.getElementById('result2').innerText = count;
         }
     }
-    
     function setTime() {
         ++totalSeconds;
         secondsLabel.innerHTML = pad(totalSeconds % 60);

@@ -15,9 +15,6 @@ from dateutil import relativedelta
 
 # Create your views here.
 
-t1 = '0'
-t2 = '0'
-
 def index (request):
     return render (request,"primary/index.html")
 

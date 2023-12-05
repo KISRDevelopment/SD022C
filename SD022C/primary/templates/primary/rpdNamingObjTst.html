@@ -110,7 +110,7 @@
             </form>
             <div class="col-2 d-grid mx-auto" >
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن  </span>
-                <label id="result1" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">----</label>
+                <label id="result1" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl">----</label>
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;"> عدد الأخطاء </span>
                 <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">0</label>
                 <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">  الزمن مع الأخطاء </span>
@@ -140,7 +140,7 @@
         document.getElementById("seconds").style.visibility="hidden";
         dif = Math.round((end - start) / 1000);
         console.log(dif + '');
-        document.getElementById("result1").innerText = dif + ' sec';
+        document.getElementById("result1").innerText =  dif + " ث " ;
     }
     function btn_clicked(btn){
         if (btn.style.backgroundColor == "") {

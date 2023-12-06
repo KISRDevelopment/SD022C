@@ -159,6 +159,11 @@ def rpdNamingObjTst(request):
     result = Result.objects.get(student_id=request.session['student'])
     global stime
     global etime
+
+    if Result.status1A is not None:
+        print('status field is not none')
+        return redirect("primary:testsPage")
+
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))
@@ -166,24 +171,25 @@ def rpdNamingObjTst(request):
             result.save()
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
+            result.end_time1A = time.strftime("%H:%M:%S")
+            result.status1A = 'Done'
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
+            timeDiff = etime - stime
+            result.total_time1A=timeDiff
             selection = request.POST.getlist('selection','')  
             img = []
             img.extend(request.POST.getlist('selection',''))
             count = len(img)
-            result.wrong1A=count
             if selection:
-                result.end_time1A = time.strftime("%H:%M:%S")
-                timeDiff = etime - stime
-                result.time1A=timeDiff
                 timeDiff = int(timeDiff.total_seconds())
+                timeWrongAnswers = timeDiff + count
+                result.timeWrngAns1A=timeWrongAnswers
                 result.save()
                 return HttpResponse(timeDiff+count)
             else:
-                result.end_time1A = time.strftime("%H:%M:%S")
-                timeDiff = etime - stime
-                timeDiff = timeDiff.total_seconds()
-                result.time1A=timeDiff
+                timeDiff = int(timeDiff.total_seconds())
+                timeWrongAnswers = timeDiff + count
+                result.timeWrngAns1A=timeWrongAnswers
                 result.save()
                 return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjTst.html")

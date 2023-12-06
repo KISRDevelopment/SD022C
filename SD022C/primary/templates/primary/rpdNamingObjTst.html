@@ -18,7 +18,7 @@
         <div id="timer" style="direction: rtl; margin-right: 60px; display: none;">
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
-        <div class="card-body text-center" id="questions" style="visibility: hidden;">   
+        <div class="card-body text-center" id="questions" >   
             <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#end" hx-swap="innerText" >
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">

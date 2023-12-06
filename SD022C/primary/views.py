@@ -160,9 +160,9 @@ def rpdNamingObjTst(request):
     global stime
     global etime
 
-    if result.status1A is not None:
-        print('status field is not none')
-        return redirect("primary:testsPage")
+    # if result.status1A is not None:
+    #     print('status field is not none')
+    #     return redirect("primary:testsPage")
 
     if request.htmx:
         if request.POST.get("formtype1"):
@@ -194,6 +194,10 @@ def rpdNamingObjTst(request):
                 return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjTst.html")
     
+@login_required(login_url="/primary/login")
+def rpdNamingObjTstB(request):
+    return render (request,"primary/rpdNamingObjTstB.html")
+
 @login_required(login_url="/primary/login")
 def rpdNamingLtrTst(request):
     if request.method == "POST":

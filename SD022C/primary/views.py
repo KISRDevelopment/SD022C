@@ -160,7 +160,7 @@ def rpdNamingObjTst(request):
     global stime
     global etime
 
-    if Result.status1A is not None:
+    if result.status1A is not None:
         print('status field is not none')
         return redirect("primary:testsPage")
 

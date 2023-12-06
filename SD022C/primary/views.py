@@ -159,11 +159,14 @@ def rpdNamingObjTst(request):
     result = Result.objects.get(student_id=request.session['student'])
     global stime
     global etime
-
     # if result.status1A is not None:
     #     print('status field is not none')
     #     return redirect("primary:testsPage")
 
+    # if request.method == 'POST':
+    #     reason1 = request.POST.get("submitTst")
+    #     result.reason=reason1
+    #     result.save()
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))
@@ -176,6 +179,7 @@ def rpdNamingObjTst(request):
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff = etime - stime
             result.total_time1A=timeDiff
+            result.save()
             selection = request.POST.getlist('selection','')  
             img = []
             img.extend(request.POST.getlist('selection',''))

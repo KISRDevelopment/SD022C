@@ -51,3 +51,4 @@ class Result(models.Model):
     status1A = models.CharField(max_length=20, null=True)
     total_time1A = models.CharField(max_length=20, null=True)
     timeWrngAns1A = models.IntegerField(null=True)
+    reason=models.CharField(max_length=60,null=True)

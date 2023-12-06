@@ -130,12 +130,18 @@
                 <div class="modal-header p-4" id="labelText" style="color: #0059a0">
                     <h5 class="modal-title mb-0 w-100 text-center fs-3"> هل أنت متأكد من تسليم الاختبار؟ </h5>
                 </div>
-                <div class="modal-body">
-                    
+                <div class="modal-body" style="direction: rtl;">
+                    <label for="submitTst" class="form-label" >يرجى الاختيار من القائمة </label>
+                    <select id="submitTst" name ="submitTst" class="form-select" Required>
+                        <option value="تم الانتهاء من بنود الاختبار كلها " selected>تم الانتهاء من بنود الاختبار كلها </option>
+                        <option value="توقف لأسباب صحية أو شخصية خاصة بالطالب" >توقف لأسباب صحية أو شخصية خاصة بالطالب</option>
+                        <option value="توقف لأسباب صحية أو شخصية خاصة بالفاحص">توقف لأسباب صحية أو شخصية خاصة بالفاحص</option>
+                        <option value="أسباب أخرى">أسباب أخرى </option>
+                    </select>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit">بدء</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit">تسليم</button>
                 </div>
             </div>
         </div>

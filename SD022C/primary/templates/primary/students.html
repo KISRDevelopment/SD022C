@@ -21,16 +21,16 @@
                         {{Students.studentName}}
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalstartTest{{Students.id}}"><i class="bi bi-pencil-square" style="color:#0059a0;"></i> بدء الاختبار</a>
+                        <a href="#" class=" text-decoration-none color-purple " data-toggle="modal" data-target="#ModalstartTest{{Students.id}}"><i class="bi bi-pencil-square color-purple"></i> بدء الاختبار</a>
                     </td>
                     <td>
-                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none " style="color:#0059a0;"><i class="bi bi-card-list" style="color:#0059a0;"></i>  ملف الطالب</a>
+                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none color-purple" ><i class="bi bi-card-list color-purple"></i>  ملف الطالب</a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil " style="color:#0059a0;"></i> تحرير </a>
+                        <a href="#" class=" text-decoration-none color-purple"  data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil color-purple "></i> تحرير </a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none " style="color:#0059a0;" data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill " style="color:#0059a0;"></i> حذف</a>
+                        <a href="#" class=" text-decoration-none color-purple"  data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill color-purple"></i> حذف</a>
                     </td>
                 </tr>
                 {%endfor%}
@@ -53,8 +53,8 @@
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
-                <div class="modal-header p-4" id="labelText" style="color: #0059a0">
-                    <h5 class="modal-title mb-0 w-100 text-center fs-3"> هل أنت متأكد من حذف المستخدم؟</h5>
+                <div class="modal-header p-4" id="labelText">
+                    <h5 class="modal-title mb-0 w-100 text-center fs-3 color-purple"> هل أنت متأكد من حذف المستخدم؟</h5>
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped" style="direction: rtl;">
@@ -85,7 +85,7 @@
                     </table>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0 " data-dismiss="modal">الغاء</button>
                     <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit">حذف</button>
                 </div>
             </div>
@@ -101,8 +101,8 @@
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
-                <div class="modal-header p-4" id="labelText" style="color: #0059a0">
-                    <h5 class="modal-title mb-0 w-100 text-center fs-3">بدء الاختبار للطالب</h5>
+                <div class="modal-header p-4 color-purple" id="labelText" >
+                    <h5 class="modal-title mb-0 w-100 text-center fs-3 color-purple">بدء الاختبار للطالب</h5>
                 </div>
                 <div class="modal-body">
                     <table class="table table-striped" style="direction: rtl;">
@@ -125,8 +125,8 @@
                     </table>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit">بدء</button>
+                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal" >الغاء</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color:#720e9e; border-color: #720e9e;">بدء</button>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
                 <div class="modal-header p-4">
-                    <h2 class="modal-title mb-0 w-100 text-center fs-2">تحرير المعلومات</h2>
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2 color-purple">تحرير المعلومات</h2>
                 </div>
                 <div class="modal-body" style="text-align: right;">
                     <div class="mx-auto" style="width: 400px;">
@@ -207,7 +207,7 @@
 
                 <div class="modal-footer flex-nowrap p-0">
                     <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #99cc00; border-color: #99cc00; color: black;">تحديث</button>
+                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">تحديث</button>
                 </div>
 
             </div>
@@ -216,6 +216,7 @@
     </form>
 </div>
 {%endfor%}
+{%endblock%}
 
 <!--modal for the show details part-->
 <!--{% for Students in students %}
@@ -299,4 +300,3 @@
     </form>
 </div>
 {%endfor%} -->
-{%endblock%}

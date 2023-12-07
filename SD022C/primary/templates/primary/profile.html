@@ -7,18 +7,18 @@
 <div class="container-box" style="width:500px">
 
 
-    <h1 class="text-lg-g mb-4">حسابي</h1>
+    <h1 class="text-lg-g mb-3">حسابي</h1>
 
     {%if user.is_staff%}
 
     <table align="center" id="ModalAdmin{{Users.id}}">
         <tr align="right">
             <td class="text-m-b fw-light">{{user}}</td>
-            <td class="text-m-b" style="direction:rtl;">اسم المستخدم:</td>
+            <td class="text-m-b mb-2" style="direction:rtl;">اسم المستخدم:</td>
         </tr>  
         <tr align="right">
             <td class="text-m-b fw-light" style="direction: rtl;">Admin</td>
-            <td class="text-m-b" style="direction:rtl;">الصلاحية: </td>
+            <td class="text-m-b mb-2" style="direction:rtl;">الصلاحية: </td>
         </tr>
         <tr align="right">
             <td><button class="btn-green" type="reset" value="Reset">تغيير كلمة المرور</button></td>
@@ -30,23 +30,23 @@
     <table align="center" id="#ModalExaminer{{Examiners.user_id}}" >
         <tr align="right">
             <td class="text-m-b fw-light">{{examiners.user}}</td>
-            <td class="text-m-b" style="direction:rtl;">اسم المستخدم:</td>
+            <td class="text-m-b mb-2" style="direction:rtl;">اسم المستخدم:</td>
         </tr>   
         <tr align="right">
             <td class="text-m-b fw-light">{{examiners.name}}</td>
-            <td class="text-m-b" style="direction:rtl;">الاسم:</td>
+            <td class="text-m-b mb-2" style="direction:rtl;">الاسم:</td>
           </tr>
           <tr align="right">
             <td class="text-m-b fw-light">{{examiners.speciality}}</td>
-            <td class="text-m-b" style="direction:rtl;">التخصص:</td>
+            <td class="text-m-b mb-2" style="direction:rtl;">التخصص:</td>
           </tr>
           <tr align="right">
             <td class="text-m-b fw-light">{{examiners.organization}}</td>
-            <td class="text-m-b" style="direction:rtl;">الجهة:</td>
+            <td class="text-m-b mb-2" style="direction:rtl;">الجهة:</td>
           </tr>
           <tr align="right">
             <td class="text-m-b fw-light" style="direction: rtl;">Examiner</td>
-            <td class="text-m-b" style="direction:rtl;">الصلاحية:</td>
+            <td class="text-m-b mb-4" style="direction:rtl;">الصلاحية:</td>
           </tr>
           <tr align="right">
             <td><button class="btn-green" type="reset" value="Reset">تغيير كلمة المرور</button></td>
@@ -57,6 +57,7 @@
 
 {%endif%} 
 {%endblock%}
+
 
 
 <!--

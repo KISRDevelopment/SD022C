@@ -118,35 +118,34 @@
                 <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;">----</label>
             </div>  
         </div>
-    </div>
-</div>
-
-<!-- modal for submit tst -->
-<div class="modal fade" id="ModalsubmitTest{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form  action="{% url 'primary:rpdNamingObjTstB' %}" method="POST" >
-        {% csrf_token %}
-        <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-3 shadow">
-                <div class="modal-header p-4" id="labelText" style="color: #0059a0">
-                    <h5 class="modal-title mb-0 w-100 text-center fs-3"> هل أنت متأكد من تسليم الاختبار؟ </h5>
+        <!-- modal for submit tst -->
+        <div class="modal fade" id="ModalsubmitTest{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <form class="form-horizontal" action="" method="POST" >
+                {% csrf_token %}
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content rounded-3 shadow">
+                        <div class="modal-header p-4" id="labelText" style="color: #0059a0">
+                            <h5 class="modal-title mb-0 w-100 text-center fs-3"> هل أنت متأكد من تسليم الاختبار؟ </h5>
+                        </div>
+                        <div class="modal-body" style="direction: rtl;">
+                            <label for="submitTst" class="form-label" >يرجى الاختيار من القائمة </label>
+                            <select id="submitTst" name ="submitTst" class="form-select" Required>
+                                <option value="تم الانتهاء من بنود الاختبار كلها " selected>تم الانتهاء من بنود الاختبار كلها </option>
+                                <option value="توقف لأسباب صحية أو شخصية خاصة بالطالب" >توقف لأسباب صحية أو شخصية خاصة بالطالب</option>
+                                <option value="توقف لأسباب صحية أو شخصية خاصة بالفاحص">توقف لأسباب صحية أو شخصية خاصة بالفاحص</option>
+                                <option value="أسباب أخرى">أسباب أخرى </option>
+                            </select>
+                        </div>
+                        <div class="modal-footer flex-nowrap p-0">
+                            <!-- <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button> -->
+                            <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
+                            <input id="submitDropDown" type="submit" name="formtype3" value=" تسليم الاختبار "  class="btn btn-danger fs-12 col-12 py-3 m-0 rounded-0 " >
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body" style="direction: rtl;">
-                    <label for="submitTst" class="form-label" >يرجى الاختيار من القائمة </label>
-                    <select id="submitTst" name ="submitTst" class="form-select" Required>
-                        <option value="تم الانتهاء من بنود الاختبار كلها " selected>تم الانتهاء من بنود الاختبار كلها </option>
-                        <option value="توقف لأسباب صحية أو شخصية خاصة بالطالب" >توقف لأسباب صحية أو شخصية خاصة بالطالب</option>
-                        <option value="توقف لأسباب صحية أو شخصية خاصة بالفاحص">توقف لأسباب صحية أو شخصية خاصة بالفاحص</option>
-                        <option value="أسباب أخرى">أسباب أخرى </option>
-                    </select>
-                </div>
-                <div class="modal-footer flex-nowrap p-0">
-                    <!-- <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button> -->
-                    <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
-                    <button id="end" type="submit" name="formtype2" value=" تسليم الاختبار "  class="btn btn-danger fs-12 col-12 py-3 m-0 rounded-0 " >تسليم </button>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -156,6 +155,7 @@
     var totalSeconds = 0;
     var start = null ;
     var end = null ;
+
     function startTime(){
         setInterval(setTime, 1000);
         //document.getElementById("questions").style.visibility="visible";

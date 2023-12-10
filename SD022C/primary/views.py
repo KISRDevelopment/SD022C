@@ -153,6 +153,11 @@ def startTest(request,id):
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
+@login_required(login_url="/primary/login")
+def rpdNamingObjTstB(request):
+    if request.method == "POST":
+        print('exam submitted')
+    return render(request, "primary/rpdNamingObjTstB.html")
 
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
@@ -162,11 +167,12 @@ def rpdNamingObjTst(request):
     # if result.status1A is not None:
     #     print('status field is not none')
     #     return redirect("primary:testsPage")
-
-    # if request.method == 'POST':
-    #     reason1 = request.POST.get("submitTst")
-    #     result.reason=reason1
-    #     result.save()
+    if request.POST.get("formtype3"):
+        print('modal clicked')
+        reason = request.POST["submitTst"]
+        result.reason=reason
+        result.save()
+        return redirect("primary:rpdNamingObjTstB")
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))

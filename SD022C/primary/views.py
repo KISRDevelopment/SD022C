@@ -294,10 +294,14 @@ def profile (request):
         "examiners": Examiner.objects.get(user_id=request.user.id)})
         
 def testsPage (request):
-    if request.user.is_authenticated:
-        if request.user.is_staff:
+    result = Result.objects.get(student_id=request.session['student'])
+    if request.method == "POST":
+        print('got a post')
+        if result.status1A is not None:
+            print('test status: DONE')
+            messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
             return redirect(reverse('primary:testsPage'))
         else:
+            print('here at else')
             return render(request,"primary/testsPage.html")
-
-    return redirect(reverse('primary:index'))        
+    return render(request,"primary/testsPage.html")

@@ -164,11 +164,11 @@ def rpdNamingObjTst(request):
     result = Result.objects.get(student_id=request.session['student'])
     global stime
     global etime
-    # if result.status1A is not None:
-    #     print('status field is not none')
-    #     return redirect("primary:testsPage")
+    if result.status1A is not None:
+        print('status field is not none')
+        messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
+        return redirect("primary:testsPage")
     if request.POST.get("formtype3"):
-        print('modal clicked')
         reason = request.POST["submitTst"]
         result.reason=reason
         result.save()

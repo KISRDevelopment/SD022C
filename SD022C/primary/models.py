@@ -44,11 +44,17 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.id}: {self.studentName}"
     
-class Result(models.Model):
+class rpdNamingObj(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    start_time1A = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    end_time1A = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    status1A = models.CharField(max_length=20, null=True)
-    total_time1A = models.CharField(max_length=20, null=True)
-    timeWrngAns1A = models.IntegerField(null=True)
-    reason=models.CharField(max_length=60,null=True)
+    start_timeA = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    end_timeA = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    durationA = models.CharField(max_length=20, null=True)
+    timeWrngAnsA = models.IntegerField(null=True)
+    statusA = models.CharField(max_length=20, null=True)
+    reasonA=models.CharField(max_length=60,null=True)
+    start_timeB = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    end_timeB = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    durationB = models.CharField(max_length=20, null=True)
+    timeWrngAnsB = models.IntegerField(null=True)
+    statusB = models.CharField(max_length=20, null=True)
+    reasonB=models.CharField(max_length=60,null=True)

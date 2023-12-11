@@ -24,10 +24,10 @@
                 <tbody>
                     <tr>
                         <td>
-                            <form action="" method="POST" id="myForm">
-                                {% csrf_token%}
-                                <input name="form1" id="rapidNamingObj" onclick="changeContent1()" value="التسمية السريعة للأشكال" type="submit" class="btn" style="font-weight: bold;" >
-                            </form>
+                            <!-- <form action="" method="POST" id="myForm"> -->
+                                <!-- {% csrf_token%} -->
+                                <input name="form1" id="rapidNamingObj" value="التسمية السريعة للأشكال" type="submit" class="btn" style="font-weight: bold;" >
+                            <!-- </form> -->
                         </td>
                     </tr>
                     <tr>
@@ -252,7 +252,7 @@
     }
 
     // add event listener to the button
-    //rapidNamingObj.addEventListener('click', changeContent1);
+    rapidNamingObj.addEventListener('click', changeContent1);
     rapidNamingLetters.addEventListener('click', changeContent3);
     nonWrdReadingAccuracy.addEventListener('click', changeContent5);
     rpdBTN1.addEventListener('click', changeNxt1);

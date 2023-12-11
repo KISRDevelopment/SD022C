@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
 from .models import Student
-from .models import Result
+from .models import rpdNamingObj
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
@@ -147,44 +147,38 @@ def deleteStudent(request,id):
 def startTest(request,id):
     request.session['student'] = id
     if request.method == "POST":
-        if not Result.objects.filter(student_id=id).exists():
-            result = Result.objects.create(student_id=id)
+        if not rpdNamingObj.objects.filter(student_id=id).exists():
+            result = rpdNamingObj.objects.create(student_id=id)
             result.save()
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
-def rpdNamingObjTstB(request):
-    if request.method == "POST":
-        print('exam submitted')
-    return render(request, "primary/rpdNamingObjTstB.html")
-
-@login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
-    result = Result.objects.get(student_id=request.session['student'])
+    result = rpdNamingObj.objects.get(student_id=request.session['student'])
     global stime
     global etime
-    if result.status1A is not None:
-        print('status field is not none')
-        messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
-        return redirect("primary:testsPage")
+    # if result.statusA is not None and result.statusB is not None:
+    #     print('status field is not none')
+    #     messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
+    #     return redirect("primary:testsPage")
     if request.POST.get("formtype3"):
         reason = request.POST["submitTst"]
-        result.reason=reason
+        result.reasonA=reason
         result.save()
         return redirect("primary:rpdNamingObjTstB")
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))
-            result.start_time1A = time.strftime("%H:%M:%S")
+            result.start_timeA = time.strftime("%H:%M:%S")
             result.save()
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
-            result.end_time1A = time.strftime("%H:%M:%S")
-            result.status1A = 'Done'
+            result.end_timeA = time.strftime("%H:%M:%S")
+            result.statusA = 'Done'
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff = etime - stime
-            result.total_time1A=timeDiff
+            result.durationA=timeDiff
             result.save()
             selection = request.POST.getlist('selection','')  
             img = []
@@ -193,19 +187,56 @@ def rpdNamingObjTst(request):
             if selection:
                 timeDiff = int(timeDiff.total_seconds())
                 timeWrongAnswers = timeDiff + count
-                result.timeWrngAns1A=timeWrongAnswers
+                result.timeWrngAnsA=timeWrongAnswers
                 result.save()
                 return HttpResponse(timeDiff+count)
             else:
                 timeDiff = int(timeDiff.total_seconds())
                 timeWrongAnswers = timeDiff + count
-                result.timeWrngAns1A=timeWrongAnswers
+                result.timeWrngAnsA=timeWrongAnswers
                 result.save()
                 return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")
 def rpdNamingObjTstB(request):
+    result2 = rpdNamingObj.objects.get(student_id=request.session['student'])
+    global stime
+    global etime
+    if request.POST.get("formtype3"):
+        reason = request.POST["submitTst"]
+        result2.reasonB=reason
+        result2.save()
+        return redirect("primary:testsPage")
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            stime = datetime.fromtimestamp(time.mktime(time.localtime()))
+            result2.start_timeB = time.strftime("%H:%M:%S")
+            result2.save()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            result2.end_timeB = time.strftime("%H:%M:%S")
+            result2.statusB = 'Done'
+            etime = datetime.fromtimestamp(time.mktime(time.localtime()))
+            timeDiff2 = etime - stime
+            result2.durationB=timeDiff2
+            result2.save()
+            selection2 = request.POST.getlist('selection','')  
+            img2 = []
+            img2.extend(request.POST.getlist('selection',''))
+            count2 = len(img2)
+            if selection2:
+                timeDiff2 = int(timeDiff2.total_seconds())
+                timeWrongAnswers2 = timeDiff2 + count2
+                result2.timeWrngAnsB=timeWrongAnswers2
+                result2.save()
+                return HttpResponse(timeDiff2+count2)
+            else:
+                timeDiff2 = int(timeDiff2.total_seconds())
+                timeWrongAnswers2 = timeDiff2 + count2
+                result2.timeWrngAnsB=timeWrongAnswers2
+                result2.save()
+                return HttpResponse('Test Ended')
     return render (request,"primary/rpdNamingObjTstB.html")
 
 @login_required(login_url="/primary/login")
@@ -294,14 +325,12 @@ def profile (request):
         "examiners": Examiner.objects.get(user_id=request.user.id)})
         
 def testsPage (request):
-    result = Result.objects.get(student_id=request.session['student'])
-    if request.method == "POST":
-        print('got a post')
-        if result.status1A is not None:
-            print('test status: DONE')
-            messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
+    if request.user.is_authenticated:
+        if request.user.is_staff:
             return redirect(reverse('primary:testsPage'))
         else:
-            print('here at else')
             return render(request,"primary/testsPage.html")
-    return render(request,"primary/testsPage.html")
+    return redirect(reverse('primary:index'))
+
+
+    

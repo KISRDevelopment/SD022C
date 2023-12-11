@@ -8,7 +8,7 @@
     <div class="card my-3  mx-auto" style="width:900px; border-color:#99CC00;">
         <h2 class="card-title text-center fs-5" style="color:white; background-color: #99CC00; height: 35px;" >النموذج (ب)</h2>
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
-            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="innerText" >
+            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTstB' %}" hx-target="#start" hx-swap="innerText" >
                 {% csrf_token%}
                 <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
@@ -104,7 +104,7 @@
                     <label class="btn btn-outline-danger" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 70px; height: 40px; color: black; font-weight: bold;" for="hand3">يد </label>
                 </div>
                 <div style="padding-right: 480px;">
-                    <input  onclick="calcDiff()" class=" btn " value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
+                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn " value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
                     <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
                     <!-- <button id="endBTN" type="submit" name="" value="" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;">إنهاء الوقت / الاختبار</button> -->
                 </div>
@@ -123,7 +123,7 @@
 
 <!-- modal for submit tst -->
 <div class="modal fade" id="ModalsubmitTest{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form  hx-post="{% url 'primary:rpdNamingObjTstB' %}" hx-target="#end" >
+    <form class="form-horizontal" action="" method="POST" >
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -140,9 +140,9 @@
                     </select>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+                    <!-- <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button> -->
                     <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
-                    <input id="end" type="submit" name="formtype2" value=" تسليم الاختبار "  class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " >
+                    <input id="submitDropDown" type="submit" name="formtype3" value=" تسليم الاختبار "  class="btn btn-danger fs-12 col-12 py-3 m-0 rounded-0 " >
                 </div>
             </div>
         </div>

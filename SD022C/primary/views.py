@@ -158,10 +158,6 @@ def rpdNamingObjTst(request):
     result = rpdNamingObj.objects.get(student_id=request.session['student'])
     global stime
     global etime
-    # if result.statusA is not None and result.statusB is not None:
-    #     print('status field is not none')
-    #     messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
-    #     return redirect("primary:testsPage")
     if request.POST.get("formtype3"):
         reason = request.POST["submitTst"]
         result.reasonA=reason
@@ -325,12 +321,16 @@ def profile (request):
         "examiners": Examiner.objects.get(user_id=request.user.id)})
         
 def testsPage (request):
-    if request.user.is_authenticated:
-        if request.user.is_staff:
-            return redirect(reverse('primary:testsPage'))
-        else:
+    print('test page')
+    result = rpdNamingObj.objects.get(student_id=request.session['student'])
+    if request.method=="POST":
+        print('form post')
+        if result.statusA is not None and result.statusB is not None:
+            print('test status: DONE')
+            messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
             return render(request,"primary/testsPage.html")
-    return redirect(reverse('primary:index'))
+        elif result.statusA is None:
+            print('inside else')
+            return render(request,"primary/testsPage.html")
+    return render(request,"primary/testsPage.html")
 
-
-    

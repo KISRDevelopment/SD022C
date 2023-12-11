@@ -24,10 +24,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <!-- <form action="" method="POST" id="myForm"> -->
-                                <!-- {% csrf_token%} -->
-                                <input name="form1" id="rapidNamingObj" value="التسمية السريعة للأشكال" type="submit" class="btn" style="font-weight: bold;" >
-                            <!-- </form> -->
+                            <button name="form1" onclick="changeContent1()" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn" style="font-weight: bold;" >التسمية السريعة للأشكال</button>
                         </td>
                     </tr>
                     <tr>
@@ -187,8 +184,11 @@
     // define the function to change the HTML content
     
     function changeContent1() {
-        x[0].style.display="none";
-        x[1].style.display="block";
+        console.log('function called')
+        document.getElementById('mainDiv').style.display="none";
+        document.getElementById('rapidNamingInst').style.display="block";
+        // x[0].style.display="none";
+        // x[1].style.display="block";
     }
     function changeContent3() {
         document.getElementById('rpdLetterInst').style.display = "block";
@@ -252,7 +252,7 @@
     }
 
     // add event listener to the button
-    rapidNamingObj.addEventListener('click', changeContent1);
+    // rapidNamingObj.addEventListener('click', changeContent1);
     rapidNamingLetters.addEventListener('click', changeContent3);
     nonWrdReadingAccuracy.addEventListener('click', changeContent5);
     rpdBTN1.addEventListener('click', changeNxt1);

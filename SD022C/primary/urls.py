@@ -19,6 +19,7 @@ urlpatterns = [
     path('signupStudents/', views.signupStudents, name='signupStudents'),
     path('deleteStudent/<int:id>', views.deleteStudent, name='deleteStudent'),
     path('testsPage/', views.testsPage, name='testsPage'),
+    path('testsPage/<int:id>', views.testsPage, name='testsPage'),
     path('startTest/', views.startTest, name='startTest'),
     path('editStudent/<int:id>', views.editStudent, name='editStudent'),
     path('startTest/<int:id>', views.startTest, name='startTest'),

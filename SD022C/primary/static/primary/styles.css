@@ -32,7 +32,6 @@
     
 }
 
-
 .color-purple {
     color: #720e9e;
 }
@@ -42,13 +41,6 @@
 }
 
 
-/* base: web title */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 5px;
-}
 
 .formControl {
     float: right;

@@ -171,7 +171,7 @@ def rpdNamingObjTst(request):
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             result.end_timeA = time.strftime("%H:%M:%S")
-            result.statusA = 'Done'
+            result.statusA = 'تم '
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff = etime - stime
             result.durationA=timeDiff
@@ -212,7 +212,7 @@ def rpdNamingObjTstB(request):
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             result2.end_timeB = time.strftime("%H:%M:%S")
-            result2.statusB = 'Done'
+            result2.statusB = 'تم'
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff2 = etime - stime
             result2.durationB=timeDiff2
@@ -319,18 +319,38 @@ def profile (request):
     else:
         return render(request, "primary/profile.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})
-        
+    
 def testsPage (request):
-    print('test page')
-    result = rpdNamingObj.objects.get(student_id=request.session['student'])
-    if request.method=="POST":
-        print('form post')
-        if result.statusA is not None and result.statusB is not None:
-            print('test status: DONE')
-            messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
-            return render(request,"primary/testsPage.html")
-        elif result.statusA is None:
-            print('inside else')
-            return render(request,"primary/testsPage.html")
-    return render(request,"primary/testsPage.html")
+    # a = rpdNamingObj.objects.get(student_id=request.session['student']).statusA
+    # print(a)
+    # return render(request,"primary/testsPage.html")
+    return render(request,"primary/testsPage.html", {
+        "status": (rpdNamingObj.objects.get(student_id=request.session['student']).statusA),
+    })
 
+
+    # else:
+    #     print('else')
+    #     return render(request,"primary/testsPage.html")
+    
+    # return render(request,"primary/testsPage.html", {
+    #         "status": rpdNamingObj.objects.get(statusB=request.user.id),
+    # })
+
+
+# print('test page')
+#     result = rpdNamingObj.objects.get(student_id=request.session['student'])
+#     if request.method=="POST":
+#         print('form post')
+#         if result.statusA is not None and result.statusB is not None:
+#             print('test status: DONE')
+#             messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
+#             return render(request,"primary/testsPage.html")
+#         elif result.statusA is None:
+#             print('inside else')
+#             return render(request,"primary/testsPage.html")
+
+
+# a = rpdNamingObj.objects.get(statusB='Done')
+    # print(a)
+    # return render(request,"primary/testsPage.html")

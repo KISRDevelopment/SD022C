@@ -44,17 +44,14 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.id}: {self.studentName}"
     
-class rpdNamingObj(models.Model):
+class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    start_timeA = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    end_timeA = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    durationA = models.CharField(max_length=20, null=True)
-    timeWrngAnsA = models.IntegerField(null=True)
-    statusA = models.CharField(max_length=20, null=True)
-    reasonA=models.CharField(max_length=60,null=True)
-    start_timeB = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    end_timeB = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    durationB = models.CharField(max_length=20, null=True)
-    timeWrngAnsB = models.IntegerField(null=True)
-    statusB = models.CharField(max_length=20, null=True)
-    reasonB=models.CharField(max_length=60,null=True)
+    rpdNOA_startT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    rpdNOA_endT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    rpdNOA_wrongAns = models.IntegerField(null=True)
+    rpdNOA_reason=models.CharField(max_length=60,null=True)
+    rpdNOB_startT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    rpdNOB_endT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    rpdNOB_wrongAns = models.IntegerField(null=True)
+    rpdNOB_reason=models.CharField(max_length=60,null=True)
+

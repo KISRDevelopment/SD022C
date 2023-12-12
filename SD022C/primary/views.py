@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from .models import Examiner
 from .models import Student
-from .models import rpdNamingObj
+from .models import Score
 from django.urls import reverse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
@@ -147,90 +147,90 @@ def deleteStudent(request,id):
 def startTest(request,id):
     request.session['student'] = id
     if request.method == "POST":
-        if not rpdNamingObj.objects.filter(student_id=id).exists():
-            result = rpdNamingObj.objects.create(student_id=id)
+        if not Score.objects.filter(student_id=id).exists():
+            result = Score.objects.create(student_id=id)
             result.save()
         return redirect('primary:testsPage')
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):
-    result = rpdNamingObj.objects.get(student_id=request.session['student'])
+    result = Score.objects.get(student_id=request.session['student'])
     global stime
     global etime
     if request.POST.get("formtype3"):
         reason = request.POST["submitTst"]
-        result.reasonA=reason
+        result.rpdNOA_reason=reason
         result.save()
         return redirect("primary:rpdNamingObjTstB")
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))
-            result.start_timeA = time.strftime("%H:%M:%S")
+            result.rpdNOA_startT = stime
             result.save()
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
-            result.end_timeA = time.strftime("%H:%M:%S")
-            result.statusA = 'تم '
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
+            result.rpdNOA_endT = etime
+            # result.statusA = 'تم '
             timeDiff = etime - stime
-            result.durationA=timeDiff
-            result.save()
             selection = request.POST.getlist('selection','')  
             img = []
             img.extend(request.POST.getlist('selection',''))
             count = len(img)
+            result.rpdNOA_wrongAns=count
+            result.save()
             if selection:
                 timeDiff = int(timeDiff.total_seconds())
                 timeWrongAnswers = timeDiff + count
-                result.timeWrngAnsA=timeWrongAnswers
-                result.save()
-                return HttpResponse(timeDiff+count)
+                # result.timeWrngAnsA=timeWrongAnswers
+                # result.save()
+                return HttpResponse(timeWrongAnswers)
             else:
                 timeDiff = int(timeDiff.total_seconds())
                 timeWrongAnswers = timeDiff + count
-                result.timeWrngAnsA=timeWrongAnswers
+                result.rpdNOA_wrongAns=count
                 result.save()
                 return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")
 def rpdNamingObjTstB(request):
-    result2 = rpdNamingObj.objects.get(student_id=request.session['student'])
+    result2 = Score.objects.get(student_id=request.session['student'])
     global stime
     global etime
     if request.POST.get("formtype3"):
         reason = request.POST["submitTst"]
-        result2.reasonB=reason
+        result2.rpdNOB_reason=reason
         result2.save()
         return redirect("primary:testsPage")
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.fromtimestamp(time.mktime(time.localtime()))
-            result2.start_timeB = time.strftime("%H:%M:%S")
+            result2.rpdNOB_startT = stime
             result2.save()
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
-            result2.end_timeB = time.strftime("%H:%M:%S")
-            result2.statusB = 'تم'
+            # result2.statusB = 'تم'
             etime = datetime.fromtimestamp(time.mktime(time.localtime()))
+            result2.rpdNOB_endT = etime
             timeDiff2 = etime - stime
-            result2.durationB=timeDiff2
-            result2.save()
+            # result2.durationB=timeDiff2      
             selection2 = request.POST.getlist('selection','')  
             img2 = []
             img2.extend(request.POST.getlist('selection',''))
             count2 = len(img2)
+            result2.rpdNOB_wrongAns = count2
+            result2.save()
             if selection2:
                 timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers2 = timeDiff2 + count2
-                result2.timeWrngAnsB=timeWrongAnswers2
-                result2.save()
-                return HttpResponse(timeDiff2+count2)
+                # result2.save()
+                return HttpResponse(timeWrongAnswers2)
             else:
                 timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers2 = timeDiff2 + count2
-                result2.timeWrngAnsB=timeWrongAnswers2
+                result2.rpdNOB_wrongAns=count2
                 result2.save()
                 return HttpResponse('Test Ended')
     return render (request,"primary/rpdNamingObjTstB.html")
@@ -323,10 +323,10 @@ def profile (request):
 def testsPage (request):
     # a = rpdNamingObj.objects.get(student_id=request.session['student']).statusA
     # print(a)
-    # return render(request,"primary/testsPage.html")
-    return render(request,"primary/testsPage.html", {
-        "status": (rpdNamingObj.objects.get(student_id=request.session['student']).statusA),
-    })
+    return render(request,"primary/testsPage.html")
+    # return render(request,"primary/testsPage.html", {
+    #     "status": (Score.objects.get(student_id=request.session['student']).statusA),
+    # })
 
 
     # else:

@@ -333,14 +333,17 @@ def testsPage (request):
     durationA=durationA.total_seconds()
     durationB=etimeB-stimeB
     durationB = durationB.total_seconds()
-    totalDuration = durationA+durationB
-    print(int(totalDuration))
+    # totalDuration = durationA+durationB
+    # totalDuration = int(totalDuration)
+    scoreA=wrongA+durationA
+    scoreB=wrongB+durationB
+    total=scoreA+scoreB
     if wrongA == None and wrongB == None:
         return render(request,"primary/testsPage.html")
     else:
         return render(request,"primary/testsPage.html", {
         #     "status": (Score.objects.get(student_id=request.session['student']).statusA),
-            "totalScore":(wrongB),        
+            "totalScore":(round(total)), "status":('Done')       
         })
 
 

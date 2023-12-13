@@ -167,7 +167,6 @@ def rpdNamingObjTst(request):
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.now()
-            print(stime)
             # stime = datetime.fromtimestamp(time.mktime(time.localtime()))
             result.rpdNOA_startT = stime
             result.save()
@@ -211,14 +210,17 @@ def rpdNamingObjTstB(request):
         return redirect("primary:testsPage")
     if request.htmx:
         if request.POST.get("formtype1"):
-            stime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
+            stime2 = datetime.now()
+            # stime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
             result2.rpdNOB_startT = stime2
             result2.save()
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
-            etime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
+            etime2 = datetime.now()
+            # etime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
             result2.rpdNOB_endT = etime2
-            timeDiff2 = etime2 - stime2
+            timeDiff2 = (etime2 - stime2).total_seconds()
+            print(int(timeDiff2))
             selection2 = request.POST.getlist('selection','')  
             img2 = []
             img2.extend(request.POST.getlist('selection',''))
@@ -226,11 +228,11 @@ def rpdNamingObjTstB(request):
             result2.rpdNOB_wrongAns = count2
             result2.save()
             if selection2:
-                timeDiff2 = int(timeDiff2.total_seconds())
+                # timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers2 = timeDiff2 + count2
                 return HttpResponse(timeWrongAnswers2)
             else:
-                timeDiff2 = int(timeDiff2.total_seconds())
+                # timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers2 = timeDiff2 + count2
                 return HttpResponse('Test Ended')
     return render (request,"primary/rpdNamingObjTstB.html")
@@ -323,19 +325,16 @@ def profile (request):
 def testsPage (request):
     wrongA = Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns
     wrongB = Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns
-    # stimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_startT
-    # print(int(stimeA.total_seconds()))
-
-    # etimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_endT
-    # stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
-    # etimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_endT
-    # durationA=etimeA-stimeA
-    # durationA = int(durationA.total_seconds())
-    # print(durationA)
-    # durationB=etimeB-stimeB
-    # durationB = int(durationB.total_seconds())
-    # print(durationB)
-    # total = timeWrongAnswers+timeWrongAnswers2
+    stimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_startT
+    etimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_endT
+    stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
+    etimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_endT
+    durationA=etimeA-stimeA
+    durationA=durationA.total_seconds()
+    durationB=etimeB-stimeB
+    durationB = durationB.total_seconds()
+    totalDuration = durationA+durationB
+    print(int(totalDuration))
     if wrongA == None and wrongB == None:
         return render(request,"primary/testsPage.html")
     else:

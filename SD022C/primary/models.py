@@ -46,12 +46,12 @@ class Student(models.Model):
     
 class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    rpdNOA_startT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    rpdNOA_endT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    rpdNOA_startT = models.CharField(max_length=60,null=True)
+    rpdNOA_endT = models.CharField(max_length=60,null=True)
     rpdNOA_wrongAns = models.IntegerField(null=True)
     rpdNOA_reason=models.CharField(max_length=60,null=True)
-    rpdNOB_startT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    rpdNOB_endT = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    rpdNOB_startT = models.CharField(max_length=60,null=True)
+    rpdNOB_endT = models.CharField(max_length=60,null=True)
     rpdNOB_wrongAns = models.IntegerField(null=True)
     rpdNOB_reason=models.CharField(max_length=60,null=True)
 

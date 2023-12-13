@@ -328,8 +328,10 @@ def testsPage (request):
     stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
     etimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_endT
     durationA=etimeA-stimeA
+    durationA = int(durationA.total_seconds())
     print(durationA)
     durationB=etimeB-stimeB
+    durationB = int(durationB.total_seconds())
     print(durationB)
     # total = timeWrongAnswers+timeWrongAnswers2
     if wrongA == None and wrongB == None:

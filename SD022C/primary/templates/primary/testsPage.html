@@ -29,25 +29,58 @@
                         <td>
                             {{status}}
                         </td>
+                        <td>
+                            {{totalScore}}
+                            <!-- {% if totalScore != None %}
+                                {{totalScore}}
+                            {%endif%}
+                            {% if totalScore == None %}
+                                {{totalScore}}
+                            {%endif%} -->
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a id="phonemeDeletion"   type="button" class="btn" style="font-weight: bold;">حذف المقاطع والأصوات</a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <a id="rapidNamingLetters" href="{% url 'primary:rpdNamingLtrTst'%}" type="button" class="btn" style="font-weight: bold;">التسمية السريعة للحروف</a>
                         </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a id="nonWordRepetition" type="button" class="btn" style="font-weight: bold;">تكرار الكلمات غير الحقيقة</a>
                         </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWrdAccuracyTst'%}" type="button" class="btn" style="font-weight: bold;">دقة قراءة الكلمات غير الحقيقة</a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+                            
                         </td>
                     </tr>          
                 </tbody>

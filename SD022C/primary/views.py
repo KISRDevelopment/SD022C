@@ -323,28 +323,26 @@ def profile (request):
         "examiners": Examiner.objects.get(user_id=request.user.id)})
     
 def testsPage (request):
-    wrongA = Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns
-    wrongB = Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns
-    stimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_startT
-    etimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_endT
-    stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
-    etimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_endT
-    durationA=etimeA-stimeA
-    durationA=durationA.total_seconds()
-    durationB=etimeB-stimeB
-    durationB = durationB.total_seconds()
-    # totalDuration = durationA+durationB
-    # totalDuration = int(totalDuration)
-    scoreA=wrongA+durationA
-    scoreB=wrongB+durationB
-    total=scoreA+scoreB
-    if wrongA == None and wrongB == None:
-        return render(request,"primary/testsPage.html")
-    else:
+    if (Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns != None and Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns != None):
+        wrongA = Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns
+        wrongB = Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns
+        stimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_startT
+        etimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_endT
+        stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
+        etimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_endT
+        durationA=etimeA-stimeA
+        durationA=round(durationA.total_seconds())
+        durationB=etimeB-stimeB
+        durationB = round(durationB.total_seconds())
+        scoreA=wrongA+durationA
+        scoreB=wrongB+durationB
+        total=scoreA+scoreB
         return render(request,"primary/testsPage.html", {
-        #     "status": (Score.objects.get(student_id=request.session['student']).statusA),
-            "totalScore":(round(total)), "status":('Done')       
+            "totalScore":(round(total)), "status":('Done') , "student":(Score.objects.get(student_id=request.session['student']).student),     
         })
+    else:
+        return render(request,"primary/testsPage.html")
+
 
 
     # else:

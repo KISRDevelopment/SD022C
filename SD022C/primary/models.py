@@ -42,7 +42,7 @@ class Student(models.Model):
     age = models.CharField(max_length=60)
 
     def __str__(self):
-        return f"{self.id}: {self.studentName}"
+        return f"{self.studentName}"
     
 class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)

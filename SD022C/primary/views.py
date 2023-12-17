@@ -338,7 +338,7 @@ def testsPage (request):
         scoreB=wrongB+durationB
         total=scoreA+scoreB
         return render(request,"primary/testsPage.html", {
-            "totalScore":(round(total)), "status":('Done') , "student":(Score.objects.get(student_id=request.session['student']).student),     
+            "totalScore":(round(total)), "status":('تم الانتهاء') , "student":(Score.objects.get(student_id=request.session['student']).student),     
         })
     else:
         return render(request,"primary/testsPage.html")

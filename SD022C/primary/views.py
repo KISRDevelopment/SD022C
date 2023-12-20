@@ -338,20 +338,16 @@ def testsPage (request):
         scoreB=wrongB+durationB
         total=scoreA+scoreB
         return render(request,"primary/testsPage.html", {
-            "totalScore":(round(total)), "status":('تم الانتهاء') , "student":(Score.objects.get(student_id=request.session['student']).student),     
+            "totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),     
         })
     else:
-        return render(request,"primary/testsPage.html")
+        return render(request,"primary/testsPage.html", {"status":('غير منجز ')})
 
+    # elif Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns != None:
+    #     return render(request,"primary/testsPage.html" , {"totalScore":(round(total)), "student":(Score.objects.get(student_id=request.session['student']).student), "status":(' منجز')})
+    # elif Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns == None:
+    #     return render(request,"primary/testsPage.html" , {"student":(Score.objects.get(student_id=request.session['student']).student), "status":(' غير منجز')})
 
-
-    # else:
-    #     print('else')
-    #     return render(request,"primary/testsPage.html")
-    
-    # return render(request,"primary/testsPage.html", {
-    #         "status": rpdNamingObj.objects.get(statusB=request.user.id),
-    # })
 
 
 # print('test page')

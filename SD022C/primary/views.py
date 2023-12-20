@@ -342,21 +342,3 @@ def testsPage (request):
         })
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Score.objects.get(student_id=request.session['student']).student) })
-
-
-# print('test page')
-#     result = rpdNamingObj.objects.get(student_id=request.session['student'])
-#     if request.method=="POST":
-#         print('form post')
-#         if result.statusA is not None and result.statusB is not None:
-#             print('test status: DONE')
-#             messages.info(request, 'لقد أجريت هذا الاختبار سابقا ')
-#             return render(request,"primary/testsPage.html")
-#         elif result.statusA is None:
-#             print('inside else')
-#             return render(request,"primary/testsPage.html")
-
-
-# a = rpdNamingObj.objects.get(statusB='Done')
-    # print(a)
-    # return render(request,"primary/testsPage.html")

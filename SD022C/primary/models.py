@@ -42,12 +42,16 @@ class Student(models.Model):
     age = models.CharField(max_length=60)
 
     def __str__(self):
-        return f"{self.id}: {self.studentName}"
+        return f"{self.studentName}"
     
-class Result(models.Model):
+class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    start_time1A = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    end_time1A = models.TimeField(auto_now=False, auto_now_add=False, null=True)
-    time1A = models.CharField(max_length=20, null=True)
-    status1A = models.CharField(max_length=20, choices=STATUS_CHOICES, null=True)
-    wrong1A = models.IntegerField(null=True)
+    rpdNOA_startT = models.DateTimeField(null=True)
+    rpdNOA_endT = models.DateTimeField(null=True)
+    rpdNOA_wrongAns = models.IntegerField(null=True)
+    rpdNOA_reason=models.CharField(max_length=60,null=True)
+    rpdNOB_startT = models.DateTimeField(null=True)
+    rpdNOB_endT = models.DateTimeField(null=True)
+    rpdNOB_wrongAns = models.IntegerField(null=True)
+    rpdNOB_reason=models.CharField(max_length=60,null=True)
+

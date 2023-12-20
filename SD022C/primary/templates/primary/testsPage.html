@@ -1,6 +1,5 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 <div class="container my-5">
-
     <div id="mainDiv">
         <div class="col-12 text-center pageTitle ">   
     </div>
@@ -12,14 +11,14 @@
         {% endfor %}
     </div>
     <div class="container my-5">
-        <h3 style="direction: rtl;">الطالب {{student}}</h3>
+        <h3 class="text-lg-g" style="direction: rtl;">الطالب {{student}}</h3>
         <div class="table-responsive">
             <table class="table table-light" style="direction: rtl;">
                 <thead>
-                    <tr class="table-success" >
-                        <th style="font-weight:bold;">الاختبار</th>
-                        <th style="font-weight:bold;">الحالة</th>
-                        <th style="font-weight:bold;"> الدرجة الكلية </th>
+                    <tr class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252); >
+                        <th >الاختبار</th>
+                        <th >الحالة</th>
+                        <th > الدرجة الكلية </th>
                     </tr>
                 </thead>
                 <tbody>

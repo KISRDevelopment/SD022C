@@ -21,7 +21,7 @@
                 <a href="https://www.kisr.edu.kw"><img src="{% static 'images/kisrlogo.png' %}" width="200" height="100" class="rounded float-start" alt="kisrlogo"></a>
             </div>
             <!-- <div class="col-4 text-center fs-2 pageTitle"> -->
-            <div class="col-4 text-lg-g pt-1 fw-bold fs-1" style="color: rebeccapurple;">
+            <div class="col-4 text-lg-g pt-1 fw-bold fs-1" style="color: #720e9e;">
                 اختبار معالجة الأصوات المقنن للأطفال
             </div>
             <div class=" col-4 d-flex justify-content-end align-items-center px-5 ">
@@ -31,7 +31,7 @@
     </header>
 
     {% if user.is_authenticated %}
-    <div class="navbar navbar-expand py-0 mb-4" style="background-color:rebeccapurple;">
+    <div class="navbar navbar-expand py-0 mb-5" style="background-color:#720e9e;">
         <div class="container">
             <div class="dropdown">
                 <a class="link-light fs-5 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,7 +86,7 @@
     </div>
 
     {% else %}
-    <div class="container-fluid mb-4" style="background-color:rebeccapurple;">
+    <div class="container-fluid mb-5" style="background-color:#720e9e;">
         <div class="container">
             <ul class="nav col-12 col-md-auto mb-md-0 me-auto mb-2 mb-lg-0 justify-content-end ">
                 <li class="nav-link "><a href="{% url 'primary:login' %} " class="nav-link text-light fs-5"> دخول </a></li>
@@ -96,8 +96,8 @@
         </div>
     </div>
     {% endif %} {% block content %}{% endblock content %}
-
-    <div class="container-fluid mt-auto" style="background-color:rebeccapurple">
+    <br><br>
+    <div class="container-fluid mt-5 mt-auto" style="background-color:#720e9e">
         <footer>
             <div class="container-fluid d-flex flex-column mt-3">
                 <ul class="nav justify-content-center mb-3">

@@ -1,8 +1,6 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
-<div class="container my-5">
-    <div id="mainDiv">
-        <div class="col-12 text-center pageTitle ">   
-    </div>
+<div class="container">
+
     <div class="form-group" style="direction: rtl;">
         {% for message in messages %}
         <div class="alert alert-danger" role="alert">
@@ -10,15 +8,15 @@
         </div>
         {% endfor %}
     </div>
-    <div class="container my-5">
-        <h3 class="text-lg-g" style="direction: rtl;">الطالب {{student}}</h3>
+    <div class="container ">
+        <p class="text-m-b mb-5" style="direction: rtl; font-weight: bold;">الطالب : {{student}}</p>
         <div class="table-responsive">
-            <table class="table table-light" style="direction: rtl;">
+            <table class="table" style="direction: rtl;">
                 <thead>
-                    <tr class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252); >
-                        <th >الاختبار</th>
-                        <th >الحالة</th>
-                        <th > الدرجة الكلية </th>
+                    <tr >
+                        <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);">الاختبار</th>
+                        <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);">الحالة</th>
+                        <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);"> الدرجة الكلية </th>
                     </tr>
                 </thead>
                 <tbody>

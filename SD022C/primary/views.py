@@ -338,16 +338,10 @@ def testsPage (request):
         scoreB=wrongB+durationB
         total=scoreA+scoreB
         return render(request,"primary/testsPage.html", {
-            "totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),     
+            "wrongA":(wrongA),"totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),     
         })
     else:
-        return render(request,"primary/testsPage.html", {"status":('غير منجز ')})
-
-    # elif Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns != None:
-    #     return render(request,"primary/testsPage.html" , {"totalScore":(round(total)), "student":(Score.objects.get(student_id=request.session['student']).student), "status":(' منجز')})
-    # elif Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns == None:
-    #     return render(request,"primary/testsPage.html" , {"student":(Score.objects.get(student_id=request.session['student']).student), "status":(' غير منجز')})
-
+        return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Score.objects.get(student_id=request.session['student']).student) })
 
 
 # print('test page')

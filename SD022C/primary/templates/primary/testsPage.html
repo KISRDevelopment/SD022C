@@ -24,14 +24,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            <a name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn" style="font-weight: bold;" >التسمية السريعة للأشكال</a>
+                        <td>{%if wrongA != None%}
+                                <button disabled="disabled" name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn" style="font-weight: bold; border: 0cm;"  >التسمية السريعة للأشكال</button>
+                            {% else %}
+                                <a name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn" style="font-weight: bold;" >التسمية السريعة للأشكال</a>
+                            {%endif%}
                         </td>
-                        <td>
-                            {{status}}
+                        <td>{%if wrongA != None%}
+                                {{status}}
+                            {% else %}
+                                {{status}}
+                            {%endif%}
                         </td>
-                        <td>
-                            {{totalScore}}
+                        <td>{%if wrongA != None%}
+                                {{totalScore}}
+                            {% else %}
+                                -------------
+                            {%endif%}
+                            
                         </td>
                     </tr>
                     <tr>
@@ -86,7 +96,6 @@
 </div>
 
 <script>
-    
 </script>
 
 {%endblock%}

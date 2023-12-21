@@ -146,12 +146,13 @@ def deleteStudent(request,id):
 @login_required(login_url="/primary/login")
 def startTest(request,id):
     request.session['student'] = id
-    if request.method == "POST":
-        if not Score.objects.filter(student_id=id).exists():
-            result = Score.objects.create(student_id=id)
-            result.save()
+    print(id)
+    print('start test')
+    if not Score.objects.filter(student_id=id).exists():
+        result = Score.objects.create(student_id=id)
+        result.save()
         return redirect('primary:testsPage')
-    return render(request, "primary/students.html")
+    return redirect('primary:testsPage')
 
 @login_required(login_url="/primary/login")
 def rpdNamingObjTst(request):

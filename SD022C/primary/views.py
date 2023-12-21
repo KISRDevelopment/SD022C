@@ -243,8 +243,14 @@ def rpdNamingLtrTst(request):
     if request.method == "POST":
         return redirect('primary:rpdNamingLtrTst')
     return render(request, "primary/rpdNamingLtrTst.html")
-@login_required(login_url="/primary/login")
 
+@login_required(login_url="/primary/login")
+def rpdNamingLtrTstB(request):
+    if request.method == "POST":
+        return redirect('primary:rpdNamingLtrTstB')
+    return render(request, "primary/rpdNamingLtrTstB.html")
+
+@login_required(login_url="/primary/login")
 def nonWrdAccuracyTst(request):
     if request.method == "POST":
         return redirect('primary:nonWrdAccuracyTst')

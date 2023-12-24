@@ -33,5 +33,6 @@ urlpatterns = [
     path('rpdNamingLtrTstB/', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
     path('nonWrdAccuracyTst/', views.nonWrdAccuracyTst, name='nonWrdAccuracyTst'),
     path('studentProfile/<int:id>', views.studentProfile, name='studentProfile'),
-    #path('password/<int:id>', views.password, name='password'),
+    path('phonemeSyllableDel/<int:id>', views.phonemeSyllableDel, name='phonemeSyllableDel'),
+    path('phonemeSyllableDel/', views.phonemeSyllableDel, name='phonemeSyllableDel'),
 ]

@@ -347,5 +347,9 @@ def testsPage (request):
         return render(request,"primary/testsPage.html", {
             "wrongA":(wrongA),"totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),     
         })
+    if request.method == "POST":
+        rslt = Score.objects.get(student_id=request.session['student'])
+        print(rslt)
+        return redirect(reverse('primary:testsPage'))
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Score.objects.get(student_id=request.session['student']).student) })

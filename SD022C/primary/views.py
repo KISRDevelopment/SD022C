@@ -330,9 +330,9 @@ def profile (request):
         "examiners": Examiner.objects.get(user_id=request.user.id)})
     
 def testsPage (request):
-    if (Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns != None and Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns != None):
-        wrongA = Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns
-        wrongB = Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns
+    wrongA = Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns
+    wrongB = Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns
+    if (wrongA != None and wrongB != None): 
         stimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_startT
         etimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_endT
         stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
@@ -345,11 +345,11 @@ def testsPage (request):
         scoreB=wrongB+durationB
         total=scoreA+scoreB
         return render(request,"primary/testsPage.html", {
-            "wrongA":(wrongA),"totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),     
+            "wrongA":(wrongA), "totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),     
         })
     if request.method == "POST":
-        rslt = Score.objects.get(student_id=request.session['student'])
-        print(rslt)
-        return redirect(reverse('primary:testsPage'))
+        return render(request,"primary/testsPage.html", {
+            "wrongA":(wrongA),     
+        })
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Score.objects.get(student_id=request.session['student']).student) })

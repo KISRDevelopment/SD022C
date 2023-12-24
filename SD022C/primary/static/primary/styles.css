@@ -1,11 +1,35 @@
 /* green button */
 .btn-green {
-    background-color: #568203; /* #568203 */
+    background-color: #568203;
     color: white;
     border-radius: 20px; 
     border: none;
     padding: 10px;
     text-decoration: none;
+}
+
+/*purple-outline button*/
+.btn-outline-purple{
+    border: solid;
+    border-color: #CC99CC;
+    border-width: 1px;
+    width: 70px;
+    height: 40px; 
+    color: black; 
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+/*purple button*/
+.btn-purple{
+    border: none;
+    background-color: #CC99CC; 
+    text-align: center;
+    color: black; 
+    font-weight: bold; 
+    height: 40px;
+    width: auto;
+    padding: 5px 10px 5px 10px;
 }
 
 /*large green texts*/
@@ -40,7 +64,15 @@
     color: rgb(239, 226, 252);
 }
 
+.color-green {
+    background-color: #568203;
+}
 
+
+
+
+
+/* old css */
 
 .formControl {
     float: right;

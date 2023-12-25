@@ -4,10 +4,11 @@
     <div class="text-lg-g col-12 text-center fs-3 pageTitle ">  اختبار حذف المقاطع والأصوات   </div>
     <div class="card my-3  mx-auto" style="width:900px; border-color:#99CC00;">
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
-            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:phonemSyllableTraining' %}" hx-target="#start" hx-swap="innerText" >
+            <p style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 25px;"></i> لتشغيل الصوت</p>
+            <!-- <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:phonemSyllableTraining' %}" hx-target="#start" hx-swap="innerText" >
                 {% csrf_token%}
                 <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
-            </form>
+            </form> -->
         </div>
         <div id="timer" style="direction: rtl; margin-right: 60px; display: none;">
             <label id="seconds">00</label>:<label id="minutes">00</label>
@@ -41,9 +42,9 @@
                       </tr>
                     </tbody>
                   </table>
-                <div >
+                <!-- <div >
                     <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn " value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
-                </div>
+                </div> -->
             </form>  
         </div>
         <!-- modal for submit tst -->

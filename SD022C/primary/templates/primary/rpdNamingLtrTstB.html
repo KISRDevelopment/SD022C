@@ -8,7 +8,7 @@
     <div class="card my-3 mx-auto" style="width:900px; border-color:#568203;">
         <h2 class="card-title text-center fs-5 p-1 color-green" style="color:white; height:35px;" >النموذج (ب)</h2>
         <div class="d-grid" style="margin-top:10px; padding-right:30px;" >
-            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary: rpdNamingLtrTstB' %}" hx-target="#start" hx-swap="innerText" >
+            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingLtrTstB' %}" hx-target="#start" hx-swap="innerText" >
                 {% csrf_token%}
                 <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار "  name="formtype1" class="btn-purple" style="float:right;">
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
@@ -19,7 +19,7 @@
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
         <div class="card-body text-center" id="questions" >   
-            <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary: rpdNamingLtrTstB' %}" hx-target="#end" hx-swap="innerText" >
+            <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingLtrTstB' %}" hx-target="#end" hx-swap="innerText" >
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
                 </div>

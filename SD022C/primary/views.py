@@ -421,5 +421,21 @@ def testsPage (request):
         return render(request,"primary/testsPage.html", {
             "rpdNOwrongA":(rpdNOwrongA),  "rpdNOwrongB":(rpdNOwrongB),"durationA":(durationA),"durationB":(durationB) , "scoreA":(scoreA) , "scoreB":(scoreB), "totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),      
         })
+    if (rpdNLwrongA != None and rpdNLwrongB != None):
+        print('not none') 
+        strtimeA=Score.objects.get(student_id=request.session['student']).rpdNLA_startT
+        endtimeA=Score.objects.get(student_id=request.session['student']).rpdNLA_endT
+        strtimeB=Score.objects.get(student_id=request.session['student']).rpdNLB_startT
+        endtimeB=Score.objects.get(student_id=request.session['student']).rpdNLB_endT
+        durationTstA=endtimeA-strtimeA
+        durationTstA=round(durationTstA.total_seconds())
+        durationTstB=endtimeB-strtimeB
+        durationTstB = round(durationTstB.total_seconds())
+        scoreTstA=rpdNLwrongA+durationTstA
+        scoreTstB=rpdNLwrongB+durationTstB
+        totalScore=scoreTstA+scoreTstB
+        return render(request,"primary/testsPage.html", {
+            "rpdNLwrongA":(rpdNLwrongA),  "rpdNLwrongB":(rpdNLwrongB),"durationTstA":(durationTstA),"durationTstB":(durationTstB) , "scoreTstA":(scoreTstA) , "scoreTstB":(scoreTstB), "totalScore":(round(totalScore)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),      
+        })
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Score.objects.get(student_id=request.session['student']).student) })

@@ -45,7 +45,7 @@
                         {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult"  type="submit" value="عرض"  class="btn" style="font-weight: bold; border: 0cm;"  > عرض </button>
                         {%endif%}
-                    </td>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -59,8 +59,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <a id="rapidNamingLetters" href="{% url 'primary:rpdNamingLtrTst'%}" type="button" class="btn" style="font-weight: bold;">التسمية السريعة للحروف</a>
+                        <td>{%if rpdNLwrongA != None%}
+                            <button disabled="disabled" name="rpdNLTst" href="{% url 'primary:rpdNamingLtrTst' %}" id="rapidNamingLtr"  type="submit" value="التسمية السريعة للحروف"  class="btn" style="font-weight: bold; border: 0cm;"  >التسمية السريعة للحروف</button>
+                            {% else %}
+                            <a name="rpdNLTst" href="{% url 'primary:rpdNamingLtrTst' %}" id="rapidNamingLtr"  type="submit" value="التسمية السريعة للحروف"  class="btn" style="font-weight: bold;" >التسمية السريعة للحروف</a>
+                            {%endif%}
                         </td>
                         <td>
                             

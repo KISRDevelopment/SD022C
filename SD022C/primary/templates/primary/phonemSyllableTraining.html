@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th >قل: عبدالرحمن . الان قل: عبدالرحمن من غير أن تقول الرحمن <a type="button"  onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
+                        <th >قل: عبدالرحمن . الان قل: عبدالرحمن من غير أن تقول الرحمن <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
                         <td>عبد</td>
                       </tr>
                       <tr>
@@ -75,7 +75,19 @@
 </div>
 
 <script>
-    function playAudio(){
+    function playAudio1(){
+        s1 =  new Audio(src="{% static 'audios/tst2-a.mp3' %}");
+        s1.play()
+    }
+    function playAudio2(){
+        s1 =  new Audio(src="{% static 'audios/tst2-a.mp3' %}");
+        s1.play()
+    }
+    function playAudio3(){
+        s1 =  new Audio(src="{% static 'audios/tst2-a.mp3' %}");
+        s1.play()
+    }
+    function playAudio4(){
         s1 =  new Audio(src="{% static 'audios/tst2-a.mp3' %}");
         s1.play()
     }

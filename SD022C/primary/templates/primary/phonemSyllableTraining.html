@@ -3,9 +3,8 @@
 <div class="container my-5"> 
     <div class="text-lg-g col-12 text-center fs-3 pageTitle ">  اختبار حذف المقاطع والأصوات   </div>
     <div class="card my-3  mx-auto" style="width:900px; border-color:#99CC00;">
-        <div class="text-lg-g col-12 fs-4 ">   الفقرات التدريبية   </div>
         <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
-            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="innerText" >
+            <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:phonemSyllableTraining' %}" hx-target="#start" hx-swap="innerText" >
                 {% csrf_token%}
                 <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار "  name="formtype1" class="btn" style="float:right; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">
             </form>
@@ -14,13 +13,36 @@
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
         <div class="card-body text-center" id="questions" >   
-            <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#end" hx-swap="innerText" >
+            <form class="form-horizontal col-12" id="endBtnForm" style="float:right; direction: rtl;" hx-post="{% url 'primary:phonemSyllableTraining' %}" hx-target="#end" hx-swap="innerText" >
                 {% csrf_token%}
-                <div class=" col-xs-offset-4 ">
-                </div>
-                
-                <div style="padding-right: 520px;">
-                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn " value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 200px;"> 
+                <table class="table table-bordered" style="direction: rtl;">
+                    <thead>
+                      <tr>
+                        <th>الفقرات التدريبية</th>
+                        <th>الاجابه الصحيحة</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th >قل: عبدالرحمن . الان قل: عبدالرحمن من غير أن تقول الرحمن <a type="button"  onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
+                        <td>عبد</td>
+                      </tr>
+                      <tr>
+                        <th>قل: سمك البحر . الان قل: سمك البحر من غير أن تقول البحر <a type="button"  onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td>سمك</td>
+                      </tr>
+                      <tr>
+                        <th>قل: بطريق  . الان قل: بطريق من غير أن تقول ريق <a type="button"  onclick="playAudio3()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td>بط</td>
+                      </tr>
+                      <tr>
+                        <th>قل: جبل . الان قل: جبل من غير أن تقول جـ <a type="button"  onclick="playAudio4()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td>بل</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <div >
+                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn " value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
                 </div>
             </form>  
         </div>
@@ -51,5 +73,12 @@
         </div>
     </div> 
 </div>
+
+<script>
+    function playAudio(){
+        s1 =  new Audio(src="{% static 'audios/tst2-a.mp3' %}");
+        s1.play()
+    }
+</script>
 
 {%endblock%}

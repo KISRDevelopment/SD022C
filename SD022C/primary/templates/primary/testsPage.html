@@ -9,11 +9,11 @@
         {% endfor %}
     </div>
     <div class="container" style="direction: rtl;">
-        <p class="text-m-b " style=" font-weight: bold; margin-bottom: 10px;">الطالب : {{student}}</p>
-        <button class="btn" disabled="disabled" style="font-weight: bold; margin-bottom: 20px;" href="#"  type="submit"   class="btn" style="font-weight: bold; border: 0cm;"  > عرض الدرجات</button>
-        <button class="btn" disabled="disabled" style="font-weight: bold;  margin-bottom: 20px;" href="#"  type="submit"   class="btn" style="font-weight: bold; border: 0cm;"  > عرض النتائج والتوصيات</button>
+        <p class="text-m-b fs-4" style=" font-weight: bold; margin-bottom: 10px;">الطالب : {{student}}</p>
+        <button class="btn" disabled="disabled" style="font-weight: bold;" href="#"  type="submit"   class="btn-outline-green"   > عرض الدرجات</button>
+        <button class="btn" disabled="disabled" style="font-weight: bold;" href="#"  type="submit"   class="btn-outline-green"  > عرض النتائج والتوصيات</button>
         <div class="table-responsive">
-            <table class="table" style="direction: rtl;">
+            <table class="table mt-4" style="direction: rtl;">
                 <thead>
                     <tr >
                         <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);">الاختبار</th>
@@ -43,7 +43,7 @@
                             {%endif%}
                         </td>
                         <td>{%if wrongA != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn" style="font-weight: bold;" > عرض </a>
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="text-decoration-none color-purple" style="font-weight: bold;" > عرض </a>
                         {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult"  type="submit" value="عرض"  class="btn" style="font-weight: bold; border: 0cm;"  > عرض </button>
                         {%endif%}
@@ -52,6 +52,9 @@
                     <tr>
                         <td>
                             <a id="phonemeDeletion"   type="button" class="btn" style="font-weight: bold;">حذف المقاطع والأصوات</a>
+                        </td>
+                        <td>
+
                         </td>
                         <td>
 
@@ -70,6 +73,9 @@
                         <td>
 
                         </td>
+                        <td>
+
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -77,6 +83,9 @@
                         </td>
                         <td>
                             
+                        </td>
+                        <td>
+
                         </td>
                         <td>
 
@@ -92,6 +101,7 @@
                         <td>
                             
                         </td>
+                        
                     </tr>          
                 </tbody>
             </table>
@@ -111,34 +121,32 @@
                 </div>
                 <div class="modal-body" style="text-align: right;">
                     <div class="mx-auto" style="width: 400px;">
-                        <label class="pe-3 fs-5" style="font-weight: bold;"> نموذج (أ) </label>
-                        <br><br>
+                        <label class="text-m-b color-purple"> نموذج (أ) </label>
                         <div class="form-group mb-3"> 
-                            <label  class="pe-3 fs-5 ">: الزمن </label>
-                            <label class="form-control" style="background-color:rgb(239, 226, 252); direction: rtl;"  > {{durationA}} ث</label>
+                            <label  class="text-m-b">الزمن </label>
+                            <label class="form-control" style="background-color:#f8f4ff; direction: rtl;"  > {{durationA}} ث</label>
                         </div>
                         <div class="form-group mb-3"> 
-                            <label  class="pe-3 fs-5 ">: عدد الأخطاء </label>
-                            <label class="form-control"  style="background-color:rgb(239, 226, 252)" >{{wrongA}}</label>
+                            <label  class="text-m-b">عدد الأخطاء </label>
+                            <label class="form-control"  style="background-color:#f8f4ff" >{{wrongA}}</label>
                         </div>
                         <div class="form-group mb-3"> 
-                            <label  class="pe-3 fs-5 ">: الزمن مع الأخطاء  </label>
-                            <label class="form-control"  style="background-color:rgb(239, 226, 252) ; direction: rtl;" >{{scoreA}} ثانيه</label>
+                            <label  class="text-m-b">الزمن مع الأخطاء  </label>
+                            <label class="form-control"  style="background-color:#f8f4ff; direction: rtl;" >{{scoreA}} ثانيه</label>
                         </div>
-                        <br><br>
-                        <label class="pe-3 fs-5" style="font-weight: bold;"> نموذج (ب) </label>
-                        <br><br>
+                        <br></br>
+                        <label class="text-m-b color-purple"> نموذج (ب) </label>
                         <div class="form-group mb-3"> 
-                            <label  class="pe-3 fs-5 ">: الزمن </label>
-                            <label class="form-control" style="background-color:rgb(239, 226, 252) ;direction: rtl;"> {{durationB}} ث</label>
-                        </div>
-                        <div class="form-group mb-3"> 
-                            <label  class="pe-3 fs-5 ">: عدد الأخطاء </label>
-                            <label class="form-control"  style="background-color:rgb(239, 226, 252)">{{wrongB}}</label>
+                            <label  class="text-m-b">الزمن </label>
+                            <label class="form-control" style="background-color:#f8f4ff;direction: rtl;"> {{durationB}} ث</label>
                         </div>
                         <div class="form-group mb-3"> 
-                            <label  class="pe-3 fs-5 ">: الزمن مع الأخطاء  </label>
-                            <label class="form-control"  style="background-color:rgb(239, 226, 252) ; direction: rtl;" >{{scoreB}} ثانيه</label>
+                            <label  class="text-m-b">عدد الأخطاء </label>
+                            <label class="form-control"  style="background-color:#f8f4ff">{{wrongB}}</label>
+                        </div>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">الزمن مع الأخطاء  </label>
+                            <label class="form-control"  style="background-color:#f8f4ff; direction: rtl;" >{{scoreB}} ثانيه</label>
                         </div>
                     </div>
                 </div>

@@ -164,7 +164,16 @@ def rpdNamingObjTst(request):
         reason = request.POST["submitTst"]
         result.rpdNOA_reason=reason
         result.save()
-        return redirect("primary:rpdNamingObjTstB")
+        #move to page B only if condition is met otherwise go back to testpage
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingObjTstB")
+        else:
+            return redirect(reverse('primary:testsPage'))
+    #if request.POST.get("formtype3"):
+    #    reason = request.POST["submitTst"]
+    #    result.rpdNOA_reason=reason
+    #    result.save()
+    #    return redirect("primary:rpdNamingObjTstB")
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.now()

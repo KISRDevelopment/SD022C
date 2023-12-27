@@ -12,7 +12,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
-
+from django.views.decorators.cache import cache_control
 # Create your views here.
 
 def index (request):
@@ -155,6 +155,7 @@ def startTest(request,id):
     return redirect('primary:testsPage')
 
 @login_required(login_url="/primary/login")
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def rpdNamingObjTst(request):
     result = Score.objects.get(student_id=request.session['student'])
     global stime
@@ -166,7 +167,11 @@ def rpdNamingObjTst(request):
         result.save()
         #move to page B only if condition is met otherwise go back to testpage
         if reason == "تم الانتهاء من بنود الاختبار كلها ":
-            return redirect("primary:rpdNamingObjTstB")
+            response = redirect("primary:rpdNamingObjTstB")
+            response['Cache-Control'] = 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0'
+            response['Pragma'] = 'no-cache'
+            response['Expires'] = '0'
+            return response
         else:
             return redirect(reverse('primary:testsPage'))
     #if request.POST.get("formtype3"):
@@ -208,6 +213,7 @@ def rpdNamingObjTst(request):
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")
+@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def rpdNamingObjTstB(request):
     result2 = Score.objects.get(student_id=request.session['student'])
     global stime2

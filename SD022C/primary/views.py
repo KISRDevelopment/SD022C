@@ -157,6 +157,13 @@ def startTest(request,id):
 @login_required(login_url="/primary/login")
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def rpdNamingObjTst(request):
+    #request.session.pop('visited_page_ObjTst', None)
+    #request.session.pop('visited_page_ObjBTst', None)
+
+    #if user already completed test A, restrict access to test A
+    if request.session.get('visited_page_ObjTst'):
+        return redirect("primary:rpdNamingObjTstB")
+
     result = Score.objects.get(student_id=request.session['student'])
     global stime
     global etime
@@ -167,6 +174,7 @@ def rpdNamingObjTst(request):
         result.save()
         #move to page B only if condition is met otherwise go back to testpage
         if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            request.session['visited_page_ObjTst'] = True
             response = redirect("primary:rpdNamingObjTstB")
             response['Cache-Control'] = 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0'
             response['Pragma'] = 'no-cache'
@@ -215,6 +223,11 @@ def rpdNamingObjTst(request):
 @login_required(login_url="/primary/login")
 @cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def rpdNamingObjTstB(request):
+
+    #prevent user from accessing test B without completing test A.
+    if not request.session.get('visited_page_ObjTst'):
+        return redirect("primary:rpdNamingObjTst")
+    
     result2 = Score.objects.get(student_id=request.session['student'])
     global stime2
     global etime2

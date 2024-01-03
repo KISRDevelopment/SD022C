@@ -228,6 +228,10 @@ def rpdNamingObjTstB(request):
     if not request.session.get('visited_page_ObjTst'):
         return redirect("primary:rpdNamingObjTst")
     
+    #prevent user from accessing test B again.
+    if request.session.get('visited_page_ObjBTst'):
+        return redirect("primary:testsPage")
+    
     result2 = Score.objects.get(student_id=request.session['student'])
     global stime2
     global etime2
@@ -236,6 +240,7 @@ def rpdNamingObjTstB(request):
         reason = request.POST["submitTst"]
         result2.rpdNOB_reason=reason
         result2.save()
+        request.session['visited_page_ObjBTst'] = True
         return redirect("primary:testsPage")
     if request.htmx:
         if request.POST.get("formtype1"):

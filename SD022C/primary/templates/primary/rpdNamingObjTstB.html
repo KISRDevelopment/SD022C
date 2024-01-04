@@ -201,10 +201,5 @@
             return valString;
         }
     }
-    // disable back button -- work for safari and not chrome
-    history.pushState(null, null, "{% url 'primary:rpdNamingObjTstB' %}");
-    window.addEventListener('popstate', function() {
-        history.pushState(null, null, "{% url 'primary:rpdNamingObjTstB' %}");
-    });
 </script>
 {%endblock%}

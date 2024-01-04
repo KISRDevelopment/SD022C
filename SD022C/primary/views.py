@@ -12,7 +12,6 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
-from django.views.decorators.cache import cache_control
 # Create your views here.
 
 def index (request):
@@ -155,14 +154,15 @@ def startTest(request,id):
     return redirect('primary:testsPage')
 
 @login_required(login_url="/primary/login")
-@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def rpdNamingObjTst(request):
-    #request.session.pop('visited_page_ObjTst', None)
-    #request.session.pop('visited_page_ObjBTst', None)
+
+    user_id = request.session['student']
+    test_parts = request.session.get(f'user_{user_id}_tests', [])
 
     #if user already completed test A, restrict access to test A
-    if request.session.get('visited_page_ObjTst'):
+    if 'ObjTst' in test_parts:
         return redirect("primary:rpdNamingObjTstB")
+
 
     result = Score.objects.get(student_id=request.session['student'])
     global stime
@@ -174,19 +174,13 @@ def rpdNamingObjTst(request):
         result.save()
         #move to page B only if condition is met otherwise go back to testpage
         if reason == "تم الانتهاء من بنود الاختبار كلها ":
-            request.session['visited_page_ObjTst'] = True
-            response = redirect("primary:rpdNamingObjTstB")
-            response['Cache-Control'] = 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0'
-            response['Pragma'] = 'no-cache'
-            response['Expires'] = '0'
-            return response
+            #add complete of part A test to test parts session
+            test_parts.append('ObjTst')
+            request.session[f'user_{user_id}_tests'] = test_parts
+            return redirect("primary:rpdNamingObjTstB")
         else:
             return redirect(reverse('primary:testsPage'))
-    #if request.POST.get("formtype3"):
-    #    reason = request.POST["submitTst"]
-    #    result.rpdNOA_reason=reason
-    #    result.save()
-    #    return redirect("primary:rpdNamingObjTstB")
+
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.now()
@@ -221,15 +215,17 @@ def rpdNamingObjTst(request):
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")
-@cache_control(no_cache=True, must_revalidate=True, no_store=True, max_age=0)
 def rpdNamingObjTstB(request):
 
-    #prevent user from accessing test B without completing test A.
-    if not request.session.get('visited_page_ObjTst'):
+    user_id = request.session['student']
+    test_parts = request.session.get(f'user_{user_id}_tests', [])
+
+    #prevent user from accessing test B without completing test A.  
+    if 'ObjTst' not in test_parts:
         return redirect("primary:rpdNamingObjTst")
     
-    #prevent user from accessing test B again.
-    if request.session.get('visited_page_ObjBTst'):
+    #prevent user from accessing test B again. 
+    if 'ObjTstB' in test_parts:
         return redirect("primary:testsPage")
     
     result2 = Score.objects.get(student_id=request.session['student'])
@@ -240,7 +236,9 @@ def rpdNamingObjTstB(request):
         reason = request.POST["submitTst"]
         result2.rpdNOB_reason=reason
         result2.save()
-        request.session['visited_page_ObjBTst'] = True
+        #add complete of test in session
+        test_parts.append('ObjTstB')
+        request.session[f'user_{user_id}_tests'] = test_parts
         return redirect("primary:testsPage")
     if request.htmx:
         if request.POST.get("formtype1"):

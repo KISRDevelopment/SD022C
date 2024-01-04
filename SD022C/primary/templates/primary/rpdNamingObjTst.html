@@ -198,15 +198,5 @@
             return valString;
         }
     }
-
-    // because different browse act different, when user click back button
-    // it will redirect user to the page they are on instead of the past page
-    function preventBack() {
-        window.history.forward();
-    }
-    setTimeout("preventBack()", 0);
-    window.onunload = function() {
-        null
-    };
 </script>
 {%endblock%}

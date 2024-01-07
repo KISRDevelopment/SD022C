@@ -3,7 +3,35 @@
 <div class="container my-5"> 
     <div class="text-lg-g col-12 text-center fs-2 pageTitle "> اختبار حذف المقاطع والأصوات   </div>  
     <div>
-        <a class="btn-green col-1 d-grid mx-auto" style="float:right; margin-top: 20px;" type="submit"> start</a>
+        <div class="card my-4 mx-auto" style="width:900px; border-color:#99CC00;">
+            <div class="card-body text-center" id="questions" >
+                <div class="col-9" style="float:right;">
+                    <p>this is q1</p>
+                    <p>this is q2</p>
+                    <p>this is q3</p>
+                </div>
+                <form class="col-3" id="" style="float:left;" >
+                    {% csrf_token%}
+                    <div class="form-check form-check-inline d-grid mx-auto" style="direction:ltr ;" >
+                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold;"  for="1"></label>
+                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
+                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
+                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
+                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
+                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
+                    </div>
+                    <div >
+                        <input id="end" type="submit" name="" onclick="" class=" btn " value="انهاءالاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>  
 </div>
 

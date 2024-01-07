@@ -1,7 +1,7 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 
 <div class="container">
-    <a type="button" class="btn-green" style="float: right;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a>
+    <a type="button" class="btn-purple" style="float: right;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a>
     <!-- <a type="button" class="btn btn-danger" style="float: right; margin-top: 20px;" href="{% url 'primary:signupSuperUser' %} ">إضافة مستخدم جديد  </a> -->
 </div>
 
@@ -107,26 +107,24 @@
                     <div class="mx-auto" style="width: 400px;">
 
                         <div class="form-group mb-3">
-                            <label for="username" class="pe-3 fs-5 ">: اسم المستخدم</label>
+                            <label for="username" class="text-m-b">اسم المستخدم</label>
                             <input type="text" class="form-control " name="username" id="username" value="{{Examiners.user.username}}" Required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="password" class="pe-3 fs-5 ">: كلمة المرور</label>
+                            <label for="password" class="text-m-b">كلمة المرور</label>
                             <input type="text" class="form-control" name="password" id="password" placeholder="تغيير كلمة المرور">
                         </div>
 
-
-
                         <div class="form-group mb-3">
-                            <label for="name" class="pe-3 fs-5 ">: الاسم</label>
+                            <label for="name" class="text-m-b">الاسم</label>
                             <input type="text" class="form-control" name="name" id="name" value="{{Examiners.name}}" Required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="speciality" class="pe-3 fs-5 ">: التخصص</label>
+                            <label for="speciality" class="text-m-b">التخصص</label>
                             <input type="text" class="form-control" name="speciality" id="speciality" value="{{Examiners.speciality}}" Required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="speciality" class="pe-3 fs-5 ">: الجهة</label>
+                            <label for="speciality" class="text-m-b">الجهة</label>
                             <input type="text" class="form-control" name="organization" id="organization" value="{{Examiners.organization}}" Required>
                         </div>
                     </div>

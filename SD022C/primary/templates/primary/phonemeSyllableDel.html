@@ -3,37 +3,81 @@
 <div class="container my-5"> 
     <div class="text-lg-g col-12 text-center fs-2 pageTitle "> اختبار حذف المقاطع والأصوات   </div>  
     <div>
-        <div class="card my-4 mx-auto" style="width:900px; border-color:#99CC00;">
+        <div class="card my-4 mx-auto" style="width:1300px; border-color:#99CC00;">
+            <div class=" d-grid" style="margin-top:10px; padding-right: 30px;" >
+                <p style="direction: rtl; font-size: 25px;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
+            </div>
             <div class="card-body text-center" id="questions" >
-                <div class="col-9" style="float:right;">
-                    <p>this is q1</p>
-                    <p>this is q2</p>
-                    <p>this is q3</p>
+                <div class="card-body text-center" id="questions" >   
+                    <form class="form-horizontal col-12" id="endBtnForm" style="float:right; direction: rtl;" hx-post="{% url 'primary:phonemSyllableTraining' %}" hx-target="#end" hx-swap="innerText" >
+                        {% csrf_token%}
+                        <table class="table table-bordered" style="direction: rtl; font-size: 20px;">
+                            <thead>
+                              <tr>
+                                <th>السؤال </th>
+                                <th style="text-align: center;">الاجابه الصحيحة</th>
+                                <th style="text-align: center; border-bottom:0 ;">تسجيل الاجابه</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <th >قل: فرس النهر . الان قل فرس النهر من غير ان تقول فرس   <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
+                                    <td style="text-align: center">نهر</td>
+                                    <td style="width: 200px;">
+                                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
+                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:190px; height: 40px; border-color: darkgray;"  for="1"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>قل:  <a type="button"  onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                                    <td style="text-align: center;">---</td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>قل:  <a type="button"  onclick="playAudio3()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                                    <td style="text-align: center;">---</td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>قل:  <a type="button"  onclick="playAudio4()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                                    <td style="text-align: center;">---</td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <input id="end" type="submit" name="" onclick="" class=" btn " value="انهاء الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
+                    </form>  
                 </div>
-                <form class="col-3" id="" style="float:left;" >
-                    {% csrf_token%}
-                    <div class="form-check form-check-inline d-grid mx-auto" style="direction:ltr ;" >
-                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold;"  for="1"></label>
-                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
-                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
-                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
-                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
-                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style="border-color: #CC99CC; width: 170px; height: 40px; color: black; font-weight: bold; margin-top: 10px;"  for="1"></label>
-                    </div>
-                    <div >
-                        <input id="end" type="submit" name="" onclick="" class=" btn " value="انهاءالاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> 
-                    </div>
-                </form>
             </div>
         </div>
     </div>  
 </div>
 
+<script>
+    function playAudio1(){
+        s1 =  new Audio(src="{% static 'audios/tst2-1.mp3' %}");
+        s1.play()
+    }
+    function playAudio2(){
+        s1 =  new Audio(src="{% static 'audios/tst2-2.mp3' %}");
+        s1.play()
+    }
+    function playAudio3(){
+        s1 =  new Audio(src="{% static 'audios/tst2-3.mp3' %}");
+        s1.play()
+    }
+    function playAudio4(){
+        s1 =  new Audio(src="{% static 'audios/tst2-4.mp3' %}");
+        s1.play()
+    }
+</script>
 
 {%endblock%}

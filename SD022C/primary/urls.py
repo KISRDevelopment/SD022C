@@ -29,8 +29,8 @@ urlpatterns = [
     path('rpdNamingObjTstB/', views.rpdNamingObjTstB, name='rpdNamingObjTstB'),
     path('rpdNamingLtrTst/<int:id>', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
     path('rpdNamingLtrTst/', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
-    path('rpdNamingLtrTstB/<int:id>', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
-    path('rpdNamingLtrTstB/', views.rpdNamingLtrTst, name='rpdNamingLtrTst'),
+    path('rpdNamingLtrTstB/<int:id>', views.rpdNamingLtrTstB, name='rpdNamingLtrTstB'),
+    path('rpdNamingLtrTstB/', views.rpdNamingLtrTstB, name='rpdNamingLtrTstB'),
     path('nonWrdAccuracyTst/', views.nonWrdAccuracyTst, name='nonWrdAccuracyTst'),
     path('studentProfile/<int:id>', views.studentProfile, name='studentProfile'),
 ]

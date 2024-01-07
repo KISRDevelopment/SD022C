@@ -54,4 +54,12 @@ class Score(models.Model):
     rpdNOB_endT = models.DateTimeField(null=True)
     rpdNOB_wrongAns = models.IntegerField(null=True)
     rpdNOB_reason=models.CharField(max_length=60,null=True)
+    rpdNLA_startT = models.DateTimeField(null=True)
+    rpdNLA_endT = models.DateTimeField(null=True)
+    rpdNLA_wrongAns = models.IntegerField(null=True)
+    rpdNLA_reason=models.CharField(max_length=60,null=True)
+    rpdNLB_startT = models.DateTimeField(null=True)
+    rpdNLB_endT = models.DateTimeField(null=True)
+    rpdNLB_wrongAns = models.IntegerField(null=True)
+    rpdNLB_reason=models.CharField(max_length=60,null=True)
 

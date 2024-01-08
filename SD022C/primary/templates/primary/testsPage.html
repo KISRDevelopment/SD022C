@@ -8,36 +8,45 @@
         </div>
         {% endfor %}
     </div>
-    <div class="container ">
-        <p class="text-m-b mb-5" style="direction: rtl; font-weight: bold;">الطالب : {{student}}</p>
-        <div class="table-responsive">
-            <table class="table" style="direction: rtl;">
+    <div class="container" style="direction: rtl;">
+        <p class="text-m-b fs-3" style="margin-bottom: 10px;">الطالب : {{student}}</p>
+        <button class="btn" disabled="disabled" style="font-weight: bold;" href="#"  type="submit"   class="btn-outline-p"   > عرض الدرجات</button>
+        <button class="btn" disabled="disabled" style="font-weight: bold;" href="#"  type="submit"   class="btn-outline-p"  > عرض النتائج والتوصيات</button>
+        <div class="table-responsive ">
+            <table class="table table-striped mt-4 fs-4" style="direction: rtl;">
                 <thead>
-                    <tr >
-                        <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);">الاختبار</th>
-                        <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);">الحالة</th>
-                        <th class="text-m-b" style="font-weight:bold; background-color:rgb(239, 226, 252);"> الدرجة الكلية </th>
+                    <tr style="border-bottom:solid; border-color:white;">
+                        <th style="background-color:rgb(239, 226, 252);">الاختبار</th>
+                        <th style="background-color:rgb(239, 226, 252);">الحالة</th>
+                        <th style="background-color:rgb(239, 226, 252);"> الدرجة الكلية </th>
+                        <th style="background-color:rgb(239, 226, 252);">  النتائج </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{%if wrongA != None%}
-                                <button disabled="disabled" name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn" style="font-weight: bold; border: 0cm;"  >التسمية السريعة للأشكال</button>
+                        <td >{%if rpdNOwrongA != None%}
+                                <button disabled="disabled" name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn-t-disabled"  >التسمية السريعة للأشكال</button>
                             {% else %}
-                                <a name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn" style="font-weight: bold;" >التسمية السريعة للأشكال</a>
+                                <a name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj"  type="submit" value="التسمية السريعة للأشكال"  class="btn-t-enabled" >التسمية السريعة للأشكال</a>
                             {%endif%}
                         </td>
-                        <td>{%if wrongA != None%}
+                        <td>{%if rpdNOwrongA != None%}
                                 {{status}}
                             {% else %}
                                 {{status}}
                             {%endif%}
                         </td>
-                        <td>{%if wrongA != None%}
-                                {{totalScore}}
+                        <td>{%if rpdNOwrongA != None%}
+                                {{totalScore}} ثانيه
                             {% else %}
                                 -------------
                             {%endif%}
+                        </td>
+                        <td>{%if rpdNOwrongA  != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn-t-enabled" > عرض </a>
+                        {% else %}
+                            <button disabled="disabled" name="showRslt" href="" id="showResult"  type="submit" value="عرض"  class="btn-t-disabled"  > عرض </button>
+                        {%endif%}
                         </td>
                     </tr>
                     <tr>
@@ -52,36 +61,48 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <a id="rapidNamingLetters" href="{% url 'primary:rpdNamingLtrTst'%}" type="button" class="btn" style="font-weight: bold;">التسمية السريعة للحروف</a>
+                        <td >{%if rpdNLwrongA != None%}
+                            <button disabled="disabled" name="rpdNLTst" href="{% url 'primary:rpdNamingLtrTst' %}" id="rapidNamingLtr"  type="submit" value="التسمية السريعة للحروف"  class="btn-t-disabled"  >التسمية السريعة للحروف</button>
+                            {% else %}
+                            <a name="rpdNLTst" href="{% url 'primary:rpdNamingLtrTst' %}" id="rapidNamingLtr"  type="submit" value="التسمية السريعة للحروف"  class="btn-t-enabled" >التسمية السريعة للحروف</a>
+                            {%endif%}
                         </td>
                         <td>
                             
+                        </td>
+                        <td>
+
                         </td>
                         <td>
 
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <a id="nonWordRepetition" type="button" class="btn" style="font-weight: bold;">تكرار الكلمات غير الحقيقة</a>
+                        <td >
+                            <a id="nonWordRepetition" type="button" class="btn-t-enabled">تكرار الكلمات غير الحقيقة</a>
                         </td>
                         <td>
                             
+                        </td>
+                        <td>
+
                         </td>
                         <td>
 
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWrdAccuracyTst'%}" type="button" class="btn" style="font-weight: bold;">دقة قراءة الكلمات غير الحقيقة</a>
+                        <td >
+                            <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWrdAccuracyTst'%}" type="button" class="btn-t-enabled">دقة قراءة الكلمات غير الحقيقة</a>
                         </td>
                         <td>
 
                         </td>
                         <td>
                             
+                        </td>
+                        <td>
+
                         </td>
                     </tr>          
                 </tbody>
@@ -89,6 +110,56 @@
         </div>
     </div>
     </div>
+</div>
+
+<!--modal for the show result-->
+<div class="modal fade" id="ModalShow" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPage' %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-4 color-purple"> نتائج اختبار التسمية السريعة للأشكال</h2>
+                </div>
+                <div class="modal-body" style="text-align: right;">
+                    <div class="mx-auto" style="width: 400px;">
+                        <label class="text-m-b color-purple"> نموذج (أ) </label>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">الزمن </label>
+                            <label class="form-control" style="background-color:#f8f4ff; direction: rtl;"  > {{durationA}} ث</label>
+                        </div>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">عدد الأخطاء </label>
+                            <label class="form-control"  style="background-color:#f8f4ff" >{{rpdNOwrongA}}</label>
+                        </div>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">الزمن مع الأخطاء  </label>
+                            <label class="form-control"  style="background-color:#f8f4ff; direction: rtl;" >{{scoreA}} ثانيه</label>
+                        </div>
+                        <br></br>
+                        <label class="text-m-b color-purple"> نموذج (ب) </label>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">الزمن </label>
+                            <label class="form-control" style="background-color:#f8f4ff;direction: rtl;"> {{durationB}} ث</label>
+                        </div>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">عدد الأخطاء </label>
+                            <label class="form-control"  style="background-color:#f8f4ff">{{rpdNOwrongA}}</label>
+                        </div>
+                        <div class="form-group mb-3"> 
+                            <label  class="text-m-b">الزمن مع الأخطاء  </label>
+                            <label class="form-control"  style="background-color:#f8f4ff; direction: rtl;" >{{scoreB}} ثانيه</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <button class="btn btn-danger fs-6 col-12 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">اغلاق</button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
 </div>
 
 <script>

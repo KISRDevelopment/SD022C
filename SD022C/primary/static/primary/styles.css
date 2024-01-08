@@ -1,31 +1,93 @@
-/* green button */
-.btn-green {
-    background-color: #568203; /* #568203 */
+body{
+    font-family: 'Simplified Arabic' !important;
+    font-weight: bold !important;
+}
+
+/* purple button */
+.btn-purple {
+    background-color: #720e9e;
     color: white;
-    border-radius: 20px; 
+    border-radius: 10px; 
     border: none;
     padding: 10px;
     text-decoration: none;
+    font-size: 20px;
 }
 
-/*large green texts*/
-.text-lg-g{
+/*purple-outline button: tests page*/
+.btn-outline-p{
+    border: solid;
+    border-color: #720e9e;
+    border-width: 3px;
+    border-radius: 10px;
+    background-color: white; 
+    color: black; 
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
+/*purple-outline button: in-tests*/
+.btn-outline-purple{
+    border: solid;
+    border-color: #CC99CC;
+    border-width: 1px;
+    width: 75px;
+    height: 50px; 
+    color: black; 
+    padding-top: 5px;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+/*purple button: in-tests*/
+.btn-light-purple{
+    border: none;
+    background-color: #CC99CC; 
     text-align: center;
-    font-size: 35px;
-    color: #568203;
-    font-weight: normal; /*bold or normal?*/
+    color: black;  
+    height: 45px;
+    width: auto;
+    padding: 5px 10px 5px 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+/* text button: enabled or disabled*/
+.btn-t-enabled{
+    border: none;
+    font-weight: bolder;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.btn-t-disabled{
+    border: none;
+    font-weight: bolder;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: none;
+}
+
+/*large purple texts*/
+.text-lg-purple{
+    text-align: center;
+    font-size: 40px;
+    color: #720e9e;
+    font-weight: bold;
 }
 
 /*medium black text*/
 .text-m-b{
     color: black;
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 25px;
 }
+
 
 .container-box{
     text-align: center;
-    border: 1px solid #568203;
+    border: 1px solid #720e9e;
     border-radius: 10px;
     margin: auto;
     padding: 30px 25px 30px 25px;
@@ -36,11 +98,23 @@
     color: #720e9e;
 }
 
-.color-light-purple {
-    color: rgb(239, 226, 252);
+.bg-color-green {
+    background-color: #568203;
+}
+
+.color-green {
+    color: #568203;
+}
+
+#styleDropDown {
+    color: #568203;
+    border-color:#568203;
 }
 
 
+
+
+/* old css */
 
 .formControl {
     float: right;
@@ -71,11 +145,6 @@
 
 input {
     text-align: right;
-}
-
-#styleDropDown {
-    color: #720e9e;
-    background-color:rgb(239, 226, 252);
 }
 
 #labelText {

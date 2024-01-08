@@ -5,7 +5,7 @@
             {% csrf_token%}
             <div class="row g-3" style="width: 700px;">
                 <div class="col-xs-8 col-xs-offset-4 m-3">
-                    <h2 class="text-lg-g">البيانات الشخصية لتسجيل طالب جديد</h2>
+                    <h2 class="text-lg-purple">البيانات الشخصية لتسجيل طالب جديد</h2>
                 </div>
                 {% for message in messages %}
                 <div class="alert alert-danger" role="alert">
@@ -71,7 +71,7 @@
                     <input type="text" class="form-control" name="nationality" id="nationality"  Required>
                 </div>
                 <div class="d-grid col-3 mx-auto">
-                    <button type="submit" class="btn-green mb-3 p-2 fs-5">تسجيل  </button>
+                    <button type="submit" class="btn-purple mb-3 p-2 fs-4">تسجيل  </button>
                 </div>
 
             </div>

@@ -1,3 +1,8 @@
+body{
+    font-family: 'Simplified Arabic' !important;
+    font-weight: bold !important;
+}
+
 /* purple button */
 .btn-purple {
     background-color: #720e9e;
@@ -6,17 +11,17 @@
     border: none;
     padding: 10px;
     text-decoration: none;
+    font-size: 20px;
 }
 
-/*green-outline button: tests page*/
-.btn-outline-green{
+/*purple-outline button: tests page*/
+.btn-outline-p{
     border: solid;
-    border-color: #568203;
-    border-width: 2px;
+    border-color: #720e9e;
+    border-width: 3px;
     border-radius: 10px;
     background-color: white; 
     color: black; 
-    font-weight: bold;
     padding: 5px 10px 5px 10px;
     text-decoration: none;
 }
@@ -26,11 +31,13 @@
     border: solid;
     border-color: #CC99CC;
     border-width: 1px;
-    width: 70px;
-    height: 40px; 
+    width: 75px;
+    height: 50px; 
     color: black; 
-    font-weight: bold;
     padding-top: 5px;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-right: 5px;
 }
 
 /*purple button: in-tests*/
@@ -38,27 +45,45 @@
     border: none;
     background-color: #CC99CC; 
     text-align: center;
-    color: black; 
-    font-weight: bold; 
-    height: 40px;
+    color: black;  
+    height: 45px;
     width: auto;
     padding: 5px 10px 5px 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+/* text button: enabled or disabled*/
+.btn-t-enabled{
+    border: none;
+    font-weight: bolder;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.btn-t-disabled{
+    border: none;
+    font-weight: bolder;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: none;
 }
 
 /*large purple texts*/
 .text-lg-purple{
     text-align: center;
-    font-size: 35px;
+    font-size: 40px;
     color: #720e9e;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 /*medium black text*/
 .text-m-b{
     color: black;
-    font-size: 20px;
-    font-weight: normal;
+    font-size: 25px;
 }
+
 
 .container-box{
     text-align: center;

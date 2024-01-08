@@ -5,8 +5,8 @@
 
     <div class="text-lg-purple fs-2 mb-5">  اختبار التسمية السريعة للأشكال - نموذج (أ) </div>  
 
-    <div class="card my-3 mx-auto color-green" style="width:900px; border-color:#568203;">
-        <h2 class="card-title text-center fs-5 p-1 color-green" style="color:white; height:35px;" >النموذج (أ)</h2>
+    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:#568203;">
+        <h2 class="card-title text-center fs-4 p-2 bg-color-green" style="color:white; height:45px;" >النموذج (أ)</h2>
         <div class="d-grid" style="margin-top:10px; padding-right:30px;" >
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#start" hx-swap="innerText" >
                 {% csrf_token%}
@@ -15,11 +15,11 @@
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
         </div>
-        <div id="timer" style="direction: rtl; margin-right: 60px; display: none;">
+        <div id="timer" style="direction: rtl; margin-right: 60px; display: none; font-size: 20px;">
             <label id="seconds">00</label>:<label id="minutes">00</label>
         </div>
         <div class="card-body text-center" id="questions" >   
-            <form class="form-horizontal col-10" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#end" hx-swap="innerText" >
+            <form class="form-horizontal col-9" id="endBtnForm" style="float:right;" hx-post="{% url 'primary:rpdNamingObjTst' %}" hx-target="#end" hx-swap="innerText" >
                 {% csrf_token%}
                 <div class=" col-xs-offset-4 ">
                 </div>
@@ -103,17 +103,17 @@
                     <input type="checkbox" class="btn-check" id="hand3" value="hand3" name = "selection" autocomplete="off">
                     <label class="btn-outline-purple" onclick="btn_clicked(this)" for="hand3"> يد</label>
                 </div>
-                <div style="padding-right: 480px;">
+                <div style="padding-right: 575px;">
                     <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-light-purple" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;"> 
                 </div>
             </form>
             <div class="col-2 d-grid mx-auto" >
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">الزمن  </span>
-                <label id="result1" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl">----</label>
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;"> عدد الأخطاء </span>
-                <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;">0</label>
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;">  الزمن مع الأخطاء </span>
-                <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;">----</label>
+                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">الزمن  </span>
+                <label id="result1" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">----</label>
+                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;"> عدد الأخطاء </span>
+                <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;font-size:20px; font-weight:bolder;">0</label>
+                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">  الزمن مع الأخطاء </span>
+                <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">----</label>
             </div>  
         </div>
         <!-- modal for submit tst -->

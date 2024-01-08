@@ -323,6 +323,18 @@ def rpdNamingLtrTstB(request):
     return render (request,"primary/rpdNamingLtrTstB.html")
 
 @login_required(login_url="/primary/login")
+def phonemSyllableTraining(request):
+    if request.method == "POST":
+        return redirect('primary:phonemSyllableTraining')
+    return render(request, "primary/phonemSyllableTraining.html")
+
+@login_required(login_url="/primary/login")
+def phonemeSyllableDel(request):
+    if request.method == "POST":
+        return redirect('primary:phonemeSyllableDel')
+    return render(request, "primary/phonemeSyllableDel.html")
+
+@login_required(login_url="/primary/login")
 def nonWrdAccuracyTst(request):
     if request.method == "POST":
         return redirect('primary:nonWrdAccuracyTst')

@@ -1,0 +1,58 @@
+{%extends 'primary/base.html'%} {%load static%} {%block content%}
+
+<div class="container">
+    <div class="text-lg-purple fs-2 mb-5 ">  اختبار تكرار الكلمات غير الحقيقية  </div>
+
+    <div class="card my-3 col-12 mx-auto" style="width:1300px; border-color:#99CC00;">
+
+        <div class=" d-grid mx-auto" style="margin-top:20px; direction: rtl;" >
+            <p style=" font-size: 25px;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
+        </div>
+
+        <div class="col-6" style=" float: right;">
+            <div class="card-body text-center mx-auto"  id="questions" >  
+                <div class="card" style="width: 300px; ">
+                    <div class="card-body" > <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                        تارْسْ                
+                    </div>
+                </div>
+                <div class="card" style="width: 300px; margin-top: 15px;">
+                    <div class="card-body" > <a type="button"  onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                        نُولانْ                
+                    </div>
+                </div> 
+                <a type="submit" href="{% url 'primary:phonemeSyllableDel' %}" class="btn" style="float:center; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">بدء الاختبار</a>
+            </div>
+        </div>
+
+        <div class="col-6" style="float: left;">
+            <div class="card-body text-center mx-auto"  id="questions" >  
+                <div class="card" style="width: 300px; ">
+                    <div class="card-body" > <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                            تارْسْ                
+                    </div>
+                </div>
+                <div class="card" style="width: 300px; margin-top: 15px;">
+                    <div class="card-body" > <a type="button"  onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                            نُولانْ                
+                    </div>
+                </div> 
+                <a type="submit" href="{% url 'primary:phonemeSyllableDel' %}" class="btn" style="float:center; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">بدء الاختبار</a>
+            </div>
+        </div>
+    </div> 
+</div>
+
+<script>
+    function playAudio1(){
+        s1 =  new Audio(src="{% static 'audios/4#1.mp3' %}");
+        s1.play()
+    }
+    function playAudio2(){
+        s1 =  new Audio(src="{% static 'audios/4#2.mp3' %}");
+        s1.play()
+    }
+
+</script>
+
+{%endblock%}

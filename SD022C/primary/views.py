@@ -347,6 +347,14 @@ def phonemeSyllableDel(request):
     return render (request,"primary/phonemeSyllableDel.html")
 
 @login_required(login_url="/primary/login")
+def nonWordRepetitionTraining(request):
+    return render(request, "primary/nonWordRepetitionTraining.html")
+
+@login_required(login_url="/primary/login")
+def nonWordRepetition(request):
+    return render(request, "primary/nonWordRepetition.html")
+
+@login_required(login_url="/primary/login")
 def nonWrdAccuracyTst(request):
     if request.method == "POST":
         return redirect('primary:nonWrdAccuracyTst')

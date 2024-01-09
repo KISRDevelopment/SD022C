@@ -324,15 +324,27 @@ def rpdNamingLtrTstB(request):
 
 @login_required(login_url="/primary/login")
 def phonemSyllableTraining(request):
-    if request.method == "POST":
-        return redirect('primary:phonemSyllableTraining')
     return render(request, "primary/phonemSyllableTraining.html")
 
 @login_required(login_url="/primary/login")
 def phonemeSyllableDel(request):
-    if request.method == "POST":
-        return redirect('primary:phonemeSyllableDel')
-    return render(request, "primary/phonemeSyllableDel.html")
+    if request.POST.get("formtypeB"):
+        print('-------------------')
+        return redirect("primary:testsPage")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("formtypeA"):
+            print('+++++++++++++++')
+            selectionA = request.POST.getlist('selection','')  
+            answers = []
+            answers.extend(request.POST.getlist('selection',''))
+            counter = len(answers)
+            if selectionA:
+                print(counter)
+                return HttpResponse('Test s')
+            else:
+                return HttpResponse('Test Ended')
+    return render (request,"primary/phonemeSyllableDel.html")
 
 @login_required(login_url="/primary/login")
 def nonWrdAccuracyTst(request):

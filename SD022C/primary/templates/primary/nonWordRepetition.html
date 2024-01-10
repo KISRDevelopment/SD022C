@@ -32,10 +32,10 @@
                         <div class="col-5">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item active" style="background-color: #720e9e; border-color: #720e9e;" aria-current="true">الفقرة</li>
-                                <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;" >تَيْتْ <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">زِطْ <a type="button" onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">بوجْ <a type="button" onclick="playAudio3()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">مَزَكْشْ <a type="button" onclick="playAudio4()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
+                                <li id="a" class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;" >تَيْتْ <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
+                                <li id="b" class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">زِطْ <a type="button" onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
+                                <li id="c" class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">بوجْ <a type="button" onclick="playAudio3()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
+                                <li id="d" class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">مَزَكْشْ <a type="button" onclick="playAudio4()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
                                 <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">وَديبْ <a type="button" onclick="playAudio5()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
                                 <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">مَهْكَشِبْ <a type="button" onclick="playAudio6()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
                                 <li class="list-group-item" style="border-color: #CC99CC; margin-top: 13px; border-width: 1px;">لاشْتوخَنْسَ <a type="button" onclick="playAudio7()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
@@ -184,18 +184,22 @@
 
 <script>
     function playAudio1(){
+        document.getElementById('a').style.color = 'blue';
         s1 =  new Audio(src="{% static 'audios/4-1.mp3' %}");
         s1.play()
     }
     function playAudio2(){
+        document.getElementById('b').style.color = 'blue';
         s1 =  new Audio(src="{% static 'audios/4-2.mp3' %}");
         s1.play()
     }
     function playAudio3(){
+        document.getElementById('c').style.color = 'blue';
         s1 =  new Audio(src="{% static 'audios/4-3.mp3' %}");
         s1.play()
     }
     function playAudio4(){
+        document.getElementById('d').style.color = 'blue';
         s1 =  new Audio(src="{% static 'audios/4-4.mp3' %}");
         s1.play()
     }

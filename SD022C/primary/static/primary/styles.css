@@ -111,6 +111,9 @@ body{
     border-color:#568203;
 }
 
+input[type=text], input[type=password], input[type=date], input[type=email]{
+    font-size: 20px;
+}
 
 
 

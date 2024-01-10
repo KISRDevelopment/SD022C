@@ -2,12 +2,12 @@
 
 <div class="container">
     <div class="text-lg-purple fs-2 mb-5 ">  اختبار حذف المقاطع الأصوات - الفقرات التدريبية  </div>
-    <div class="card my-3  mx-auto" style="width:900px; border-color:#99CC00;">
-        <div class=" d-grid" style="margin-top:20px; padding-right: 30px;" >
-            <p style="direction: rtl; font-size: 25px;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
+    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:#568203;">
+        <div class=" d-grid" style="margin-top:10px; padding-right: 30px;" >
+            <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
         </div>
         <div class="card-body text-center" id="questions" >   
-            <table class="table table-bordered" style="direction: rtl; font-size: 20px;">
+            <table class="table table-bordered" style="direction: rtl; font-size: 20px; border-color:#CC99CC;">
                 <thead>
                     <tr>
                         <th>الفقرات التدريبية</th>
@@ -33,7 +33,7 @@
                     </tr>
                 </tbody>
             </table>
-            <a type="submit" href="{% url 'primary:phonemeSyllableDel' %}" class="btn" style="float:center; background-color: #CC99CC; color: black; font-weight: bold; margin-top: 5px;">بدء الاختبار</a>
+            <a type="submit" href="{% url 'primary:phonemeSyllableDel' %}" class="btn-light-purple text-decoration-none">بدء الاختبار</a>
         </div>
     </div> 
 </div>

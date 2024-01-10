@@ -57,7 +57,7 @@
                     <h5 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> هل أنت متأكد من حذف المستخدم؟</h5>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-striped" style="direction: rtl;">
+                    <table class="table table-striped fs-5" style="direction: rtl;">
                         <thead>
                             <tr>
                                 <th>الاسم</th>
@@ -85,8 +85,8 @@
                     </table>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0 " data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit">حذف</button>
+                    <button type="button" class="btn fs-5 btn-secondary col-6 py-3 m-0 rounded-0 " data-dismiss="modal">الغاء</button>
+                    <button class="btn btn-danger fs-5 col-6 py-3 m-0 rounded-0 " type="submit">حذف</button>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
 
                         <div class="form-group mb-3" style="text-align: right; direction: rtl;">
                             <label for="sex" class="text-m-b">جنس المفحوص</label>
-                            <select name="gender" class="form-select" id="sex" Required>
+                            <select name="gender" class="form-select fs-5" id="sex" Required>
                                 <option value="male" {% if Students.sex == "male" %} selected {% endif %}>ذكر</option>
                                 <option value="female" {% if Students.sex == "female" %} selected {% endif %}>انثى</option>
                             </select>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="form-group mb-3" style="text-align: right; direction: rtl;">
                             <label for="grade" class="text-m-b">الصف الدراسي</label>
-                            <select name="grade" class="form-select" id="grade" Required>
+                            <select name="grade" class="form-select fs-5" id="grade" Required>
                                 <option value="2" {% if Students.grade == "2" %} selected {% endif %}>2</option>
                                 <option value="3" {% if Students.grade == "3" %} selected {% endif %}>3</option>
                                 <option value="4" {% if Students.grade == "4" %} selected {% endif %}>4</option>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="form-group mb-3" style="text-align: right; direction: rtl;">
                             <label for="eduDistrict" class="text-m-b">المنطقة التعليمية</label>
-                            <select name="eduDistrict" class="form-select" id="eduDistrict" Required>
+                            <select name="eduDistrict" class="form-select fs-5" id="eduDistrict" Required>
                                 <option value="العاصمة" {% if Students.eduDistrict == "العاصمة" %} selected {% endif %}>العاصمة</option>
                                 <option value="حولي" {% if Students.eduDistrict == "حولي" %} selected {% endif %}>حولي</option>
                                 <option value="الفروانية" {% if Students.eduDistrict == "الفروانية" %} selected {% endif %}>الفروانية</option>
@@ -166,8 +166,8 @@
                 </div>
 
                 <div class="modal-footer flex-nowrap p-0">
-                    <button type="button" class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
-                    <button class="btn btn-danger fs-6 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">تحديث</button>
+                    <button type="button" class="btn fs-5 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button>
+                    <button class="btn btn-danger fs-5 col-6 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">تحديث</button>
                 </div>
 
             </div>

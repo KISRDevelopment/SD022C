@@ -37,4 +37,8 @@ urlpatterns = [
     path('phonemeSyllableDel/', views.phonemeSyllableDel, name='phonemeSyllableDel'),
     path('phonemSyllableTraining/<int:id>', views.phonemSyllableTraining, name='phonemSyllableTraining'),
     path('phonemSyllableTraining/', views.phonemSyllableTraining, name='phonemSyllableTraining'),
+    path('nonWordRepetitionTraining/<int:id>', views.nonWordRepetitionTraining, name='nonWordRepetitionTraining'),
+    path('nonWordRepetitionTraining/', views.nonWordRepetitionTraining, name='nonWordRepetitionTraining'),
+    path('nonWordRepetition/<int:id>', views.nonWordRepetition, name='nonWordRepetition'),
+    path('nonWordRepetition/', views.nonWordRepetition, name='nonWordRepetition'),
 ]

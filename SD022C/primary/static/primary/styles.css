@@ -90,7 +90,48 @@ body{
     border: 1px solid #720e9e;
     border-radius: 10px;
     margin: auto;
-    padding: 30px 25px 30px 25px;
+    padding: 30px 25px 30px 25px;  
+}
+
+ul.list-group-purple{
+    list-style-type: none;
+}
+
+ul.list-group-purple li{
+    background-color: #CC99CC; 
+    border-color: #CC99CC; 
+    margin-top: 17px; 
+    border-width: 6px;
+    height:50px;
+    width:70px;
+    padding: 12px;
+}
+
+ul.list-group-text{
+    list-style-type: none;
+}
+
+ul.list-group-text li{
+    border: solid;
+    border-width: 1px;
+    border-color: #CC99CC; 
+    margin-top: 17px;
+    height: 50px;
+    width: 200px;
+    padding: 10px;
+}
+
+ul.list-group-answer{
+    list-style-type: none;
+    align-items: center;
+}
+
+ul.list-group-answer li{
+    border: 0px;
+    margin-top: 17px;
+    height: 50px;
+    width: 150px;
+    padding:10px;
     
 }
 

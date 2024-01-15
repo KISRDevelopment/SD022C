@@ -355,10 +355,10 @@ def nonWordRepetition(request):
     return render(request, "primary/nonWordRepetition.html")
 
 @login_required(login_url="/primary/login")
-def nonWrdAccuracyTst(request):
+def nonWordReadingAccuracy(request):
     if request.method == "POST":
-        return redirect('primary:nonWrdAccuracyTst')
-    return render(request, "primary/nonWrdAccuracyTst.html")
+        return redirect('primary:nonWordReadingAccuracy')
+    return render(request, "primary/nonWordReadingAccuracy.html")
 
 
 @login_required(login_url="/primary/login")

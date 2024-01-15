@@ -352,7 +352,23 @@ def nonWordRepetitionTraining(request):
 
 @login_required(login_url="/primary/login")
 def nonWordRepetition(request):
-    return render(request, "primary/nonWordRepetition.html")
+    if request.POST.get("form2"):
+        print('-------------------')
+        return redirect("primary:testsPage")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("form1"):
+            print('+++++++++++++++')
+            selectionA = request.POST.getlist('selection','')  
+            answers = []
+            answers.extend(request.POST.getlist('selection',''))
+            counter = len(answers)
+            if selectionA:
+                print(counter)
+                return HttpResponse('Test s')
+            else:
+                return HttpResponse('Test Ended')
+    return render (request,"primary/nonWordRepetition.html")
 
 @login_required(login_url="/primary/login")
 def nonWordReadingAccuracy(request):

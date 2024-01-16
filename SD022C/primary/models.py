@@ -64,22 +64,38 @@ class Student(models.Model):
     #rpdNLB_reason=models.CharField(max_length=60,null=True)
 
 #The Test name 
-class Test(models.Model):
-    student_id = models.ForeignKey(Student, on_delete = models.CASCADE, related_name = 'student_id')
-    test_name = models.CharField(max_length=60, unique = False, null = True)
+#class Test(models.Model):
+    #student_id = models.ForeignKey(Student, on_delete = models.CASCADE, related_name = 'student_id')
+    #test_name = models.CharField(max_length=60, unique = False, null = True)
 
-    def __str__(self):
-        return f"{self.id}: {self.student_id} {self.test_name}"
+    #def __str__(self):
+        #return f"{self.id}: {self.student_id} {self.test_name}"
     
 #Test Parts such as part A part B etc (students can take as many tests part and it will be saved)
-class Score(models.Model):
-    test_id = models.ForeignKey(Test, on_delete = models.CASCADE, related_name = 'test_id' , null=True)
-    parts_name = models.CharField(max_length=60, unique = False, null = True)
-    startT = models.DateTimeField(null=True)
-    endT = models.DateTimeField(null=True)
-    wrongAns = models.IntegerField(null=True)
-    reason=models.CharField(max_length=60,null=True)
+class RpdNamingObj_Score(models.Model):
+    student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
+    startT_A = models.DateTimeField(null=True)
+    endT_A = models.DateTimeField(null=True)
+    wrongAns_A = models.IntegerField(null=True)
+    reason_A =models.CharField(max_length=60,null=True)
+    startT_B = models.DateTimeField(null=True)
+    endT_B = models.DateTimeField(null=True)
+    wrongAns_B = models.IntegerField(null=True)
+    reason_B =models.CharField(max_length=60,null=True)
 
     def __str__(self):
-        return f"{self.id}: {self.test_id.student_id} | {self.test_id} | {self.parts_name}"
+        return f"{self.id}: {self.test_id.student_id} "
 
+class RpdNamingLtrs_Score(models.Model):
+    student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
+    startT_A = models.DateTimeField(null=True)
+    endT_A = models.DateTimeField(null=True)
+    wrongAns_A = models.IntegerField(null=True)
+    reason_A =models.CharField(max_length=60,null=True)
+    startT_B = models.DateTimeField(null=True)
+    endT_B = models.DateTimeField(null=True)
+    wrongAns_B = models.IntegerField(null=True)
+    reason_B =models.CharField(max_length=60,null=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.test_id.student_id} "

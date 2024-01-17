@@ -159,7 +159,6 @@ def startTest(request,id):
 def rpdNamingObjTst(request):
     
     student_instance = Student.objects.get(id=request.session['student'])
-
     global stime
     global etime
     global timeWrongAnswers
@@ -176,37 +175,22 @@ def rpdNamingObjTst(request):
     if request.htmx:
         if request.POST.get("formtype1"):
             stime = datetime.now()
-            # stime = datetime.fromtimestamp(time.mktime(time.localtime()))
-            #result.rpdNOA_startT = stime
-            #result.save()
-            #results.startT_A = stime
-            #results.save()
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             etime = datetime.now()
             num = 0
-            # etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff = (etime - stime).total_seconds()
             selection = request.POST.getlist('selection','')  
             img = []
             img.extend(request.POST.getlist('selection',''))
             count = len(img)
             num = count
-
-
             if selection:
-                # timeDiff = int(timeDiff.total_seconds())
-                # print(timeDiff)
                 timeWrongAnswers = timeDiff + count
-
                 return HttpResponse(timeWrongAnswers)
             else:
-                # timeDiff = int(timeDiff.total_seconds())
                 timeWrongAnswers = timeDiff + count
                 return HttpResponse('Test Ended')
-
-    
-    
     return render(request, "primary/rpdNamingObjTst.html")
     
 @login_required(login_url="/primary/login")
@@ -224,12 +208,10 @@ def rpdNamingObjTstB(request):
     if request.htmx:
         if request.POST.get("formtype1"):
             stime2 = datetime.now()
-            # stime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             etime2 = datetime.now()
             num2 = 0
-            # etime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff2 = (etime2 - stime2).total_seconds()
             print(int(timeDiff2))
             selection2 = request.POST.getlist('selection','')  
@@ -239,15 +221,11 @@ def rpdNamingObjTstB(request):
             num2 = count2
 
             if selection2:
-                # timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers2 = timeDiff2 + count2
                 return HttpResponse(timeWrongAnswers2)
             else:
-                # timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers2 = timeDiff2 + count2
                 return HttpResponse('Test Ended')
-            
-
     return render (request,"primary/rpdNamingObjTstB.html")
 
 @login_required(login_url="/primary/login")
@@ -268,12 +246,10 @@ def rpdNamingLtrTst(request):
     if request.htmx:
         if request.POST.get("formtype1"):
             stime3 = datetime.now()
-            # stime = datetime.fromtimestamp(time.mktime(time.localtime()))
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             etime3 = datetime.now()
             num3 = 0
-            # etime = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff3 = (etime3 - stime3).total_seconds()
             selection3 = request.POST.getlist('selection','')  
             img3 = []
@@ -281,12 +257,9 @@ def rpdNamingLtrTst(request):
             count3 = len(img3)
             num3 = count3
             if selection3:
-                # timeDiff = int(timeDiff.total_seconds())
-                # print(timeDiff)
                 timeWrongAnswers3 = timeDiff3 + count3
                 return HttpResponse(timeWrongAnswers3)
             else:
-                # timeDiff = int(timeDiff.total_seconds())
                 timeWrongAnswers3 = timeDiff3 + count3
                 return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingLtrTst.html")
@@ -304,12 +277,10 @@ def rpdNamingLtrTstB(request):
     if request.htmx:
         if request.POST.get("formtype1"):
             stime4 = datetime.now()
-            # stime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
             return HttpResponse('Test Started')
         if request.POST.get("formtype2"):
             etime4 = datetime.now()
             num4 = 0
-            # etime2 = datetime.fromtimestamp(time.mktime(time.localtime()))
             timeDiff4 = (etime4 - stime4).total_seconds()
             print(int(timeDiff4))
             selection4 = request.POST.getlist('selection','')  
@@ -318,11 +289,9 @@ def rpdNamingLtrTstB(request):
             count4 = len(img4)
             num4 = count4
             if selection4:
-                # timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers4 = timeDiff4 + count4
                 return HttpResponse(timeWrongAnswers4)
             else:
-                # timeDiff2 = int(timeDiff2.total_seconds())
                 timeWrongAnswers4 = timeDiff4 + count4
                 return HttpResponse('Test Ended')
     return render (request,"primary/rpdNamingLtrTstB.html")

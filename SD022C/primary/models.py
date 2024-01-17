@@ -44,33 +44,6 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.studentName}"
     
-#class Score(models.Model):
-    #student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    #rpdNOA_startT = models.DateTimeField(null=True)
-    #rpdNOA_endT = models.DateTimeField(null=True)
-    #rpdNOA_wrongAns = models.IntegerField(null=True)
-    #rpdNOA_reason=models.CharField(max_length=60,null=True)
-    #rpdNOB_startT = models.DateTimeField(null=True)
-    #rpdNOB_endT = models.DateTimeField(null=True)
-    #rpdNOB_wrongAns = models.IntegerField(null=True)
-    #rpdNOB_reason=models.CharField(max_length=60,null=True)
-    #rpdNLA_startT = models.DateTimeField(null=True)
-    #rpdNLA_endT = models.DateTimeField(null=True)
-    #rpdNLA_wrongAns = models.IntegerField(null=True)
-    #rpdNLA_reason=models.CharField(max_length=60,null=True)
-    #rpdNLB_startT = models.DateTimeField(null=True)
-    #rpdNLB_endT = models.DateTimeField(null=True)
-    #rpdNLB_wrongAns = models.IntegerField(null=True)
-    #rpdNLB_reason=models.CharField(max_length=60,null=True)
-
-#The Test name 
-#class Test(models.Model):
-    #student_id = models.ForeignKey(Student, on_delete = models.CASCADE, related_name = 'student_id')
-    #test_name = models.CharField(max_length=60, unique = False, null = True)
-
-    #def __str__(self):
-        #return f"{self.id}: {self.student_id} {self.test_name}"
-    
 #Test Parts such as part A part B etc (students can take as many tests part and it will be saved)
 class RpdNamingObj_Score(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)

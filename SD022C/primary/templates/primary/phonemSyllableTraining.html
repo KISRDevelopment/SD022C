@@ -1,4 +1,5 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
+<audio controls id="audio" hidden="hidden"></audio>
 
 <div class="container">
     <div class="text-lg-purple fs-2 mb-5 ">  اختبار حذف المقاطع الأصوات - الفقرات التدريبية  </div>
@@ -16,20 +17,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th >قل: عبدالرحمن . الان قل: عبدالرحمن من غير أن تقول الرحمن <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
-                        <td style="text-align: center;">عبد</td>
+                        <th >قل: عَبدٌالرّحمنْ <a value="a" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> الان قل: عَبدٌالرّحمنْ من غير أن تقول الرّحمنْ <a type="button" value="b" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
+                        <td style="text-align: center;"> عَبْدُ </td>
                     </tr>
                     <tr>
-                        <th>قل: سمك البحر . الان قل: سمك البحر من غير أن تقول البحر <a type="button"  onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
-                        <td style="text-align: center;">سمك</td>
+                        <th>قل: سَمَكُ البَحْرْ <a type="button" value="c" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> الان قل: سَمَكُ البَحْرْ من غير أن تقول البَحْرْ <a type="button" value="d" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td style="text-align: center;"> سَمَكُ </td>
                     </tr>
                     <tr>
-                        <th>قل: بطريق  . الان قل: بطريق من غير أن تقول ريق <a type="button"  onclick="playAudio3()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
-                          <td style="text-align: center;">بط</td>
+                        <th>قل: بَطْريقْ  <a type="button" value="e" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>الان قل: بَطْريقْ من غير أن تقول ريق <a type="button" value="f" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                          <td style="text-align: center;"> ْبَط </td>
                     </tr>
                     <tr>
-                        <th>قل: جبل . الان قل: جبل من غير أن تقول جـ <a type="button"  onclick="playAudio4()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
-                        <td style="text-align: center;">بل</td>
+                        <th>قل: جَبَلْ <a type="button" value="g" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> الان قل: جَبَلْ من غير أن تقول جَـ <a type="button" value="h" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td style="text-align: center;"> بَلْ </td>
                     </tr>
                 </tbody>
             </table>
@@ -39,21 +40,11 @@
 </div>
 
 <script>
-    function playAudio1(){
-        s1 =  new Audio(src="{% static 'audios/tst2-a.mp3' %}");
-        s1.play()
-    }
-    function playAudio2(){
-        s1 =  new Audio(src="{% static 'audios/tst2-b.mp3' %}");
-        s1.play()
-    }
-    function playAudio3(){
-        s1 =  new Audio(src="{% static 'audios/tst2-c.mp3' %}");
-        s1.play()
-    }
-    function playAudio4(){
-        s1 =  new Audio(src="{% static 'audios/tst2-d.mp3' %}");
-        s1.play()
+    function playAudio(btn){
+
+    audio.src = "/static/audios/" + btn.getAttribute('value') + ".mp3";
+    audio.play();
+    btn.style.color = "blue";
     }
 </script>
 

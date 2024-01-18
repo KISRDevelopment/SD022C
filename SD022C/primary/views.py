@@ -475,6 +475,9 @@ def testsPage (request):
                 total=scoreA
                 print("A part completed but not B")
                 context_obj = {"rpdNOwrongA":(rpdNOwrongA), "totalScore_obj":(round(total)), "status_obj":('توقف '),}
+        else:
+            context_obj = { "status_obj":('غير منجز'),}
+
         if(RpdNamingLtrs_Score_obj.exists()):
             print("inside rpdnamingLtr")
             #context_ltrs = {}
@@ -505,6 +508,8 @@ def testsPage (request):
                 totalScore=scoreTstA
                 context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)),"status_ltrs":('توقف '),}
 
+        else:
+            context_ltrs = { "status_ltrs":('غير منجز'),}
         return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs,"student": student,
                     } )
 

@@ -424,41 +424,92 @@ def profile (request):
         "examiners": Examiner.objects.get(user_id=request.user.id)})
     
 def testsPage (request):
-    #rpdNOwrongA = Score.objects.get(student_id=request.session['student']).rpdNOA_wrongAns
-    #rpdNOwrongB = Score.objects.get(student_id=request.session['student']).rpdNOB_wrongAns
-    #rpdNLwrongA = Score.objects.get(student_id=request.session['student']).rpdNLA_wrongAns
-    #rpdNLwrongB = Score.objects.get(student_id=request.session['student']).rpdNLB_wrongAns
-    #if (rpdNOwrongA != None and rpdNOwrongB != None): 
-        #stimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_startT
-        #etimeA=Score.objects.get(student_id=request.session['student']).rpdNOA_endT
-        #stimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_startT
-        #etimeB=Score.objects.get(student_id=request.session['student']).rpdNOB_endT
-        #durationA=etimeA-stimeA
-        #durationA=round(durationA.total_seconds())
-        #durationB=etimeB-stimeB
-        #durationB = round(durationB.total_seconds())
-        #scoreA=rpdNOwrongA+durationA
-        #scoreB=rpdNOwrongB+durationB
-        #total=scoreA+scoreB
-        #return render(request,"primary/testsPage.html", {
-           # "rpdNOwrongA":(rpdNOwrongA),  "rpdNOwrongB":(rpdNOwrongB),"durationA":(durationA),"durationB":(durationB) , "scoreA":(scoreA) , "scoreB":(scoreB), "totalScore":(round(total)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),      
-        #})
-    #if (rpdNLwrongA != None and rpdNLwrongB != None):
-        #print('not none') 
-        #strtimeA=Score.objects.get(student_id=request.session['student']).rpdNLA_startT
-        #endtimeA=Score.objects.get(student_id=request.session['student']).rpdNLA_endT
-        #strtimeB=Score.objects.get(student_id=request.session['student']).rpdNLB_startT
-        #endtimeB=Score.objects.get(student_id=request.session['student']).rpdNLB_endT
-        #durationTstA=endtimeA-strtimeA
-        #durationTstA=round(durationTstA.total_seconds())
-        #durationTstB=endtimeB-strtimeB
-        #durationTstB = round(durationTstB.total_seconds())
-        #scoreTstA=rpdNLwrongA+durationTstA
-        #scoreTstB=rpdNLwrongB+durationTstB
-        #totalScore=scoreTstA+scoreTstB
-        #return render(request,"primary/testsPage.html", {
-            #"rpdNLwrongA":(rpdNLwrongA),  "rpdNLwrongB":(rpdNLwrongB),"durationTstA":(durationTstA),"durationTstB":(durationTstB) , "scoreTstA":(scoreTstA) , "scoreTstB":(scoreTstB), "totalScore":(round(totalScore)), "status":('منجز ') , "student":(Score.objects.get(student_id=request.session['student']).student),      
-        #})
-    #else:
-        #return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Score.objects.get(student_id=request.session['student']).student) })
-    return render(request,"primary/testsPage.html")
+    rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
+    rpdNamingLtrs = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
+    global context_obj
+    context_obj = {} 
+    global context_ltrs
+    context_ltrs = {} 
+    student = Student.objects.get(id=request.session['student']).studentName
+    #global outputs
+    
+
+    if (rpdnamingObj.exists() or rpdNamingLtrs.exists()):
+        print("Hi from the North")
+        RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
+        print(f"rpdNamingObj Score {RpdNamingObj_Score_obj}")
+        RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
+        print(RpdNamingObj_Score_obj.exists())
+        if(RpdNamingObj_Score_obj.exists()):
+            print("inside rdpnamingobj")
+            #context_obj = {}  
+            rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
+            #print("inside rdpnamingobj")
+            rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
+            print(f"rpdNOWrong Latest: {rpdNOwrongA_A}")
+            rpdNOwrongB = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
+            print(rpdNOwrongB)
+            #rpdNLwrongA = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_A
+            #rpdNLwrongB = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
+            if ((rpdNOwrongA != None and rpdNOwrongB != None)):
+                print("A and B completed obj")
+                #context_obj = {}  
+                stimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                etimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                stimeB=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_B
+                etimeB=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").endT_B
+                durationA=etimeA-stimeA
+                durationA=round(durationA.total_seconds())
+                durationB=etimeB-stimeB
+                durationB = round(durationB.total_seconds())
+                scoreA=rpdNOwrongA+durationA
+                scoreB=rpdNOwrongB+durationB
+                total=scoreA+scoreB
+                context_obj = {"rpdNOwrongA":(rpdNOwrongA),  "rpdNOwrongB":(rpdNOwrongB), "durationA":(durationA),"durationB":(durationB) , "scoreA":(scoreA) , "scoreB":(scoreB), "totalScore_obj":(round(total)), "status_obj":('منجز '),}
+            elif (rpdNOwrongA != None and rpdNOwrongB == None):
+                stimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                etimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                durationA=etimeA-stimeA
+                durationA=round(durationA.total_seconds())
+                scoreA=rpdNOwrongA+durationA
+                total=scoreA
+                print("A part completed but not B")
+                context_obj = {"rpdNOwrongA":(rpdNOwrongA), "totalScore_obj":(round(total)), "status_obj":('توقف '),}
+        if(RpdNamingLtrs_Score_obj.exists()):
+            print("inside rpdnamingLtr")
+            #context_ltrs = {}
+            rpdNLwrongA = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_A
+            rpdNLwrongB = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
+            if ((rpdNLwrongA != None and rpdNLwrongB != None)):
+                print("both Ltrs A and B completed")
+                stimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                etimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                stimeLTRB=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").startT_B
+                etimeLTRB=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").endT_B
+                durationTstA=etimeLTRA-stimeLTRA
+                durationTstA=round(durationTstA.total_seconds())
+                durationTstB=etimeLTRB-stimeLTRB
+                durationTstB = round(durationTstB.total_seconds())
+                scoreTstA=rpdNLwrongA+durationTstA
+                scoreTstB=rpdNLwrongB+durationTstB
+                totalScore=scoreTstA+scoreTstB
+                context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),  "rpdNLwrongB":(rpdNLwrongB),"durationTstA":(durationTstA),"durationTstB":(durationTstB) , "scoreTstA":(scoreTstA) , "scoreTstB":(scoreTstB), "totalScore_ltr":(round(totalScore)), "status_ltrs":('منجز '),  }
+                print(context_ltrs)
+            elif (rpdNLwrongA != None and rpdNLwrongB == None):
+                print("Ltrs A complete, B empty")
+                stimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                etimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                durationTstA=etimeLTRA-stimeLTRA
+                durationTstA=round(durationTstA.total_seconds())
+                scoreTstA=rpdNLwrongA+durationTstA
+                totalScore=scoreTstA
+                context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)),"status_ltrs":('توقف '),}
+
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs,"student": student,
+                    } )
+
+
+    else:
+        return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Student.objects.get(id=request.session['student']).studentName) })
+
+    

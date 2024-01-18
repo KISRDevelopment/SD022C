@@ -170,7 +170,10 @@ def rpdNamingObjTst(request):
         testResult = RpdNamingObj_Score.objects.create(student_id = student_instance, startT_A = stime, endT_A = etime, wrongAns_A = num, reason_A = reason)
         testResult.save()
         test_id = testResult.pk
-        return redirect("primary:rpdNamingObjTstB")
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingObjTstB")
+        else:
+            return redirect(reverse('primary:testsPage'))
 
     if request.htmx:
         if request.POST.get("formtype1"):
@@ -241,8 +244,11 @@ def rpdNamingLtrTst(request):
         testResult = RpdNamingLtrs_Score.objects.create(student_id = student_instance, startT_A = stime3, endT_A = etime3, wrongAns_A = num3, reason_A = reason)
         testResult.save()
         ltrTest_id = testResult.pk
-        print(ltrTest_id)
-        return redirect("primary:rpdNamingLtrTstB")
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingLtrTstB")
+        else:
+            return redirect(reverse('primary:testsPage'))
+        
     if request.htmx:
         if request.POST.get("formtype1"):
             stime3 = datetime.now()
@@ -431,29 +437,23 @@ def testsPage (request):
     global context_ltrs
     context_ltrs = {} 
     student = Student.objects.get(id=request.session['student']).studentName
-    #global outputs
+
     
 
     if (rpdnamingObj.exists() or rpdNamingLtrs.exists()):
-        print("Hi from the North")
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
-        print(f"rpdNamingObj Score {RpdNamingObj_Score_obj}")
         RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
-        print(RpdNamingObj_Score_obj.exists())
+
         if(RpdNamingObj_Score_obj.exists()):
-            print("inside rdpnamingobj")
-            #context_obj = {}  
+            
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
-            #print("inside rdpnamingobj")
+            
             rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
-            print(f"rpdNOWrong Latest: {rpdNOwrongA_A}")
+            
             rpdNOwrongB = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
-            print(rpdNOwrongB)
-            #rpdNLwrongA = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_A
-            #rpdNLwrongB = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
+            
             if ((rpdNOwrongA != None and rpdNOwrongB != None)):
-                print("A and B completed obj")
-                #context_obj = {}  
+
                 stimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
                 etimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
                 stimeB=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_B
@@ -473,18 +473,17 @@ def testsPage (request):
                 durationA=round(durationA.total_seconds())
                 scoreA=rpdNOwrongA+durationA
                 total=scoreA
-                print("A part completed but not B")
+                
                 context_obj = {"rpdNOwrongA":(rpdNOwrongA), "totalScore_obj":(round(total)), "status_obj":('توقف '),}
         else:
             context_obj = { "status_obj":('غير منجز'),}
 
         if(RpdNamingLtrs_Score_obj.exists()):
-            print("inside rpdnamingLtr")
-            #context_ltrs = {}
+            
             rpdNLwrongA = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_A
             rpdNLwrongB = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
             if ((rpdNLwrongA != None and rpdNLwrongB != None)):
-                print("both Ltrs A and B completed")
+                
                 stimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
                 etimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
                 stimeLTRB=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").startT_B
@@ -497,9 +496,9 @@ def testsPage (request):
                 scoreTstB=rpdNLwrongB+durationTstB
                 totalScore=scoreTstA+scoreTstB
                 context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),  "rpdNLwrongB":(rpdNLwrongB),"durationTstA":(durationTstA),"durationTstB":(durationTstB) , "scoreTstA":(scoreTstA) , "scoreTstB":(scoreTstB), "totalScore_ltr":(round(totalScore)), "status_ltrs":('منجز '),  }
-                print(context_ltrs)
+                
             elif (rpdNLwrongA != None and rpdNLwrongB == None):
-                print("Ltrs A complete, B empty")
+                
                 stimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
                 etimeLTRA=RpdNamingLtrs_Score.objects.filter(student_id=request.session['student']).latest("id").endT_A
                 durationTstA=etimeLTRA-stimeLTRA

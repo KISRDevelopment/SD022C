@@ -57,7 +57,7 @@ class RpdNamingObj_Score(models.Model):
     reason_B =models.CharField(max_length=60,null=True)
 
     def __str__(self):
-        return f"{self.id}: {self.test_id.student_id} "
+        return f"{self.id}: {self.student_id} "
 
 class RpdNamingLtrs_Score(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)

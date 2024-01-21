@@ -17,9 +17,9 @@
                 <thead>
                     <tr style="border-bottom:solid; border-color:white;">
                         <th style="background-color:rgb(239, 226, 252);">الاختبار</th>
-                        <th style="background-color:rgb(239, 226, 252);">الحالة</th>
-                        <th style="background-color:rgb(239, 226, 252);"> الدرجة الكلية </th>
-                        <th style="background-color:rgb(239, 226, 252);"> النتائج </th>
+                        <th style="background-color:rgb(239, 226, 252); text-align: center;">الحالة</th>
+                        <th style="background-color:rgb(239, 226, 252); text-align: center;"> الدرجة الكلية </th>
+                        <th style="background-color:rgb(239, 226, 252); text-align: center;"> النتائج </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,11 +27,11 @@
                         <td>
                             <a name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj" type="submit" value="التسمية السريعة للأشكال" class="btn-t-enabled">التسمية السريعة للأشكال</a>
                         </td>
-                        <td>{%if context_obj.rpdNOwrongA != None%} {{context_obj.status_obj}} {% else %} {{context_obj.status_obj}} {%endif%}
+                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.status_obj}} {% else %} {{context_obj.status_obj}} {%endif%}
                         </td>
-                        <td>{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
+                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
                         </td>
-                        <td>{%if rpdNOwrongA != None%}
+                        <td style="text-align: center;">{%if rpdNOwrongA != None%}
                             <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
                         </td>
@@ -51,13 +51,16 @@
                         <td>
                             <a name="rpdNLTst" href="{% url 'primary:rpdNamingLtrTst' %}" id="rapidNamingLtr" type="submit" value="التسمية السريعة للحروف" class="btn-t-enabled">التسمية السريعة للحروف</a>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.status_ltrs}} {% else %} {{context_ltrs.status_ltrs}} {%endif%}
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.totalScore_ltr}} {% else %} ------- {%endif%}
                         </td>
-                        <td>
+                        <td style="text-align: center;">{%if rpdNLwrongA != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn-t-enabled"> عرض </a> {% else %}
+                            <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
+                        </td>
 
                         </td>
                     </tr>

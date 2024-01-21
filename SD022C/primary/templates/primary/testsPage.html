@@ -27,7 +27,12 @@
                         <td>
                             <a name="rpdNOTst" href="{% url 'primary:rpdNamingObjTst' %}" id="rapidNamingObj" type="submit" value="التسمية السريعة للأشكال" class="btn-t-enabled">التسمية السريعة للأشكال</a>
                         </td>
-                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.status_obj}} {% else %} {{context_obj.status_obj}} {%endif%}
+                        <td style="text-align: center;">
+                            {%if context_obj.rpdNOwrongA != None%} 
+                            {{context_obj.status_obj}} 
+                            {% else %} 
+                            {{status}} 
+                            {%endif%}
                         </td>
                         <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
                         </td>
@@ -52,7 +57,11 @@
                             <a name="rpdNLTst" href="{% url 'primary:rpdNamingLtrTst' %}" id="rapidNamingLtr" type="submit" value="التسمية السريعة للحروف" class="btn-t-enabled">التسمية السريعة للحروف</a>
                         </td>
                         <td style="text-align: center;">
-                            {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.status_ltrs}} {% else %} {{context_ltrs.status_ltrs}} {%endif%}
+                            {%if context_ltrs.rpdNLwrongA != None%} 
+                            {{context_ltrs.status_ltrs}} 
+                            {% else %} 
+                            {{status}} 
+                            {%endif%}
                         </td>
                         <td style="text-align: center;">
                             {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.totalScore_ltr}} {% else %} ------- {%endif%}

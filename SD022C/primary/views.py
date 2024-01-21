@@ -431,14 +431,14 @@ def profile (request):
     
 def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
+    print(rpdnamingObj)
     rpdNamingLtrs = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
+    print(rpdNamingLtrs)
     global context_obj
     context_obj = {} 
     global context_ltrs
     context_ltrs = {} 
     student = Student.objects.get(id=request.session['student']).studentName
-
-    
 
     if (rpdnamingObj.exists() or rpdNamingLtrs.exists()):
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
@@ -511,8 +511,6 @@ def testsPage (request):
             context_ltrs = { "status_ltrs":('غير منجز'),}
         return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs,"student": student,
                     } )
-
-
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Student.objects.get(id=request.session['student']).studentName) })
 

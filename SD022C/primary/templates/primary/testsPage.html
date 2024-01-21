@@ -31,7 +31,7 @@
                         </td>
                         <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if rpdNOwrongA != None%}
+                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%}
                             <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
                         </td>

@@ -156,10 +156,13 @@
     var totalSeconds = 0;
     var start = null ;
     var end = null ;
+    document.getElementById("end").disabled=true;
+
     function startTime(){
         setInterval(setTime, 1000);
         //document.getElementById("questions").style.visibility="visible";
         document.getElementById("timer").style.display="block";
+        document.getElementById("start").disabled=true;
         start = new Date();
         console.log(start);
     }

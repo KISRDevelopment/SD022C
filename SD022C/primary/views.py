@@ -159,13 +159,14 @@ def startTest(request,id):
 def rpdNamingObjTst(request):
     
     student_instance = Student.objects.get(id=request.session['student'])
+    print(student_instance)
     global stime
     global etime
     global timeWrongAnswers
     global num
     global test_id
 
-    if request.POST.get("formtype3"):            
+    if request.POST.get("formtype3"):        
         reason = request.POST["submitTst"]
         testResult = RpdNamingObj_Score.objects.create(student_id = student_instance, startT_A = stime, endT_A = etime, wrongAns_A = num, reason_A = reason)
         testResult.save()

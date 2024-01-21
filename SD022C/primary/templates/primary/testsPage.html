@@ -32,7 +32,7 @@
                         <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
                         </td>
                         <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn-t-enabled"> عرض </a> {% else %}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowObj" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
                         </td>
                     </tr>
@@ -57,8 +57,8 @@
                         <td style="text-align: center;">
                             {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.totalScore_ltr}} {% else %} ------- {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if rpdNLwrongA != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShow" class="btn-t-enabled"> عرض </a> {% else %}
+                        <td style="text-align: center;">{%if context_ltrs.rpdNLwrongA != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowLtrs" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
                         </td>
 
@@ -99,8 +99,8 @@
 </div>
 </div>
 
-<!--modal for the show result-->
-<div class="modal fade" id="ModalShow" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+<!--modal for the show OBJ result-->
+<div class="modal fade" id="ModalShowObj" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <form action="{% url 'primary:testsPage' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
@@ -113,29 +113,79 @@
                         <label class="text-m-b color-purple"> نموذج (أ) </label>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{durationA}} ث</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_obj.durationA}} ث</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">عدد الأخطاء </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{rpdNOwrongA}}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{context_obj.rpdNOwrongA}}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن مع الأخطاء  </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{scoreA}} ثانيه</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{context_obj.scoreA}} ثانيه</label>
                         </div>
                         <br></br>
                         <label class="text-m-b color-purple"> نموذج (ب) </label>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;"> {{durationB}} ث</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;"> {{context_obj.durationB}} ث</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">عدد الأخطاء </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{rpdNOwrongA}}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{context_obj.rpdNOwrongB}}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن مع الأخطاء  </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{scoreB}} ثانيه</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{context_obj.scoreB}} ثانيه</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <button class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">اغلاق</button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!--modal for the show Letters result-->
+<div class="modal fade" id="ModalShowLtrs" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPage' %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتائج اختبار التسمية السريعة للأشكال</h2>
+                </div>
+                <div class="modal-body" style="text-align: right;">
+                    <div class="mx-auto" style="width: 400px;">
+                        <label class="text-m-b color-purple"> نموذج (أ) </label>
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">الزمن </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_ltrs.durationTstA}} ث</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">عدد الأخطاء </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{context_ltrs.rpdNLwrongA}}</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">الزمن مع الأخطاء  </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{context_ltrs.scoreTstA}} ثانيه</label>
+                        </div>
+                        <br></br>
+                        <label class="text-m-b color-purple"> نموذج (ب) </label>
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">الزمن </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;"> {{context_ltrs.durationTstB}} ث</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">عدد الأخطاء </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{context_ltrs.rpdNLwrongB}}</label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">الزمن مع الأخطاء  </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{context_ltrs.scoreTstB}} ثانيه</label>
                         </div>
                     </div>
                 </div>

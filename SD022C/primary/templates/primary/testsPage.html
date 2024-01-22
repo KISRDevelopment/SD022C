@@ -31,7 +31,7 @@
                             {%if context_obj.rpdNOwrongA != None%} 
                             {{context_obj.status_obj}} 
                             {% else %} 
-                            {{status}} 
+                            {{context_obj.status_obj}} 
                             {%endif%}
                         </td>
                         <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
@@ -60,7 +60,7 @@
                             {%if context_ltrs.rpdNLwrongA != None%} 
                             {{context_ltrs.status_ltrs}} 
                             {% else %} 
-                            {{status}} 
+                            {{context_ltrs.status_ltrs}} 
                             {%endif%}
                         </td>
                         <td style="text-align: center;">

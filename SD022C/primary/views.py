@@ -309,18 +309,27 @@ def phonemSyllableTraining(request):
 
 @login_required(login_url="/primary/login")
 def phonemeSyllableDel(request):
-    if request.POST.get("formtypeB"):
-        print('-------------------')
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global counter
+    global endTime
+    if request.POST.get("form2"):
+        reason = request.POST["submitTst"]
+        testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
+        testResult.save()
+        test_id = testResult.pk
         return redirect("primary:testsPage")
     if request.htmx:
-        print('htmx post')
-        if request.POST.get("formtypeA"):
-            print('+++++++++++++++')
+        print('htmx post from test 2')
+        if request.POST.get("form1"):
+            endTime = datetime.now()
+            print('+++++++++++++++++++++')
             selectionA = request.POST.getlist('selection','')  
             answers = []
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
             if selectionA:
+                print('counter is = ')
                 print(counter)
                 return HttpResponse('Test s')
             else:

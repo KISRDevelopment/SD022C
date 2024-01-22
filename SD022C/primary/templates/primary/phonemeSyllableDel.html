@@ -271,6 +271,29 @@
     </form>
 </div>
 
+<!-- modal for reaching the limit -->
+<div class="modal fade" id="ModalLimit{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form class="form-horizontal" action="" method="POST" >
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4" id="labelText" style="color: #0059a0">
+                    <h5 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> هل أنت متأكد من تسليم الاختبار؟ </h5>
+                </div>
+                <div class="modal-body fs-5" style="direction: rtl;">
+                    <label for="submitTst" class="form-label" >يرجى الاختيار من القائمة </label>
+                    <select id="submitTst" name ="submitTst" class="form-select fs-5" Required>
+                        <option value=" الوصول الى الحد السقفي  " selected>    الوصول الى الحد السقفي  </option>
+                    </select>
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <input id="submitLimit" type="submit" name="form3" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <script type="text/javascript">
     countAudio = 0;
     counter=0;
@@ -282,6 +305,7 @@
             console.log(x)
             if ( (counter - x)  > 4) {
                 console.log('reach 4 ');
+                $("#ModalLimit{{Students.id}}").modal('show');
             } 
         }    
         audio.src = "/static/audios/" + btn.getAttribute('value') + ".mp3";

@@ -523,13 +523,17 @@ def testsPage (request):
                 scoreTstA=rpdNLwrongA+durationTstA
                 totalScore=scoreTstA
                 context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)),"status_ltrs":('توقف '),}
+        else:
+            context_ltrs = { "status_ltrs":('غير منجز'),}
 
         if(phonemeSyllDel.exists()):
             phonemeSyllDelAns = PhonemeSyllableDel.objects.filter(student_id = request.session['student']).latest("id").correctAns
             if (phonemeSyllDelAns != None):
                 context_phoneme = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
         else:
-            context_ltrs = { "status_ltrs":('غير منجز'),}
+            context_phoneme = {"status_phoneme":('غير منجز'), }
+
+
         return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,
                     } )
     else:

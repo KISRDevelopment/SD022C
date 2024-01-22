@@ -46,7 +46,11 @@
                             <a id="phonemeDeletion" href="{% url 'primary:phonemSyllableTraining' %}" type="button" class="btn-t-enabled">حذف المقاطع والأصوات</a>
                         </td>
                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.status_phoneme}} {%endif%}    
+                            {%if context_phoneme.correctAnswers != None%}
+                             {{context_phoneme.status_phoneme}}
+                            {% else %}
+                            {{context_phoneme.status_phoneme}}
+                            {%endif%}    
                         </td>
                         <td style="text-align: center;">
                             {%if context_phoneme.correctAnswers != None%} {{context_phoneme.correctAnswers}} {%endif%}  

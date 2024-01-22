@@ -53,7 +53,7 @@
                             {%endif%}    
                         </td>
                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.correctAnswers}} {%endif%}  
+                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.correctAnswers}} {% else %} ------- {%endif%}   
                         </td>
                     </tr>
                     <tr>

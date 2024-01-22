@@ -313,6 +313,8 @@ def phonemeSyllableDel(request):
     global test_id
     global counter
     global endTime
+    global selectionA
+
     if request.POST.get("form2"):
         reason = request.POST["submitTst"]
         testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
@@ -320,20 +322,19 @@ def phonemeSyllableDel(request):
         test_id = testResult.pk
         return redirect("primary:testsPage")
     if request.htmx:
-        print('htmx post from test 2')
         if request.POST.get("form1"):
             endTime = datetime.now()
-            print('+++++++++++++++++++++')
             selectionA = request.POST.getlist('selection','')  
             answers = []
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
             if selectionA:
-                print('counter is = ')
-                print(counter)
-                return HttpResponse('Test s')
-            else:
-                return HttpResponse('Test Ended')
+                print(answers)
+                for i in range (counter):
+                    print('inside for loop')
+                    if (int(answers[i+1])-int(answers[i]) == 5) :
+                        print('inside if')
+                        return HttpResponse('Test stoped') 
     return render (request,"primary/phonemeSyllableDel.html")
 
 @login_required(login_url="/primary/login")

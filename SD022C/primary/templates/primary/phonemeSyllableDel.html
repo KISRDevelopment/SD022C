@@ -272,22 +272,34 @@
 </div>
 
 <script type="text/javascript">
-    count = 0;
+    countAudio = 0;
+    counter=0;
+    x = 0;
+    i=0;
     function playAudio(btn){
-
+        if (btn.getAttribute('value') % 2 != 0){
+            counter++;
+            console.log(x)
+            if ( (counter - x)  > 4) {
+                console.log('reach 4 ');
+            } 
+        }    
         audio.src = "/static/audios/" + btn.getAttribute('value') + ".mp3";
         audio.play();
         btn.style.color = "blue";
     }
+
     function btn_clicked(btn){
         if (btn.style.backgroundColor == "") {
-            count++;
+            x = counter;
+            
+
             btn.style.backgroundColor = "green";
-            document.getElementById('result').innerText = count;
+            document.getElementById('result').innerText = counter;
         } else {
-            count = count - 1;
+            counter = counter - 1;
             btn.style.backgroundColor = "";
-            document.getElementById('result').innerText = count;
+            document.getElementById('result').innerText = counter;
         }
     }
 </script>

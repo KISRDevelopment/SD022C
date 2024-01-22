@@ -315,6 +315,18 @@ def phonemeSyllableDel(request):
     global endTime
     global selectionA
 
+    if request.POST.get("form3"):
+        endTime = datetime.now()
+        answers1 = request.POST.getlist('selection[]')
+        # answers1 = []
+        # answers1.extend(request.POST.getlist('selection',''))
+        # counter = len(answers1)
+        print(answers1)
+        reason = request.POST["submitLimit"]
+        # testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
+        # testResult.save()
+        # test_id = testResult.pk
+        return redirect("primary:testsPage")
     if request.POST.get("form2"):
         reason = request.POST["submitTst"]
         testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
@@ -328,13 +340,7 @@ def phonemeSyllableDel(request):
             answers = []
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
-            if selectionA:
-                print(answers)
-                for i in range (counter):
-                    print('inside for loop')
-                    if (int(answers[i+1])-int(answers[i]) == 5) :
-                        print('inside if')
-                        return HttpResponse('Test stoped') 
+            print(counter)
     return render (request,"primary/phonemeSyllableDel.html")
 
 @login_required(login_url="/primary/login")
@@ -442,16 +448,16 @@ def profile (request):
     
 def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
-    print(rpdnamingObj)
     rpdNamingLtrs = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
-    print(rpdNamingLtrs)
+    phonemeSyllDel = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
     global context_obj
     context_obj = {} 
     global context_ltrs
-    context_ltrs = {} 
+    context_ltrs = {}
+    context_phoneme = {} 
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (rpdnamingObj.exists() or rpdNamingLtrs.exists()):
+    if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists()):
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
         RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
 
@@ -518,9 +524,13 @@ def testsPage (request):
                 totalScore=scoreTstA
                 context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)),"status_ltrs":('توقف '),}
 
+        if(phonemeSyllDel.exists()):
+            phonemeSyllDelAns = PhonemeSyllableDel.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (phonemeSyllDelAns != None):
+                context_phoneme = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
         else:
             context_ltrs = { "status_ltrs":('غير منجز'),}
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs,"student": student,
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,
                     } )
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Student.objects.get(id=request.session['student']).studentName) })

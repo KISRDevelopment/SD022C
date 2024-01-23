@@ -315,19 +315,6 @@ def phonemeSyllableDel(request):
     global endTime
     global selectionA
 
-    if request.POST.get("form3"):
-        endTime = datetime.now()
-        # ans = request.POST['limit']
-        # print('+++++++++++++++++++++++++')
-        # print(ans)
-        # answers1 = []
-        # answers1.extend(request.POST.getlist('selection',''))
-        # counter = len(answers1)
-        reason = request.POST["submitLimit"]
-        # testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
-        # testResult.save()
-        # test_id = testResult.pk
-        return redirect("primary:testsPage")
     if request.POST.get("form2"):
         reason = request.POST["submitTst"]
         testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)

@@ -442,6 +442,7 @@ def testsPage (request):
     context_obj = {} 
     global context_ltrs
     context_ltrs = {}
+    global context_phoneme
     context_phoneme = {} 
     student = Student.objects.get(id=request.session['student']).studentName
 
@@ -518,12 +519,12 @@ def testsPage (request):
             phonemeSyllDelAns = PhonemeSyllableDel.objects.filter(student_id = request.session['student']).latest("id").correctAns
             if (phonemeSyllDelAns != None):
                 context_phoneme = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
-                
+            else:
+                context_phoneme = {"status_phoneme":('غير منجز'), }
         else:
             context_phoneme = {"status_phoneme":('غير منجز'), }
 
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,
-                    } )
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,})
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Student.objects.get(id=request.session['student']).studentName) })
 

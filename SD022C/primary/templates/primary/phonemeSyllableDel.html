@@ -295,8 +295,8 @@
 </div>
 
 <script type="text/javascript">
-    countAudio = 0;
     counter=0;
+    count=0;
     x = 0;
     i=0;
     function playAudio(btn){
@@ -316,8 +316,9 @@
     function btn_clicked(btn){
         if (btn.style.backgroundColor == "") {
             x = counter;
+            count++;
             btn.style.backgroundColor = "green";
-            document.getElementById('result').innerText = counter;
+            document.getElementById('result').innerText = count;
         } else {
             counter = counter - 1;
             btn.style.backgroundColor = "";

@@ -317,11 +317,12 @@ def phonemeSyllableDel(request):
 
     if request.POST.get("form3"):
         endTime = datetime.now()
-        answers1 = request.POST.getlist('selection[]')
+        # ans = request.POST['limit']
+        # print('+++++++++++++++++++++++++')
+        # print(ans)
         # answers1 = []
         # answers1.extend(request.POST.getlist('selection',''))
         # counter = len(answers1)
-        print(answers1)
         reason = request.POST["submitLimit"]
         # testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
         # testResult.save()
@@ -460,7 +461,7 @@ def testsPage (request):
     if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists()):
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
         RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
-
+        phonemeDel_Score_obj = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
         if(RpdNamingObj_Score_obj.exists()):
             
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
@@ -526,13 +527,14 @@ def testsPage (request):
         else:
             context_ltrs = { "status_ltrs":('غير منجز'),}
 
-        if(phonemeSyllDel.exists()):
+        if(phonemeDel_Score_obj.exists()):
             phonemeSyllDelAns = PhonemeSyllableDel.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            print(phonemeSyllDelAns)
             if (phonemeSyllDelAns != None):
                 context_phoneme = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
+                
         else:
             context_phoneme = {"status_phoneme":('غير منجز'), }
-
 
         return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,
                     } )

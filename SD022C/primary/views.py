@@ -529,7 +529,6 @@ def testsPage (request):
 
         if(phonemeDel_Score_obj.exists()):
             phonemeSyllDelAns = PhonemeSyllableDel.objects.filter(student_id = request.session['student']).latest("id").correctAns
-            print(phonemeSyllDelAns)
             if (phonemeSyllDelAns != None):
                 context_phoneme = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
                 

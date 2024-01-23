@@ -309,22 +309,39 @@ def phonemSyllableTraining(request):
 
 @login_required(login_url="/primary/login")
 def phonemeSyllableDel(request):
-    if request.POST.get("formtypeB"):
-        print('-------------------')
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global counter
+    global endTime
+    global selectionA
+
+    if request.POST.get("form3"):
+        endTime = datetime.now()
+        # ans = request.POST['limit']
+        # print('+++++++++++++++++++++++++')
+        # print(ans)
+        # answers1 = []
+        # answers1.extend(request.POST.getlist('selection',''))
+        # counter = len(answers1)
+        reason = request.POST["submitLimit"]
+        # testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
+        # testResult.save()
+        # test_id = testResult.pk
+        return redirect("primary:testsPage")
+    if request.POST.get("form2"):
+        reason = request.POST["submitTst"]
+        testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
+        testResult.save()
+        test_id = testResult.pk
         return redirect("primary:testsPage")
     if request.htmx:
-        print('htmx post')
-        if request.POST.get("formtypeA"):
-            print('+++++++++++++++')
+        if request.POST.get("form1"):
+            endTime = datetime.now()
             selectionA = request.POST.getlist('selection','')  
             answers = []
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
-            if selectionA:
-                print(counter)
-                return HttpResponse('Test s')
-            else:
-                return HttpResponse('Test Ended')
+            print(counter)
     return render (request,"primary/phonemeSyllableDel.html")
 
 @login_required(login_url="/primary/login")
@@ -432,19 +449,19 @@ def profile (request):
     
 def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
-    print(rpdnamingObj)
     rpdNamingLtrs = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
-    print(rpdNamingLtrs)
+    phonemeSyllDel = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
     global context_obj
     context_obj = {} 
     global context_ltrs
-    context_ltrs = {} 
+    context_ltrs = {}
+    context_phoneme = {} 
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (rpdnamingObj.exists() or rpdNamingLtrs.exists()):
+    if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists()):
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
         RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
-
+        phonemeDel_Score_obj = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
         if(RpdNamingObj_Score_obj.exists()):
             
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
@@ -507,10 +524,18 @@ def testsPage (request):
                 scoreTstA=rpdNLwrongA+durationTstA
                 totalScore=scoreTstA
                 context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)),"status_ltrs":('توقف '),}
-
         else:
             context_ltrs = { "status_ltrs":('غير منجز'),}
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs,"student": student,
+
+        if(phonemeDel_Score_obj.exists()):
+            phonemeSyllDelAns = PhonemeSyllableDel.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (phonemeSyllDelAns != None):
+                context_phoneme = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
+                
+        else:
+            context_phoneme = {"status_phoneme":('غير منجز'), }
+
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,
                     } )
     else:
         return render(request,"primary/testsPage.html", {"status":('غير منجز ') ,"student":(Student.objects.get(id=request.session['student']).studentName) })

@@ -337,19 +337,27 @@ def nonWordRepetitionTraining(request):
 
 @login_required(login_url="/primary/login")
 def nonWordRepetition(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global count
+    global date
+    global select
     if request.POST.get("form2"):
-        print('-------------------')
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordRepetition.objects.create(student_id = student_instance,  correctAns = count, reason = reasonDropDown , date=date)
+        testResult.save()
+        test_id = testResult.pk
         return redirect("primary:testsPage")
     if request.htmx:
         print('htmx post')
         if request.POST.get("form1"):
-            print('+++++++++++++++')
-            selectionA = request.POST.getlist('selection','')  
-            answers = []
-            answers.extend(request.POST.getlist('selection',''))
-            counter = len(answers)
+            date = datetime.now()
+            select = request.POST.getlist('selection','')  
+            choices = []
+            choices.extend(request.POST.getlist('selection',''))
+            count = len(choices)
             if selectionA:
-                print(counter)
+                print(count)
                 return HttpResponse('Test s')
             else:
                 return HttpResponse('Test Ended')

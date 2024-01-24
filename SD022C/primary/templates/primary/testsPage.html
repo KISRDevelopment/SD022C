@@ -45,11 +45,22 @@
                         <td>
                             <a id="phonemeDeletion" href="{% url 'primary:phonemSyllableTraining' %}" type="button" class="btn-t-enabled">حذف المقاطع والأصوات</a>
                         </td>
-                        <td>
-
+                        <td style="text-align: center;">
+                            {%if context_phoneme.correctAnswers != None%}
+                             {{context_phoneme.status_phoneme}}
+                            {% else %}
+                            {{context_phoneme.status_phoneme}}
+                            {%endif%}    
                         </td>
-                        <td>
-
+                        <td style="text-align: center;">
+                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.correctAnswers}} {% else %} ------- {%endif%}   
+                        </td>
+                        <td style="text-align: center;">
+                            {%if context_phoneme.correctAnswers != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowPhoneme" class="btn-t-enabled"> عرض </a>
+                            {% else %}
+                            <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button>
+                            {%endif%}
                         </td>
                     </tr>
                     <tr>
@@ -70,20 +81,19 @@
                             <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowLtrs" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
                         </td>
-
-                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a href="{% url 'primary:nonWordRepetitionTraining' %}" id="nonWordRepetition" type="button" class="btn-t-enabled">تكرار الكلمات غير الحقيقة</a>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
 
                         </td>
-                        <td>
+                        <td style="text-align: center;">
 
                         </td>
-                        <td>
+                        <td style="text-align: center;">
+                        </td>
 
                         </td>
                     </tr>
@@ -91,13 +101,13 @@
                         <td>
                             <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWordReadingAccuracy'%}" type="button" class="btn-t-enabled">دقة قراءة الكلمات غير الحقيقة</a>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
 
                         </td>
-                        <td>
+                        <td style="text-align: center;">
 
                         </td>
-                        <td>
+                        <td style="text-align: center;">
 
                         </td>
                     </tr>
@@ -202,6 +212,32 @@
                     <button class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">اغلاق</button>
                 </div>
 
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!--modal for the show Phoneme test result-->
+<div class="modal fade" id="ModalShowPhoneme" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPage' %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتيجة اختبار حذف المقاطع والأصوات</h2>
+                </div>
+                <div class="modal-body" style="text-align: right;">
+                    <div class="mx-auto" style="width: 400px;">
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">الدرجة الكلية </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_phoneme.correctAnswers}} /20</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <button class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">اغلاق</button>
+                </div>
             </div>
         </div>
 

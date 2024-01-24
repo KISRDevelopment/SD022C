@@ -446,18 +446,23 @@ def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
     rpdNamingLtrs = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
     phonemeSyllDel = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
+    nonWordRepetition = NonWordRepetition.objects.filter(student_id = request.session['student'])
     global context_obj
     context_obj = {} 
     global context_ltrs
     context_ltrs = {}
     global context_phoneme
-    context_phoneme = {} 
+    context_phoneme = {}
+    global context_nonWrdRep
+    context_nonWrdRep = {} 
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists()):
+    if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists() or nonWordRepetition.exists()):
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
         RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
         phonemeDel_Score_obj = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
+        nonWordRep_Score_obj = NonWordRepetition.objects.filter(student_id = request.session['student'])
+
         if(RpdNamingObj_Score_obj.exists()):
             
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
@@ -532,11 +537,22 @@ def testsPage (request):
         else:
             context_phoneme = {"status_phoneme":('غير منجز'), }
 
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"student": student,})
+        if(nonWordRep_Score_obj.exists()):
+            nonWordRepCorrectAns = NonWordRepetition.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (nonWordRepCorrectAns != None):
+                context_nonWrdRep = {"correctAnswers":(nonWordRepCorrectAns), "status_nonWrdRep":('منجز '), }
+            else:
+                context_phoneme = {"status_nonWrdRep":('غير منجز'), }
+        else:
+            context_phoneme = {"status_nonWrdRep":('غير منجز'), }
+
+
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"student": student,})
     else:
         context_obj = { "status_obj":('غير منجز'),}
         context_ltrs = { "status_ltrs":('غير منجز'),}
         context_phoneme = { "status_phoneme":('غير منجز'),}
-        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme,"student":(Student.objects.get(id=request.session['student']).studentName) })
+        context_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
+        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName) })
 
     

@@ -87,14 +87,21 @@
                             <a href="{% url 'primary:nonWordRepetitionTraining' %}" id="nonWordRepetition" type="button" class="btn-t-enabled">تكرار الكلمات غير الحقيقة</a>
                         </td>
                         <td style="text-align: center;">
-
+                            {%if context_nonWrdRep.correctAnswers != None%} 
+                            {{context_nonWrdRep.status_nonWrdRep}} 
+                            {% else %} 
+                            {{context_nonWrdRep.status_nonWrdRep}} 
+                            {%endif%}
                         </td>
                         <td style="text-align: center;">
-
+                            {%if context_nonWrdRep.correctAnswers != None%} {{context_nonWrdRep.correctAnswers}} {% else %} ------- {%endif%}   
                         </td>
                         <td style="text-align: center;">
-                        </td>
-
+                            {%if context_nonWrdRep.correctAnswers != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowPhoneme" class="btn-t-enabled"> عرض </a>
+                            {% else %}
+                            <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button>
+                            {%endif%}
                         </td>
                     </tr>
                     <tr>

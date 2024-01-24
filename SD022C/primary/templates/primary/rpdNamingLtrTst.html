@@ -105,7 +105,7 @@
                     <label class="btn-outline-purple" onclick="btn_clicked(this)" for="a4"> ع</label>
                 </div>
                 <div style="padding-right: 575px;">
-                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-light-purple" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;">
+                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-light-purple" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
                 </div>
             </form>
             <div class="col-2 d-grid mx-auto">
@@ -162,6 +162,7 @@
         document.getElementById("timer").style.display = "block";
         //document.getElementById("start").disabled=true;
         document.getElementById("endBtnForm").removeAttribute("disabled");
+        document.getElementById("end").removeAttribute("disabled");
         start = new Date();
         console.log(start);
     }

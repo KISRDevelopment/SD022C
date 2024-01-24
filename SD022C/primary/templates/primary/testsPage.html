@@ -98,7 +98,7 @@
                         </td>
                         <td style="text-align: center;">
                             {%if context_nonWrdRep.correctAnswers != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowPhoneme" class="btn-t-enabled"> عرض </a>
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowRep" class="btn-t-enabled"> عرض </a>
                             {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button>
                             {%endif%}
@@ -239,6 +239,32 @@
                         <div class="form-group mb-3">
                             <label class="text-m-b">الدرجة الكلية </label>
                             <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_phoneme.correctAnswers}} /20</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer flex-nowrap p-0">
+                    <button class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " type="submit" style="background-color: #720e9e; border-color: #720e9e; ">اغلاق</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!--modal for the show non word repetitions test result-->
+<div class="modal fade" id="ModalShowRep" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPage' %}" method="POST">
+        {% csrf_token %}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-3 shadow">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتيجة اختبار تكرار الكلمات غير الحقيقية  </h2>
+                </div>
+                <div class="modal-body" style="text-align: right;">
+                    <div class="mx-auto" style="width: 400px;">
+                        <div class="form-group mb-3">
+                            <label class="text-m-b">الدرجة الكلية </label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_nonWrdRep.correctAnswers}} /20</label>
                         </div>
                     </div>
                 </div>

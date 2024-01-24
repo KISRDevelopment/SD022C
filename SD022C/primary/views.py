@@ -528,6 +528,7 @@ def testsPage (request):
     else:
         context_obj = { "status_obj":('غير منجز'),}
         context_ltrs = { "status_ltrs":('غير منجز'),}
-        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs,"student":(Student.objects.get(id=request.session['student']).studentName) })
+        context_phoneme = { "status_phoneme":('غير منجز'),}
+        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme,"student":(Student.objects.get(id=request.session['student']).studentName) })
 
     

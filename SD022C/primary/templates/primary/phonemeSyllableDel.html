@@ -260,35 +260,12 @@
                         <option value="تم الانتهاء من بنود الاختبار كلها " selected>تم الانتهاء من بنود الاختبار كلها </option>
                         <option value="توقف لأسباب صحية أو شخصية خاصة بالطالب" >توقف لأسباب صحية أو شخصية خاصة بالطالب</option>
                         <option value="توقف لأسباب صحية أو شخصية خاصة بالفاحص">توقف لأسباب صحية أو شخصية خاصة بالفاحص</option>
+                        <option value="الوصول الى الحد السقفي"> الوصول الى الحد السقفي </option>
                         <option value="أسباب أخرى">أسباب أخرى </option>
                     </select>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
                     <input id="submitDropDown" type="submit" name="form2" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-<!-- modal for reaching the limit -->
-<div class="modal fade" id="ModalLimit{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form class="form-horizontal" action="" method="POST" >
-        {% csrf_token %}
-        <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-3 shadow">
-                <div class="modal-header p-4" id="labelText" style="color: #0059a0">
-                    <h5 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> هل أنت متأكد من تسليم الاختبار؟ </h5>
-                </div>
-                <div class="modal-body fs-5" style="direction: rtl;">
-                    <label for="submitLimit" class="form-label" >يرجى الاختيار من القائمة </label>
-                    <select id="submitLimit" name ="submitLimit" class="form-select fs-5" Required>
-                        <option value=" الوصول الى الحد السقفي  " selected>    الوصول الى الحد السقفي  </option>
-                    </select>
-                    <label id="countt" name="countt"  style="background-color:#CC99CC; width: 100px; direction: rtl; font-size:20px; font-weight:bolder;"></input>
-                </div>
-                <div class="modal-footer flex-nowrap p-0">
-                    <input id="limit" type="submit" name="form3" value=" تسليم الاختبار " onclick="btn_clicked(btn)" class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
                 </div>
             </div>
         </div>
@@ -305,7 +282,9 @@
             counter++;
             if ( (counter - x)  > 4) {
                 console.log('reach 4 ');
-                $("#ModalLimit{{Students.id}}").modal('show');
+                document.getElementById('submitTst').value='الوصول الى الحد السقفي';
+                document.getElementById('end').click();
+                // $("#ModalLimit{{Students.id}}").modal('show');
             } 
         }    
         audio.src = "/static/audios/" + btn.getAttribute('value') + ".mp3";
@@ -321,9 +300,9 @@
             document.getElementById('result').innerText = count;
             document.getElementById('countt').innerText = count;
         } else {
-            counter = counter - 1;
+            count = count - 1;
             btn.style.backgroundColor = "";
-            document.getElementById('result').innerText = counter;
+            document.getElementById('result').innerText = count;
         }
         return count;
     }

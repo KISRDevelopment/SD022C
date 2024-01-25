@@ -479,6 +479,7 @@ def testsPage (request):
                 etimeB=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").endT_B
                 durationA=etimeA-stimeA
                 durationA=round(durationA.total_seconds())
+                print(durationA)
                 durationB=etimeB-stimeB
                 durationB = round(durationB.total_seconds())
                 scoreA=rpdNOwrongA+durationA
@@ -493,7 +494,7 @@ def testsPage (request):
                 scoreA=rpdNOwrongA+durationA
                 total=scoreA
                 
-                context_obj = {"rpdNOwrongA":(rpdNOwrongA), "totalScore_obj":(round(total)), "status_obj":('توقف '),}
+                context_obj = {"rpdNOwrongA":(rpdNOwrongA),"durationA":(durationA), "totalScore_obj":(round(total)), "scoreA":(scoreA),"status_obj":('توقف '),}
         else:
             context_obj = { "status_obj":('غير منجز'),}
 
@@ -524,7 +525,7 @@ def testsPage (request):
                 durationTstA=round(durationTstA.total_seconds())
                 scoreTstA=rpdNLwrongA+durationTstA
                 totalScore=scoreTstA
-                context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)),"status_ltrs":('توقف '),}
+                context_ltrs = {"rpdNLwrongA":(rpdNLwrongA),"totalScore_ltr":(round(totalScore)), "durationTstA":(durationTstA),"scoreTstA":(scoreTstA),"status_ltrs":('توقف '),}
         else:
             context_ltrs = { "status_ltrs":('غير منجز'),}
 

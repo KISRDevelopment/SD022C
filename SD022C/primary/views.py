@@ -544,7 +544,7 @@ def testsPage (request):
             else:
                 context_phoneme = {"status_nonWrdRep":('غير منجز'), }
         else:
-            context_phoneme = {"status_nonWrdRep":('غير منجز'), }
+            context_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
 
 
         return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"student": student,})

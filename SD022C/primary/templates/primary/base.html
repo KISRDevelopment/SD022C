@@ -25,7 +25,7 @@
                 اختبار معالجة الأصوات المقنن للأطفال
             </div>
             <div class=" col-3 d-flex justify-content-end align-items-center px-5 ">
-                <a href="https://www.ccetkuwait.org"><img src="{% static 'images/ccet.jpeg' %} " width="150 " height="150 " class="rounded float-end " alt="ccetLOGO "></a>
+                <a href="https://www.ccetkuwait.org"><img src="{% static 'images/ccetLogo.jpg' %} " width="135 " height="150 " class="rounded float-end " alt="ccetLOGO "></a>
             </div>
         </div>
     </header>
@@ -102,12 +102,19 @@
     <br></br>
     <div class="container-fluid mt-5 mt-auto bg-color-green">
         <footer>
-            <div class="container-fluid d-flex flex-column mt-3">
-                <ul class="nav justify-content-center mb-3">
-                    <li class="nav-item"><a href="{% url 'primary:about' %} " class="nav-link text-light fs-5 "> من نحن </a></li>
-                    <li class="nav-item"><a href="{% url 'primary:contact' %} " class="nav-link text-light fs-5"> تواصل معنا </a></li>
-                </ul>
-                <p class="text-center text-light mt-auto fs-6"> 2023 &copy طور بواسطة معهد الكويت للأبحاث العلمية</p>
+            <div class="row flex-nowrap justify-content-md-between align-items-center px-5">
+                <div class="col-4 d-flex mt-3 align-item-left">
+                    <p class="text-center text-light mt-auto fs-6"> 2023 &copy طور بواسطة معهد الكويت للأبحاث العلمية</p>
+                </div>
+                <div class="col-4 d-flex mt-3 justify-content-center">
+                    <ul class="nav mb-4">
+                        <li class="nav-item"><a href="{% url 'primary:about' %} " class="nav-link text-light fs-5 "> من نحن </a></li>
+                        <li class="nav-item"><a href="{% url 'primary:contact' %} " class="nav-link text-light fs-5"> تواصل معنا </a></li>
+                    </ul>
+                </div>
+                <div class="col-4 d-flex justify-content-end">
+                    <a href="https://kscdr.org.sa/ "><img src="{% static 'images/kscdrlogo.png' %}" width="250" height="60" class="rounded float-start" alt="kscdrlogo" style="filter: brightness(0) invert(1);"></a>
+                </div>
             </div>
         </footer>
     </div>

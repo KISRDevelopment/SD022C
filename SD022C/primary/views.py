@@ -356,7 +356,7 @@ def nonWordRepetition(request):
             choices = []
             choices.extend(request.POST.getlist('selection',''))
             count = len(choices)
-            if selectionA:
+            if select:
                 print(count)
                 return HttpResponse('Test s')
             else:
@@ -365,9 +365,26 @@ def nonWordRepetition(request):
 
 @login_required(login_url="/primary/login")
 def nonWordReadingAccuracy(request):
-    if request.method == "POST":
-        return redirect('primary:nonWordReadingAccuracy')
-    return render(request, "primary/nonWordReadingAccuracy.html")
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global count
+    global dateTime
+
+    if request.POST.get("dropDownForm"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordReadingAcc.objects.create(student_id = student_instance,  correctAns = count, reason = reasonDropDown , date=dateTime)
+        testResult.save()
+        test_id = testResult.pk
+        return redirect("primary:testsPage")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("qstForm"):
+            dateTime = datetime.now()
+            ans = []
+            ans.extend(request.POST.getlist('selection',''))
+            count = len(ans)
+            print(count)
+    return render (request,"primary/nonWordReadingAccuracy.html")
 
 
 @login_required(login_url="/primary/login")

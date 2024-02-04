@@ -145,249 +145,6 @@ def deleteStudent(request,id):
     return render(request, "primary/students.html")
 
 @login_required(login_url="/primary/login")
-def startTest(request,id):
-    request.session['student'] = id
-    print(id)
-    print('start test')
-    #if not Score.objects.filter(student_id=id).exists():
-        #result = Score.objects.create(student_id=id)
-        #result.save()
-        #return redirect('primary:testsPage')
-    return redirect('primary:testsPage')
-
-@login_required(login_url="/primary/login")
-def rpdNamingObjTst(request):
-    
-    student_instance = Student.objects.get(id=request.session['student'])
-    print(student_instance)
-    global stime
-    global etime
-    global timeWrongAnswers
-    global num
-    global test_id
-
-    if request.POST.get("formtype3"):        
-        reason = request.POST["submitTst"]
-        testResult = RpdNamingObj_Score.objects.create(student_id = student_instance, startT_A = stime, endT_A = etime, wrongAns_A = num, reason_A = reason)
-        testResult.save()
-        test_id = testResult.pk
-        if reason == "تم الانتهاء من بنود الاختبار كلها ":
-            return redirect("primary:rpdNamingObjTstB")
-        else:
-            return redirect(reverse('primary:testsPage'))
-
-    if request.htmx:
-        if request.POST.get("formtype1"):
-            stime = datetime.now()
-            return HttpResponse('Test Started')
-        if request.POST.get("formtype2"):
-            etime = datetime.now()
-            num = 0
-            timeDiff = (etime - stime).total_seconds()
-            selection = request.POST.getlist('selection','')  
-            img = []
-            img.extend(request.POST.getlist('selection',''))
-            count = len(img)
-            num = count
-            if selection:
-                timeWrongAnswers = timeDiff + count
-                return HttpResponse(timeWrongAnswers)
-            else:
-                timeWrongAnswers = timeDiff + count
-                return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingObjTst.html")
-    
-@login_required(login_url="/primary/login")
-def rpdNamingObjTstB(request):
-    global stime2
-    global etime2
-    global num2
-    global timeWrongAnswers2
-
-    if request.POST.get("formtype3"):
-        reason = request.POST["submitTst"]
-        RpdNamingObj_Score.objects.filter(id=test_id).update(startT_B = stime2, endT_B = etime2, wrongAns_B = num2, reason_B = reason)
-        return redirect("primary:testsPage")
-    
-    if request.htmx:
-        if request.POST.get("formtype1"):
-            stime2 = datetime.now()
-            return HttpResponse('Test Started')
-        if request.POST.get("formtype2"):
-            etime2 = datetime.now()
-            num2 = 0
-            timeDiff2 = (etime2 - stime2).total_seconds()
-            print(int(timeDiff2))
-            selection2 = request.POST.getlist('selection','')  
-            img2 = []
-            img2.extend(request.POST.getlist('selection',''))
-            count2 = len(img2)
-            num2 = count2
-
-            if selection2:
-                timeWrongAnswers2 = timeDiff2 + count2
-                return HttpResponse(timeWrongAnswers2)
-            else:
-                timeWrongAnswers2 = timeDiff2 + count2
-                return HttpResponse('Test Ended')
-    return render (request,"primary/rpdNamingObjTstB.html")
-
-@login_required(login_url="/primary/login")
-def rpdNamingLtrTst(request):
-    student_instance = Student.objects.get(id=request.session['student'])
-    global stime3
-    global etime3
-    global num3
-    global ltrTest_id
-    global timeWrongAnswers3
-    if request.POST.get("formtype3"):
-        reason = request.POST["submitTst"]
-        testResult = RpdNamingLtrs_Score.objects.create(student_id = student_instance, startT_A = stime3, endT_A = etime3, wrongAns_A = num3, reason_A = reason)
-        testResult.save()
-        ltrTest_id = testResult.pk
-        if reason == "تم الانتهاء من بنود الاختبار كلها ":
-            return redirect("primary:rpdNamingLtrTstB")
-        else:
-            return redirect(reverse('primary:testsPage'))
-        
-    if request.htmx:
-        if request.POST.get("formtype1"):
-            stime3 = datetime.now()
-            return HttpResponse('Test Started')
-        if request.POST.get("formtype2"):
-            etime3 = datetime.now()
-            num3 = 0
-            timeDiff3 = (etime3 - stime3).total_seconds()
-            selection3 = request.POST.getlist('selection','')  
-            img3 = []
-            img3.extend(request.POST.getlist('selection',''))
-            count3 = len(img3)
-            num3 = count3
-            if selection3:
-                timeWrongAnswers3 = timeDiff3 + count3
-                return HttpResponse(timeWrongAnswers3)
-            else:
-                timeWrongAnswers3 = timeDiff3 + count3
-                return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingLtrTst.html")
-
-@login_required(login_url="/primary/login")
-def rpdNamingLtrTstB(request):
-    global stime4
-    global etime4
-    global num4
-    global timeWrongAnswers4
-    if request.POST.get("formtype3"):
-        reason = request.POST["submitTst"]
-        RpdNamingLtrs_Score.objects.filter(id=ltrTest_id).update(startT_B = stime4, endT_B = etime4, wrongAns_B = num4, reason_B = reason)
-        return redirect("primary:testsPage")
-    if request.htmx:
-        if request.POST.get("formtype1"):
-            stime4 = datetime.now()
-            return HttpResponse('Test Started')
-        if request.POST.get("formtype2"):
-            etime4 = datetime.now()
-            num4 = 0
-            timeDiff4 = (etime4 - stime4).total_seconds()
-            print(int(timeDiff4))
-            selection4 = request.POST.getlist('selection','')  
-            img4 = []
-            img4.extend(request.POST.getlist('selection',''))
-            count4 = len(img4)
-            num4 = count4
-            if selection4:
-                timeWrongAnswers4 = timeDiff4 + count4
-                return HttpResponse(timeWrongAnswers4)
-            else:
-                timeWrongAnswers4 = timeDiff4 + count4
-                return HttpResponse('Test Ended')
-    return render (request,"primary/rpdNamingLtrTstB.html")
-
-@login_required(login_url="/primary/login")
-def phonemSyllableTraining(request):
-    return render(request, "primary/phonemSyllableTraining.html")
-
-@login_required(login_url="/primary/login")
-def phonemeSyllableDel(request):
-    student_instance = Student.objects.get(id=request.session['student'])
-    global test_id
-    global counter
-    global endTime
-    global selectionA
-
-    if request.POST.get("form2"):
-        reason = request.POST["submitTst"]
-        testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
-        testResult.save()
-        test_id = testResult.pk
-        return redirect("primary:testsPage")
-    if request.htmx:
-        if request.POST.get("form1"):
-            endTime = datetime.now()
-            selectionA = request.POST.getlist('selection','')  
-            answers = []
-            answers.extend(request.POST.getlist('selection',''))
-            counter = len(answers)
-            print(counter)
-    return render (request,"primary/phonemeSyllableDel.html")
-
-@login_required(login_url="/primary/login")
-def nonWordRepetitionTraining(request):
-    return render(request, "primary/nonWordRepetitionTraining.html")
-
-@login_required(login_url="/primary/login")
-def nonWordRepetition(request):
-    student_instance = Student.objects.get(id=request.session['student'])
-    global test_id
-    global count
-    global date
-    global select
-    if request.POST.get("form2"):
-        reasonDropDown = request.POST["submitTst"]
-        testResult = NonWordRepetition.objects.create(student_id = student_instance,  correctAns = count, reason = reasonDropDown , date=date)
-        testResult.save()
-        test_id = testResult.pk
-        return redirect("primary:testsPage")
-    if request.htmx:
-        print('htmx post')
-        if request.POST.get("form1"):
-            date = datetime.now()
-            select = request.POST.getlist('selection','')  
-            choices = []
-            choices.extend(request.POST.getlist('selection',''))
-            count = len(choices)
-            if select:
-                print(count)
-                return HttpResponse('Test s')
-            else:
-                return HttpResponse('Test Ended')
-    return render (request,"primary/nonWordRepetition.html")
-
-@login_required(login_url="/primary/login")
-def nonWordReadingAccuracy(request):
-    student_instance = Student.objects.get(id=request.session['student'])
-    global test_id
-    global count
-    global dateTime
-
-    if request.POST.get("dropDownForm"):
-        reasonDropDown = request.POST["submitTst"]
-        testResult = NonWordReadingAcc.objects.create(student_id = student_instance,  correctAns = count, reason = reasonDropDown , date=dateTime)
-        testResult.save()
-        test_id = testResult.pk
-        return redirect("primary:testsPage")
-    if request.htmx:
-        print('htmx post')
-        if request.POST.get("qstForm"):
-            dateTime = datetime.now()
-            ans = []
-            ans.extend(request.POST.getlist('selection',''))
-            count = len(ans)
-            print(count)
-    return render (request,"primary/nonWordReadingAccuracy.html")
-
-
-@login_required(login_url="/primary/login")
 def editStudent(request, id):
     if request.method == "POST":
         studentName = request.POST['studentName']
@@ -442,7 +199,6 @@ def logout(request):
     auth.logout(request)
     return redirect(reverse('primary:index'))
 
-
 def examinerPage (request):
     if request.user.is_authenticated:
         if request.user.is_staff:
@@ -458,12 +214,258 @@ def profile (request):
     else:
         return render(request, "primary/profile.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})
+
+@login_required(login_url="/primary/login")
+def startTest(request,id):
+    request.session['student'] = id
+    return redirect('primary:testsPage')
+
+# test 1 - A
+@login_required(login_url="/primary/login")
+def rpdNamingObjTst(request):
     
+    student_instance = Student.objects.get(id=request.session['student'])
+    print(student_instance)
+    global stime
+    global etime
+    global timeWrongAnswers
+    global num
+    global test_id
+
+    if request.POST.get("formtype3"):        
+        reason = request.POST["submitTst"]
+        testResult = RpdNamingObj_Score.objects.create(student_id = student_instance, startT_A = stime, endT_A = etime, wrongAns_A = num, reason_A = reason)
+        testResult.save()
+        test_id = testResult.pk
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingObjTstB")
+        else:
+            return redirect(reverse('primary:testsPage'))
+
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            stime = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            etime = datetime.now()
+            num = 0
+            timeDiff = (etime - stime).total_seconds()
+            selection = request.POST.getlist('selection','')  
+            img = []
+            img.extend(request.POST.getlist('selection',''))
+            count = len(img)
+            num = count
+            if selection:
+                timeWrongAnswers = timeDiff + count
+                return HttpResponse(timeWrongAnswers)
+            else:
+                timeWrongAnswers = timeDiff + count
+                return HttpResponse('Test Ended')
+    return render(request, "primary/rpdNamingObjTst.html")
+
+# test 1 - B    
+@login_required(login_url="/primary/login")
+def rpdNamingObjTstB(request):
+    global stime2
+    global etime2
+    global num2
+    global timeWrongAnswers2
+
+    if request.POST.get("formtype3"):
+        reason = request.POST["submitTst"]
+        RpdNamingObj_Score.objects.filter(id=test_id).update(startT_B = stime2, endT_B = etime2, wrongAns_B = num2, reason_B = reason)
+        return redirect("primary:testsPage")
+    
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            stime2 = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            etime2 = datetime.now()
+            num2 = 0
+            timeDiff2 = (etime2 - stime2).total_seconds()
+            print(int(timeDiff2))
+            selection2 = request.POST.getlist('selection','')  
+            img2 = []
+            img2.extend(request.POST.getlist('selection',''))
+            count2 = len(img2)
+            num2 = count2
+
+            if selection2:
+                timeWrongAnswers2 = timeDiff2 + count2
+                return HttpResponse(timeWrongAnswers2)
+            else:
+                timeWrongAnswers2 = timeDiff2 + count2
+                return HttpResponse('Test Ended')
+    return render (request,"primary/rpdNamingObjTstB.html")
+
+# test 3 - A
+@login_required(login_url="/primary/login")
+def rpdNamingLtrTst(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global stime3
+    global etime3
+    global num3
+    global ltrTest_id
+    global timeWrongAnswers3
+    if request.POST.get("formtype3"):
+        reason = request.POST["submitTst"]
+        testResult = RpdNamingLtrs_Score.objects.create(student_id = student_instance, startT_A = stime3, endT_A = etime3, wrongAns_A = num3, reason_A = reason)
+        testResult.save()
+        ltrTest_id = testResult.pk
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingLtrTstB")
+        else:
+            return redirect(reverse('primary:testsPage'))
+        
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            stime3 = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            etime3 = datetime.now()
+            num3 = 0
+            timeDiff3 = (etime3 - stime3).total_seconds()
+            selection3 = request.POST.getlist('selection','')  
+            img3 = []
+            img3.extend(request.POST.getlist('selection',''))
+            count3 = len(img3)
+            num3 = count3
+            if selection3:
+                timeWrongAnswers3 = timeDiff3 + count3
+                return HttpResponse(timeWrongAnswers3)
+            else:
+                timeWrongAnswers3 = timeDiff3 + count3
+                return HttpResponse('Test Ended')
+    return render(request, "primary/rpdNamingLtrTst.html")
+
+# test 3 - B
+@login_required(login_url="/primary/login")
+def rpdNamingLtrTstB(request):
+    global stime4
+    global etime4
+    global num4
+    global timeWrongAnswers4
+    if request.POST.get("formtype3"):
+        reason = request.POST["submitTst"]
+        RpdNamingLtrs_Score.objects.filter(id=ltrTest_id).update(startT_B = stime4, endT_B = etime4, wrongAns_B = num4, reason_B = reason)
+        return redirect("primary:testsPage")
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            stime4 = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            etime4 = datetime.now()
+            num4 = 0
+            timeDiff4 = (etime4 - stime4).total_seconds()
+            print(int(timeDiff4))
+            selection4 = request.POST.getlist('selection','')  
+            img4 = []
+            img4.extend(request.POST.getlist('selection',''))
+            count4 = len(img4)
+            num4 = count4
+            if selection4:
+                timeWrongAnswers4 = timeDiff4 + count4
+                return HttpResponse(timeWrongAnswers4)
+            else:
+                timeWrongAnswers4 = timeDiff4 + count4
+                return HttpResponse('Test Ended')
+    return render (request,"primary/rpdNamingLtrTstB.html")
+
+# test 2
+@login_required(login_url="/primary/login")
+def phonemSyllableTraining(request):
+    return render(request, "primary/phonemSyllableTraining.html")
+
+# test 2
+@login_required(login_url="/primary/login")
+def phonemeSyllableDel(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global counter
+    global endTime
+    global selectionA
+
+    if request.POST.get("form2"):
+        reason = request.POST["submitTst"]
+        testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
+        testResult.save()
+        test_id = testResult.pk
+        return redirect("primary:testsPage")
+    if request.htmx:
+        if request.POST.get("form1"):
+            endTime = datetime.now()
+            selectionA = request.POST.getlist('selection','')  
+            answers = []
+            answers.extend(request.POST.getlist('selection',''))
+            counter = len(answers)
+            print(counter)
+    return render (request,"primary/phonemeSyllableDel.html")
+
+# test 4
+@login_required(login_url="/primary/login")
+def nonWordRepetitionTraining(request):
+    return render(request, "primary/nonWordRepetitionTraining.html")
+
+# test 4
+@login_required(login_url="/primary/login")
+def nonWordRepetition(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global count
+    global date
+    global select
+    if request.POST.get("form2"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordRepetition.objects.create(student_id = student_instance,  correctAns = count, reason = reasonDropDown , date=date)
+        testResult.save()
+        test_id = testResult.pk
+        return redirect("primary:testsPage")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("form1"):
+            date = datetime.now()
+            select = request.POST.getlist('selection','')  
+            choices = []
+            choices.extend(request.POST.getlist('selection',''))
+            count = len(choices)
+            if select:
+                print(count)
+                return HttpResponse('Test s')
+            else:
+                return HttpResponse('Test Ended')
+    return render (request,"primary/nonWordRepetition.html")
+
+# test 5
+@login_required(login_url="/primary/login")
+def nonWordReadingAccuracy(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global count
+    global dateTime
+
+    if request.POST.get("dropDownForm"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordReadingAcc.objects.create(student_id = student_instance,  correctAns = count, reason = reasonDropDown , date=dateTime)
+        testResult.save()
+        test_id = testResult.pk
+        return redirect("primary:testsPage")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("qstForm"):
+            dateTime = datetime.now()
+            ans = []
+            ans.extend(request.POST.getlist('selection',''))
+            count = len(ans)
+            print(count)
+    return render (request,"primary/nonWordReadingAccuracy.html")
+
 def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
     rpdNamingLtrs = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
     phonemeSyllDel = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
     nonWordRepetition = NonWordRepetition.objects.filter(student_id = request.session['student'])
+    nonWordReadingAccuracy = NonWordReadingAcc.objects.filter(student_id = request.session['student'])
     global context_obj
     context_obj = {} 
     global context_ltrs
@@ -472,20 +474,21 @@ def testsPage (request):
     context_phoneme = {}
     global context_nonWrdRep
     context_nonWrdRep = {} 
+    global context_nonWrdReading
+    context_nonWrdReading = {} 
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists() or nonWordRepetition.exists()):
+    if (rpdnamingObj.exists() or rpdNamingLtrs.exists() or phonemeSyllDel.exists() or nonWordRepetition.exists() or nonWordReadingAccuracy.exists()):
         RpdNamingObj_Score_obj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
         RpdNamingLtrs_Score_obj = RpdNamingLtrs_Score.objects.filter(student_id = request.session['student'])
         phonemeDel_Score_obj = PhonemeSyllableDel.objects.filter(student_id = request.session['student'])
         nonWordRep_Score_obj = NonWordRepetition.objects.filter(student_id = request.session['student'])
+        nonWordReadingAcc_Score_obj = NonWordReadingAcc.objects.filter(student_id = request.session['student'])
 
         if(RpdNamingObj_Score_obj.exists()):
             
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
-            
             rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
-            
             rpdNOwrongB = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
             
             if ((rpdNOwrongA != None and rpdNOwrongB != None)):
@@ -563,14 +566,23 @@ def testsPage (request):
                 context_phoneme = {"status_nonWrdRep":('غير منجز'), }
         else:
             context_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
+        
+        if(nonWordReadingAcc_Score_obj.exists()):
+            nonWrdReadingCorrectAns = NonWordReadingAcc.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (nonWrdReadingCorrectAns != None):
+                context_nonWrdReading = {"correctAnswers":(nonWrdReadingCorrectAns), "status_nonWrdReading":('منجز '), }
+            else:
+                context_nonWrdReading = {"status_nonWrdReading":('غير منجز'), }
+        else:
+            context_nonWrdReading = {"status_nonWrdReading":('غير منجز'), }
 
-
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"student": student,})
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student": student,})
     else:
         context_obj = { "status_obj":('غير منجز'),}
         context_ltrs = { "status_ltrs":('غير منجز'),}
         context_phoneme = { "status_phoneme":('غير منجز'),}
         context_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
-        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName) })
+        context_nonWrdReading = { "status_nonWrdReading":('غير منجز'),}
+        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName) })
 
     

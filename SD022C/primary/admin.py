@@ -8,4 +8,8 @@ admin.site.register(Examiner)
 admin.site.register(Student)
 admin.site.register(RpdNamingObj_Score)
 admin.site.register(RpdNamingLtrs_Score)
+admin.site.register(PhonemeSyllableDel)
+admin.site.register(NonWordRepetition)
+admin.site.register(NonWordReadingAcc)
+
 

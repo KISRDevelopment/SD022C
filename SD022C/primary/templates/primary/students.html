@@ -6,45 +6,27 @@
     <!-- <a type="button" class="btn" style="float: right; margin-top: 20px; background-color: #99CC00;" href="{% url 'primary:signupStudents' %} ">إضافة طالب جديد  </a> -->
 </div>
 
-<div class="container my-5">
-    <div class="table-responsive fs-5">
-        <table class="table table-striped" style="direction: rtl;">
-            <thead>
-                <tr>
-                    <th>الاسم</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for Students in students %}
-                <tr>
-                    <td>
-                        {{Students.studentName}}
-                    </td>
-                    <td>
-                        <a href="{% url 'primary:startTest' Students.id%}" class=" text-decoration-none color-purple "> الاختبارات</a>
-                    </td>
-                    <td>
-                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none color-purple" ><i class="bi bi-card-list color-purple"></i>  ملف الطالب</a>
-                    </td>
-                    <td>
-                        <a href="#" class=" text-decoration-none color-purple"  data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil color-purple "></i> تحرير </a>
-                    </td>
-                    <td>
-                        <a href="#" class=" text-decoration-none color-purple"  data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill color-purple"></i> حذف</a>
-                    </td>
-                </tr>
-                {%endfor%}
-            </tbody>
-        </table>
-    </div>
-    <div class="form-group">
-        {% for message in messages %}
-        <div class="alert alert-danger" role="alert">
-            {{message}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{% url 'primary:search-results' %}" method="get">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="search" class="form-control" name="search" placeholder="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        {% endfor %}
     </div>
 </div>
+
+<div id="search-results">
+    {% include "primary/search_results.html" %}
+</div>
+
+
 
 <!--modal for the delete part-->
 {% for Students in students %}
@@ -175,6 +157,4 @@
 
     </form>
 </div>
-{%endfor%}
-{%endblock%}
-
+{%endfor%} {%endblock%}

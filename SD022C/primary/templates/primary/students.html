@@ -22,9 +22,47 @@
     </div>
 </div>
 
-<div id="search-results">
-    {% include "primary/search_results.html" %}
+{% if students %}
+<div class="container my-5">
+    <div class="table-responsive fs-5">
+        <table class="table table-striped" style="direction: rtl;">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Students in students %}
+                <tr>
+                    <td>
+                        {{Students.studentName}}
+                    </td>
+                    <td>
+                        <a href="{% url 'primary:startTest' Students.id%}" class=" text-decoration-none color-purple "> الاختبارات</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none color-purple"><i class="bi bi-card-list color-purple"></i>  ملف الطالب</a>
+                    </td>
+                    <td>
+                        <a href="#" class=" text-decoration-none color-purple" data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil color-purple "></i> تحرير </a>
+                    </td>
+                    <td>
+                        <a href="#" class=" text-decoration-none color-purple" data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill color-purple"></i> حذف</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group">
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
 </div>
+{% endif %}
 
 
 

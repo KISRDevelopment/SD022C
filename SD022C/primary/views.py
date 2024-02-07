@@ -123,6 +123,21 @@ def students (request):
         "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage)
     })
 
+def search_results(request):
+    print("inside search_results")
+    query = request.GET.get('search', '')
+    print(f'"query = {query }"')
+
+    all_students = Student.objects.filter(examiner_id=request.user.id)
+    if query:
+        students = all_students.filter(civilID__icontains=query)
+        print(f'"Student at query {students}')
+    else:
+        students = []
+        print(f'"Students at else {students}"')
+    context={'students': students}
+    return render(request, 'primary/students.html', context)
+
 @login_required(login_url="/primary/login")
 def delete(request, id):
     userAccount = User.objects.filter(id=id)

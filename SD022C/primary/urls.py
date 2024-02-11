@@ -41,4 +41,5 @@ urlpatterns = [
     path('nonWordRepetitionTraining/', views.nonWordRepetitionTraining, name='nonWordRepetitionTraining'),
     path('nonWordRepetition/<int:id>', views.nonWordRepetition, name='nonWordRepetition'),
     path('nonWordRepetition/', views.nonWordRepetition, name='nonWordRepetition'),
+    path('search/results', views.search_results, name='search-results')
 ]

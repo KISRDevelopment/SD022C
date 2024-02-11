@@ -6,6 +6,23 @@
     <!-- <a type="button" class="btn" style="float: right; margin-top: 20px; background-color: #99CC00;" href="{% url 'primary:signupStudents' %} ">إضافة طالب جديد  </a> -->
 </div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form action="{% url 'primary:search-results' %}" method="get">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="search" class="form-control" name="search" placeholder="ادخل الرقم المدني للبحث عن الطالب">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"> <i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if students %}
 <div class="container my-5">
     <div class="table-responsive fs-5">
         <table class="table table-striped" style="direction: rtl;">
@@ -24,13 +41,13 @@
                         <a href="{% url 'primary:startTest' Students.id%}" class=" text-decoration-none color-purple "> الاختبارات</a>
                     </td>
                     <td>
-                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none color-purple" ><i class="bi bi-card-list color-purple"></i>  ملف الطالب</a>
+                        <a href="{% url 'primary:studentProfile' Students.id%}" class=" text-decoration-none color-purple"><i class="bi bi-card-list color-purple"></i>  ملف الطالب</a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none color-purple"  data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil color-purple "></i> تحرير </a>
+                        <a href="#" class=" text-decoration-none color-purple" data-toggle="modal" data-target="#ModalEdit{{Students.id}}"><i class="bi bi-pencil color-purple "></i> تحرير </a>
                     </td>
                     <td>
-                        <a href="#" class=" text-decoration-none color-purple"  data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill color-purple"></i> حذف</a>
+                        <a href="#" class=" text-decoration-none color-purple" data-toggle="modal" data-target="#Modal{{Students.id}}"><i class="bi bi-trash-fill color-purple"></i> حذف</a>
                     </td>
                 </tr>
                 {%endfor%}
@@ -45,6 +62,9 @@
         {% endfor %}
     </div>
 </div>
+{% endif %}
+
+
 
 <!--modal for the delete part-->
 {% for Students in students %}
@@ -175,6 +195,4 @@
 
     </form>
 </div>
-{%endfor%}
-{%endblock%}
-
+{%endfor%} {%endblock%}

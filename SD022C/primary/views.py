@@ -599,5 +599,9 @@ def testsPage (request):
         context_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
         context_nonWrdReading = { "status_nonWrdReading":('غير منجز'),}
         return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName) })
+    
+@login_required(login_url="/primary/login")
+def showScores(request):
+    return render(request, "primary/showScores.html")
 
     

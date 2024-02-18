@@ -602,6 +602,8 @@ def testsPage (request):
     
 @login_required(login_url="/primary/login")
 def showScores(request):
-    return render(request, "primary/showScores.html")
+    examiner = Examiner.objects.get(user_id=request.user.id)
+    return render(request, "primary/showScores.html", {
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name})
 
     

@@ -10,8 +10,8 @@
     </div>
     <div class="container" style="direction: rtl;">
         <p class="text-m-b fs-3" style="margin-bottom: 10px;">الطالب : {{student}}</p>
-        {% if context_obj.status_obj == "منجز" and context_ltrs.status_ltrs == "منجز" and context_phoneme.status_phoneme == "منجز" and context_nonWrdRep.status_nonWrdRep == "منجز" and context_nonWrdReading.status_nonWrdReading == "منجز"%}
-        <a><button class="btn" style="font-weight: bold;" href="{% url 'primary:showScores'%}" type="submit" class="btn-outline-p"> عرض الدرجات</button></a> {% else %}
+        {% if context_obj.status_obj == "منجز " and context_ltrs.status_ltrs == "منجز " and context_phoneme.status_phoneme == "منجز " and context_nonWrdRep.status_nonWrdRep == "منجز " and context_nonWrdReading.status_nonWrdReading == "منجز "%}
+        <a href="{% url 'primary:showScores'%}"><button class="btn" style="font-weight: bold;" type="submit" class="btn-outline-p"> عرض الدرجات</button></a> {% else %}
         <button class="btn" disabled="disabled" style="font-weight: bold;" href="#" type="submit" class="btn-outline-p"> عرض الدرجات</button> {% endif %}
         <button class="btn" disabled="disabled" style="font-weight: bold;" href="#" type="submit" class="btn-outline-p"> عرض النتائج والتوصيات</button>
         <div class="table-responsive ">

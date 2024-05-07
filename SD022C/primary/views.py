@@ -168,13 +168,13 @@ def editStudent(request, id):
         grade = request.POST['grade']
         eduDistrict = request.POST['eduDistrict']
         nationality = request.POST['nationality']
-        
+        examDate_str = request.POST['examDate']
         birthDate_str = request.POST['birthDate']
 
         user = Student.objects.filter(id=id)
         userAccount = Student.objects.filter(examiner_id=id)
 
-        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthDate_str)
+        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthDate_str, examDate=examDate_str)
 
         return redirect(reverse('primary:students'))
     else:

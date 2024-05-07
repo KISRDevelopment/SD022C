@@ -173,9 +173,12 @@
                             </select>
                         </div>
                         <div class="form-group mb-3">
+                            <label for="examDate" class="text-m-b">تاريخ اجراء الاختبار </label>
+                            <input type="date" class="form-control" name="examDate" id="examDate" value="{{Students.examDate|date:'Y-m-d'}}" Required>
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="birthDate" class="text-m-b">تاريخ ميلاد المفحوص</label>
                             <input type="date" class="form-control" name="birthDate" id="birthDate" value="{{Students.birthDate|date:'Y-m-d'}}" Required>
-
                         </div>
                         <div class="form-group mb-3">
                             <label for="nationality" class="text-m-b">الجنسية </label>

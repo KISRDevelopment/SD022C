@@ -92,6 +92,78 @@
     </div>
 </div>
 
+<div class="container-box card-signin" style="width: 1000px;margin-top: 2%">
+    <div class="card-body">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right; direction: rtl;">
+            {% csrf_token%}
+            <div class="row g-3 mx-auto" style="width: 700px;">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title text-lg-purple w-100" style="text-align: right;"> الجزاء (ب): الاختبارات الفرعية: </h2>
+                </div>
 
+
+                <div class="d-grid mx-auto">
+                    <table>
+                        <tr>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;"> اسم الاختبار</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الزمن بالثواني</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الدرجة الخام</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">النسبة المئينية</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الدرجة المعيارية المعدلة</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white; background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">1 - اختبار التسمية السريعة الأشكال</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">2 - اختبار حذف المقاطع والأصوات</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">3 - اختبار التسمية السريعة للحروف</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">4 - اختبار تكرار الكلمات غير الحقيقية</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">5 - اختبار دقة قراءة الكلمات غير الحقيقية</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background-color: #d3d0d3;border-radius: 0%;direction: rtl;height: 25px; text-align: left;"> الزمن الكلي، والدرجة الكلية: </td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+
+                    </table>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
 
 {%endblock%}

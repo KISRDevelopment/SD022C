@@ -57,13 +57,42 @@ def signupStudents (request):
         nationality = request.POST['nationality']
         examDate  = request.POST['examDate']
         birthDate = request.POST['birthDate']
-
+        
+        #calculate age
         examdate = datetime.strptime(request.POST['examDate'], '%Y-%m-%d')
         birthdate = datetime.strptime(request.POST['birthDate'], '%Y-%m-%d')
 
-        delta = relativedelta.relativedelta(examdate, birthdate)
-        print(delta.years, 'Years,', delta.months, 'months,', delta.days, 'days')
-        age = str(delta.years) + "/" + str(delta.months) +"/"+str(delta.days)
+        #CCET Manual Method
+        e_Day = examdate.day
+        e_Month = examdate.month
+        e_Year = examdate.year
+        b_Day = birthdate.day
+        b_Month = birthdate.month
+        b_Year = birthdate.year
+
+        if ((e_Day - b_Day) < 0):
+            e_Day = e_Day + 30
+            e_Month = e_Month - 1
+        days = e_Day - b_Day
+        if ((e_Month - b_Month) < 0):
+            e_Month = e_Month + 12
+            e_Year = e_Year - 1
+        months = e_Month - b_Month
+        years = e_Year - b_Year
+
+        #Method 1
+        #delta = relativedelta.relativedelta(examdate, birthdate)
+        #years = delta.years
+        #months = delta.months
+        #days = delta.days
+
+        #Method 2
+        #delta = examdate-birthdate  #total age in days = delat.days
+        #years = math.floor(delta.days/365)    #calculate years
+        #months = math.floor(((delta.days/365)%1)*12)  #calculate months
+        #days = math.floor(((((delta.days/365)%1)*12)%1)*30)   #calculate days
+
+        age = str(years) + "/" + str(months) +"/"+str(days)
 
         if Student.objects.filter(civilID=civilID).exists():
             messages.info(request, 'لقد تم تسجيل الطالب مسبقاً')
@@ -174,7 +203,31 @@ def editStudent(request, id):
         user = Student.objects.filter(id=id)
         userAccount = Student.objects.filter(examiner_id=id)
 
-        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthDate_str, examDate=examDate_str)
+        #Update Age
+        examdate = datetime.strptime(request.POST['examDate'], '%Y-%m-%d')
+        birthdate = datetime.strptime(request.POST['birthDate'], '%Y-%m-%d')
+
+        e_Day = examdate.day
+        e_Month = examdate.month
+        e_Year = examdate.year
+        b_Day = birthdate.day
+        b_Month = birthdate.month
+        b_Year = birthdate.year
+
+        if ((e_Day - b_Day) < 0):
+            e_Day = e_Day + 30
+            e_Month = e_Month - 1
+        days = e_Day - b_Day
+        if ((e_Month - b_Month) < 0):
+            e_Month = e_Month + 12
+            e_Year = e_Year - 1
+        months = e_Month - b_Month
+        years = e_Year - b_Year
+
+        age = str(years) + "/" + str(months) +"/"+str(days)
+        print ("Age: ",age)
+
+        user.update(studentName=studentName, sex=sex, schoolName=schoolName, grade=grade, eduDistrict=eduDistrict , nationality=nationality, birthDate=birthDate_str, examDate=examDate_str,age=age)
 
         return redirect(reverse('primary:students'))
     else:

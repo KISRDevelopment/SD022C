@@ -15,6 +15,16 @@ from datetime import datetime
 from dateutil import relativedelta
 
 # Create your views here.
+global context_obj
+context_obj = {} 
+global context_ltrs
+context_ltrs = {}
+global context_phoneme
+context_phoneme = {}
+global context_nonWrdRep
+context_nonWrdRep = {} 
+global context_nonWrdReading
+context_nonWrdReading = {} 
 
 def index (request):
     return render (request,"primary/index.html")
@@ -652,5 +662,11 @@ def testsPage (request):
         context_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
         context_nonWrdReading = { "status_nonWrdReading":('غير منجز'),}
         return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName) })
+    
+@login_required(login_url="/primary/login")
+def showScores(request):
+    examiner = Examiner.objects.get(user_id=request.user.id)
+    return render(request, "primary/showScores.html", {
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})
 
     

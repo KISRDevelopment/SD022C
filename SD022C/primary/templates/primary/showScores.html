@@ -1,0 +1,169 @@
+{%extends 'primary/base.html'%} {%load static%} {%block content%}
+
+<div class="container-box card-signin" style="width: 1000px;">
+    <div class="card-body">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right; direction: rtl;">
+            {% csrf_token%}
+            <div class="row g-3 mx-auto" style="width: 700px;">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title text-lg-purple w-100" style="text-align: right;"> الجزء (أ): البيانات الشخصية:</h2>
+                </div>
+
+                <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="studentName" class=""> اسم المفحوص رباعيا: </label>
+                    <input type="text" class="form-control " name="studentName" id="studentName" value="{{students.studentName}}" disabled>
+                </div>
+
+                <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="sex" class="p-3"> جنس المفحوص:</label>
+                    <label for="sex" class="p-2"> ذكر </label> {% if students.sex == "male" %}
+                    <input type="checkbox" checked="true" disabled="disabled"> {% else %}
+                    <input type="checkbox" disabled="disabled"> {%endif%}
+                    <label for="sex" class="p-2"> أنثى </label> {% if students.sex == "female" %}
+                    <input type="checkbox" checked="true" disabled="disabled"> {% else %}
+                    <input type="checkbox" disabled="disabled"> {% endif %}
+
+                </div>
+
+                <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="schoolName" class=""> اسم المدرسة:</label>
+                    <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{students.schoolName}}" disabled>
+                </div>
+
+                <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="grade" class=""> الصف الدراسي:</label>
+                    <input type="text" class="form-control" name="schoolName" id="schoolName" value="{{students.grade}}" disabled>
+                </div>
+
+                <div class="col-md" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="eduDistrict" class=""> المنطقة التعليمية:</label>
+                    <input type="text" class="form-control" name="eduDistrict" id="eduDistrict" value="{{students.eduDistrict}}" disabled>
+                </div>
+
+                <div class="form-group mb-3" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="nationality" class="p-2">  الجنسية:  </label>
+                    <input type="text" class="form-control" name="nationality" id="nationality" value="{{students.nationality}}" disabled>
+                </div>
+
+                <div class="d-grid mx-auto">
+                    <table>
+                        <tr>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px;"> </th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">اليوم</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الشهر</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">السنة</th>
+                        </tr>
+                        <tr>
+                            <td>تاريخ إجراء الاختبار:</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{students.examDate|date:'d'}}</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{students.examDate|date:'m'}}</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{students.examDate|date:'Y'}}</td>
+                        </tr>
+                        <tr>
+                            <td>تاريخ ميلاد المفحوص:</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{students.birthDate|date:'d'}}</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{students.birthDate|date:'m'}}</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{students.birthDate|date:'Y'}}</td>
+                        </tr>
+                        <tr>
+                            <td>العمر:</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;"></td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;"></td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;"></td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+
+
+                <div class="form-group mb-3" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
+                    <label for="Examiner" class=""> اسم الفاحص:  </label>
+                    <input type="text" class="form-control" name="Examiner" id="Examiner" value="{{examinerName}}" disabled>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container-box card-signin" style="width: 1000px;margin-top: 2%">
+    <div class="card-body">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right; direction: rtl;">
+            {% csrf_token%}
+            <div class="row g-3 mx-auto" style="width: 700px;">
+                <div class="modal-header p-4">
+                    <h2 class="modal-title text-lg-purple w-100" style="text-align: right;"> الجزء (ب): الاختبارات الفرعية: </h2>
+                </div>
+
+
+                <div class="d-grid mx-auto">
+                    <table>
+                        <tr>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;"> اسم الاختبار</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الزمن بالثواني</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الدرجة الخام</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">النسبة المئينية</th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الدرجة المعيارية المعدلة</th>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white; background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">1 - اختبار التسمية السريعة الأشكال</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.totalScore_obj}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.totalScore_obj}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">2 - اختبار حذف المقاطع والأصوات</td>
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_phoneme.correctAnswers}} </td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">3 - اختبار التسمية السريعة للحروف</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_ltrs.totalScore_ltr}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_ltrs.totalScore_ltr}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">4 - اختبار تكرار الكلمات غير الحقيقية</td>
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdRep.correctAnswers}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">5 - اختبار دقة قراءة الكلمات غير الحقيقية</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdReading.correctAnswers}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdReading.correctAnswers}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background-color: #d3d0d3;border-radius: 0%;direction: rtl;height: 25px; text-align: left;"> الزمن الكلي، والدرجة الكلية: </td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.totalScore_obj|add:context_ltrs.totalScore_ltr|add:context_nonWrdReading.correctAnswers}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.totalScore_obj|add:context_phoneme.correctAnswers|add:context_ltrs.totalScore_ltr|add:context_nonWrdRep.correctAnswers|add:context_nonWrdReading.correctAnswers}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                        </tr>
+
+                    </table>
+                </div>
+
+
+
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+{%endblock%}

@@ -75,7 +75,7 @@
                     <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-light fs-4"> المستخدمين </a></li>
                 {% else %}
                     <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-light fs-4"> الطلاب </a></li>
-                    {% if stage == "SECNDARY" or stage == "BOTH" %}
+                    {% if stage == "SECONDARY" or stage == "BOTH" %}
                         <li class="nav-link mx-3"><a href="" class="nav-link text-light fs-4"> اختبارات المرحلة المتوسطة </a></li>
                     {% endif %}
                     {% if stage == "PRIMARY" or stage == "BOTH" %}

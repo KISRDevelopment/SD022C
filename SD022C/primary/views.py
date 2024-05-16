@@ -113,7 +113,9 @@ def signupStudents (request):
             return redirect("primary:students")
         
     else:
-        return render (request,"primary/signupStudents.html")
+        return render (request,"primary/signupStudents.html", {
+           "stage": (Examiner.objects.get(user_id=request.user.id).stage)
+    })
     
 def login (request):
     if request.method == "POST":

@@ -681,4 +681,8 @@ def showScores(request):
     return render(request, "primary/showScores.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})
 
-    
+
+# Secondary: test 1
+@login_required(login_url="/primary/login")
+def phonemeSyllableTrainSec(request):
+    return render(request, "primary/phonemeSyllableTrainSec.html")   

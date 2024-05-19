@@ -43,5 +43,7 @@ urlpatterns = [
     path('nonWordRepetition/', views.nonWordRepetition, name='nonWordRepetition'),
     path('search/results', views.search_results, name='search-results'),
     path('showScores/', views.showScores, name='showScores'),
-    path('testsPageSec/', views.testsPageSec, name='testsPageSec')
+    path('testsPageSec/', views.testsPageSec, name='testsPageSec'),
+    path('phonemeSyllableTrainSec/<int:id>', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'),
+    path('phonemeSyllableTrainSec/', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'),
 ]

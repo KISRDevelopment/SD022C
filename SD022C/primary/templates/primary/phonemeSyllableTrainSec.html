@@ -1,0 +1,51 @@
+{%extends 'primary/base.html'%} {%load static%} {%block content%}
+<audio controls id="audio" hidden="hidden"></audio>
+
+<div class="container">
+    <div class="text-lg-purple fs-2 mb-5 ">  اختبار حذف المقاطع الأصوات - الفقرات التدريبية  </div>
+    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:#568203;">
+        <div class=" d-grid" style="margin-top:10px; padding-right: 30px;" >
+            <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
+        </div>
+        <div class="card-body text-center" id="questions" >   
+            <table class="table table-bordered" style="direction: rtl; font-size: 20px; border-color:#CC99CC;">
+                <thead>
+                    <tr>
+                        <th style="background-color:#CC99CC">الفقرات التدريبية</th>
+                        <th style="background-color:#CC99CC; text-align: center;">الاجابه الصحيحة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th >قل: جَبَلْ.   <a value="a" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> الان قل: جَبَلْ من غير أن تقول : جَـ<a type="button" value="b" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th> 
+                        <td style="text-align: center;"> بَلْ </td>
+                    </tr>
+                    <tr>
+                        <th> قل: عَبْدْ.   <a type="button" value="c" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> عَبْدْ. الان قل: عَبْدْ من غير أن تقول : / بْـ /.<a type="button" value="d" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td style="text-align: center;"> عَدْ </td>
+                    </tr>
+                    <tr>
+                        <th>قل: بَطْريقْ  <a type="button" value="e" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>الان قل: بَطْريقْ من غير أن تقول ريق <a type="button" value="f" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                          <td style="text-align: center;"> ْبَط </td>
+                    </tr>
+                    <tr>
+                        <th> قل: أَجْمَلْ.  <a type="button" value="g" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>  الآن قل: أَجْمَلْ من غير أن تقول: / جْـ /.  <a type="button" value="h" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a> </th>
+                        <td style="text-align: center;"> أَمَلْ </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a type="submit" href="{% url 'primary:phonemeSyllableDel' %}" class="btn-light-purple text-decoration-none">بدء الاختبار</a>
+        </div>
+    </div> 
+</div>
+
+<script>
+    function playAudio(btn){
+
+    audio.src = "/static/audios/" + btn.getAttribute('value') + ".mp3";
+    audio.play();
+    btn.style.color = "blue";
+    }
+</script>
+
+{%endblock%}

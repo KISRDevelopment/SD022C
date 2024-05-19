@@ -31,15 +31,29 @@
                 <div class="col-md-6">
                     <label for="grade" class="text-m-b"> الصف الدراسي</label>
                     <select name="grade" class="form-select fs-5" id="grade" Required>
-                        <option value="">اختر</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
+                        {%if stage == "PRIMARY"%}
+                            <option value="">اختر</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        {%elif stage == "SECONDARY"%}
+                            <option value="">اختر</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        {%elif stage == "BOTH"%}
+                            <option value="">اختر</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        {%endif%}
                     </select>
                 </div>
                 <div class="col-md-6">

@@ -53,4 +53,5 @@ urlpatterns = [
     path('nonWordRepTrainingSec/', views.nonWordRepTrainingSec, name='nonWordRepTrainingSec'),
     path('nonWordRepSec/<int:id>', views.nonWordRepSec, name='nonWordRepSec'),
     path('nonWordRepSec/', views.nonWordRepSec, name='nonWordRepSec'), 
+    path('nonWordReadingAccuracySec/', views.nonWordReadingAccuracySec, name='nonWordReadingAccuracySec'),
 ]

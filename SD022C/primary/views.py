@@ -709,4 +709,9 @@ def nonWordRepTrainingSec(request):
 # Secondary: test 3 
 @login_required(login_url="/primary/login")
 def nonWordRepSec(request):
-    return render(request, "primary/nonWordRepSec.html")
+    return render(request, "primary/nonWordRepSec.html") 
+
+# Secondary: test 5 
+@login_required(login_url="/primary/login")
+def nonWordReadingAccuracySec(request):
+    return render(request, "primary/nonWordReadingAccuracySec.html")

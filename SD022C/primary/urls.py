@@ -47,4 +47,8 @@ urlpatterns = [
     path('phonemeSyllableTrainSec/<int:id>', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'),
     path('phonemeSyllableTrainSec/', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'), 
     path('phonemeSyllableDelSec/', views.phonemeSyllableDelSec, name='phonemeSyllableDelSec'),
+    path('rpdNamingObjSecA/', views.rpdNamingObjSecA, name='rpdNamingObjSecA'),
+    path('rpdNamingObjSecB/', views.rpdNamingObjSecB, name='rpdNamingObjSecB'),
+
+
 ]

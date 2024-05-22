@@ -691,25 +691,12 @@ def phonemeSyllableTrainSec(request):
 def phonemeSyllableDelSec(request):
     return render (request,"primary/phonemeSyllableDelSec.html")
 
+# Secondary: test 2A
+@login_required(login_url="/primary/login")
+def rpdNamingObjSecA(request):
+    return render(request, "primary/rpdNamingObjSecA.html")
 
-"""     student_instance = Student.objects.get(id=request.session['student'])
-    global test_id
-    global counter
-    global endTime
-    global selectionA
-
-    if request.POST.get("form2"):
-        reason = request.POST["submitTst"]
-        testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
-        testResult.save()
-        test_id = testResult.pk
-        return redirect("primary:testsPageSec")
-    if request.htmx:
-        if request.POST.get("form1"):
-            endTime = datetime.now()
-            selectionA = request.POST.getlist('selection','')  
-            answers = []
-            answers.extend(request.POST.getlist('selection',''))
-            counter = len(answers)
-            print(counter) """
-     
+# Secondary: test 2B
+@login_required(login_url="/primary/login")
+def rpdNamingObjSecB(request):
+    return render(request, "primary/rpdNamingObjSecB.html")

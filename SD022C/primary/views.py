@@ -699,4 +699,14 @@ def rpdNamingObjSecA(request):
 # Secondary: test 2B
 @login_required(login_url="/primary/login")
 def rpdNamingObjSecB(request):
-    return render(request, "primary/rpdNamingObjSecB.html")
+    return render(request, "primary/rpdNamingObjSecB.html") 
+
+# Secondary: test 3 training
+@login_required(login_url="/primary/login")
+def nonWordRepTrainingSec(request):
+    return render(request, "primary/nonWordRepTrainingSec.html")
+
+# Secondary: test 3 
+@login_required(login_url="/primary/login")
+def nonWordRepSec(request):
+    return render(request, "primary/nonWordRepSec.html")

@@ -50,5 +50,7 @@ urlpatterns = [
     path('rpdNamingObjSecA/', views.rpdNamingObjSecA, name='rpdNamingObjSecA'),
     path('rpdNamingObjSecB/', views.rpdNamingObjSecB, name='rpdNamingObjSecB'),
     path('nonWordRepTrainingSec/<int:id>', views.nonWordRepTrainingSec, name='nonWordRepTrainingSec'),
-    path('nonWordRepTrainingSec/', views.nonWordRepTrainingSec, name='nonWordRepTrainingSec'), 
+    path('nonWordRepTrainingSec/', views.nonWordRepTrainingSec, name='nonWordRepTrainingSec'),
+    path('nonWordRepSec/<int:id>', views.nonWordRepSec, name='nonWordRepSec'),
+    path('nonWordRepSec/', views.nonWordRepSec, name='nonWordRepSec'), 
 ]

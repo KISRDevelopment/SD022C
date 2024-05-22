@@ -682,7 +682,34 @@ def showScores(request):
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})
 
 
-# Secondary: test 1
+# Secondary: test 1 training
 @login_required(login_url="/primary/login")
 def phonemeSyllableTrainSec(request):
     return render(request, "primary/phonemeSyllableTrainSec.html")   
+# Secondary: test 1 main
+@login_required(login_url="/primary/login")
+def phonemeSyllableDelSec(request):
+    return render (request,"primary/phonemeSyllableDelSec.html")
+
+
+"""     student_instance = Student.objects.get(id=request.session['student'])
+    global test_id
+    global counter
+    global endTime
+    global selectionA
+
+    if request.POST.get("form2"):
+        reason = request.POST["submitTst"]
+        testResult = PhonemeSyllableDel.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=endTime)
+        testResult.save()
+        test_id = testResult.pk
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        if request.POST.get("form1"):
+            endTime = datetime.now()
+            selectionA = request.POST.getlist('selection','')  
+            answers = []
+            answers.extend(request.POST.getlist('selection',''))
+            counter = len(answers)
+            print(counter) """
+     

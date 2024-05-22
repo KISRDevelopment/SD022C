@@ -45,5 +45,6 @@ urlpatterns = [
     path('showScores/', views.showScores, name='showScores'),
     path('testsPageSec/', views.testsPageSec, name='testsPageSec'),
     path('phonemeSyllableTrainSec/<int:id>', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'),
-    path('phonemeSyllableTrainSec/', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'),
+    path('phonemeSyllableTrainSec/', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'), 
+    path('phonemeSyllableDelSec/', views.phonemeSyllableDelSec, name='phonemeSyllableDelSec'),
 ]

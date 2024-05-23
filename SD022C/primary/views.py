@@ -299,8 +299,6 @@ def profile (request):
 def startTest(request,id):
     request.session['student'] = id
     grade = Student.objects.get(id=id).grade
-    print("id= ",id)
-    print("grade: ",grade)
     if grade in ['2','3','4','5']:
         return redirect('primary:testsPage')
     else: #grade in [6,7,8,9]

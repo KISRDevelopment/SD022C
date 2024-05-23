@@ -298,14 +298,14 @@ def profile (request):
 @login_required(login_url="/primary/login")
 def startTest(request,id):
     request.session['student'] = id
-    stage = (Examiner.objects.get(user_id=request.user.id).stage)
-    print(stage)
-    if stage == 'PRIMARY':
+    grade = Student.objects.get(id=id).grade
+    print("id= ",id)
+    print("grade: ",grade)
+    if grade in ['2','3','4','5']:
         return redirect('primary:testsPage')
-    elif stage == 'SECONDARY':
+    else: #grade in [6,7,8,9]
         return redirect('primary:testsPageSec')
-    else:
-        return redirect('primary:testsPage')
+    
 
 # test 1 - A
 @login_required(login_url="/primary/login")

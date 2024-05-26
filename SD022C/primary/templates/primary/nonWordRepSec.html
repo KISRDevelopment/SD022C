@@ -8,7 +8,7 @@
             <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
         </div>
         <div class="container text-center mt-4" style="direction: rtl;">
-            <form hx-post="{% url 'primary:nonWordRepetition' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;">
+            <form hx-post="{% url 'primary:nonWordRepSec' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;">
                 {% csrf_token %}
                 <div class="row" >
                     <div class="col-6">
@@ -198,7 +198,7 @@
                 <div class="col-12" style="align-items: center;" >
                     <span class="input-group-text mx-auto d-grid" style="width:fit-content ;border-color:#CC99CC; background-color:#CC99CC; border-radius: 0%; direction: center; font-size:20px; font-weight:bolder;">الدرجة الكلية  / 23</span>
                     <label class="input-group-text mx-auto d-grid" id="result" style="width:fit-content ; border-color:#CC99CC; border-width: 2px; direction: rtl; font-size:20px; font-weight:bolder;">----</label>
-                    <input id="end" type="submit" name="form1" class=" btn-light-purple d-grid mx-auto " value="تسليم الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 18px; margin-bottom: 20px;">
+                    <input id="end" type="submit" name="form1-3" class=" btn-light-purple d-grid mx-auto " value="تسليم الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 18px; margin-bottom: 20px;">
                 </div>
             </form>        
         </div>
@@ -225,7 +225,7 @@
                     </select>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <input id="submitDropDown" type="submit" name="form2" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
+                    <input id="submitDropDown" type="submit" name="form2-3" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
                 </div>
             </div>
         </div>

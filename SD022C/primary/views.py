@@ -674,9 +674,13 @@ def testsPage (request):
 
 def testsPageSec (request):
     phonemeSyllDelSec = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+    nonWordRepetitionSec = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
     global score_phonemeDel
     score_phonemeDel = {}
+    global score_nonWrdRepSec
+    score_nonWrdRepSec = {}
     student = Student.objects.get(id=request.session['student']).studentName
+
     if (phonemeSyllDelSec.exists()):
         phonemeDel_Score_obj = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
         if(phonemeDel_Score_obj.exists()):
@@ -747,7 +751,31 @@ def nonWordRepTrainingSec(request):
 # Secondary: test 3 
 @login_required(login_url="/primary/login")
 def nonWordRepSec(request):
-    return render(request, "primary/nonWordRepSec.html") 
+    student_instance = Student.objects.get(id=request.session['student'])
+    global testid
+    global cou
+    global datee
+    global selectt
+    if request.POST.get("form2-3"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordRepetitionSec.objects.create(student_id = student_instance,  correctAns = cou, reason = reasonDropDown , date=datee)
+        testResult.save()
+        testid = testResult.pk
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("form1-3"):
+            datee = datetime.now()
+            selectt = request.POST.getlist('selection','')  
+            choices = []
+            choices.extend(request.POST.getlist('selection',''))
+            cou = len(choices)
+            if selectt:
+                print(cou)
+                return HttpResponse('Test s')
+            else:
+                return HttpResponse('Test Ended')
+    return render (request,"primary/nonWordRepSec.html")
 
 # Secondary: test 5 
 @login_required(login_url="/primary/login")

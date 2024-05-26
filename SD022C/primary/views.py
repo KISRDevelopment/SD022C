@@ -685,10 +685,31 @@ def showScores(request):
 # Secondary: test 1 training
 @login_required(login_url="/primary/login")
 def phonemeSyllableTrainSec(request):
-    return render(request, "primary/phonemeSyllableTrainSec.html")   
+    return render(request, "primary/phonemeSyllableTrainSec.html") 
+  
 # Secondary: test 1 main
 @login_required(login_url="/primary/login")
 def phonemeSyllableDelSec(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global testID
+    global counter
+    global dateTime
+    global choices
+
+    if request.POST.get("form2"):
+        reason = request.POST["submitTst"]
+        testResult = PhonemeSyllableDelSec.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=dateTime)
+        testResult.save()
+        testID = testResult.pk
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        if request.POST.get("form1"):
+            dateTime = datetime.now()
+            choices = request.POST.getlist('selection','')  
+            answers = []
+            answers.extend(request.POST.getlist('selection',''))
+            counter = len(answers)
+            print(counter)
     return render (request,"primary/phonemeSyllableDelSec.html")
 
 # Secondary: test 2A

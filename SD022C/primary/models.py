@@ -45,6 +45,7 @@ class Student(models.Model):
         return f"{self.studentName}"
     
 #Test Parts such as part A part B etc (students can take as many tests part and it will be saved)
+#Primary - test 1
 class RpdNamingObj_Score(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
     startT_A = models.DateTimeField(null=True)
@@ -58,7 +59,8 @@ class RpdNamingObj_Score(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.student_id} "
-
+    
+#Primary - test 3
 class RpdNamingLtrs_Score(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
     startT_A = models.DateTimeField(null=True)
@@ -72,7 +74,8 @@ class RpdNamingLtrs_Score(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.student_id} "
-      
+
+#Primary - test 2
 class PhonemeSyllableDel(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
     correctAns = models.IntegerField(null=True)
@@ -81,7 +84,8 @@ class PhonemeSyllableDel(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.test_id.student_id} "
-      
+
+#Primary - test 4
 class NonWordRepetition(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
     correctAns = models.IntegerField(null=True)
@@ -91,11 +95,22 @@ class NonWordRepetition(models.Model):
     def __str__(self):
         return f"{self.id}: {self.test_id.student_id} "
 
+#Primary - test 5
 class NonWordReadingAcc(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
     correctAns = models.IntegerField(null=True)
     reason = models.CharField(max_length=60,null=True)
     date= models.DateTimeField(null=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.test_id.student_id} "
+
+#Middle School - test 1
+class PhonemeSyllableDelSec(models.Model):
+    student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
+    correctAns = models.IntegerField(null=True)
+    reason = models.CharField(max_length=60,null=True)
+    date = models.DateTimeField(null=True)
 
     def __str__(self):
         return f"{self.id}: {self.test_id.student_id} "

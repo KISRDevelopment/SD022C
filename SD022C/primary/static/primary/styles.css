@@ -53,6 +53,18 @@ body{
     font-weight: bolder;
 }
 
+.btn-green{
+    border: none;
+    background-color: rgb(55, 73, 26); 
+    text-align: center;
+    color: white;  
+    height: 45px;
+    width: auto;
+    padding: 5px 10px 5px 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
 /* text button: enabled or disabled*/
 .btn-t-enabled{
     border: none;
@@ -75,6 +87,13 @@ body{
     text-align: center;
     font-size: 40px;
     color: #720e9e;
+    font-weight: bold;
+}
+
+.text-lg-green{
+    text-align: center;
+    font-size: 40px;
+    color: rgb(55, 73, 26);
     font-weight: bold;
 }
 
@@ -138,8 +157,20 @@ ul.list-group-answer li{
     background-color: #568203;
 }
 
+.color-white {
+    color: white;
+}
+
 .color-green {
     color: #568203;
+}
+
+.color-dark-green {
+    color: rgb(55, 73, 26);
+}
+
+.bg-color-dark-green {
+    background-color: rgb(55, 73, 26);
 }
 
 #styleDropDown {

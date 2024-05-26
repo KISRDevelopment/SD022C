@@ -677,12 +677,13 @@ def testsPageSec (request):
     nonWordRepetitionSec = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
     global score_phonemeDel
     score_phonemeDel = {}
-    global score_nonWrdRepSec
-    score_nonWrdRepSec = {}
+    global score_nonWrdRep
+    score_nonWrdRep = {}
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (phonemeSyllDelSec.exists()):
+    if (phonemeSyllDelSec.exists() or nonWordRepetitionSec.exists()):
         phonemeDel_Score_obj = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+        nonWordRep_Score_obj = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
         if(phonemeDel_Score_obj.exists()):
             phonemeSyllDelAns = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
             if (phonemeSyllDelAns != None):
@@ -691,10 +692,20 @@ def testsPageSec (request):
                 score_phonemeDel = {"status_phoneme":('غير منجز'), }
         else:
             score_phonemeDel = {"status_phoneme":('غير منجز'), }
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "student":student})
+        if( nonWordRep_Score_obj.exists()):
+            nonWordRepCorrectAns = NonWordRepetitionSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (nonWordRepCorrectAns != None):
+                score_nonWrdRep = {"correctAnswers":(nonWordRepCorrectAns), "status_nonWrdRep":('منجز '), }
+            else:
+                score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
+        else:
+            score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
+
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,"score_nonWrdRep": score_nonWrdRep, "student":student})
     else:
         score_phonemeDel = { "status_phoneme":('غير منجز'),}
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "student":(Student.objects.get(id=request.session['student']).studentName)})
+        score_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName)})
 
 @login_required(login_url="/primary/login")
 def showScores(request):

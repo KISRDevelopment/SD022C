@@ -59,16 +59,16 @@
                         <td>
                             <a name="rpdNLTst" href="{% url 'primary:nonWordRepTrainingSec' %}" id="nonWordRepetition" type="submit" value="تكرار الكلمات غير الحقيقية" class="btn-t-enabled"> تكرار الكلمات غير الحقيقية</a>
                         </td>
-<!--                         <td style="text-align: center;">
-                            {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.status_ltrs}} {% else %} {{context_ltrs.status_ltrs}} {%endif%}
+                        <td style="text-align: center;">
+                            {%if score_nonWrdRep.correctAnswers != None%} {{score_nonWrdRep.status_nonWrdRep}} {% else %} {{score_nonWrdRep.status_nonWrdRep}} {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.totalScore_ltr}} {% else %} ------- {%endif%}
+                            {%if score_nonWrdRep.correctAnswers != None%} {{score_nonWrdRep.correctAnswers}} {% else %} ------- {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if context_ltrs.rpdNLwrongA != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowLtrs" class="btn-t-enabled"> عرض </a> {% else %}
+                        <td style="text-align: center;">{%if score_nonWrdRep.correctAnswers != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowRep" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -170,8 +170,8 @@
 </div> -->
 
 <!--modal for the show non word repetitions test result-->
-<!-- <div class="modal fade" id="ModalShowRep" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<div class="modal fade" id="ModalShowRep" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -182,7 +182,7 @@
                     <div class="mx-auto" style="width: 400px;">
                         <div class="form-group mb-3">
                             <label class="text-m-b">الدرجة الكلية </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_nonWrdRep.correctAnswers}} /20</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{score_nonWrdRep.correctAnswers}} /23</label>
                         </div>
                     </div>
                 </div>
@@ -193,7 +193,7 @@
         </div>
 
     </form>
-</div> -->
+</div>
 
 <!--modal for the show non word reading accuracy test result-->
 <!-- <div class="modal fade" id="ModalShowReading" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">

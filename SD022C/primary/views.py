@@ -13,6 +13,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
+import pandas as pd
+from primary.utils import return_scores
 
 # Create your views here.
 global context_obj
@@ -677,6 +679,15 @@ def testsPageSec (request):
 
 @login_required(login_url="/primary/login")
 def showScores(request):
+
+    df = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "RNO_Row_grade":[89,68,61,54,50,47,45,43,40,37,33],
+        "RNO_Modified_standard":[46,73,82,90,95,99,102,104,108,112,117],
+    })
+    return_scores(df)
+
     examiner = Examiner.objects.get(user_id=request.user.id)
     return render(request, "primary/showScores.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})

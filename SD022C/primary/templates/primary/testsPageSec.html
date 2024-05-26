@@ -28,17 +28,16 @@
                     <tr>
                         <td>
                             <a name="rpdNOTst" href="{% url 'primary:phonemeSyllableTrainSec' %}" id="phonemeDeletion" type="submit" value="حذف المقاطع والأصوات" class="btn-t-enabled">  حذف المقاطع والأصوات</a>
-                         </td>
-                         <!--
+                         </td>  
                         <td style="text-align: center;">
-                            {%if context_obj.rpdNOwrongA != None%} {{context_obj.status_obj}} {% else %} {{context_obj.status_obj}} {%endif%}
+                            {%if score_phonemeDel.correctAnswers != None%} {{score_phonemeDel.status_phoneme}} {% else %} {{score_phonemeDel.status_phoneme}} {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
+                        <td style="text-align: center;">{%if score_phonemeDel.correctAnswers != None%} {{score_phonemeDel.correctAnswers}} {% else %} ------- {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%}
+                        <td style="text-align: center;">{%if score_phonemeDel.correctAnswers != None%}
                             <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowObj" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                     <tr>
                         <td>

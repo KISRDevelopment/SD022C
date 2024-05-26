@@ -673,7 +673,24 @@ def testsPage (request):
         return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName) })
 
 def testsPageSec (request):
-    return render(request, 'primary/testsPageSec.html' )
+    phonemeSyllDelSec = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+    global score_phonemeDel
+    score_phonemeDel = {}
+    student = Student.objects.get(id=request.session['student']).studentName
+    if (phonemeSyllDelSec.exists()):
+        phonemeDel_Score_obj = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+        if(phonemeDel_Score_obj.exists()):
+            phonemeSyllDelAns = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (phonemeSyllDelAns != None):
+                score_phonemeDel = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
+            else:
+                score_phonemeDel = {"status_phoneme":('غير منجز'), }
+        else:
+            score_phonemeDel = {"status_phoneme":('غير منجز'), }
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "student":student})
+    else:
+        score_phonemeDel = { "status_phoneme":('غير منجز'),}
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "student":(Student.objects.get(id=request.session['student']).studentName)})
 
 @login_required(login_url="/primary/login")
 def showScores(request):

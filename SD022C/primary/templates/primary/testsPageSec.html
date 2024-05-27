@@ -43,17 +43,17 @@
                         <td>
                             <a id="rapidNamingImg" href="{% url 'primary:rpdNamingObjSecA' %}" type="button" class="btn-t-enabled">  التسمية السريعة للصور</a>
                         </td>
-<!--                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.status_phoneme}} {% else %} {{context_phoneme.status_phoneme}} {%endif%}
+                        <td style="text-align: center;">
+                            {%if score_obj.rpdNOwrongA != None%} {{score_obj.status_obj}} {% else %} {{score_obj.status_obj}} {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.correctAnswers}} {% else %} ------- {%endif%}
+                            {%if score_obj.rpdNOwrongA != None%} {{score_obj.totalScore_obj}} {% else %} ------- {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowPhoneme" class="btn-t-enabled"> عرض </a> {% else %}
+                            {%if score_obj.rpdNOwrongA != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowObj" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -119,43 +119,43 @@
     </form>
 </div>
 
-<!--modal for the show OBJ result-->
-<!-- <div class="modal fade" id="ModalShowObj" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<!--modal for the show test 2 OBJ result-->
+<div class="modal fade" id="ModalShowObj" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
                 <div class="modal-header p-4">
-                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتائج اختبار التسمية السريعة للأشكال</h2>
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتائج اختبار التسمية السريعة للصور</h2>
                 </div>
                 <div class="modal-body" style="text-align: right;">
                     <div class="mx-auto" style="width: 400px;">
                         <label class="text-m-b color-purple"> نموذج (أ) </label>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {%if context_obj.rpdNOwrongA != None%}{{context_obj.durationA}} ث {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {%if score_obj.rpdNOwrongA != None%}{{score_obj.durationA}} ث {%endif%}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">عدد الأخطاء </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{context_obj.rpdNOwrongA}}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{score_obj.rpdNOwrongA}}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن مع الأخطاء  </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{context_obj.scoreA}} ثانيه</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{score_obj.scoreA}} ثانيه</label>
                         </div>
                         <br></br>
                         <label class="text-m-b color-purple"> نموذج (ب) </label>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;">{%if context_obj.rpdNOwrongB != None%} {{context_obj.durationB}} ث {%else%} ---- {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;">{%if score_obj.rpdNOwrongB != None%} {{score_obj.durationB}} ث {%else%} ---- {%endif%}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">عدد الأخطاء </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff">{%if context_obj.rpdNOwrongB != None%} {{context_obj.rpdNOwrongB}} {%else%} ---- {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{%if score_obj.rpdNOwrongB != None%} {{score_obj.rpdNOwrongB}} {%else%} ---- {%endif%}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن مع الأخطاء  </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{%if context_obj.rpdNOwrongB != None%} {{context_obj.scoreB}} ثانيه {%else%} ---- {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{%if score_obj.rpdNOwrongB != None%} {{score_obj.scoreB}} ثانيه {%else%} ---- {%endif%}</label>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
         </div>
 
     </form>
-</div> -->
+</div>
 
 <!--modal for the show non word repetitions test result-->
 <div class="modal fade" id="ModalShowRep" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">

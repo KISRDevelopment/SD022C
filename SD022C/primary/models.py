@@ -114,7 +114,22 @@ class PhonemeSyllableDelSec(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.test_id.student_id} "
-    
+
+#Middle School - test 2
+class RpdNamingObjSec(models.Model):
+    student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
+    startT_A = models.DateTimeField(null=True)
+    endT_A = models.DateTimeField(null=True)
+    wrongAns_A = models.IntegerField(null=True)
+    reason_A =models.CharField(max_length=60,null=True)
+    startT_B = models.DateTimeField(null=True)
+    endT_B = models.DateTimeField(null=True)
+    wrongAns_B = models.IntegerField(null=True)
+    reason_B =models.CharField(max_length=60,null=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.student_id} "
+
 #Middle school - test 3
 class NonWordRepetitionSec(models.Model):
     student_id = models.ForeignKey(Student, on_delete = models.CASCADE)

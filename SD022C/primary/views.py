@@ -573,11 +573,9 @@ def testsPage (request):
         nonWordReadingAcc_Score_obj = NonWordReadingAcc.objects.filter(student_id = request.session['student'])
 
         if(RpdNamingObj_Score_obj.exists()):
-            
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
             rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
             rpdNOwrongB = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
-            
             if ((rpdNOwrongA != None and rpdNOwrongB != None)):
 
                 stimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
@@ -674,15 +672,19 @@ def testsPage (request):
 
 def testsPageSec (request):
     phonemeSyllDelSec = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+    rpdnamingObjSec = RpdNamingObjSec.objects.filter(student_id = request.session['student'])
     nonWordRepetitionSec = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
     global score_phonemeDel
     score_phonemeDel = {}
+    global score_obj
+    score_obj = {} 
     global score_nonWrdRep
     score_nonWrdRep = {}
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (phonemeSyllDelSec.exists() or nonWordRepetitionSec.exists()):
+    if (phonemeSyllDelSec.exists() or rpdnamingObjSec.exists() or nonWordRepetitionSec.exists()):
         phonemeDel_Score_obj = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+        RpdNamingObj_Score_obj = RpdNamingObjSec.objects.filter(student_id = request.session['student'])
         nonWordRep_Score_obj = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
         if(phonemeDel_Score_obj.exists()):
             phonemeSyllDelAns = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
@@ -692,6 +694,34 @@ def testsPageSec (request):
                 score_phonemeDel = {"status_phoneme":('غير منجز'), }
         else:
             score_phonemeDel = {"status_phoneme":('غير منجز'), }
+        if (RpdNamingObj_Score_obj.exists()):
+            rpdNOwrongA_A = RpdNamingObjSec.objects.filter(student_id = request.session['student']).latest("id")
+            rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
+            rpdNOwrongB = RpdNamingObjSec.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
+            if ((rpdNOwrongA != None and rpdNOwrongB != None)):
+                sttimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                ettimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                sttimeB=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").startT_B
+                ettimeB=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").endT_B
+                durA=ettimeA-sttimeA
+                durA=round(durA.total_seconds())
+                print(durA)
+                durB=ettimeB-sttimeB
+                durB = round(durB.total_seconds())
+                scrA=rpdNOwrongA+durA
+                scrB=rpdNOwrongB+durB
+                total=scrA+scrB
+                score_obj = {"rpdNOwrongA":(rpdNOwrongA),  "rpdNOwrongB":(rpdNOwrongB), "durationA":(durA),"durationB":(durB) , "scoreA":(scrA) , "scoreB":(scrB), "totalScore_obj":(round(total)), "status_obj":('منجز '),}
+            elif (rpdNOwrongA != None and rpdNOwrongB == None):
+                sttimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                ettimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                durA=ettimeA-sttimeA
+                durA=round(durA.total_seconds())
+                scrA=rpdNOwrongA+durA
+                total=scrA
+                score_obj = {"rpdNOwrongA":(rpdNOwrongA),"durationA":(durA), "totalScore_obj":(round(total)), "scoreA":(scrA),"status_obj":('توقف '),}
+        else:
+            score_obj = {"status_obj":('غير منجز'),}
         if( nonWordRep_Score_obj.exists()):
             nonWordRepCorrectAns = NonWordRepetitionSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
             if (nonWordRepCorrectAns != None):
@@ -701,11 +731,12 @@ def testsPageSec (request):
         else:
             score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
 
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,"score_nonWrdRep": score_nonWrdRep, "student":student})
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep, "student":student})
     else:
         score_phonemeDel = { "status_phoneme":('غير منجز'),}
+        score_obj = { "status_obj":('غير منجز'),}
         score_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName)})
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName)})
 
 @login_required(login_url="/primary/login")
 def showScores(request):
@@ -744,14 +775,77 @@ def phonemeSyllableDelSec(request):
             print(counter)
     return render (request,"primary/phonemeSyllableDelSec.html")
 
-# Secondary: test 2A
+# Secondary: test 2 part A
 @login_required(login_url="/primary/login")
 def rpdNamingObjSecA(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    print(student_instance)
+    global starttime
+    global endtime
+    global timeWrongAns
+    global number
+    global test_id
+    if request.POST.get("form#3"):        
+        reason = request.POST["submitTst"]
+        testResult = RpdNamingObjSec.objects.create(student_id = student_instance, startT_A = starttime, endT_A = endtime, wrongAns_A = number, reason_A = reason)
+        testResult.save()
+        test_id = testResult.pk
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingObjSecB")
+        else:
+            return redirect(reverse('primary:testsPageSec'))
+    if request.htmx:
+        if request.POST.get("form#1"):
+            starttime = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("form#2"):
+            endtime = datetime.now()
+            number = 0
+            timeDif = (endtime - starttime).total_seconds()
+            selectionPartA = request.POST.getlist('selection','')  
+            images = []
+            images.extend(request.POST.getlist('selection',''))
+            counts = len(images)
+            number = count
+            if selectionPartA:
+                timeWrongAns = timeDif + count
+                return HttpResponse(timeWrongAns)
+            else:
+                timeWrongAns = timeDif + counts
+                return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjSecA.html")
 
-# Secondary: test 2B
+# Secondary: test 2 part B
 @login_required(login_url="/primary/login")
 def rpdNamingObjSecB(request):
+    global starttime2
+    global endtime2
+    global number2
+    global timeWrongAns2
+    if request.POST.get("formtype3"):
+        reason = request.POST["submitTst"]
+        RpdNamingObjSec.objects.filter(id=test_id).update(startT_B = starttime2, endT_B = endtime2, wrongAns_B = number2, reason_B = reason)
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            starttime2 = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            endtime2 = datetime.now()
+            number2 = 0
+            timeDif2 = (endtime2 - starttime2).total_seconds()
+            print(int(timeDif2))
+            selection2 = request.POST.getlist('selection','')  
+            images2 = []
+            images2.extend(request.POST.getlist('selection',''))
+            counts2 = len(images2)
+            number2 = counts2
+            if selection2:
+                timeWrongAns2 = timeDif2 + counts2
+                return HttpResponse(timeWrongAns2)
+            else:
+                timeWrongAns2 = timeDif2 + counts2
+                return HttpResponse('Test Ended')
     return render(request, "primary/rpdNamingObjSecB.html") 
 
 # Secondary: test 3 training

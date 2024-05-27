@@ -148,6 +148,16 @@ ul.list-group-answer li{
     padding:10px; 
 }
 
+ul.list-group-green{
+    list-style-type: none;
+}
+ul.list-group-green li{
+    background-color: lightgray; 
+    margin-top: 17px; 
+    height:50px;
+    width:70px;
+    padding: 12px;
+}
 
 .color-purple {
     color: #720e9e;

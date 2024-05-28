@@ -741,8 +741,12 @@ def testsPageSec (request):
 @login_required(login_url="/primary/login")
 def showScores(request):
     examiner = Examiner.objects.get(user_id=request.user.id)
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
     return render(request, "primary/showScores.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student_age_year": year, "student_age_month": month, "student_age_day": day})
 
 
 # Secondary: test 1 training

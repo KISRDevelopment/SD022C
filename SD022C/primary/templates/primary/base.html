@@ -38,7 +38,7 @@
                   {{user}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
-                    <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{% url 'primary:profile' %}" method="POST" id="styleDropDown" value={{Examiners.user_id}} >
+                    <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{% url 'primary:profile' %}" method="POST" id="styleDropDown" value={{Examiners.user_id}}>
                         الحساب
                         <li class="bi bi-person-fill mx-3"></li>
                     </a>
@@ -52,36 +52,41 @@
             <div class="nav justify-content-end">
                 <div class="navbar navbar">
                     <div class="dropdown">
-                        <a class="link-light fs-4 dropdown-toggle text-decoration-none mb-2 mb-lg-0 "href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="link-light fs-4 dropdown-toggle text-decoration-none mb-2 mb-lg-0 " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       الأدلة
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
+                            {% if examiners.stage == "PRIMARY" %}
                             <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/التسمية السريعة للأشكال.pdf'%}" id="styleDropDown">
                                 التسمية السريعة للأشكال
                             </a>
                             <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/التسمية السريعة للحروف.pdf'%}" id="styleDropDown">
                                 التسمية السريعة للحروف
                             </a>
-                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/اختبار دقة قراءة الكلمات غير الحقيقية.pdf'%}"id="styleDropDown">
+                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/اختبار دقة قراءة الكلمات غير الحقيقية.pdf'%}" id="styleDropDown">
                                 اختبار دقة قراءة الكلمات غير الحقيقية
                             </a>
-                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/دليل استخدام الاختبارات.pdf'%}"id="styleDropDown">
+                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/دليل استخدام الاختبارات.pdf'%}" id="styleDropDown">
                                 دليل استخدام الاختبارات
+                            </a> {% elif examiners.stage == "SECONDARY" %}
+                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/‎⁨التسمية السريعة للصور – المرحلة المتوسطة⁩.pdf'%}" id="styleDropDown">
+                                ‎⁨التسمية السريعة للصور – المرحلة المتوسطة⁩
                             </a>
+                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/متوسط -  دقة قراءة الكلمات غير الحقيقية.pdf'%}" id="styleDropDown">
+                                متوسط -  دقة قراءة الكلمات غير الحقيقية
+                            </a> {% endif %}
                         </div>
                     </div>
                 </div>
                 {% if user.is_staff %}
-                    <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-light fs-4"> المستخدمين </a></li>
+                <li class="nav-link mx-3"><a href="{% url 'primary:superusers'%} " class="nav-link text-light fs-4"> المستخدمين </a></li>
                 {% else %}
-                    <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-light fs-4"> الطلاب </a></li>
-                    {% if stage == "SECONDARY" or stage == "BOTH" %}
-                        <li class="nav-link mx-3"><a href="" class="nav-link text-light fs-4"> اختبارات المرحلة المتوسطة </a></li>
-                    {% endif %}
-                    {% if stage == "PRIMARY" or stage == "BOTH" %}
-                        <li class="nav-link mx-3"><a href="{% url 'primary:students'%}" class="nav-link text-light fs-4"> اختبارات المرحلة الابتدائية  </a></li>
-                    {% endif %}
-                {% endif %}
+                <li class="nav-link mx-3"><a href="{% url 'primary:students'%} " class="nav-link text-light fs-4"> الطلاب </a></li>
+                {% if stage == "SECONDARY" or stage == "BOTH" %}
+                <li class="nav-link mx-3"><a href="" class="nav-link text-light fs-4"> اختبارات المرحلة المتوسطة </a></li>
+                {% endif %} {% if stage == "PRIMARY" or stage == "BOTH" %}
+                <li class="nav-link mx-3"><a href="{% url 'primary:students'%}" class="nav-link text-light fs-4"> اختبارات المرحلة الابتدائية  </a></li>
+                {% endif %} {% endif %}
                 <li class="nav-link mx-3"><a href="{% url 'primary:index' %} " class="nav-link active text-light fs-4"> الرئيسية </a></li>
                 </ul>
             </div>

@@ -5,8 +5,8 @@
 
     <div class="text-lg-green fs-2 mb-5"> اختبار التسمية السريعة للصور - نموذج (ب) </div>
 
-    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:rgb(55, 73, 26);">
-        <h2 class="card-title text-center fs-4 p-2" style="color:white; height:45px; background-color:rgb(55, 73, 26);">النموذج (ب)</h2>
+    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:#48611d;">
+        <h2 class="card-title text-center fs-4 p-2" style="color:white; height:45px; background-color:#48611d;">النموذج (ب)</h2>
         <div class="d-grid" style="margin-top:10px; padding-right:30px;">
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjSecB' %}" hx-target="#start" hx-swap="innerText" hx-trigger="click" method="post">
                 {% csrf_token%}
@@ -26,83 +26,83 @@
                 </div>
                 <div class="form-check" style="direction:rtl ;">
                     <input type="checkbox" class="btn-check" id="plane" name="selection" value="plane" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="plane" style="border-color: rgb(55, 73, 26);">طيارة </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="plane" >طيارة </label>
                     <input type="checkbox" class="btn-check" id="car" name="selection" value="car" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="car" style="border-color: rgb(55, 73, 26);">سيارة </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="car" >سيارة </label>
                     <input type="checkbox" class="btn-check" id="compass" value="compass" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="compass" style="border-color: rgb(55, 73, 26);"> فرجار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="compass" > فرجار</label>
                     <input type="checkbox" class="btn-check" id="kd" value="kd" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="kd" style="border-color: rgb(55, 73, 26);"> دينار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="kd" > دينار</label>
                     <input type="checkbox" class="btn-check" id="island" value="island" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="island" style="border-color: rgb(55, 73, 26);"> جزيرة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="island" > جزيرة</label>
                     <input type="checkbox" class="btn-check" id="spout" value="spout" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="spout" style="border-color: rgb(55, 73, 26);"> صنبور</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="spout" > صنبور</label>
                     <input type="checkbox" class="btn-check" id="camel" value="camel" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="camel" style="border-color: rgb(55, 73, 26);"> جمل</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="camel" > جمل</label>
                     <input type="checkbox" class="btn-check" id="train" value="train" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="train" style="border-color: rgb(55, 73, 26);">قطار </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="train" >قطار </label>
                     <input type="checkbox" class="btn-check" id="triangle" value="triangle" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="triangle" style="border-color: rgb(55, 73, 26);"> مثلث</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="triangle" > مثلث</label>
                 </div>
                 <div class="form-check" style="direction:rtl; margin-top: 20px">
                     <input type="checkbox" class="btn-check" id="pineapple" value="pineapple" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="pineapple" style="border-color: rgb(55, 73, 26);">أناناس </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="pineapple" >أناناس </label>
                     <input type="checkbox" class="btn-check" id="hammer" value="hammer" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="hammer" style="border-color: rgb(55, 73, 26);"> مطرقة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="hammer" > مطرقة</label>
                     <input type="checkbox" class="btn-check" id="secar" value="secar" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="secar" style="border-color: rgb(55, 73, 26);"> مقص</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="secar" > مقص</label>
                     <input type="checkbox" class="btn-check" id="plane2" value="plane2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="plane2" style="border-color: rgb(55, 73, 26);"> طيارة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="plane2" > طيارة</label>
                     <input type="checkbox" class="btn-check" id="train2" value="train2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="train2" style="border-color: rgb(55, 73, 26);"> قطار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="train2" > قطار</label>
                     <input type="checkbox" class="btn-check" id="triangle2" value="triangle2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="triangle2" style="border-color: rgb(55, 73, 26);"> مثلث</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="triangle2" > مثلث</label>
                     <input type="checkbox" class="btn-check" id="car2" value="car2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="car2" style="border-color: rgb(55, 73, 26);"> سيارة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="car2" > سيارة</label>
                     <input type="checkbox" class="btn-check" id="kd2" value="kd2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="kd2" style="border-color: rgb(55, 73, 26);"> دينار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="kd2" > دينار</label>
                     <input type="checkbox" class="btn-check" id="island2" value="island2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="island2" style="border-color: rgb(55, 73, 26);">جزيرة </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="island2" >جزيرة </label>
                 </div>
                 <div class="form-check" style="direction:rtl; margin-top: 20px">
                     <input type="checkbox" class="btn-check" id="pineapple2" value="pineapple2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="pineapple2" style="border-color: rgb(55, 73, 26);">أناناس </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="pineapple2" >أناناس </label>
                     <input type="checkbox" class="btn-check" id="kd3" value="kd3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="kd2" style="border-color: rgb(55, 73, 26);"> دينار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="kd2" > دينار</label>
                     <input type="checkbox" class="btn-check" id="triangle3" value="triangle3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="triangle3" style="border-color: rgb(55, 73, 26);"> مثلث</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="triangle3" > مثلث</label>
                     <input type="checkbox" class="btn-check" id="camel2" value="camel2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="camel2" style="border-color: rgb(55, 73, 26);"> جمل</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="camel2" > جمل</label>
                     <input type="checkbox" class="btn-check" id="hammer2" value="hammer2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="hammer2" style="border-color: rgb(55, 73, 26);"> مطرقة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="hammer2" > مطرقة</label>
                     <input type="checkbox" class="btn-check" id="plane3" value="plane3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="plane3" style="border-color: rgb(55, 73, 26);"> طيارة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="plane3" > طيارة</label>
                     <input type="checkbox" class="btn-check" id="compass2" value="compass2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="compass2" style="border-color: rgb(55, 73, 26);"> فرجار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="compass2" > فرجار</label>
                     <input type="checkbox" class="btn-check" id="spout2" value="spout2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="spout2" style="border-color: rgb(55, 73, 26);"> صنبور</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="spout2" > صنبور</label>
                     <input type="checkbox" class="btn-check" id="secar2" value="secar2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="secar2" style="border-color: rgb(55, 73, 26);">مقص </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="secar2" >مقص </label>
                 </div>
                 <div class="form-check" style="direction:rtl; margin-top: 20px">
                     <input type="checkbox" class="btn-check" id="camel3" value="camel3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="camel3" style="border-color: rgb(55, 73, 26);">جمل </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="camel3" >جمل </label>
                     <input type="checkbox" class="btn-check" id="secar3" value="secar3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="secar3" style="border-color: rgb(55, 73, 26);"> مقص</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="secar3" > مقص</label>
                     <input type="checkbox" class="btn-check" id="car3" value="car3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="car3" style="border-color: rgb(55, 73, 26);"> سيارة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="car3" > سيارة</label>
                     <input type="checkbox" class="btn-check" id="spout3" value="spout3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="spout3" style="border-color: rgb(55, 73, 26);"> صنبور</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="spout3" > صنبور</label>
                     <input type="checkbox" class="btn-check" id="island3" value="island3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="island3" style="border-color: rgb(55, 73, 26);"> جزيرة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="island3" > جزيرة</label>
                     <input type="checkbox" class="btn-check" id="train3" value="train3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="train3" style="border-color: rgb(55, 73, 26);"> قطار</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="train3" > قطار</label>
                     <input type="checkbox" class="btn-check" id="pineapple3" value="pineapple3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="pineapple3" style="border-color: rgb(55, 73, 26);"> أناناس</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="pineapple3" > أناناس</label>
                     <input type="checkbox" class="btn-check" id="hammer3" value="hammer3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="hammer3" style="border-color: rgb(55, 73, 26);"> مطرقة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="hammer3" > مطرقة</label>
                     <input type="checkbox" class="btn-check" id="compass3" value="compass3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="compass3" style="border-color: rgb(55, 73, 26);">فرجار </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="compass3" >فرجار </label>
                 </div>
                 <div style="padding-right: 575px;">
                     <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-green" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
@@ -111,12 +111,12 @@
                 </div>
             </form>
             <div class="col-2 d-grid mx-auto">
-                <span class="input-group-text" style="border-color:rgb(55, 73, 26); background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">الزمن  </span>
-                <label id="result1" style="border-color:rgb(55, 73, 26); background-color: rgb(55, 73, 26);border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;color:white;">----</label>
-                <span class="input-group-text" style="border-color:rgb(55, 73, 26); background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;"> عدد الأخطاء </span>
-                <label id="result2" style="border-color:rgb(55, 73, 26); background-color:rgb(55, 73, 26);border-radius: 0%; font-size:20px; font-weight:bolder;color:white;">0</label>
-                <span class="input-group-text" style="border-color:rgb(55, 73, 26); background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">  الزمن مع الأخطاء </span>
-                <label id="result3" style="border-color:rgb(55, 73, 26); background-color: rgb(55, 73, 26);border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;color:white;">----</label>
+                <span class="input-group-text" style="border-color:#48611d; background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">الزمن  </span>
+                <label id="result1" style="border-color:#48611d; background-color: #48611d;border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;color:white;">----</label>
+                <span class="input-group-text" style="border-color:#48611d; background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;"> عدد الأخطاء </span>
+                <label id="result2" style="border-color:#48611d; background-color:#48611d;border-radius: 0%; font-size:20px; font-weight:bolder;color:white;">0</label>
+                <span class="input-group-text" style="border-color:#48611d; background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">  الزمن مع الأخطاء </span>
+                <label id="result3" style="border-color:#48611d; background-color: #48611d;border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;color:white;">----</label>
             </div>
         </div>
     </div>
@@ -143,7 +143,7 @@
                 <div class="modal-footer flex-nowrap p-0">
                     <!-- <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button> -->
                     <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
-                    <input id="submitDropDown" type="submit" name="formtype3" value=" تسليم الاختبار " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: rgb(55, 73, 26); border-color: rgb(55, 73, 26); ">
+                    <input id="submitDropDown" type="submit" name="formtype3" value=" تسليم الاختبار " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #48611d; border-color: #48611d; ">
                 </div>
             </div>
         </div>

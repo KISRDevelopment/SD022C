@@ -40,6 +40,32 @@ body{
     margin-right: 5px;
 }
 
+/*green-outline button: in-tests*/
+.btn-outline-green{
+    border: 1px solid;
+    border-color: #48611d;
+    border-width: 1px;
+    width: 75px;
+    height: 50px; 
+    color: black; 
+    padding-top: 5px;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+/*green-outline button: tests page*/
+.btn-outline-g{
+    border: solid;
+    border-color: #48611d;
+    border-width: 3px;
+    border-radius: 10px;
+    background-color: white; 
+    color: black; 
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
 /*purple button: in-tests*/
 .btn-light-purple{
     border: none;
@@ -55,7 +81,7 @@ body{
 
 .btn-green{
     border: none;
-    background-color: #45701a; /*TEST THIS COLOR*/
+    background-color: #48611d;
     text-align: center;
     color: white;  
     height: 45px;
@@ -93,7 +119,7 @@ body{
 .text-lg-green{
     text-align: center;
     font-size: 40px;
-    color: rgb(55, 73, 26);
+    color: #48611d;
     font-weight: bold;
 }
 
@@ -152,7 +178,7 @@ ul.list-group-green{
     list-style-type: none;
 }
 ul.list-group-green li{
-    background-color: lightgray; 
+    background-color: #e0f0d2; 
     margin-top: 17px; 
     height:50px;
     width:70px;
@@ -176,11 +202,11 @@ ul.list-group-green li{
 }
 
 .color-dark-green {
-    color: rgb(55, 73, 26);
+    color: #48611d;
 }
 
 .bg-color-dark-green {
-    background-color: rgb(55, 73, 26);
+    background-color: #48611d;
 }
 
 #styleDropDown {

@@ -163,7 +163,7 @@ def superusers (request):
 def students (request):
     request.session['student'] = 0
     return render(request,"primary/students.html", {
-        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage)
+        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage), "examiners": (Examiner.objects.get(user_id=request.user.id))
     })
 
 def search_results(request):
@@ -350,7 +350,8 @@ def rpdNamingObjTst(request):
             else:
                 timeWrongAnswers = timeDiff + count
                 return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingObjTst.html")
+    return render(request, "primary/rpdNamingObjTst.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 1 - B    
 @login_required(login_url="/primary/login")
@@ -386,7 +387,8 @@ def rpdNamingObjTstB(request):
             else:
                 timeWrongAnswers2 = timeDiff2 + count2
                 return HttpResponse('Test Ended')
-    return render (request,"primary/rpdNamingObjTstB.html")
+    return render (request,"primary/rpdNamingObjTstB.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 3 - A
 @login_required(login_url="/primary/login")
@@ -426,7 +428,8 @@ def rpdNamingLtrTst(request):
             else:
                 timeWrongAnswers3 = timeDiff3 + count3
                 return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingLtrTst.html")
+    return render(request, "primary/rpdNamingLtrTst.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 3 - B
 @login_required(login_url="/primary/login")
@@ -459,12 +462,14 @@ def rpdNamingLtrTstB(request):
             else:
                 timeWrongAnswers4 = timeDiff4 + count4
                 return HttpResponse('Test Ended')
-    return render (request,"primary/rpdNamingLtrTstB.html")
+    return render (request,"primary/rpdNamingLtrTstB.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 2
 @login_required(login_url="/primary/login")
 def phonemSyllableTraining(request):
-    return render(request, "primary/phonemSyllableTraining.html")
+    return render(request, "primary/phonemSyllableTraining.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 2
 @login_required(login_url="/primary/login")
@@ -489,12 +494,14 @@ def phonemeSyllableDel(request):
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
             print(counter)
-    return render (request,"primary/phonemeSyllableDel.html")
+    return render (request,"primary/phonemeSyllableDel.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 4
 @login_required(login_url="/primary/login")
 def nonWordRepetitionTraining(request):
-    return render(request, "primary/nonWordRepetitionTraining.html")
+    return render(request, "primary/nonWordRepetitionTraining.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 4
 @login_required(login_url="/primary/login")
@@ -523,7 +530,8 @@ def nonWordRepetition(request):
                 return HttpResponse('Test s')
             else:
                 return HttpResponse('Test Ended')
-    return render (request,"primary/nonWordRepetition.html")
+    return render (request,"primary/nonWordRepetition.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 5
 @login_required(login_url="/primary/login")
@@ -547,7 +555,8 @@ def nonWordReadingAccuracy(request):
             ans.extend(request.POST.getlist('selection',''))
             count = len(ans)
             print(count)
-    return render (request,"primary/nonWordReadingAccuracy.html")
+    return render (request,"primary/nonWordReadingAccuracy.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
@@ -663,14 +672,14 @@ def testsPage (request):
         else:
             context_nonWrdReading = {"status_nonWrdReading":('غير منجز'), }
 
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student": student,})
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student": student, "examiners": (Examiner.objects.get(user_id=request.user.id))})
     else:
         context_obj = { "status_obj":('غير منجز'),}
         context_ltrs = { "status_ltrs":('غير منجز'),}
         context_phoneme = { "status_phoneme":('غير منجز'),}
         context_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
         context_nonWrdReading = { "status_nonWrdReading":('غير منجز'),}
-        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName) })
+        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName), "examiners": (Examiner.objects.get(user_id=request.user.id)) })
 
 def testsPageSec (request):
     phonemeSyllDelSec = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
@@ -733,12 +742,14 @@ def testsPageSec (request):
         else:
             score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
 
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep, "student":student})
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep, "student":student, 
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
     else:
         score_phonemeDel = { "status_phoneme":('غير منجز'),}
         score_obj = { "status_obj":('غير منجز'),}
         score_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName)})
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName), 
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 @login_required(login_url="/primary/login")
 def showScores(request):
@@ -773,14 +784,19 @@ def showScores(request):
 
 
     examiner = Examiner.objects.get(user_id=request.user.id)
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
     return render(request, "primary/showScores.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student_age_year": year, "student_age_month": month, "student_age_day": day, "examiners": examiner})
 
 
 # Secondary: test 1 training
 @login_required(login_url="/primary/login")
 def phonemeSyllableTrainSec(request):
-    return render(request, "primary/phonemeSyllableTrainSec.html") 
+    return render(request, "primary/phonemeSyllableTrainSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)}) 
   
 # Secondary: test 1 main
 @login_required(login_url="/primary/login")
@@ -805,7 +821,8 @@ def phonemeSyllableDelSec(request):
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
             print(counter)
-    return render (request,"primary/phonemeSyllableDelSec.html")
+    return render (request,"primary/phonemeSyllableDelSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # Secondary: test 2 part A
 @login_required(login_url="/primary/login")
@@ -845,7 +862,8 @@ def rpdNamingObjSecA(request):
             else:
                 timeWrongAns = timeDif + counts
                 return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingObjSecA.html")
+    return render(request, "primary/rpdNamingObjSecA.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # Secondary: test 2 part B
 @login_required(login_url="/primary/login")
@@ -878,12 +896,14 @@ def rpdNamingObjSecB(request):
             else:
                 timeWrongAns2 = timeDif2 + counts2
                 return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingObjSecB.html") 
+    return render(request, "primary/rpdNamingObjSecB.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)}) 
 
 # Secondary: test 3 training
 @login_required(login_url="/primary/login")
 def nonWordRepTrainingSec(request):
-    return render(request, "primary/nonWordRepTrainingSec.html")
+    return render(request, "primary/nonWordRepTrainingSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # Secondary: test 3 
 @login_required(login_url="/primary/login")
@@ -912,9 +932,11 @@ def nonWordRepSec(request):
                 return HttpResponse('Test s')
             else:
                 return HttpResponse('Test Ended')
-    return render (request,"primary/nonWordRepSec.html")
+    return render (request,"primary/nonWordRepSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # Secondary: test 5 
 @login_required(login_url="/primary/login")
 def nonWordReadingAccuracySec(request):
-    return render(request, "primary/nonWordReadingAccuracySec.html")
+    return render(request, "primary/nonWordReadingAccuracySec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})

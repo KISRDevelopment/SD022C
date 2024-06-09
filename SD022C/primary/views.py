@@ -690,8 +690,8 @@ def showScores(request):
         "RNL_Modified_standard":[48,70,78,91,96,100,104,106,109,111,115],
         "NWR_Raw_grade":[2,3,4,6,7,8,8,9,10,12,13],
         "NWR_Modified_standard":[71,75,80,88,93,97,97,101,106,114,119],
-        "NWRA_Raw_grade":[0.5,1.2,1.5,1.9,2.3,2.9,4.0,4.6,5.8,8.4,10.3],
-        "NWRA_Modified_standard":[82,85,86,87,89,92,96,99,104,114,122],
+        "NWRA_Raw_grade":[2,4,5,7,9,11,13,15,17,19,22],
+        "NWRA_Modified_standard":[72,77,80,85,90,95,99,104,109,114,122],
     })
     # Add grade_3, grade_4, grade_5 tables
      

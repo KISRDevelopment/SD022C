@@ -13,6 +13,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
+import pandas as pd
+from primary.utils import return_scores
 
 # Create your views here.
 global context_obj
@@ -740,6 +742,36 @@ def testsPageSec (request):
 
 @login_required(login_url="/primary/login")
 def showScores(request):
+    grade_2 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "RNO_Row_grade":[89,68,61,54,50,47,45,43,40,37,33],
+        "RNO_Modified_standard":[46,73,82,90,95,99,102,104,108,112,117],
+        "PSD_Raw_grade":[2,3,4,5,6,7,7,8,9,10,12],
+        "PSD_Modified_standard":[72,77,82,87,92,96,96,101,106,111,121],
+        "RNL_Raw_grade":[94,71,62,49,43,39,35,33,30,28,24],
+        "RNL_Modified_standard":[48,70,78,91,96,100,104,106,109,111,115],
+        "NWR_Raw_grade":[2,3,4,6,7,8,8,9,10,12,13],
+        "NWR_Modified_standard":[71,75,80,88,93,97,97,101,106,114,119],
+        "NWRA_Raw_grade":[2,4,5,7,9,11,13,15,17,19,22],
+        "NWRA_Modified_standard":[72,77,80,85,90,95,99,104,109,114,122],
+    })
+    # Add grade_3, grade_4, grade_5 tables
+     
+    grade = Student.objects.get(id=request.session['student']).grade
+    if (grade == '2'):
+        return_scores(grade_2,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
+   #elif (grade == '3'):
+        #return_scores(grade_3,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
+   #elif (grade == '4'):
+        #return_scores(grade_4,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
+   #elif (grade == '5'):
+        #return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)  
+   
+
+       
+
+
     examiner = Examiner.objects.get(user_id=request.user.id)
     return render(request, "primary/showScores.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})

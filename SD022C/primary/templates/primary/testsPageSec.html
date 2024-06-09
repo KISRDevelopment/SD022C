@@ -196,8 +196,8 @@
 </div>
 
 <!--modal for the show non word reading accuracy test result-->
-<!-- <div class="modal fade" id="ModalShowReading" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<div class="modal fade" id="ModalShowReading" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -208,7 +208,7 @@
                     <div class="mx-auto" style="width: 400px;">
                         <div class="form-group mb-3">
                             <label class="text-m-b">الدرجة الكلية </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_nonWrdReading.correctAnswers}} /25</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{score_nonWrdReadingAcc.correctAnswers}} /30</label>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
             </div>
         </div>
     </form>
-</div> -->
+</div>
 
 <script>
 </script>

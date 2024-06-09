@@ -960,14 +960,14 @@ def nonWordReadingAccuracySec(request):
         testResult = NonWordReadingAccSec.objects.create(student_id = student_instance,  correctAns = cnt, reason = reasonDropDown , date=dateT)
         testResult.save()
         tstid = testResult.pk
-        return redirect("primary:testsPage")
+        return redirect("primary:testsPageSec")
     if request.htmx:
         print('htmx post')
         if request.POST.get("qstForm"):
             dateT = datetime.now()
-            ans = []
-            ans.extend(request.POST.getlist('selection',''))
-            cnt = len(ans)
+            answrs = []
+            answrs.extend(request.POST.getlist('selection',''))
+            cnt = len(answrs)
             print(cnt)
     return render(request, "primary/nonWordReadingAccuracySec.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})

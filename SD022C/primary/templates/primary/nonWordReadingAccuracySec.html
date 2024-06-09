@@ -4,7 +4,7 @@
 <div class="container"> 
     <div class="text-lg-purple fs-2 mb-5">  اختبار دقة قراءة الكلمات غير الحقيقية   </div>  
     <div class="card my-3 mx-auto color-green" style="width:1250px; border-color:#568203;">
-        <form hx-post="{% url 'primary:nonWordReadingAccuracy' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;"  >
+        <form hx-post="{% url 'primary:nonWordReadingAccuracySec' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;"  >
             {% csrf_token%}
             <div class="container text-center mt-4" style="direction: rtl;">
                 <div class="row" >

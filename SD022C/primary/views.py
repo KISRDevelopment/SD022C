@@ -685,18 +685,22 @@ def testsPageSec (request):
     phonemeSyllDelSec = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
     rpdnamingObjSec = RpdNamingObjSec.objects.filter(student_id = request.session['student'])
     nonWordRepetitionSec = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
+    nonWordReadingAccurSec = NonWordReadingAccSec.objects.filter(student_id = request.session['student'])
     global score_phonemeDel
     score_phonemeDel = {}
     global score_obj
     score_obj = {} 
     global score_nonWrdRep
     score_nonWrdRep = {}
+    global score_nonWrdReadingAcc
+    score_nonWrdReadingAcc = {} 
     student = Student.objects.get(id=request.session['student']).studentName
 
-    if (phonemeSyllDelSec.exists() or rpdnamingObjSec.exists() or nonWordRepetitionSec.exists()):
+    if (phonemeSyllDelSec.exists() or rpdnamingObjSec.exists() or nonWordRepetitionSec.exists() or nonWordReadingAccurSec.exists()):
         phonemeDel_Score_obj = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
         RpdNamingObj_Score_obj = RpdNamingObjSec.objects.filter(student_id = request.session['student'])
         nonWordRep_Score_obj = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
+        nonWordReadingAcc_Score_obj = NonWordReadingAccSec.objects.filter(student_id = request.session['student'])
         if(phonemeDel_Score_obj.exists()):
             phonemeSyllDelAns = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
             if (phonemeSyllDelAns != None):
@@ -741,13 +745,21 @@ def testsPageSec (request):
                 score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
         else:
             score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
+        if(nonWordReadingAcc_Score_obj.exists()):
+            nonWrdReadingCrtAns = NonWordReadingAccSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (nonWrdReadingCrtAns != None):
+                score_nonWrdReadingAcc = {"correctAnswers":(nonWrdReadingCrtAns), "status_nonWrdReadingAcc":('منجز '), }
+            else:
+                score_nonWrdReadingAcc = {"status_nonWrdReadingAcc":('غير منجز'), }
+        else:
+            score_nonWrdReadingAcc = {"status_nonWrdReadingAcc":('غير منجز'), }
 
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep, "student":student, 
-        "examiners": Examiner.objects.get(user_id=request.user.id)})
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc ,"student":student, "examiners": Examiner.objects.get(user_id=request.user.id)})
     else:
         score_phonemeDel = { "status_phoneme":('غير منجز'),}
         score_obj = { "status_obj":('غير منجز'),}
         score_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
+        score_nonWrdReadingAcc = { "status_nonWrdReadingAcc":('غير منجز'),}
         return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName), 
         "examiners": Examiner.objects.get(user_id=request.user.id)})
 
@@ -938,5 +950,24 @@ def nonWordRepSec(request):
 # Secondary: test 5 
 @login_required(login_url="/primary/login")
 def nonWordReadingAccuracySec(request):
+    student_instance = Student.objects.get(id=request.session['student'])
+    global tstid
+    global cnt
+    global dateT
+
+    if request.POST.get("dropDownForm"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordReadingAccSec.objects.create(student_id = student_instance,  correctAns = cnt, reason = reasonDropDown , date=dateT)
+        testResult.save()
+        tstid = testResult.pk
+        return redirect("primary:testsPage")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("qstForm"):
+            dateT = datetime.now()
+            ans = []
+            ans.extend(request.POST.getlist('selection',''))
+            cnt = len(ans)
+            print(cnt)
     return render(request, "primary/nonWordReadingAccuracySec.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})

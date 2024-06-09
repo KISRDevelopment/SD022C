@@ -139,3 +139,13 @@ class NonWordRepetitionSec(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.test_id.student_id} "
+    
+#Middle school - test 5
+class NonWordReadingAccSec(models.Model):
+    student_id = models.ForeignKey(Student, on_delete = models.CASCADE)
+    correctAns = models.IntegerField(null=True)
+    reason = models.CharField(max_length=60,null=True)
+    date= models.DateTimeField(null=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.test_id.student_id} "

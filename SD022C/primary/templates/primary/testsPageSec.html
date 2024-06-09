@@ -74,17 +74,17 @@
                         <td>
                             <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWordReadingAccuracySec' %}" type="button" class="btn-t-enabled">دقة قراءة الكلمات غير الحقيقية</a>
                         </td>
-<!--                         <td style="text-align: center;">
-                            {%if context_nonWrdReading.correctAnswers != None%} {{context_nonWrdReading.status_nonWrdReading}} {% else %} {{context_nonWrdReading.status_nonWrdReading}} {%endif%}
+                         <td style="text-align: center;">
+                            {%if score_nonWrdReadingAcc.correctAnswers != None%} {{score_nonWrdReadingAcc.status_nonWrdReadingAcc}} {% else %} {{score_nonWrdReadingAcc.status_nonWrdReadingAcc}} {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_nonWrdReading.correctAnswers != None%} {{context_nonWrdReading.correctAnswers}} {% else %} ------- {%endif%}
+                            {%if score_nonWrdReadingAcc.correctAnswers != None%} {{score_nonWrdReadingAcc.correctAnswers}} {% else %} ------- {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_nonWrdReading.correctAnswers != None%}
+                            {%if score_nonWrdReadingAcc.correctAnswers != None%}
                             <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowReading" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                 </tbody>
             </table>

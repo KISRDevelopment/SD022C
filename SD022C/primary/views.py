@@ -27,6 +27,14 @@ global context_nonWrdRep
 context_nonWrdRep = {} 
 global context_nonWrdReading
 context_nonWrdReading = {} 
+global score_phonemeDel
+score_phonemeDel = {}
+global score_obj
+score_obj = {} 
+global score_nonWrdRep
+score_nonWrdRep = {}
+global score_nonWrdReadingAcc
+score_nonWrdReadingAcc = {} 
 
 def index (request):
     return render (request,"primary/index.html")
@@ -971,3 +979,14 @@ def nonWordReadingAccuracySec(request):
             print(cnt)
     return render(request, "primary/nonWordReadingAccuracySec.html", {
         "examiners": Examiner.objects.get(user_id=request.user.id)})
+
+@login_required(login_url="/primary/login")
+def showScoresSec(request):
+    examiner = Examiner.objects.get(user_id=request.user.id)
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
+    return render(request, "primary/showScoresSec.html", {
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "student_age_year": year, "student_age_month": month, "student_age_day": day, "examiners": examiner})
+

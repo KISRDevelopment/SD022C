@@ -101,36 +101,36 @@
                             <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الدرجة المعيارية المعدلة</th>
                         </tr>
                         <tr>
-                            <td style="border: 4px solid white; background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">1 - اختبار حذف المقاطع والأصوات</td>
+                            <td style="border: 4px solid white; background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;"> اختبار حذف المقاطع والأصوات</td>
                             <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_phonemeDel.correctAnswers}} </td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                         </tr>
                         <tr>
-                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">2 - اختبار التسمية السريعة للصور</td>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;"> اختبار التسمية السريعة للصور</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_obj.totalScore_obj}} </td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_obj.totalScore_obj}} </td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                         </tr>
                         <tr>
-                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">3 - اختبار تكرارالكلمات غير الحقيقية</td>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;"> اختبار تكرار الكلمات غير الحقيقية</td>
                             <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_nonWrdRep.correctAnswers}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                         </tr>
                         <tr>
-                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">4 - اختبار دقة قراءة الكلمات غير الحقيقية </td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_nonWrdReadingAcc.correctAnswers}}</td>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;"> اختبار دقة قراءة الكلمات غير الحقيقية </td>
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_nonWrdReadingAcc.correctAnswers}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                         </tr>
                         <tr>
                             <td style="border: 4px solid white;background-color: #d3d0d3;border-radius: 0%;direction: rtl;height: 25px; text-align: left;"> الزمن الكلي، والدرجة الكلية: </td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_obj.totalScore_obj|add:score_nonWrdReadingAcc.correctAnswers}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_obj.totalScore_obj}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{score_phonemeDel.correctAnswers|add:score_obj.totalScore_obj|add:score_nonWrdRep.correctAnswers|add:score_nonWrdReadingAcc.correctAnswers}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>

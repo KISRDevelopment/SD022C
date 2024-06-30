@@ -8,7 +8,7 @@
             <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
         </div>
         <div class="container text-center mt-4" style="direction: rtl;">
-            <form hx-post="{% url 'primary:nonWordRepetition' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;">
+            <form hx-post="{% url 'primary:nonWordRepSec' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;">
                 {% csrf_token %}
                 <div class="row" >
                     <div class="col-6">
@@ -46,6 +46,7 @@
                                     <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَفَسْمَخُ <a value="4-10"type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
                                     <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">فَتْسَمَنخْ <a value="4-10"type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
                                     <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">كَابْيَكوحِ <a value="4-10"type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
+
                                 </ul>                         
                                 </div>
                                 <div class=" col-4">
@@ -246,7 +247,7 @@
                 document.getElementById('end').click();            
             } 
         }    
-        audio.src = "/static/audios/" + btn.getAttribute('value') + ".mp3";
+        audio.src = "/static/test3Sec/" + btn.getAttribute('value') + ".mp3";
         audio.play();
         btn.style.color = "blue";
     }

@@ -13,6 +13,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
+import pandas as pd
+from primary.utils import return_scores
 
 # Create your views here.
 global context_obj
@@ -25,6 +27,14 @@ global context_nonWrdRep
 context_nonWrdRep = {} 
 global context_nonWrdReading
 context_nonWrdReading = {} 
+global score_phonemeDel
+score_phonemeDel = {}
+global score_obj
+score_obj = {} 
+global score_nonWrdRep
+score_nonWrdRep = {}
+global score_nonWrdReadingAcc
+score_nonWrdReadingAcc = {} 
 
 def index (request):
     return render (request,"primary/index.html")
@@ -161,7 +171,7 @@ def superusers (request):
 def students (request):
     request.session['student'] = 0
     return render(request,"primary/students.html", {
-        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage)
+        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage), "examiners": (Examiner.objects.get(user_id=request.user.id))
     })
 
 def search_results(request):
@@ -348,7 +358,8 @@ def rpdNamingObjTst(request):
             else:
                 timeWrongAnswers = timeDiff + count
                 return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingObjTst.html")
+    return render(request, "primary/rpdNamingObjTst.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 1 - B    
 @login_required(login_url="/primary/login")
@@ -384,7 +395,8 @@ def rpdNamingObjTstB(request):
             else:
                 timeWrongAnswers2 = timeDiff2 + count2
                 return HttpResponse('Test Ended')
-    return render (request,"primary/rpdNamingObjTstB.html")
+    return render (request,"primary/rpdNamingObjTstB.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 3 - A
 @login_required(login_url="/primary/login")
@@ -424,7 +436,8 @@ def rpdNamingLtrTst(request):
             else:
                 timeWrongAnswers3 = timeDiff3 + count3
                 return HttpResponse('Test Ended')
-    return render(request, "primary/rpdNamingLtrTst.html")
+    return render(request, "primary/rpdNamingLtrTst.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 3 - B
 @login_required(login_url="/primary/login")
@@ -457,12 +470,14 @@ def rpdNamingLtrTstB(request):
             else:
                 timeWrongAnswers4 = timeDiff4 + count4
                 return HttpResponse('Test Ended')
-    return render (request,"primary/rpdNamingLtrTstB.html")
+    return render (request,"primary/rpdNamingLtrTstB.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 2
 @login_required(login_url="/primary/login")
 def phonemSyllableTraining(request):
-    return render(request, "primary/phonemSyllableTraining.html")
+    return render(request, "primary/phonemSyllableTraining.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 2
 @login_required(login_url="/primary/login")
@@ -487,12 +502,14 @@ def phonemeSyllableDel(request):
             answers.extend(request.POST.getlist('selection',''))
             counter = len(answers)
             print(counter)
-    return render (request,"primary/phonemeSyllableDel.html")
+    return render (request,"primary/phonemeSyllableDel.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 4
 @login_required(login_url="/primary/login")
 def nonWordRepetitionTraining(request):
-    return render(request, "primary/nonWordRepetitionTraining.html")
+    return render(request, "primary/nonWordRepetitionTraining.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 4
 @login_required(login_url="/primary/login")
@@ -521,7 +538,8 @@ def nonWordRepetition(request):
                 return HttpResponse('Test s')
             else:
                 return HttpResponse('Test Ended')
-    return render (request,"primary/nonWordRepetition.html")
+    return render (request,"primary/nonWordRepetition.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # test 5
 @login_required(login_url="/primary/login")
@@ -545,7 +563,8 @@ def nonWordReadingAccuracy(request):
             ans.extend(request.POST.getlist('selection',''))
             count = len(ans)
             print(count)
-    return render (request,"primary/nonWordReadingAccuracy.html")
+    return render (request,"primary/nonWordReadingAccuracy.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 def testsPage (request):
     rpdnamingObj = RpdNamingObj_Score.objects.filter(student_id = request.session['student'])
@@ -573,11 +592,9 @@ def testsPage (request):
         nonWordReadingAcc_Score_obj = NonWordReadingAcc.objects.filter(student_id = request.session['student'])
 
         if(RpdNamingObj_Score_obj.exists()):
-            
             rpdNOwrongA_A = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id")
             rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
             rpdNOwrongB = RpdNamingObj_Score.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
-            
             if ((rpdNOwrongA != None and rpdNOwrongB != None)):
 
                 stimeA=RpdNamingObj_Score.objects.filter(student_id=request.session['student']).latest("id").startT_A
@@ -663,55 +680,313 @@ def testsPage (request):
         else:
             context_nonWrdReading = {"status_nonWrdReading":('غير منجز'), }
 
-        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student": student,})
+        return render(request, "primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student": student, "examiners": (Examiner.objects.get(user_id=request.user.id))})
     else:
         context_obj = { "status_obj":('غير منجز'),}
         context_ltrs = { "status_ltrs":('غير منجز'),}
         context_phoneme = { "status_phoneme":('غير منجز'),}
         context_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
         context_nonWrdReading = { "status_nonWrdReading":('غير منجز'),}
-        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName) })
+        return render(request,"primary/testsPage.html", {"context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme": context_phoneme, "context_nonWrdRep": context_nonWrdRep, "context_nonWrdReading":context_nonWrdReading,"student":(Student.objects.get(id=request.session['student']).studentName), "examiners": (Examiner.objects.get(user_id=request.user.id)) })
 
 def testsPageSec (request):
-    return render(request, 'primary/testsPageSec.html' )
+    phonemeSyllDelSec = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+    rpdnamingObjSec = RpdNamingObjSec.objects.filter(student_id = request.session['student'])
+    nonWordRepetitionSec = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
+    nonWordReadingAccurSec = NonWordReadingAccSec.objects.filter(student_id = request.session['student'])
+    global score_phonemeDel
+    score_phonemeDel = {}
+    global score_obj
+    score_obj = {} 
+    global score_nonWrdRep
+    score_nonWrdRep = {}
+    global score_nonWrdReadingAcc
+    score_nonWrdReadingAcc = {} 
+    student = Student.objects.get(id=request.session['student']).studentName
+
+    if (phonemeSyllDelSec.exists() or rpdnamingObjSec.exists() or nonWordRepetitionSec.exists() or nonWordReadingAccurSec.exists()):
+        phonemeDel_Score_obj = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student'])
+        RpdNamingObj_Score_obj = RpdNamingObjSec.objects.filter(student_id = request.session['student'])
+        nonWordRep_Score_obj = NonWordRepetitionSec.objects.filter(student_id = request.session['student'])
+        nonWordReadingAcc_Score_obj = NonWordReadingAccSec.objects.filter(student_id = request.session['student'])
+        if(phonemeDel_Score_obj.exists()):
+            phonemeSyllDelAns = PhonemeSyllableDelSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (phonemeSyllDelAns != None):
+                score_phonemeDel = {"correctAnswers":(phonemeSyllDelAns), "status_phoneme":('منجز '), }
+            else:
+                score_phonemeDel = {"status_phoneme":('غير منجز'), }
+        else:
+            score_phonemeDel = {"status_phoneme":('غير منجز'), }
+        if (RpdNamingObj_Score_obj.exists()):
+            rpdNOwrongA_A = RpdNamingObjSec.objects.filter(student_id = request.session['student']).latest("id")
+            rpdNOwrongA = rpdNOwrongA_A.wrongAns_A
+            rpdNOwrongB = RpdNamingObjSec.objects.filter(student_id = request.session['student']).latest("id").wrongAns_B
+            if ((rpdNOwrongA != None and rpdNOwrongB != None)):
+                sttimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                ettimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                sttimeB=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").startT_B
+                ettimeB=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").endT_B
+                durA=ettimeA-sttimeA
+                durA=round(durA.total_seconds())
+                print(durA)
+                durB=ettimeB-sttimeB
+                durB = round(durB.total_seconds())
+                scrA=rpdNOwrongA+durA
+                scrB=rpdNOwrongB+durB
+                total=scrA+scrB
+                score_obj = {"rpdNOwrongA":(rpdNOwrongA),  "rpdNOwrongB":(rpdNOwrongB), "durationA":(durA),"durationB":(durB) , "scoreA":(scrA) , "scoreB":(scrB), "totalScore_obj":(round(total)), "status_obj":('منجز '),}
+            elif (rpdNOwrongA != None and rpdNOwrongB == None):
+                sttimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").startT_A
+                ettimeA=RpdNamingObjSec.objects.filter(student_id=request.session['student']).latest("id").endT_A
+                durA=ettimeA-sttimeA
+                durA=round(durA.total_seconds())
+                scrA=rpdNOwrongA+durA
+                total=scrA
+                score_obj = {"rpdNOwrongA":(rpdNOwrongA),"durationA":(durA), "totalScore_obj":(round(total)), "scoreA":(scrA),"status_obj":('توقف '),}
+        else:
+            score_obj = {"status_obj":('غير منجز'),}
+        if( nonWordRep_Score_obj.exists()):
+            nonWordRepCorrectAns = NonWordRepetitionSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (nonWordRepCorrectAns != None):
+                score_nonWrdRep = {"correctAnswers":(nonWordRepCorrectAns), "status_nonWrdRep":('منجز '), }
+            else:
+                score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
+        else:
+            score_nonWrdRep = {"status_nonWrdRep":('غير منجز'), }
+        if(nonWordReadingAcc_Score_obj.exists()):
+            nonWrdReadingCrtAns = NonWordReadingAccSec.objects.filter(student_id = request.session['student']).latest("id").correctAns
+            if (nonWrdReadingCrtAns != None):
+                score_nonWrdReadingAcc = {"correctAnswers":(nonWrdReadingCrtAns), "status_nonWrdReadingAcc":('منجز '), }
+            else:
+                score_nonWrdReadingAcc = {"status_nonWrdReadingAcc":('غير منجز'), }
+        else:
+            score_nonWrdReadingAcc = {"status_nonWrdReadingAcc":('غير منجز'), }
+
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc ,"student":student, "examiners": Examiner.objects.get(user_id=request.user.id)})
+    else:
+        score_phonemeDel = { "status_phoneme":('غير منجز'),}
+        score_obj = { "status_obj":('غير منجز'),}
+        score_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
+        score_nonWrdReadingAcc = { "status_nonWrdReadingAcc":('غير منجز'),}
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName), 
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 @login_required(login_url="/primary/login")
 def showScores(request):
+    grade_2 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "RNO_Row_grade":[89,68,61,54,50,47,45,43,40,37,33],
+        "RNO_Modified_standard":[46,73,82,90,95,99,102,104,108,112,117],
+        "PSD_Raw_grade":[2,3,4,5,6,7,7,8,9,10,12],
+        "PSD_Modified_standard":[72,77,82,87,92,96,96,101,106,111,121],
+        "RNL_Raw_grade":[94,71,62,49,43,39,35,33,30,28,24],
+        "RNL_Modified_standard":[48,70,78,91,96,100,104,106,109,111,115],
+        "NWR_Raw_grade":[2,3,4,6,7,8,8,9,10,12,13],
+        "NWR_Modified_standard":[71,75,80,88,93,97,97,101,106,114,119],
+        "NWRA_Raw_grade":[2,4,5,7,9,11,13,15,17,19,22],
+        "NWRA_Modified_standard":[72,77,80,85,90,95,99,104,109,114,122],
+    })
+    # Add grade_3, grade_4, grade_5 tables
+     
+    grade = Student.objects.get(id=request.session['student']).grade
+    if (grade == '2'):
+        return_scores(grade_2,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
+   #elif (grade == '3'):
+        #return_scores(grade_3,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
+   #elif (grade == '4'):
+        #return_scores(grade_4,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
+   #elif (grade == '5'):
+        #return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)  
+   
+
+       
+
+
     examiner = Examiner.objects.get(user_id=request.user.id)
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
     return render(request, "primary/showScores.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading})
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading, "student_age_year": year, "student_age_month": month, "student_age_day": day, "examiners": examiner})
 
 
 # Secondary: test 1 training
 @login_required(login_url="/primary/login")
 def phonemeSyllableTrainSec(request):
-    return render(request, "primary/phonemeSyllableTrainSec.html")   
+    return render(request, "primary/phonemeSyllableTrainSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)}) 
+  
 # Secondary: test 1 main
 @login_required(login_url="/primary/login")
 def phonemeSyllableDelSec(request):
-    return render (request,"primary/phonemeSyllableDelSec.html")
+    student_instance = Student.objects.get(id=request.session['student'])
+    global testID
+    global counter
+    global dateTime
+    global choices
 
-# Secondary: test 2A
+    if request.POST.get("form2"):
+        reason = request.POST["submitTst"]
+        testResult = PhonemeSyllableDelSec.objects.create(student_id = student_instance,  correctAns = counter, reason = reason , date=dateTime)
+        testResult.save()
+        testID = testResult.pk
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        if request.POST.get("form1"):
+            dateTime = datetime.now()
+            choices = request.POST.getlist('selection','')  
+            answers = []
+            answers.extend(request.POST.getlist('selection',''))
+            counter = len(answers)
+            print(counter)
+    return render (request,"primary/phonemeSyllableDelSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
+
+# Secondary: test 2 part A
 @login_required(login_url="/primary/login")
 def rpdNamingObjSecA(request):
-    return render(request, "primary/rpdNamingObjSecA.html")
+    student_instance = Student.objects.get(id=request.session['student'])
+    print(student_instance)
+    global starttime
+    global endtime
+    global timeWrongAns
+    global number
+    global test_id
+    if request.POST.get("form#3"):        
+        reason = request.POST["submitTst"]
+        testResult = RpdNamingObjSec.objects.create(student_id = student_instance, startT_A = starttime, endT_A = endtime, wrongAns_A = number, reason_A = reason)
+        testResult.save()
+        test_id = testResult.pk
+        if reason == "تم الانتهاء من بنود الاختبار كلها ":
+            return redirect("primary:rpdNamingObjSecB")
+        else:
+            return redirect(reverse('primary:testsPageSec'))
+    if request.htmx:
+        if request.POST.get("form#1"):
+            starttime = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("form#2"):
+            endtime = datetime.now()
+            number = 0
+            timeDif = (endtime - starttime).total_seconds()
+            selectionPartA = request.POST.getlist('selection','')  
+            images = []
+            images.extend(request.POST.getlist('selection',''))
+            counts = len(images)
+            number = count
+            if selectionPartA:
+                timeWrongAns = timeDif + count
+                return HttpResponse(timeWrongAns)
+            else:
+                timeWrongAns = timeDif + counts
+                return HttpResponse('Test Ended')
+    return render(request, "primary/rpdNamingObjSecA.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
-# Secondary: test 2B
+# Secondary: test 2 part B
 @login_required(login_url="/primary/login")
 def rpdNamingObjSecB(request):
-    return render(request, "primary/rpdNamingObjSecB.html") 
+    global starttime2
+    global endtime2
+    global number2
+    global timeWrongAns2
+    if request.POST.get("formtype3"):
+        reason = request.POST["submitTst"]
+        RpdNamingObjSec.objects.filter(id=test_id).update(startT_B = starttime2, endT_B = endtime2, wrongAns_B = number2, reason_B = reason)
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        if request.POST.get("formtype1"):
+            starttime2 = datetime.now()
+            return HttpResponse('Test Started')
+        if request.POST.get("formtype2"):
+            endtime2 = datetime.now()
+            number2 = 0
+            timeDif2 = (endtime2 - starttime2).total_seconds()
+            print(int(timeDif2))
+            selection2 = request.POST.getlist('selection','')  
+            images2 = []
+            images2.extend(request.POST.getlist('selection',''))
+            counts2 = len(images2)
+            number2 = counts2
+            if selection2:
+                timeWrongAns2 = timeDif2 + counts2
+                return HttpResponse(timeWrongAns2)
+            else:
+                timeWrongAns2 = timeDif2 + counts2
+                return HttpResponse('Test Ended')
+    return render(request, "primary/rpdNamingObjSecB.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)}) 
 
 # Secondary: test 3 training
 @login_required(login_url="/primary/login")
 def nonWordRepTrainingSec(request):
-    return render(request, "primary/nonWordRepTrainingSec.html")
+    return render(request, "primary/nonWordRepTrainingSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # Secondary: test 3 
 @login_required(login_url="/primary/login")
 def nonWordRepSec(request):
-    return render(request, "primary/nonWordRepSec.html") 
+    student_instance = Student.objects.get(id=request.session['student'])
+    global testid
+    global cou
+    global datee
+    global selectt
+    if request.POST.get("form2-3"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordRepetitionSec.objects.create(student_id = student_instance,  correctAns = cou, reason = reasonDropDown , date=datee)
+        testResult.save()
+        testid = testResult.pk
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("form1-3"):
+            datee = datetime.now()
+            selectt = request.POST.getlist('selection','')  
+            choices = []
+            choices.extend(request.POST.getlist('selection',''))
+            cou = len(choices)
+            if selectt:
+                print(cou)
+                return HttpResponse('Test s')
+            else:
+                return HttpResponse('Test Ended')
+    return render (request,"primary/nonWordRepSec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 # Secondary: test 5 
 @login_required(login_url="/primary/login")
 def nonWordReadingAccuracySec(request):
-    return render(request, "primary/nonWordReadingAccuracySec.html")
+    student_instance = Student.objects.get(id=request.session['student'])
+    global tstid
+    global cnt
+    global dateT
+
+    if request.POST.get("dropDownForm"):
+        reasonDropDown = request.POST["submitTst"]
+        testResult = NonWordReadingAccSec.objects.create(student_id = student_instance,  correctAns = cnt, reason = reasonDropDown , date=dateT)
+        testResult.save()
+        tstid = testResult.pk
+        return redirect("primary:testsPageSec")
+    if request.htmx:
+        print('htmx post')
+        if request.POST.get("qstForm"):
+            dateT = datetime.now()
+            answrs = []
+            answrs.extend(request.POST.getlist('selection',''))
+            cnt = len(answrs)
+            print(cnt)
+    return render(request, "primary/nonWordReadingAccuracySec.html", {
+        "examiners": Examiner.objects.get(user_id=request.user.id)})
+
+@login_required(login_url="/primary/login")
+def showScoresSec(request):
+    examiner = Examiner.objects.get(user_id=request.user.id)
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
+    return render(request, "primary/showScoresSec.html", {
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "student_age_year": year, "student_age_month": month, "student_age_day": day, "examiners": examiner})
+

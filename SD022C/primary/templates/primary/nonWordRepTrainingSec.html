@@ -23,7 +23,7 @@
                         <th><a type="button" onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>كَمُهَشِبِ</th>
                     </tr>
                     <tr>
-                        <th><a type="button" onclick="playAudio2()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>خِضاشُ</th>
+                        <th><a type="button" onclick="playAudio3()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>خِضاشُ</th>
                     </tr>
                 </tbody>
             </table>
@@ -34,11 +34,15 @@
 
 <script>
     function playAudio1(){
-        s1 =  new Audio(src="{% static 'audios/4#1.mp3' %}");
+        s1 =  new Audio(src="{% static 'test3Sec/a.mp3' %}");
         s1.play()
     }
     function playAudio2(){
-        s1 =  new Audio(src="{% static 'audios/4#2.mp3' %}");
+        s1 =  new Audio(src="{% static 'test3Sec/b.mp3' %}");
+        s1.play()
+    }
+    function playAudio3(){
+        s1 =  new Audio(src="{% static 'test3Sec/c.mp3' %}");
         s1.play()
     }
 

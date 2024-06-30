@@ -10,8 +10,10 @@
         <div class="d-grid" style="margin-top:10px; padding-right:30px;">
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjSecA' %}" hx-target="#start" hx-swap="innerText" hx-trigger="click" method="post">
                 {% csrf_token%}
+
                 <input type="hidden" name="formtype1" value="true">
                 <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="formtype1" class="btn-green" style="float:right;">
+
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
@@ -106,6 +108,7 @@
                 </div>
                 <div style="padding-right: 575px;">
                     <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-green" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
+
                 </div>
             </form>
             <div class="col-2 d-grid mx-auto">

@@ -10,8 +10,8 @@
     </div>
     <div class="container" style="direction: rtl;">
         <p class="text-m-b fs-3" style="margin-bottom: 10px;">الطالب : {{student}}</p>
-        {% if context_obj.status_obj == "منجز " and context_ltrs.status_ltrs == "منجز " and context_phoneme.status_phoneme == "منجز " and context_nonWrdRep.status_nonWrdRep == "منجز " and context_nonWrdReading.status_nonWrdReading == "منجز "%}
-        <a href="{% url 'primary:showScores'%}" style="font-weight: bold;" type="submit" class="btn-outline-p"> عرض الدرجات </a> {% else %}
+        {% if score_phonemeDel.status_phoneme == "منجز " and score_obj.status_obj == "منجز " and score_nonWrdRep.status_nonWrdRep == "منجز " and score_nonWrdReadingAcc.status_nonWrdReadingAcc == "منجز " %}
+        <a href="{% url 'primary:showScoresSec'%}" style="font-weight: bold;" type="submit" class="btn-outline-p"> عرض الدرجات </a> {% else %}
         <button class="btn" disabled="disabled" style="font-weight: bold;" href="#" type="submit" class="btn-outline-p"> عرض الدرجات</button> {% endif %}
         <button class="btn" disabled="disabled" style="font-weight: bold;" href="#" type="submit" class="btn-outline-p"> عرض النتائج والتوصيات</button>
         <div class="table-responsive ">
@@ -28,64 +28,63 @@
                     <tr>
                         <td>
                             <a name="rpdNOTst" href="{% url 'primary:phonemeSyllableTrainSec' %}" id="phonemeDeletion" type="submit" value="حذف المقاطع والأصوات" class="btn-t-enabled">  حذف المقاطع والأصوات</a>
-                         </td>
-                         <!--
+                        </td>
                         <td style="text-align: center;">
-                            {%if context_obj.rpdNOwrongA != None%} {{context_obj.status_obj}} {% else %} {{context_obj.status_obj}} {%endif%}
+                            {%if score_phonemeDel.correctAnswers != None%} {{score_phonemeDel.status_phoneme}} {% else %} {{score_phonemeDel.status_phoneme}} {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%} {{context_obj.totalScore_obj}} {% else %} ------- {%endif%}
+                        <td style="text-align: center;">{%if score_phonemeDel.correctAnswers != None%} {{score_phonemeDel.correctAnswers}} {% else %} ------- {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if context_obj.rpdNOwrongA != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowObj" class="btn-t-enabled"> عرض </a> {% else %}
+                        <td style="text-align: center;">{%if score_phonemeDel.correctAnswers != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowPhoneme" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a id="rapidNamingImg" href="{% url 'primary:rpdNamingObjSecA' %}" type="button" class="btn-t-enabled">  التسمية السريعة للصور</a>
                         </td>
-<!--                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.status_phoneme}} {% else %} {{context_phoneme.status_phoneme}} {%endif%}
+                        <td style="text-align: center;">
+                            {%if score_obj.rpdNOwrongA != None%} {{score_obj.status_obj}} {% else %} {{score_obj.status_obj}} {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%} {{context_phoneme.correctAnswers}} {% else %} ------- {%endif%}
+                            {%if score_obj.rpdNOwrongA != None%} {{score_obj.totalScore_obj}} {% else %} ------- {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_phoneme.correctAnswers != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowPhoneme" class="btn-t-enabled"> عرض </a> {% else %}
+                            {%if score_obj.rpdNOwrongA != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowObj" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a name="rpdNLTst" href="{% url 'primary:nonWordRepTrainingSec' %}" id="nonWordRepetition" type="submit" value="تكرار الكلمات غير الحقيقية" class="btn-t-enabled"> تكرار الكلمات غير الحقيقية</a>
                         </td>
-<!--                         <td style="text-align: center;">
-                            {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.status_ltrs}} {% else %} {{context_ltrs.status_ltrs}} {%endif%}
+                        <td style="text-align: center;">
+                            {%if score_nonWrdRep.correctAnswers != None%} {{score_nonWrdRep.status_nonWrdRep}} {% else %} {{score_nonWrdRep.status_nonWrdRep}} {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_ltrs.rpdNLwrongA != None%} {{context_ltrs.totalScore_ltr}} {% else %} ------- {%endif%}
+                            {%if score_nonWrdRep.correctAnswers != None%} {{score_nonWrdRep.correctAnswers}} {% else %} ------- {%endif%}
                         </td>
-                        <td style="text-align: center;">{%if context_ltrs.rpdNLwrongA != None%}
-                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowLtrs" class="btn-t-enabled"> عرض </a> {% else %}
+                        <td style="text-align: center;">{%if score_nonWrdRep.correctAnswers != None%}
+                            <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowRep" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWordReadingAccuracySec' %}" type="button" class="btn-t-enabled">دقة قراءة الكلمات غير الحقيقية</a>
                         </td>
-<!--                         <td style="text-align: center;">
-                            {%if context_nonWrdReading.correctAnswers != None%} {{context_nonWrdReading.status_nonWrdReading}} {% else %} {{context_nonWrdReading.status_nonWrdReading}} {%endif%}
+                        <td style="text-align: center;">
+                            {%if score_nonWrdReadingAcc.correctAnswers != None%} {{score_nonWrdReadingAcc.status_nonWrdReadingAcc}} {% else %} {{score_nonWrdReadingAcc.status_nonWrdReadingAcc}} {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_nonWrdReading.correctAnswers != None%} {{context_nonWrdReading.correctAnswers}} {% else %} ------- {%endif%}
+                            {%if score_nonWrdReadingAcc.correctAnswers != None%} {{score_nonWrdReadingAcc.correctAnswers}} {% else %} ------- {%endif%}
                         </td>
                         <td style="text-align: center;">
-                            {%if context_nonWrdReading.correctAnswers != None%}
+                            {%if score_nonWrdReadingAcc.correctAnswers != None%}
                             <a href="#" id="showResult" data-toggle="modal" data-target="#ModalShowReading" class="btn-t-enabled"> عرض </a> {% else %}
                             <button disabled="disabled" name="showRslt" href="" id="showResult" type="submit" value="عرض" class="btn-t-disabled"> عرض </button> {%endif%}
-                        </td> -->
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -96,8 +95,8 @@
 
 
 <!--modal for the show Phoneme test result-->
-<!-- <div class="modal fade" id="ModalShowPhoneme" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<div class="modal fade" id="ModalShowPhoneme" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -108,7 +107,7 @@
                     <div class="mx-auto" style="width: 400px;">
                         <div class="form-group mb-3">
                             <label class="text-m-b">الدرجة الكلية </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_phoneme.correctAnswers}} /20</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{score_phonemeDel.correctAnswers}} /29</label>
                         </div>
                     </div>
                 </div>
@@ -117,47 +116,46 @@
                 </div>
             </div>
         </div>
-
     </form>
-</div> -->
+</div>
 
-<!--modal for the show OBJ result-->
-<!-- <div class="modal fade" id="ModalShowObj" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<!--modal for the show test 2 OBJ result-->
+<div class="modal fade" id="ModalShowObj" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
                 <div class="modal-header p-4">
-                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتائج اختبار التسمية السريعة للأشكال</h2>
+                    <h2 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> نتائج اختبار التسمية السريعة للصور</h2>
                 </div>
                 <div class="modal-body" style="text-align: right;">
                     <div class="mx-auto" style="width: 400px;">
                         <label class="text-m-b color-purple"> نموذج (أ) </label>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {%if context_obj.rpdNOwrongA != None%}{{context_obj.durationA}} ث {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {%if score_obj.rpdNOwrongA != None%}{{score_obj.durationA}} ث {%endif%}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">عدد الأخطاء </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{context_obj.rpdNOwrongA}}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{{score_obj.rpdNOwrongA}}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن مع الأخطاء  </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{context_obj.scoreA}} ثانيه</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{{score_obj.scoreA}} ثانيه</label>
                         </div>
                         <br></br>
                         <label class="text-m-b color-purple"> نموذج (ب) </label>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;">{%if context_obj.rpdNOwrongB != None%} {{context_obj.durationB}} ث {%else%} ---- {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff;direction: rtl;">{%if score_obj.rpdNOwrongB != None%} {{score_obj.durationB}} ث {%else%} ---- {%endif%}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">عدد الأخطاء </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff">{%if context_obj.rpdNOwrongB != None%} {{context_obj.rpdNOwrongB}} {%else%} ---- {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff">{%if score_obj.rpdNOwrongB != None%} {{score_obj.rpdNOwrongB}} {%else%} ---- {%endif%}</label>
                         </div>
                         <div class="form-group mb-3">
                             <label class="text-m-b">الزمن مع الأخطاء  </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{%if context_obj.rpdNOwrongB != None%} {{context_obj.scoreB}} ثانيه {%else%} ---- {%endif%}</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;">{%if score_obj.rpdNOwrongB != None%} {{score_obj.scoreB}} ثانيه {%else%} ---- {%endif%}</label>
                         </div>
                     </div>
                 </div>
@@ -169,11 +167,11 @@
         </div>
 
     </form>
-</div> -->
+</div>
 
 <!--modal for the show non word repetitions test result-->
-<!-- <div class="modal fade" id="ModalShowRep" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<div class="modal fade" id="ModalShowRep" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -184,7 +182,7 @@
                     <div class="mx-auto" style="width: 400px;">
                         <div class="form-group mb-3">
                             <label class="text-m-b">الدرجة الكلية </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_nonWrdRep.correctAnswers}} /20</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{score_nonWrdRep.correctAnswers}} /23</label>
                         </div>
                     </div>
                 </div>
@@ -195,11 +193,11 @@
         </div>
 
     </form>
-</div> -->
+</div>
 
 <!--modal for the show non word reading accuracy test result-->
-<!-- <div class="modal fade" id="ModalShowReading" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form action="{% url 'primary:testsPage' %}" method="POST">
+<div class="modal fade" id="ModalShowReading" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <form action="{% url 'primary:testsPageSec' %}" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -210,7 +208,7 @@
                     <div class="mx-auto" style="width: 400px;">
                         <div class="form-group mb-3">
                             <label class="text-m-b">الدرجة الكلية </label>
-                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{context_nonWrdReading.correctAnswers}} /25</label>
+                            <label class="form-control fs-5" style="background-color:#f8f4ff; direction: rtl;"> {{score_nonWrdReadingAcc.correctAnswers}} /30</label>
                         </div>
                     </div>
                 </div>
@@ -220,7 +218,7 @@
             </div>
         </div>
     </form>
-</div> -->
+</div>
 
 <script>
 </script>

@@ -22,7 +22,6 @@
                     <label for="sex" class="p-2"> أنثى </label> {% if students.sex == "female" %}
                     <input type="checkbox" checked="true" disabled="disabled"> {% else %}
                     <input type="checkbox" disabled="disabled"> {% endif %}
-
                 </div>
 
                 <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
@@ -67,26 +66,16 @@
                         </tr>
                         <tr>
                             <td>العمر:</td>
-                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;"></td>
-                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;"></td>
-                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;"></td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{student_age_day}}</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{student_age_month}}</td>
+                            <td style="border: 4px solid white; background-color: #b3afb3; text-align: center;">{{student_age_year}}</td>
                         </tr>
-
-
                     </table>
                 </div>
-
-
-
                 <div class="form-group mb-3" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
                     <label for="Examiner" class=""> اسم الفاحص:  </label>
                     <input type="text" class="form-control" name="Examiner" id="Examiner" value="{{examinerName}}" disabled>
                 </div>
-
-
-
-
-
             </div>
         </form>
     </div>
@@ -115,36 +104,36 @@
                             <td style="border: 4px solid white; background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">1 - اختبار التسمية السريعة الأشكال</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.totalScore_obj}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.totalScore_obj}}</td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.Percentile_Number}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_obj.RNO_Modified_standard}}</td>
                         </tr>
                         <tr>
                             <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">2 - اختبار حذف المقاطع والأصوات</td>
                             <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_phoneme.correctAnswers}} </td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_phoneme.Percentile_Number}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_phoneme.PSD_Modified_standard}}</td>
                         </tr>
                         <tr>
                             <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">3 - اختبار التسمية السريعة للحروف</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_ltrs.totalScore_ltr}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_ltrs.totalScore_ltr}}</td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_ltrs.Percentile_Number}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_ltrs.RNL_Modified_standard}}</td>
                         </tr>
                         <tr>
                             <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">4 - اختبار تكرار الكلمات غير الحقيقية</td>
                             <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdRep.correctAnswers}}</td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdRep.Percentile_Number}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdRep.NWR_Modified_standard}}</td>
                         </tr>
                         <tr>
                             <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">5 - اختبار دقة قراءة الكلمات غير الحقيقية</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdReading.correctAnswers}}</td>
                             <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdReading.correctAnswers}}</td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
-                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdReading.Percentile_Number}}</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">{{context_nonWrdReading.NWRA_Modified_standard}}</td>
                         </tr>
                         <tr>
                             <td style="border: 4px solid white;background-color: #d3d0d3;border-radius: 0%;direction: rtl;height: 25px; text-align: left;"> الزمن الكلي، والدرجة الكلية: </td>
@@ -156,11 +145,6 @@
 
                     </table>
                 </div>
-
-
-
-
-
             </div>
         </form>
     </div>

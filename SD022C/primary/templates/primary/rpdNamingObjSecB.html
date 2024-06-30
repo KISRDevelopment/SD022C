@@ -11,7 +11,7 @@
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjSecB' %}" hx-target="#start" hx-swap="innerText" hx-trigger="click" method="post">
                 {% csrf_token%}
                 <input type="hidden" name="formtype1" value="true">
-                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="formtype1" class="btn-light-purple" style="float:right;">
+                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="formtype1" class="btn-green" style="float:right;">
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>

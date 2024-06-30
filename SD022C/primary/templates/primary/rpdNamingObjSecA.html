@@ -11,8 +11,8 @@
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjSecA' %}" hx-target="#start" hx-swap="innerText" hx-trigger="click" method="post">
                 {% csrf_token%}
 
-                <input type="hidden" name="formtype1" value="true">
-                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="formtype1" class="btn-green" style="float:right;">
+                <input type="hidden" name="form#1" value="true">
+                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="form#1" class="btn-green" style="float:right;">
 
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
@@ -107,7 +107,7 @@
                     <label class="btn-outline-green" onclick="btn_clicked(this)" for="ship3" > سفينة</label>
                 </div>
                 <div style="padding-right: 575px;">
-                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-green" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
+                    <input id="end" type="submit" name="form#2" onclick="calcDiff()" class=" btn-green" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
 
                 </div>
             </form>
@@ -141,7 +141,7 @@
                         <div class="modal-footer flex-nowrap p-0">
                             <!-- <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button> -->
                             <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
-                            <input id="submitDropDown" type="submit" name="formtype3" value=" تسليم النموذج  " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #48611d; border-color: #48611d; ">
+                            <input id="submitDropDown" type="submit" name="form#3" value=" تسليم النموذج  " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #48611d; border-color: #48611d; ">
                         </div>
                     </div>
                 </div>

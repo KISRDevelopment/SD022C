@@ -10,8 +10,8 @@
     </div>
     <div class="container" style="direction: rtl;">
         <p class="text-m-b fs-3" style="margin-bottom: 10px;">الطالب : {{student}}</p>
-        {% if context_obj.status_obj == "منجز " and context_ltrs.status_ltrs == "منجز " and context_phoneme.status_phoneme == "منجز " and context_nonWrdRep.status_nonWrdRep == "منجز " and context_nonWrdReading.status_nonWrdReading == "منجز "%}
-        <a href="{% url 'primary:showScores'%}" style="font-weight: bold;" type="submit" class="btn-outline-p"> عرض الدرجات </a> {% else %}
+        {% if score_phonemeDel.status_phoneme == "منجز " and score_obj.status_obj == "منجز " and score_nonWrdRep.status_nonWrdRep == "منجز " and score_nonWrdReadingAcc.status_nonWrdReadingAcc == "منجز " %}
+        <a href="{% url 'primary:showScoresSec'%}" style="font-weight: bold;" type="submit" class="btn-outline-p"> عرض الدرجات </a> {% else %}
         <button class="btn" disabled="disabled" style="font-weight: bold;" href="#" type="submit" class="btn-outline-p"> عرض الدرجات</button> {% endif %}
         <button class="btn" disabled="disabled" style="font-weight: bold;" href="#" type="submit" class="btn-outline-p"> عرض النتائج والتوصيات</button>
         <div class="table-responsive ">
@@ -28,7 +28,7 @@
                     <tr>
                         <td>
                             <a name="rpdNOTst" href="{% url 'primary:phonemeSyllableTrainSec' %}" id="phonemeDeletion" type="submit" value="حذف المقاطع والأصوات" class="btn-t-enabled">  حذف المقاطع والأصوات</a>
-                         </td>  
+                        </td>
                         <td style="text-align: center;">
                             {%if score_phonemeDel.correctAnswers != None%} {{score_phonemeDel.status_phoneme}} {% else %} {{score_phonemeDel.status_phoneme}} {%endif%}
                         </td>
@@ -74,7 +74,7 @@
                         <td>
                             <a id="nonWrdReadingAccuracy" href="{% url 'primary:nonWordReadingAccuracySec' %}" type="button" class="btn-t-enabled">دقة قراءة الكلمات غير الحقيقية</a>
                         </td>
-                         <td style="text-align: center;">
+                        <td style="text-align: center;">
                             {%if score_nonWrdReadingAcc.correctAnswers != None%} {{score_nonWrdReadingAcc.status_nonWrdReadingAcc}} {% else %} {{score_nonWrdReadingAcc.status_nonWrdReadingAcc}} {%endif%}
                         </td>
                         <td style="text-align: center;">

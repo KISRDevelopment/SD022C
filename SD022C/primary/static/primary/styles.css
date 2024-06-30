@@ -40,12 +40,50 @@ body{
     margin-right: 5px;
 }
 
+/*green-outline button: in-tests*/
+.btn-outline-green{
+    border: 1px solid;
+    border-color: #48611d;
+    border-width: 1px;
+    width: 75px;
+    height: 50px; 
+    color: black; 
+    padding-top: 5px;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+/*green-outline button: tests page*/
+.btn-outline-g{
+    border: solid;
+    border-color: #48611d;
+    border-width: 3px;
+    border-radius: 10px;
+    background-color: white; 
+    color: black; 
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
 /*purple button: in-tests*/
 .btn-light-purple{
     border: none;
     background-color: #CC99CC; 
     text-align: center;
     color: black;  
+    height: 45px;
+    width: auto;
+    padding: 5px 10px 5px 10px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.btn-green{
+    border: none;
+    background-color: #48611d;
+    text-align: center;
+    color: white;  
     height: 45px;
     width: auto;
     padding: 5px 10px 5px 10px;
@@ -75,6 +113,13 @@ body{
     text-align: center;
     font-size: 40px;
     color: #720e9e;
+    font-weight: bold;
+}
+
+.text-lg-green{
+    text-align: center;
+    font-size: 40px;
+    color: #48611d;
     font-weight: bold;
 }
 
@@ -129,6 +174,16 @@ ul.list-group-answer li{
     padding:10px; 
 }
 
+ul.list-group-green{
+    list-style-type: none;
+}
+ul.list-group-green li{
+    background-color: #e0f0d2; 
+    margin-top: 17px; 
+    height:50px;
+    width:70px;
+    padding: 12px;
+}
 
 .color-purple {
     color: #720e9e;
@@ -138,8 +193,20 @@ ul.list-group-answer li{
     background-color: #568203;
 }
 
+.color-white {
+    color: white;
+}
+
 .color-green {
     color: #568203;
+}
+
+.color-dark-green {
+    color: #48611d;
+}
+
+.bg-color-dark-green {
+    background-color: #48611d;
 }
 
 #styleDropDown {

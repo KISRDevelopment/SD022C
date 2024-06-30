@@ -3,15 +3,17 @@
 
 <div class="container">
 
-    <div class="text-lg-purple fs-2 mb-5"> اختبار التسمية السريعة للصور - نموذج (أ) </div>
+    <div class="text-lg-green fs-2 mb-5"> اختبار التسمية السريعة للصور - نموذج (أ) </div>
 
-    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:#568203;">
-        <h2 class="card-title text-center fs-4 p-2 bg-color-green" style="color:white; height:45px;">النموذج (أ)</h2>
+    <div class="card my-3 mx-auto color-green" style="width:1100px; border-color:#48611d;">
+        <h2 class="card-title text-center fs-4 p-2" style="color:white; height:45px; background-color:#48611d;">النموذج (أ)</h2>
         <div class="d-grid" style="margin-top:10px; padding-right:30px;">
             <form class="form-horizontal" id="startBtnForm" hx-post="{% url 'primary:rpdNamingObjSecA' %}" hx-target="#start" hx-swap="innerText" hx-trigger="click" method="post">
                 {% csrf_token%}
-                <input type="hidden" name="form#1" value="true">
-                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="form#1" class="btn-light-purple" style="float:right;">
+
+                <input type="hidden" name="formtype1" value="true">
+                <input id="start" type="submit" onclick="startTime()" value=" بدء الاختبار " name="formtype1" class="btn-green" style="float:right;">
+
                 <!-- <button onclick="" type="submit" name="form_type" value="formTwo" class="btn" style="float:right; font-weight: bold;  background-color: #CC99CC; " > بدء الاختبار</button> -->
                 <!-- <button  name="endTimeBtn" id = 'endTimeBtn' type="button" form="selectBox" class="btn" style="float:right;  background-color: #CC99CC; " >End Time</button> -->
             </form>
@@ -26,95 +28,96 @@
                 </div>
                 <div class="form-check" style="direction:rtl ;">
                     <input type="checkbox" class="btn-check" id="horse" name="selection" value="horse" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="horse">حصان </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="horse" >حصان </label>
                     <input type="checkbox" class="btn-check" id="bike" name="selection" value="bike" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="bike">دراجة </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="bike" >دراجة </label>
                     <input type="checkbox" class="btn-check" id="crocodile" value="crocodile" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="crocodile"> تمساح</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="crocodile" > تمساح</label>
                     <input type="checkbox" class="btn-check" id="mosque" value="mosque" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="mosque"> مسجد</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="mosque"> مسجد</label>
                     <input type="checkbox" class="btn-check" id="piano" value="piano" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="piano"> بيانو</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="piano" > بيانو</label>
                     <input type="checkbox" class="btn-check" id="palm" value="palm" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="palm"> نخلة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="palm" > نخلة</label>
                     <input type="checkbox" class="btn-check" id="ship" value="ship" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="ship"> سفينة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="ship" > سفينة</label>
                     <input type="checkbox" class="btn-check" id="octopus" value="octopus" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="octopus">أُخطبوط </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="octopus" >أُخطبوط </label>
                     <input type="checkbox" class="btn-check" id="chair" value="chair" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="chair"> كرسي</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="chair" > كرسي</label>
                 </div>
                 <div class="form-check" style="direction:rtl; margin-top: 20px">
                     <input type="checkbox" class="btn-check" id="scale" value="scale" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="scale">ميزان </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="scale" >ميزان </label>
                     <input type="checkbox" class="btn-check" id="telescope" value="telescope" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="telescope"> مجهر</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="telescope" > مجهر</label>
                     <input type="checkbox" class="btn-check" id="oud" value="oud" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="oud"> عود</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="oud" > عود</label>
                     <input type="checkbox" class="btn-check" id="horse2" value="horse2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="horse2"> حصان</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="horse2" > حصان</label>
                     <input type="checkbox" class="btn-check" id="mosque2" value="mosque2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="mosque2"> مسجد</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="mosque2" > مسجد</label>
                     <input type="checkbox" class="btn-check" id="piano2" value="piano2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="piano2"> بيانو</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="piano2" > بيانو</label>
                     <input type="checkbox" class="btn-check" id="crocodile2" value="crocodile2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="crocodile2"> تمساح</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="crocodile2" > تمساح</label>
                     <input type="checkbox" class="btn-check" id="bike2" value="bike2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="bike"> دراجة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="bike" > دراجة</label>
                     <input type="checkbox" class="btn-check" id="octopus2" value="octopus2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="octopus2">أُخطبوط </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="octopus2" >أُخطبوط </label>
                 </div>
                 <div class="form-check" style="direction:rtl; margin-top: 20px">
                     <input type="checkbox" class="btn-check" id="palm2" value="palm2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="palm2">نخلة </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="palm2" >نخلة </label>
                     <input type="checkbox" class="btn-check" id="octopus3" value="octopus3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="octopus3">أُخطبوط </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="octopus3" >أُخطبوط </label>
                     <input type="checkbox" class="btn-check" id="chair2" value="chair2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="chair2"> كرسي</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="chair2" > كرسي</label>
                     <input type="checkbox" class="btn-check" id="piano3" value="piano3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="piano3"> بيانو</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="piano3" > بيانو</label>
                     <input type="checkbox" class="btn-check" id="horse3" value="horse3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="horse3"> حصان</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="horse3" > حصان</label>
                     <input type="checkbox" class="btn-check" id="ship2" value="ship2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="ship2"> سفينة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="ship2" > سفينة</label>
                     <input type="checkbox" class="btn-check" id="scale2" value="scale2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="scale2"> ميزان</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="scale2" > ميزان</label>
                     <input type="checkbox" class="btn-check" id="telescope2" value="telescope2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="telescope2"> مجهر</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="telescope2" > مجهر</label>
                     <input type="checkbox" class="btn-check" id="oud2" value="oud2" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="oud2"> عود</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="oud2" > عود</label>
                 </div>
                 <div class="form-check" style="direction:rtl; margin-top: 20px">
                     <input type="checkbox" class="btn-check" id="telescope3" value="telescope3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="telescope3">مجهر </label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="telescope3">مجهر </label>
                     <input type="checkbox" class="btn-check" id="crocodile3" value="crocodile3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="crocodile3"> تمساح</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="crocodile3" > تمساح</label>
                     <input type="checkbox" class="btn-check" id="scale3" value="scale3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="scale3"> ميزان</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="scale3" > ميزان</label>
                     <input type="checkbox" class="btn-check" id="mosque3" value="mosque3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="mosque3"> مسجد</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="mosque3" > مسجد</label>
                     <input type="checkbox" class="btn-check" id="bike3" value="bike3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="bike3"> دراجة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="bike3" > دراجة</label>
                     <input type="checkbox" class="btn-check" id="chair3" value="chair3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="chair3"> كرسي</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="chair3" > كرسي</label>
                     <input type="checkbox" class="btn-check" id="oud3" value="oud3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="oud3"> عود</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="oud3" > عود</label>
                     <input type="checkbox" class="btn-check" id="palm3" value="palm3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="palm3"> نخلة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="palm3" > نخلة</label>
                     <input type="checkbox" class="btn-check" id="ship3" value="ship3" name="selection" autocomplete="off">
-                    <label class="btn-outline-purple" onclick="btn_clicked(this)" for="ship3"> سفينة</label>
+                    <label class="btn-outline-green" onclick="btn_clicked(this)" for="ship3" > سفينة</label>
                 </div>
                 <div style="padding-right: 575px;">
-                    <input id="end" type="submit" name="form#2" onclick="calcDiff()" class=" btn-light-purple" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
+                    <input id="end" type="submit" name="formtype2" onclick="calcDiff()" class=" btn-green" value="انهاء الوقت / الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="margin-top: 20px;" disabled>
+
                 </div>
             </form>
             <div class="col-2 d-grid mx-auto">
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">الزمن  </span>
-                <label id="result1" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">----</label>
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;"> عدد الأخطاء </span>
-                <label id="result2" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%;font-size:20px; font-weight:bolder;">0</label>
-                <span class="input-group-text" style="border-color:#CC99CC; background-color: white; border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">  الزمن مع الأخطاء </span>
-                <label id="result3" style="border-color:#CC99CC; background-color: #CC99CC;border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">----</label>
+                <span class="input-group-text" style="border-color:#48611d; background-color: white; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">الزمن  </span>
+                <label id="result1" style="border-color:#48611d; background-color: #48611d;border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder; color:white;">----</label>
+                <span class="input-group-text" style="border-color:#48611d; background-color: white; border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;"> عدد الأخطاء </span>
+                <label id="result2" style="border-color:#48611d; background-color: #48611d;border-radius: 0%;font-size:20px; font-weight:bolder; color:white;">0</label>
+                <span class="input-group-text" style="border-color:#48611d; background-color: white; border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder;">  الزمن مع الأخطاء </span>
+                <label id="result3" style="border-color:#48611d; background-color: #48611d;border-radius: 0%; direction: rtl;font-size:20px; font-weight:bolder; color:white;">----</label>
             </div>
         </div>
         <!-- modal for submit tst -->
@@ -123,8 +126,8 @@
                 {% csrf_token %}
                 <div class="modal-dialog" role="document">
                     <div class="modal-content rounded-3 shadow">
-                        <div class="modal-header p-4" id="labelText" style="color: #0059a0">
-                            <h5 class="modal-title mb-0 w-100 text-center fs-2 color-purple"> هل أنت متأكد من تسليم الاختبار؟ </h5>
+                        <div class="modal-header p-4" id="labelText" style="color: #48611d;">
+                            <h5 class="modal-title mb-0 w-100 text-center fs-2" style="color:#48611d;"> هل أنت متأكد من تسليم الاختبار؟ </h5>
                         </div>
                         <div class="modal-body fs-5" style="direction: rtl;">
                             <label for="submitTst" class="form-label">يرجى الاختيار من القائمة </label>
@@ -136,7 +139,9 @@
                             </select>
                         </div>
                         <div class="modal-footer flex-nowrap p-0">
-                            <input id="submitDropDown" type="submit" name="form#3" value=" تسليم النموذج  " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
+                            <!-- <button type="button"  class="btn fs-6 btn-secondary col-6 py-3 m-0 rounded-0" data-dismiss="modal">الغاء</button> -->
+                            <!-- <input id="end" onclick="calcDiff()" type="submit" value=" انهاء الوقت / الاختبار" name="formtype2" class="btn" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 20px;"> -->
+                            <input id="submitDropDown" type="submit" name="formtype3" value=" تسليم النموذج  " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #48611d; border-color: #48611d; ">
                         </div>
                     </div>
                 </div>

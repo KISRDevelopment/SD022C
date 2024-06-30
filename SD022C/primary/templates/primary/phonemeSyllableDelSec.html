@@ -2,7 +2,7 @@
 <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 <audio controls id="audio" hidden="hidden"></audio>
 <div class="container"> 
-    <div class="text-lg-purple fs-2 mb-5 "> اختبار حذف المقاطع والأصوات </div>  
+    <div class="text-lg-green fs-2 mb-5 "> اختبار حذف المقاطع والأصوات </div>  
     <div class="card my-3 mx-auto color-green" style="width:1200px; border-color:#568203;">
         <div class=" d-grid" style="margin-top:10px; padding-right: 30px;">
             <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
@@ -13,88 +13,88 @@
                 <table class="table table-borderless fs-5">
                     <thead>
                         <tr>
-                        <th class="col-8" style="background-color:#CC99CC;">السؤال </th>
-                        <th class="col-2" style="text-align: center; background-color:#CC99CC;">الاجابه الصحيحة</th>
-                        <th class="col-2" style="text-align: center; background-color:#CC99CC;">تسجيل الاجابه</th>
+                        <th class="col-8" style="background-color:#48611d; color:white;">السؤال </th>
+                        <th class="col-2" style="text-align: center; background-color:#48611d; color:white;">الاجابه الصحيحة</th>
+                        <th class="col-2" style="text-align: center; background-color:#48611d; color:white;">تسجيل الاجابه</th>
                     </tr>
                     </thead>
                 </table>
                 <div class="col-10" style="float: right;">
                     <table class="table table-striped table-borderless" style=" font-size: 20px; ">
                         <tbody >
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-top:1px solid; border-color:#B3B3B3;">
                                 <th> قل: شَريفْ  <a value="1" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل:  شَريفْ من غير أن تقول شَـ <a  value="2" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th> 
                                 <td style="border-right:1px solid; border-color:#B3B3B3; text-align: center; height: 51px; width:200px;">ريفْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: فَرْدْ <a value="3" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: فَرْد من غير أن تقول / دْ/. <a  value="4" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;"> فَرْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: فَجْرْ <a value="5" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: فَجْرْ من غير أن تقول: / رْ/.  <a type="button" value="6" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;"> فَجْ </td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: يَلْحَقْ <a value="7" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: يَلْحَقْ من غير أن تقول: يَلْ.  <a type="button"  value="8" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">حَقْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: وفيرْ <a value="9" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: وفيرْ من غير أن تقول: / رْ/. /<a type="button"  value="10" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">وَفي</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: جَرادْ <a value="11" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: جَرادْ من غير أن تقول: / دْ/. /<a type="button" value="12" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">جَرى</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: بَساتينْ <a value="13" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: بَساتينْ من غير أن تقول بَسا <a type="button" value="14" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">تينْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: شَمْعَة <a value="15" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: شَمْعَة من غير أن تقول: عَـة.   <a type="button" value="16" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">شَمْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: غَضْبانْ <a value="17" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: غَضْبانْ من غير أن تقول: بان . / <a type="button" value="18" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">غَضْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل : صَيْفْ <a  value="19" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a>  الآن قل: صَيْفْ من غير أن تقول: / يْـ/. <a type="button" value="20" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">صَفْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: لَميسْ <a value="21" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: لَميسْ من غير أن تقول: / يـ/. <a type="button" value="22" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">لَمْسْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: أحْمَدْ <a  value="23" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: أحْمَدْ من غير أن تقول: / حْـ/. <a type="button" value="24" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">أمَدْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل : يَخْرُجْ <a  value="25" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل:  يَخْرُجْ من غير أن تقول: / خْـ/. <a type="button" value="26" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;" >يَرُجْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: جَمالْ <a  value="27" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: جَمالْ من غير أن تقول: / مْـ/.<a type="button" value="28" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">جالْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th>قل: يَختَلِفْ <a  value="29" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a>  الآن قل: يَخْتَلِفْ من غير أن تقول: / فـْ/.<a type="button" value="30" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">يَخْتَل</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: مُعَلِّمُنا <a  value="31" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: مُعَلمُنا من غير أن تقول: / ا /. <a type="button" value="32" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;"> مُعَلمُنْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: اسْتِهْتارْ <a  value="33" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل:  اسْتِهْتارْ من غير أن تقول: / هْـ/. <a type="button" value="34" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">اسْتِتارْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: يَجْريانْ <a  value="35" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> الآن قل: يَجْريانْ من غير أن تقول : يَجْـ /<a type="button" value="36" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;"> ربانْ</td>
                             </tr>
-                            <tr>
+                            <tr style="border-bottom:1px solid; border-color:#B3B3B3;">
                                 <th> قل: وَراءَهُ <a  value="37" type="button"  onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a>  الان قل: وَراءَهُ من غير أن تقول : هـُــ<a type="button" value="38" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 20px;"></i></a> </th>
                                 <td style="border-right:1px solid; border-color:#B3B3B3;text-align: center;  height: 51px;">وَراءَ</td>
                             </tr>
@@ -148,188 +148,187 @@
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC; border-radius:0px;"  for="1"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d; border-radius:0px;"  for="1"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="2" name = "selection" value="2" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC; border-radius:0px;"  for="2"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d; border-radius:0px;"  for="2"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="3" name = "selection" value="3" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="3"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="3"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="4" name = "selection" value="4" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="4"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="4"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="5" name = "selection" value="5" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="5"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="5"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="6" name = "selection" value="6" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="6"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="6"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="7" name = "selection" value="7" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="7"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="7"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="8" name = "selection" value="8" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="8"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="8"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="9" name = "selection" value="9" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="9"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="9"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="10" name = "selection" value="10" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="10"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="10"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="11" name = "selection" value="11" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="11"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="11"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="12" name = "selection" value="12" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="12"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="12"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="13" name = "selection" value="13" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="13"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="13"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="14" name = "selection" value="14" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="14"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="14"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="15" name = "selection" value="15" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="15"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="15"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="16" name = "selection" value="16" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="16"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="16"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="17" name = "selection" value="17" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="17"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="17"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="18" name = "selection" value="18" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="18"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="18"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="19" name = "selection" value="19" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="19"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="19"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="20" name = "selection" value="20" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="20"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="20"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="21" name = "selection" value="21" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="21"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="21"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="22" name = "selection" value="22" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="22"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="22"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="23" name = "selection" value="23" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="23"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="23"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="24" name = "selection" value="24" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="24"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="24"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="25" name = "selection" value="25" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="25"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="25"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="26" name = "selection" value="26" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="26"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color:#48611d;border-radius:0px;"  for="26"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="27" name = "selection" value="27" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="27"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="27"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="28" name = "selection" value="28" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="28"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="28"></label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <input type="checkbox"  class="btn-check" id="29" name = "selection" value="29" autocomplete="off">
-                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #CC99CC;border-radius:0px;"  for="29"></label>
+                                    <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:185px; height: 35px; border-color: #48611d;border-radius:0px;"  for="29"></label>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                 
                 
-                <div class="col-2 d-grid mx-auto" style="float: right;">
-                    <span class="input-group-text" style="border-color:#CC99CC; background-color:#CC99CC; border-radius: 0%; direction: center; font-size:20px; font-weight:bolder;">الدرجة الكلية  / 29</span>
-                    <label id="result" style="border-color:#CC99CC; border-width: 20px; direction: rtl; font-size:20px; font-weight:bolder;">----</label>
-                </div> 
-                <div class="col-10"  >
-                    <input id="end" type="submit" name="form1" class=" btn-light-purple d-grid mx-auto " value="تسليم الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="background-color: #CC99CC; color: black; font-weight: bold; margin-top: 11px;">   
-                </div>      
+                <div class="col-12  d-grid" style="margin-top: 20px;" >
+                    <span class="input-group-text mx-auto d-grid" style="width:150px ;border-color:#48611d; background-color:#48611d; border-radius: 0%; direction: center; font-size:20px; font-weight:bolder; color:white;">الدرجة الكلية  / 29</span>
+                    <label class="input-group-text mx-auto d-grid" id="result" style="width:150px ; border-color:#48611d; border-width: 2px; direction: rtl; font-size:20px; font-weight:bolder; border-radius: 0%;">----</label>
+                    <input id="end" type="submit" name="form1" class=" btn-green d-grid mx-auto " value="تسليم الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style="font-weight: bold; margin-top: 18px; margin-bottom: 20px;">
+                </div>
             </form>
         </div>
     </div>
@@ -342,7 +341,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
                 <div class="modal-header p-4" id="labelText" style="color: #0059a0">
-                    <h5 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder color-purple"> هل أنت متأكد من تسليم الاختبار؟ </h5>
+                    <h5 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder" style="color:#48611d"> هل أنت متأكد من تسليم الاختبار؟ </h5>
                 </div>
                 <div class="modal-body fs-5" style="direction: rtl;">
                     <label for="submitTst" class="form-label" >يرجى الاختيار من القائمة </label>
@@ -355,7 +354,7 @@
                     </select>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <input id="submitDropDown" type="submit" name="form2" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #720e9e; border-color: #720e9e; ">
+                    <input id="submitDropDown" type="submit" name="form2" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color:#48611d; border-color:#48611d; ">
                 </div>
             </div>
         </div>

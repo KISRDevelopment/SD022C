@@ -1,7 +1,7 @@
 {%extends 'primary/base.html'%} {%load static%} {%block content%}
 
 <div class="container">
-    <div class="text-lg-purple fs-2 mb-5 ">  اختبار تكرار الكلمات غير الحقيقية   - الفقرات التدريبية  </div>
+    <div class="text-lg-green fs-2 mb-5 ">  اختبار تكرار الكلمات غير الحقيقية   - الفقرات التدريبية  </div>
     <div class="card my-3 mx-auto color-green" style="width:1000px; border-color:#568203;">
         <div class=" d-grid" style="margin-top:10px; padding-right: 30px;" >
             <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
@@ -9,10 +9,10 @@
 
 
         <div class="card-body text-center mx-auto w-50" id="questions" >   
-            <table class="table table-bordered text-center mb-4" style=" font-size: 20px; border-color:#CC99CC;">
+            <table class="table table-bordered text-center mb-4" style=" font-size: 20px; border-color:#48611d">
                 <thead>
                     <tr>
-                        <th style="background-color:#CC99CC">الفقرات التدريبية</th>
+                        <th style="background-color:#48611d; color:white;">الفقرات التدريبية</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
                     </tr>
                 </tbody>
             </table>
-            <a type="submit" href="{% url 'primary:nonWordRepSec' %}" class="btn-light-purple text-decoration-none">بدء الاختبار</a>
+            <a type="submit" href="{% url 'primary:nonWordRepSec' %}" class="btn-green text-decoration-none">بدء الاختبار</a>
         </div>
     </div> 
 </div>

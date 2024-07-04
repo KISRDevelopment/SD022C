@@ -787,7 +787,37 @@ def showScores(request):
         "NWRA_Raw_grade":[2,4,5,7,9,11,13,15,17,19,22],
         "NWRA_Modified_standard":[72,77,80,85,90,95,99,104,109,114,122],
     })
-    # Add grade_3, grade_4, grade_5 tables
+    # grade3, 
+    grade_3 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "RNO_Row_grade":[76,63,56,49,46,43,40,37,35,33,30],
+        "RNO_Modified_standard":[53,71,80,91,94,98,102,106,109,112,116],
+        "PSD_Raw_grade":[2,3,5,6,8,9,10,10,11,13,14],
+        "PSD_Modified_standard":[68,73,81,85,94,98,102,102,106,115,119],
+        "RNL_Raw_grade":[69,52,46,40,36,32,29,27,24,22,20],
+        "RNL_Modified_standard":[51,73,81,89,94,99,103,106,110,112,115],
+        "NWR_Raw_grade":[2,4,5,7,8,9,9,10,11,13,14],
+        "NWR_Modified_standard":[68,77,81,90,94,98,98,102,106,115,119],
+        "NWRA_Raw_grade":[2,5,7,10,13,15,16,18,19,21,23],
+        "NWRA_Modified_standard":[65,73,78,86,94,99,101,106,109,114,119],
+    })
+    # grade_4, 
+    grade_4 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "RNO_Row_grade":[66,54,48,44,41,38,36,34,33,30,27],
+        "RNO_Modified_standard":[52,72,82,89,94,101,102,106,107,112,117],
+        "PSD_Raw_grade":[2,4,6,8,9,10,11,12,13,14,16],
+        "PSD_Modified_standard":[64,72,80,88,92,96,100,104,108,113,121],
+        "RNL_Raw_grade":[61,50,40,33,29,27,24,23,22,20,18],
+        "RNL_Modified_standard":[48,65,80,91,97,100,105,106,108,111,114],
+        "NWR_Raw_grade":[3,4,6,8,9,10,10,11,12,13,15],
+        "NWR_Modified_standard":[68,72,81,90,94,98,98,103,107,111,120],
+        "NWRA_Raw_grade":[3,5,7,11,13,15,18,19,21,22,24],
+        "NWRA_Modified_standard":[66,71,76,86,91,96,104,106,111,114,119],
+    })     
+    # grade_5 tables
      
     grade = Student.objects.get(id=request.session['student']).grade
     if (grade == '2'):

@@ -845,8 +845,8 @@ def showScores(request):
     elif (grade == '4'):
         return_scores(grade_4,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
 
-    #elif (grade == '5'):
-        #return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)  
+    elif (grade == '5'):
+        return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)  
    
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age

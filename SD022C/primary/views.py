@@ -1042,10 +1042,24 @@ def showScoresSec(request):
         "NWRAS_Modified_standard":[82,82,82,86,89,93,97,101,107,113,122],
     })
 
+    grade_7 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[2,8,9,12,16,18,19,20,22,23,25],
+        "PSDS_Modified_standard":[58,74,77,84,95,100,102,105,110,113,118],
+        "RNOS_Row_grade":[147,120,113,101,95,89,83,78,72,67,61],
+        "RNOS_Modified_standard":[55,74,80,88,93,97,102,105,110,113,118],
+        "NWRS_Raw_grade":[2,5,6,9,12,13,15,16,17,18,20],
+        "NWRS_Modified_standard":[65,74,77,86,94,97,103,106,109,112,118],
+        "NWRAS_Raw_grade":[0,0,1,4,6,8,11,14,18,21,24],
+        "NWRAS_Modified_standard":[78,78,80,85,89,93,98,104,111,116,122],
+    })
+
     grade = Student.objects.get(id=request.session['student']).grade
 
     if (grade == '6'):
-        return_scores_Sec(grade_6,score_phonemeDel) 
+        return_scores_Sec(grade_6, score_phonemeDel, score_obj)
+    
 
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age

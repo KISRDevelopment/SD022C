@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
 import pandas as pd
-from primary.utils import return_scores
+from primary.utils import return_scores, return_scores_Sec
 
 # Create your views here.
 global context_obj
@@ -832,8 +832,8 @@ def showScores(request):
         "NWR_Modified_standard":[68,72,80,89,93,97,101,105,109,113,121],
         "NWRA_Raw_grade":[3,6,8,12,15,17,19,20,21,22,24],
         "NWRA_Modified_standard":[62,70,75,86,94,101,105,112,110,113,118],
-    })     
-   
+    })
+
     grade = Student.objects.get(id=request.session['student']).grade
 
     if (grade == '2'):
@@ -846,7 +846,7 @@ def showScores(request):
         return_scores(grade_4,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
 
     elif (grade == '5'):
-        return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)  
+        return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading) 
    
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age
@@ -1028,6 +1028,25 @@ def nonWordReadingAccuracySec(request):
 
 @login_required(login_url="/primary/login")
 def showScoresSec(request):
+
+    grade_6 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[2,5,7,10,12,15,17,18,20,21,23],
+        "PSDS_Modified_standard":[65,72,78,85,90,98,103,106,111,113,118],
+        "RNOS_Row_grade":[163,147,127,117,106,99,93,87,83,76,70],
+        "RNOS_Modified_standard":[58,69,81,88,94,99,103,106,109,113,117],
+        "NWRS_Raw_grade":[2,5,6,9,11,12,13,15,16,17,19],
+        "NWRS_Modified_standard":[62,72,75,85,92,95,98,105,108,111,118],
+        "NWRAS_Raw_grade":[0,0,0,2,4,6,8,10,13,16,21],
+        "NWRAS_Modified_standard":[82,82,82,86,89,93,97,101,107,113,122],
+    })
+
+    grade = Student.objects.get(id=request.session['student']).grade
+
+    if (grade == '6'):
+        return_scores_Sec(grade_6,score_phonemeDel) 
+
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age
     year = age.split('/')[0]

@@ -35,3 +35,13 @@ def return_scores(df,obj1,obj2,obj3,obj4,obj5):
             if (df.iloc[r]['NWRA_Raw_grade'] == obj5.get('correctAnswers')):
                 break #condition for 2 rows with same roe grade
     return
+    
+def return_scores_Sec(df,obj1):    
+    for index, row in df.iterrows():
+        r = len(df.index) - index - 1
+        if (df.iloc[r]['PSDS_Raw_grade'] >= (obj1.get('correctAnswers'))):
+            obj1["Percentile_Number"] = df.iloc[r]['Percentile_Number']
+            obj1["PSDS_Modified_standard"] = df.iloc[r]['PSDS_Modified_standard']
+            if (df.iloc[r]['PSDS_Raw_grade'] == obj1.get('correctAnswers')):
+                break #condition for 2 rows with same roe grade
+    return

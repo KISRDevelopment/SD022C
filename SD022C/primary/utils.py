@@ -36,7 +36,7 @@ def return_scores(df,obj1,obj2,obj3,obj4,obj5):
                 break #condition for 2 rows with same roe grade
     return
     
-def return_scores_Sec(df,obj1,obj2,obj3):    
+def return_scores_Sec(df,obj1,obj2,obj3,obj4):    
     for index, row in df.iterrows():
         r = len(df.index) - index - 1
         if (df.iloc[r]['PSDS_Raw_grade'] >= (obj1.get('correctAnswers'))):
@@ -57,5 +57,12 @@ def return_scores_Sec(df,obj1,obj2,obj3):
             obj3["Percentile_Number"] = df.iloc[r]['Percentile_Number']
             obj3["NWRS_Modified_standard"] = df.iloc[r]['NWRS_Modified_standard']
             if (df.iloc[r]['NWRS_Raw_grade'] == obj3.get('correctAnswers')):
+                break #condition for 2 rows with same roe grade
+    for index, row in df.iterrows():
+        r = len(df.index) - index - 1
+        if (df.iloc[r]['NWRAS_Raw_grade'] >= (obj4.get('correctAnswers'))):
+            obj4["Percentile_Number"] = df.iloc[r]['Percentile_Number']
+            obj4["NWRAS_Modified_standard"] = df.iloc[r]['NWRAS_Modified_standard']
+            if (df.iloc[r]['NWRAS_Raw_grade'] == obj4.get('correctAnswers')):
                 break #condition for 2 rows with same roe grade
     return

@@ -1058,7 +1058,7 @@ def showScoresSec(request):
     grade = Student.objects.get(id=request.session['student']).grade
 
     if (grade == '6'):
-        return_scores_Sec(grade_6, score_phonemeDel, score_obj)
+        return_scores_Sec(grade_6, score_phonemeDel, score_obj, score_nonWrdRep)
     
 
     examiner = Examiner.objects.get(user_id=request.user.id)

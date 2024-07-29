@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from dateutil import relativedelta
 import pandas as pd
-from primary.utils import return_scores
+from primary.utils import return_scores, return_scores_Sec
 
 # Create your views here.
 global context_obj
@@ -832,8 +832,8 @@ def showScores(request):
         "NWR_Modified_standard":[68,72,80,89,93,97,101,105,109,113,121],
         "NWRA_Raw_grade":[3,6,8,12,15,17,19,20,21,22,24],
         "NWRA_Modified_standard":[62,70,75,86,94,101,105,112,110,113,118],
-    })     
-   
+    })
+
     grade = Student.objects.get(id=request.session['student']).grade
 
     if (grade == '2'):
@@ -846,7 +846,7 @@ def showScores(request):
         return_scores(grade_4,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
 
     elif (grade == '5'):
-        return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)  
+        return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading) 
    
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age
@@ -1028,6 +1028,70 @@ def nonWordReadingAccuracySec(request):
 
 @login_required(login_url="/primary/login")
 def showScoresSec(request):
+
+    grade_6 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[2,5,7,10,12,15,17,18,20,21,23],
+        "PSDS_Modified_standard":[65,72,78,85,90,98,103,106,111,113,118],
+        "RNOS_Row_grade":[163,147,127,117,106,99,93,87,83,76,70],
+        "RNOS_Modified_standard":[58,69,81,88,94,99,103,106,109,113,117],
+        "NWRS_Raw_grade":[2,5,6,9,11,12,13,15,16,17,19],
+        "NWRS_Modified_standard":[62,72,75,85,92,95,98,105,108,111,118],
+        "NWRAS_Raw_grade":[0,0,0,2,4,6,8,10,13,16,21],
+        "NWRAS_Modified_standard":[82,82,82,86,89,93,97,101,107,113,122],
+    })
+
+    grade_7 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[2,8,9,12,16,18,19,20,22,23,25],
+        "PSDS_Modified_standard":[58,74,77,84,95,100,102,105,110,113,118],
+        "RNOS_Row_grade":[147,120,113,101,95,89,83,78,72,67,61],
+        "RNOS_Modified_standard":[55,74,80,88,93,97,102,105,110,113,118],
+        "NWRS_Raw_grade":[2,5,6,9,12,13,15,16,17,18,20],
+        "NWRS_Modified_standard":[65,74,77,86,94,97,103,106,109,112,118],
+        "NWRAS_Raw_grade":[0,0,1,4,6,8,11,14,18,21,24],
+        "NWRAS_Modified_standard":[78,78,80,85,89,93,98,104,111,116,122],
+    })
+
+    grade_8 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[4,9,11,15,17,19,20,21,23,24,26],
+        "PSDS_Modified_standard":[58,71,77,88,93,99,102,104,110,113,118],
+        "RNOS_Row_grade":[114,111,98,91,85,79,73,69,66,62,57],
+        "RNOS_Modified_standard":[47,72,83,88,93,98,103,107,109,112,117],
+        "NWRS_Raw_grade":[4,6,9,11,13,14,15,16,17,18,20],
+        "NWRS_Modified_standard":[55,63,75,83,90,94,98,102,106,110,118],
+        "NWRAS_Raw_grade":[0,1,2,5,7,9,12,15,19,22,25],
+        "NWRAS_Modified_standard":[77,79,80,86,89,93,98,104,111,116,122],
+    })
+
+    grade_9 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[6,9,11,16,18,20,21,22,24,25,26],
+        "PSDS_Modified_standard":[61,69,75,89,94,100,103,105,111,114,117],
+        "RNOS_Row_grade":[127,103,97,87,81,77,72,69,65,60,55],
+        "RNOS_Modified_standard":[55,76,81,89,95,98,102,105,108,113,117],
+        "NWRS_Raw_grade":[4,6,9,11,13,14,15,17,18,19,20],
+        "NWRS_Modified_standard":[65,72,81,88,94,97,101,107,110,113,117],
+        "NWRAS_Raw_grade":[0,1,3,5,8,11,14,17,20,23,25],
+        "NWRAS_Modified_standard":[75,77,80,84,89,95,100,105,111,116,120],
+    })     
+
+    grade = Student.objects.get(id=request.session['student']).grade
+
+    if (grade == '6'):
+        return_scores_Sec(grade_6, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    elif (grade == '7'):
+        return_scores_Sec(grade_7, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    elif (grade == '8'):
+        return_scores_Sec(grade_8, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    elif (grade == '9'):
+        return_scores_Sec(grade_9, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age
     year = age.split('/')[0]

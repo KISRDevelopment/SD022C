@@ -1055,12 +1055,43 @@ def showScoresSec(request):
         "NWRAS_Modified_standard":[78,78,80,85,89,93,98,104,111,116,122],
     })
 
+    grade_8 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[4,9,11,15,17,19,20,21,23,24,26],
+        "PSDS_Modified_standard":[58,71,77,88,93,99,102,104,110,113,118],
+        "RNOS_Row_grade":[114,111,98,91,85,79,73,69,66,62,57],
+        "RNOS_Modified_standard":[47,72,83,88,93,98,103,107,109,112,117],
+        "NWRS_Raw_grade":[4,6,9,11,13,14,15,16,17,18,20],
+        "NWRS_Modified_standard":[55,63,75,83,90,94,98,102,106,110,118],
+        "NWRAS_Raw_grade":[0,1,2,5,7,9,12,15,19,22,25],
+        "NWRAS_Modified_standard":[77,79,80,86,89,93,98,104,111,116,122],
+    })
+
+    grade_9 = pd.DataFrame({
+        "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
+        "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
+        "PSDS_Raw_grade":[6,9,11,16,18,20,21,22,24,25,26],
+        "PSDS_Modified_standard":[61,69,75,89,94,100,103,105,111,114,117],
+        "RNOS_Row_grade":[127,103,97,87,81,77,72,69,65,60,55],
+        "RNOS_Modified_standard":[55,76,81,89,95,98,102,105,108,113,117],
+        "NWRS_Raw_grade":[4,6,9,11,13,14,15,17,18,19,20],
+        "NWRS_Modified_standard":[65,72,81,88,94,97,101,107,110,113,117],
+        "NWRAS_Raw_grade":[0,1,3,5,8,11,14,17,20,23,25],
+        "NWRAS_Modified_standard":[75,77,80,84,89,95,100,105,111,116,120],
+    })     
+
     grade = Student.objects.get(id=request.session['student']).grade
 
     if (grade == '6'):
         return_scores_Sec(grade_6, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    elif (grade == '7'):
+        return_scores_Sec(grade_7, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    elif (grade == '8'):
+        return_scores_Sec(grade_8, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
+    elif (grade == '9'):
+        return_scores_Sec(grade_9, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
     
-
     examiner = Examiner.objects.get(user_id=request.user.id)
     age = Student.objects.get(id=request.session['student']).age
     year = age.split('/')[0]

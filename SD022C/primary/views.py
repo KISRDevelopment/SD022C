@@ -768,7 +768,7 @@ def testsPageSec (request):
         score_obj = { "status_obj":('غير منجز'),}
         score_nonWrdRep= { "status_nonWrdRep":('غير منجز'),}
         score_nonWrdReadingAcc = { "status_nonWrdReadingAcc":('غير منجز'),}
-        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep,"student":(Student.objects.get(id=request.session['student']).studentName), 
+        return render(request, 'primary/testsPageSec.html',{"score_phonemeDel": score_phonemeDel, "score_obj":score_obj ,"score_nonWrdRep": score_nonWrdRep, "score_nonWrdReadingAcc": score_nonWrdReadingAcc,"student":(Student.objects.get(id=request.session['student']).studentName), 
         "examiners": Examiner.objects.get(user_id=request.user.id)})
 
 @login_required(login_url="/primary/login")

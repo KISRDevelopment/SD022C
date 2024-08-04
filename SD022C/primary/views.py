@@ -1100,3 +1100,7 @@ def showScoresSec(request):
     return render(request, "primary/showScoresSec.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "student_age_year": year, "student_age_month": month, "student_age_day": day, "examiners": examiner})
 
+@login_required(login_url="/primary/login")
+def showREC(request):
+    return render(request, "primary/showREC.html")
+

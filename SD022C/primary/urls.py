@@ -55,4 +55,5 @@ urlpatterns = [
     path('nonWordRepSec/', views.nonWordRepSec, name='nonWordRepSec'), 
     path('nonWordReadingAccuracySec/', views.nonWordReadingAccuracySec, name='nonWordReadingAccuracySec'),
     path('showScoresSec/', views.showScoresSec, name='showScoresSec'),
+    path('showREC/', views.showREC, name='showREC')
 ]

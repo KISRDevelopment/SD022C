@@ -1104,3 +1104,7 @@ def showScoresSec(request):
 def showREC(request):
     return render(request, "primary/showREC.html")
 
+@login_required(login_url="/secondary/login")
+def showRECsec(request):
+    return render(request, "primary/showRECsec.html")
+

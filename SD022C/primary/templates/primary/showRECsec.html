@@ -1,0 +1,279 @@
+{%extends 'primary/base.html'%} {%load static%} {%block content%}
+
+<div class="container-box card-signin" style="width: 1000px;margin-top: 2%">
+    <div class="card-body">
+        <form action="" method="POST" class="form-horizontal" style="text-align: right; direction: rtl;">
+            {% csrf_token%}
+            <div class="row g-3 mx-auto" style="width: 850px;">
+                <div class="modal-header mb-4">
+                    <h2 class="modal-title text-lg-purple" style="text-align: right;"> الجزء (ج): تمثيل الرتب المئينية للاختبارات الفرعية تمثيلا بيانيا: </h2>
+                </div>
+
+
+                <div class="d-grid mx-auto">
+                    <table>
+
+                        <tr>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;" rowspan="3">الوصف الكيفي </th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;" rowspan="3"> الرتبة المئينية </th>
+                            <th id="style-th" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;" colspan="4">المهارات التي يقيسها الاختبار </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;"> الوعي الصوتي </th>
+                            <th colspan="1" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">سرعة النفاذ الى المعجم اللغوي</th>
+                            <th colspan="1" style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">الذاكرة الصوتية</th>
+                        </tr>
+                        <tr>
+                            <th style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;"> حذف المقاطع والاصوات </th>
+                            <th style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">دقة قراءة الكلمات غير الحقيقية</th>
+                            <th style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">التسمية السريعة للصور </th>
+                            <th style="border: 4px solid white;background-color: #CC99CC;border-radius: 0%;direction: rtl;height: 25px; text-align: center;">تكرار الكلمات غير الحقيقية </th>
+
+
+                        </tr>
+
+                        <tr>
+                            <td style="border: 4px solid white; background:linear-gradient(to right, #d3d0d3 95%, plum 5%); border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;" rowspan="2">متفوق</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">90</td>
+                            {%if score_phonemeDel.Percentile_Number == 90 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 90 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 90 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 90 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">80</td>
+                            {%if score_phonemeDel.Percentile_Number == 80 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 80 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 80 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 80 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;" rowspan="2">فوق المتوسط</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">70</td>
+                            {%if score_phonemeDel.Percentile_Number == 70 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 70 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 70 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 70 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">60</td>
+                            {%if score_phonemeDel.Percentile_Number == 60 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 60 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 60 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 60 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;">متوسط</td>
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;">50</td>
+                            {%if score_phonemeDel.Percentile_Number == 50 %}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 50 %}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 50 %}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 50 %}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: rgba(187, 184, 184, 0.856); text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;" rowspan="2">اقل من المتوسط</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">40</td>
+                            {%if score_phonemeDel.Percentile_Number == 40 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 40 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 40 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 40 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">30</td>
+                            {%if score_phonemeDel.Percentile_Number == 30 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 30 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 30 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 30 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;" rowspan="2">متدن</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">20</td>
+                            {%if score_phonemeDel.Percentile_Number == 20 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 20 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 20 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 20 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">10</td>
+                            {%if score_phonemeDel.Percentile_Number == 10 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 10 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 10 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 10 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 4px solid white;background:linear-gradient(to right, #d3d0d3 95%, plum 5%);border-radius: 0%;direction: rtl;height: 25px; padding-right: 15px;" rowspan="2">متدن جدا</td>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">5</td>
+                            {%if score_phonemeDel.Percentile_Number == 5 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 5 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 5 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 5 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">1</td>
+                            {%if score_phonemeDel.Percentile_Number == 1 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdReadingAcc.Percentile_Number == 1 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_obj.Percentile_Number == 1 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%} {%if score_nonWrdRep.Percentile_Number == 1 %}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;">X</td>
+                            {%else%}
+                            <td style="border: 1px solid plum; background-color: white; text-align: center;"></td>
+                            {%endif%}
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{%endblock%}

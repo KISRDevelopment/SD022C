@@ -275,5 +275,37 @@
         </form>
     </div>
 </div>
+<canvas id="myChart" width="400" height="200"></canvas>
+<script>
+    var labels = JSON.parse('{{ labels|escapejs }}');
+    var data = JSON.parse('{{ data|escapejs }}');
 
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Percentile Numbers',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 10,
+                        autoSkip: false,
+                    }
+                }
+            }
+        }
+
+    });
+</script>
 {%endblock%}

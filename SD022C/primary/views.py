@@ -1165,6 +1165,10 @@ def showREC(request):
     })
 
     grade = Student.objects.get(id=request.session['student']).grade
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
 
     if (grade == '2'):
         return_scores(grade_2,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading)
@@ -1179,7 +1183,6 @@ def showREC(request):
         return_scores(grade_5,context_obj,context_phoneme,context_ltrs,context_nonWrdRep,context_nonWrdReading) 
    
     examiner = Examiner.objects.get(user_id=request.user.id)
-
     data = []
     labels = []
 
@@ -1204,7 +1207,7 @@ def showREC(request):
         labels.append("ق ك غ ")
 
     return render(request, "primary/showREC.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels)})
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels)})
 
 @login_required(login_url="/secondary/login")
 def showRECsec(request):
@@ -1261,7 +1264,11 @@ def showRECsec(request):
     })     
 
     grade = Student.objects.get(id=request.session['student']).grade
-
+    age = Student.objects.get(id=request.session['student']).age
+    year = age.split('/')[0]
+    month = age.split('/')[1]
+    day = age.split('/')[2]
+    
     if (grade == '6'):
         return_scores_Sec(grade_6, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
     elif (grade == '7'):
@@ -1296,6 +1303,6 @@ def showRECsec(request):
     examiner = Examiner.objects.get(user_id=request.user.id)
 
     return render(request, "primary/showRECsec.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "examiners": examiner, 'labels': json.dumps(labels),
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "student_age_year": year, "student_age_month": month, "student_age_day": day,"examiners": examiner, 'labels': json.dumps(labels),
         'data': json.dumps(data)})
 

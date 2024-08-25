@@ -15,6 +15,7 @@ from datetime import datetime
 from dateutil import relativedelta
 import pandas as pd
 from primary.utils import return_scores, return_scores_Sec
+import json
 
 # Create your views here.
 global context_obj
@@ -1179,8 +1180,31 @@ def showREC(request):
    
     examiner = Examiner.objects.get(user_id=request.user.id)
 
+    data = []
+    labels = []
+
+    if 'Percentile_Number' in context_obj:
+        data.append(int(context_obj['Percentile_Number']))
+        labels.append("ت س أ ")
+
+    if 'Percentile_Number' in context_phoneme:
+        data.append(int(context_phoneme['Percentile_Number']))
+        labels.append("	ح م")
+
+    if 'Percentile_Number' in context_ltrs:
+        data.append(int(context_ltrs['Percentile_Number']))
+        labels.append("ت س ح ")
+
+    if 'Percentile_Number' in context_nonWrdRep:
+        data.append(int(context_nonWrdRep['Percentile_Number']))
+        labels.append(" ت ك غ ")
+
+    if 'Percentile_Number' in context_nonWrdReading:
+        data.append(int(context_nonWrdReading['Percentile_Number']))
+        labels.append("ق ك غ ")
+
     return render(request, "primary/showREC.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,  "examiners": examiner})
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels)})
 
 @login_required(login_url="/secondary/login")
 def showRECsec(request):
@@ -1247,9 +1271,31 @@ def showRECsec(request):
     elif (grade == '9'):
         return_scores_Sec(grade_9, score_phonemeDel, score_obj, score_nonWrdRep, score_nonWrdReadingAcc)
 
-    #score_int_phonemeDel = int(score_phonemeDel.Percentile_Number)
+
+    data = []
+    labels = []
+
+    if 'Percentile_Number' in score_phonemeDel:
+        data.append(int(score_phonemeDel['Percentile_Number']))
+        labels.append("حذف المقاطع والاصوات")
+
+    if 'Percentile_Number' in score_obj:
+        data.append(int(score_obj['Percentile_Number']))
+        labels.append("	التسمية السريعة للصور")
+
+    if 'Percentile_Number' in score_nonWrdRep:
+        data.append(int(score_nonWrdRep['Percentile_Number']))
+        labels.append("تكرار الكلمات غير الحقيقية")
+
+    if 'Percentile_Number' in score_nonWrdReadingAcc:
+        data.append(int(score_nonWrdReadingAcc['Percentile_Number']))
+        labels.append("دقة قراءة الكلمات غير الحقيقية")
+
+
     
     examiner = Examiner.objects.get(user_id=request.user.id)
+
     return render(request, "primary/showRECsec.html", {
-        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "examiners": examiner})
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "examiners": examiner, 'labels': json.dumps(labels),
+        'data': json.dumps(data)})
 

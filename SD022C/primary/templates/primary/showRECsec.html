@@ -275,5 +275,39 @@
         </form>
     </div>
 </div>
+<div class="container-box card-signin" style="width: 1000px;margin-top: 2%">
+    <canvas id="myChart" width="400" height="200"></canvas>
+</div>
+<script>
+    var labels = JSON.parse('{{ labels|escapejs }}');
+    var data = JSON.parse('{{ data|escapejs }}');
 
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'الرتبة المئينية',
+                data: data,
+                backgroundColor: '#48611d',
+                borderColor: '#48611d',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 10,
+                        autoSkip: false,
+                    }
+                }
+            }
+        }
+
+    });
+</script>
 {%endblock%}

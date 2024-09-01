@@ -69,13 +69,18 @@
                             </a>
                             <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/دليل استخدام الاختبارات - المرحلة الابتدائية.pdf'%}" id="styleDropDown">
                                 دليل استخدام الاختبارات
-                            </a> {% elif examiners.stage == "SECONDARY" %}
+                            </a>
+                            {% elif examiners.stage == "SECONDARY" %}
                             <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/‎⁨اختبار التسمية السريعة للصور⁩.pdf'%}" id="styleDropDown">
                                 ‎⁨اختبار التسمية السريعة للصور⁩
                             </a>
                             <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/متوسط - اختبار  دقة قراءة الكلمات غير الحقيقية.pdf'%}" id="styleDropDown">
                                 اختبار دقة قراءة الكلمات غير الحقيقية
-                            </a> {% endif %}
+                            </a>
+                            <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{%static 'pdf/دليل استخدام الاختبارات - المرحلة المتوسطة.pdf'%}" id="styleDropDown">
+                                دليل استخدام الاختبارات
+                            </a> 
+                            {% endif %}
                         </div>
                     </div>
                 </div>

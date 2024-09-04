@@ -1103,6 +1103,47 @@ def showScoresSec(request):
 
 @login_required(login_url="/primary/login")
 def showREC(request):
+    student = Student.objects.get(id = request.session['student'])
+    examiner = Examiner.objects.get(id = request.user.id)
+    finalReport_retrieve = finalReportPrimary.objects.filter(student_id = request.session['student'])
+    print(finalReport_retrieve)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == "submit":
+            print('showrec post listented')
+            test_1_skill_sound = request.POST.get('choice1')
+            print(test_1_skill_sound)
+            test_2_skill_sound = request.POST.get('choice2')
+            print(test_2_skill_sound)
+            test_3_skill_speed = request.POST.get('choice3')
+            test_4_skill_speed = request.POST.get('choice4')
+            test_5_skill_memory = request.POST.get('choice5')
+            note = request.POST['note']
+            strength = request.POST['strength']
+            weakness = request.POST['weakness']
+            result = request.POST['result']
+            suggestion = request.POST['suggestion']
+
+
+            finalReport = finalReportPrimary.objects.create( student= student, examiner = examiner, test_1_skill_sound = test_1_skill_sound, test_2_skill_sound = test_2_skill_sound, test_3_skill_speed = test_3_skill_speed, test_4_skill_speed = test_4_skill_speed, test_5_skill_memory = test_5_skill_memory, notes= note, strength=strength, weakness = weakness, result = result, suggestion = suggestion)
+            finalReport.save()
+
+    
+    finalReport_exist = finalReport_retrieve.exists()
+    if finalReport_exist:
+        test1_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").test_1_skill_sound
+        test2_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").test_2_skill_sound
+        test3_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").test_3_skill_speed
+        test4_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").test_4_skill_speed
+        test5_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").test_5_skill_memory
+        note_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").notes
+        strength_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").strength
+        weakness_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").weakness
+        result_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").result
+        suggestion_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").suggestion
+        
+
+
     grade_2 = pd.DataFrame({
         "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
         "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
@@ -1206,7 +1247,12 @@ def showREC(request):
         data.append(int(context_nonWrdReading['Percentile_Number']))
         labels.append("ق ك غ ")
 
-    return render(request, "primary/showREC.html", {
+
+    if finalReport_exist:
+        return render(request, "primary/showREC.html", {
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels), 'finalreport_exist': finalReport_exist, 'test1_latest': test1_latest, 'test2_latest':test2_latest, 'test3_latest': test3_latest, 'test4_latest':test4_latest, 'test5_latest':test5_latest, 'note_latest':note_latest, 'strength_latest':strength_latest, 'weakness_latest':weakness_latest, 'result_latest': result_latest, 'suggestion_latest': suggestion_latest})
+    else:
+                return render(request, "primary/showREC.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels)})
 
 @login_required(login_url="/secondary/login")

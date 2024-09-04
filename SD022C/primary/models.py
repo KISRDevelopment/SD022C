@@ -44,6 +44,25 @@ class Student(models.Model):
     def __str__(self):
         return f"{self.studentName}"
     
+
+class finalReportPrimary(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student_ids')
+    examiner = models.ForeignKey(Examiner, on_delete=models.CASCADE, related_name='examiner_ids')
+    test_1_skill_sound = models.BooleanField(null=True)
+    test_2_skill_sound = models.BooleanField(null=True)
+    test_3_skill_speed = models.BooleanField(null=True)
+    test_4_skill_speed = models.BooleanField(null=True)
+    test_5_skill_memory = models.BooleanField(null=True)
+    notes = models.TextField()
+    strength = models.TextField()
+    weakness = models.TextField()
+    result = models.TextField()
+    suggestion = models.TextField()
+
+    def __str__(self):
+        return f"{self.student}"
+
+    
 #Test Parts such as part A part B etc (students can take as many tests part and it will be saved)
 #Primary - test 1
 class RpdNamingObj_Score(models.Model):

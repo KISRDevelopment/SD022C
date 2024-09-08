@@ -156,7 +156,7 @@
             {% csrf_token%}
             <div class="row g-3 mx-auto" style="width: 850px;">
                 <div class="modal-header mb-4">
-                    <h2 class="modal-title text-lg-purple" style="text-align: right;"> الجزء (ج): تمثيل الرتب المئينية للاختبارات الفرعية تمثيلا بيانيا </h2>
+                    <h2 class="modal-title text-lg-purple" style="text-align: right;"> الجزء (ج): تمثيل الرتب المئينية للاختبارات الفرعية تمثيلا بيانياً </h2>
                 </div>
 
 
@@ -479,10 +479,10 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="note" class=""> ملاحظ على المفحوص قبل الاختبار وفي أثنائه:  </label>
+                <label for="note" class=""> ملاحظات على المفحوص قبل الاختبار وفي أثنائه:  </label>
                 <textarea type="text" class="form-control" name="note" id="note" rows="2" value="">{{note_latest}}</textarea>
             </div>
-            <p> نتيجة الهارات والاختبارات التي اجاب عنها المفحوص (&#10004 , &#10006):</p>
+            <p> نتيجة المهارات والاختبارات التي اجاب عنها المفحوص (&#10004 , &#10006):</p>
             <div class="card-body">
                 <div class="row g-3 mx-auto" style="width: 850px;">
 
@@ -492,17 +492,17 @@
                         <table>
 
                             <tr>
-                                <th id="style-th" style="border: 4px solid white; color:white; background-color: #262915;direction: rtl;height: 25px; text-align: center;" rowspan="2">الاختبار الفرعي </th>
-                                <th id="style-th" style="border: 4px solid white; color:white; background-color: #262915;direction: rtl;height: 25px; text-align: center;" colspan="3"> الهارة التي يقيسها الاختبار </th>
+                                <th id="style-th" style="border: 4px solid white; color:white; background-color: #91af5a;direction: rtl;height: 25px; text-align: center;" rowspan="2">الاختبار الفرعي </th>
+                                <th id="style-th" style="border: 4px solid white; color:white; background-color: #91af5a;direction: rtl;height: 25px; text-align: center;" colspan="3"> المهارة التي يقيسها الاختبار </th>
                             </tr>
                             <tr>
-                                <th style="border: 4px solid white; color:white; background-color: #91af5a;direction: rtl;height: 30px; text-align: center;"> الوعي بالالصوات </th>
-                                <th style="border: 4px solid white; color:white; background-color: #48611d;direction: rtl;height: 30px; text-align: center;">سرعة النفاذ الى المعجم اللغوي</th>
-                                <th style="border: 4px solid white; color:white; background-color: #353b13;direction: rtl;height: 30px; text-align: center;">الذاكرة الصوتية</th>
+                                <th style="border: 4px solid white; color:white; background-color: #91af5a;direction: rtl;height: 30px; text-align: center;"> الوعي بالأصوات </th>
+                                <th style="border: 4px solid white; color:white; background-color: #91af5a;direction: rtl;height: 30px; text-align: center;">سرعة النفاذ الى المعجم اللغوي</th>
+                                <th style="border: 4px solid white; color:white; background-color: #91af5a;direction: rtl;height: 30px; text-align: center;">الذاكرة الصوتية</th>
                             </tr>
                             <tr>
-                                <td style="border: 4px solid white; color:white; background-color: #4B5320;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">1 - حذف القاطع والاصوات</td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center;">
+                                <td style="border: 1px solid ; color:black; background-color: white;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">1 - حذف القاطع والاصوات</td>
+                                <td style="border: 1px solid; border-color:black; text-align: center;">
                                     <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: right; align-items:center;">
                                         {% if test1_latest == True %}
                                         <label for="choice1" class="p-2" value="True">  &#10004 </label>
@@ -520,13 +520,13 @@
 
                                     </div>
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;"></td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;"></td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);"></td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);"></td>
 
                             </tr>
                             <tr>
-                                <td style="border: 4px solid white; color:white; background-color: #4B5320;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">2 - دقة قراءة الكلمات غير الحقيقية</td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center;">
+                                <td style="border: 1px solid black; color:black; background-color: white;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">2 - دقة قراءة الكلمات غير الحقيقية</td>
+                                <td style="border: 1px solid; border-color:black; text-align: center;">
                                     <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: right; align-items:center;">
                                         {% if test2_latest == True %}
                                         <label for="choice2" class="p-2" value="True">  &#10004</label>
@@ -543,16 +543,16 @@
                                         <input type="radio" name="choice2" value="False"> {%endif%}
                                     </div>
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;"></td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;"></td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);"></td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);"></td>
 
                             </tr>
                             <tr>
-                                <td style="border: 4px solid white; color:white; background-color: #4B5320;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">3 - التسمية السريعة الأشكال</td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;">
+                                <td style="border: 1px solid black; color:black; background-color: white;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">3 - التسمية السريعة الأشكال</td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);">
 
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center;">
+                                <td style="border: 1px solid; border-color:black; text-align: center;">
                                     <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: right; align-items:center;">
                                         {% if test3_latest == True %}
                                         <label for="choice3" class="p-2" value="True">  &#10004</label>
@@ -569,15 +569,15 @@
                                         <input type="radio" name="choice3" value="False"> {%endif%}
                                     </div>
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;"></td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);"></td>
 
                             </tr>
                             <tr>
-                                <td style="border: 4px solid white; color:white; background-color: #4B5320;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">4 - التسمية السريعة للحروف</td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;">
+                                <td style="border: 1px solid black; color:black; background-color: white;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">4 - التسمية السريعة للحروف</td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);">
 
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center;">
+                                <td style="border: 1px solid; border-color:black; text-align: center;">
                                     <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: right; align-items:center;">
                                         {% if test4_latest == True %}
                                         <label for="choice4" class="p-2" value="True">  &#10004</label>
@@ -594,18 +594,18 @@
                                         <input type="radio" name="choice4" value="False"> {%endif%}
                                     </div>
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;"></td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);"></td>
 
                             </tr>
                             <tr>
-                                <td style="border: 4px solid white; color:white; background-color: #4B5320;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">5 - تكرار الكلمات غير الحقيقية</td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;">
+                                <td style="border: 1px solid black; color:black; background-color: white;direction: rtl;height: 25px; text-align: center; padding-right: 15px;">5 - تكرار الكلمات غير الحقيقية</td>
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);">
 
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center; background-color: gray;">
+                                <td style="border: 1px solid; border-color:black; text-align: center; background-color: rgba(187, 184, 184, 0.856);">
 
                                 </td>
-                                <td style="border: 1px solid; border-color:#48611d; text-align: center;">
+                                <td style="border: 1px solid; border-color:black; text-align: center;">
                                     <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: right; align-items:center;">
                                         {% if test5_latest == True %}
                                         <label for="choice5" class="p-2" value="True">  &#10004</label>

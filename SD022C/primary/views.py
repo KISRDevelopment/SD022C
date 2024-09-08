@@ -1124,7 +1124,6 @@ def showREC(request):
             result = request.POST['result']
             suggestion = request.POST['suggestion']
 
-
             finalReport = finalReportPrimary.objects.create( student= student, examiner = examiner, test_1_skill_sound = test_1_skill_sound, test_2_skill_sound = test_2_skill_sound, test_3_skill_speed = test_3_skill_speed, test_4_skill_speed = test_4_skill_speed, test_5_skill_memory = test_5_skill_memory, notes= note, strength=strength, weakness = weakness, result = result, suggestion = suggestion)
             finalReport.save()
 
@@ -1142,7 +1141,6 @@ def showREC(request):
         result_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").result
         suggestion_latest = finalReportPrimary.objects.filter(student_id=request.session['student']).latest("id").suggestion
         
-
 
     grade_2 = pd.DataFrame({
         "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
@@ -1252,11 +1250,34 @@ def showREC(request):
         return render(request, "primary/showREC.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels), 'finalreport_exist': finalReport_exist, 'test1_latest': test1_latest, 'test2_latest':test2_latest, 'test3_latest': test3_latest, 'test4_latest':test4_latest, 'test5_latest':test5_latest, 'note_latest':note_latest, 'strength_latest':strength_latest, 'weakness_latest':weakness_latest, 'result_latest': result_latest, 'suggestion_latest': suggestion_latest})
     else:
-                return render(request, "primary/showREC.html", {
+        return render(request, "primary/showREC.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "context_obj": context_obj, "context_ltrs": context_ltrs, "context_phoneme":context_phoneme,"context_nonWrdRep": context_nonWrdRep,"context_nonWrdReading":context_nonWrdReading,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels)})
 
 @login_required(login_url="/secondary/login")
 def showRECsec(request):
+    examiner = Examiner.objects.get(user_id=request.user.id)
+    student = Student.objects.get(id = request.session['student'])
+    finalReportSec_retrieve = finalReportSecondary.objects.filter(student_id = request.session['student'])
+
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == "submit":
+            note = request.POST['note']
+            strength = request.POST['strength']
+            weakness = request.POST['weakness']
+            results = request.POST['result']
+            suggestion = request.POST['suggestion']
+            finalReportS = finalReportSecondary.objects.create( student= student, examiner = examiner, notes= note, strength=strength, weakness = weakness, results = results, suggestion = suggestion)
+            finalReportS.save()
+
+    finalReportS_exist = finalReportSec_retrieve.exists()
+    if finalReportS_exist:
+        note_nt = finalReportSecondary.objects.filter(student_id=request.session['student']).latest("id").notes
+        strength_str = finalReportSecondary.objects.filter(student_id=request.session['student']).latest("id").strength
+        weakness_wk = finalReportSecondary.objects.filter(student_id=request.session['student']).latest("id").weakness
+        result_rslt = finalReportSecondary.objects.filter(student_id=request.session['student']).latest("id").results
+        suggestion_sgt = finalReportSecondary.objects.filter(student_id=request.session['student']).latest("id").suggestion
+
     grade_6 = pd.DataFrame({
         "Percentile_Letter": ["Low","Low","Weak","Weak","Below Average","Below Average","Average","Good","Good","Superior","Superior"],
         "Percentile_Number": [1,5,10,20,30,40,50,60,70,80,90],
@@ -1344,11 +1365,11 @@ def showRECsec(request):
         data.append(int(score_nonWrdReadingAcc['Percentile_Number']))
         labels.append("دقة قراءة الكلمات غير الحقيقية")
 
-
-    
-    examiner = Examiner.objects.get(user_id=request.user.id)
-
-    return render(request, "primary/showRECsec.html", {
+    if finalReport_exist:
+        return render(request, "primary/showRECsec.html", {
+        "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels), 'finalreport_exist': finalReport_exist,'note_nt':note_nt, 'strength_str':strength_str, 'weakness_wk':weakness_wk, 'result_rslt': result_rslt, 'suggestion_sgt': suggestion_sgt})
+    else:
+        return render(request, "primary/showRECsec.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc, "student_age_year": year, "student_age_month": month, "student_age_day": day,"examiners": examiner, 'labels': json.dumps(labels),
         'data': json.dumps(data)})
 

@@ -1365,7 +1365,7 @@ def showRECsec(request):
         data.append(int(score_nonWrdReadingAcc['Percentile_Number']))
         labels.append("دقة قراءة الكلمات غير الحقيقية")
 
-    if finalReport_exist:
+    if finalReportS_exist:
         return render(request, "primary/showRECsec.html", {
         "students": Student.objects.get(id=request.session['student']), "examinerName": examiner.name, "score_phonemeDel": score_phonemeDel,  "score_obj":score_obj , "score_nonWrdRep": score_nonWrdRep,"score_nonWrdReadingAcc":score_nonWrdReadingAcc,"student_age_year": year, "student_age_month": month, "student_age_day": day,  "examiners": examiner, 'data': json.dumps(data), 'labels': json.dumps(labels), 'finalreport_exist': finalReport_exist,'note_nt':note_nt, 'strength_str':strength_str, 'weakness_wk':weakness_wk, 'result_rslt': result_rslt, 'suggestion_sgt': suggestion_sgt})
     else:

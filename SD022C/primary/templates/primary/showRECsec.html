@@ -150,7 +150,7 @@
             {% csrf_token%}
             <div class="row g-3 mx-auto" style="width: 850px;">
                 <div class="modal-header mb-4">
-                    <h2 class="modal-title text-lg-purple" style="text-align: right; color:black;"> الجزء (ج): تمثيل الرتب المئينية للاختبارات الفرعية تمثيلا بيانيا: </h2>
+                    <h2 class="modal-title text-lg-purple" style="text-align: right; color:black;"> الجزء (ج): تمثيل الرتب المئينية للاختبارات الفرعية تمثيلا بيانياً: </h2>
                 </div>
 
 
@@ -429,7 +429,7 @@
             {% csrf_token %}
             <div class="row g-3 mx-auto rbgsa" style="width: 850px;">
                 <div class="modal-header mb-4">
-                    <h2 class="modal-title text-lg-purple" style="text-align: right;"> الجزء (د): التقرير النهائي والتوصيات </h2>
+                    <h2 class="modal-title text-lg-purple" style="text-align: right; color:black;"> الجزء (د): التقرير النهائي والتوصيات </h2>
                 </div>
                 <div class="col-md-6" style="display: flex; flex-direction: row; justify-content: center; align-items:center;">
                     <label for="studentName" class=""> اسم المفحوص رباعيا: </label>
@@ -453,7 +453,7 @@
                 <label for="note" class=""> ملاحظات على المفحوص قبل الاختبار وفي أثنائه:  </label>
                 <textarea type="text" class="form-control" name="note" id="note" rows="2" value="">{{note_nt}}</textarea>
             </div>
-            <h3> التفسير الكيفي للاختبار:</h3>
+            <h3 class="modal-title text-m-b" style="text-align: right; color:#48611d; margin-bottom: 10px;"> التفسير الكيفي للاختبار:</h3>
             <div class="form-group mb-3">
                 <label for="strength" class=""> أولاً: نقاط القوة:   </label>
                 <textarea type="text" class="form-control" name="strength" id="strength" rows="5" value="">{{strength_str}}</textarea>

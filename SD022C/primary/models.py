@@ -62,6 +62,17 @@ class finalReportPrimary(models.Model):
     def __str__(self):
         return f"{self.student}"
 
+class finalReportSecondary(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student_idS')
+    examiner = models.ForeignKey(Examiner, on_delete=models.CASCADE, related_name='examiner_idS')
+    notes = models.TextField()
+    strength = models.TextField()
+    weakness = models.TextField()
+    results = models.TextField()
+    suggestion = models.TextField()
+
+    def __str__(self):
+        return f"{self.student}"
     
 #Test Parts such as part A part B etc (students can take as many tests part and it will be saved)
 #Primary - test 1

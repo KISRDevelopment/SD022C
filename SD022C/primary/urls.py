@@ -42,7 +42,6 @@ urlpatterns = [
     path('nonWordRepetition/<int:id>', views.nonWordRepetition, name='nonWordRepetition'),
     path('nonWordRepetition/', views.nonWordRepetition, name='nonWordRepetition'),
     path('search/results', views.search_results, name='search-results'),
-    path('showScores/', views.showScores, name='showScores'),
     path('testsPageSec/', views.testsPageSec, name='testsPageSec'),
     path('phonemeSyllableTrainSec/<int:id>', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'),
     path('phonemeSyllableTrainSec/', views.phonemeSyllableTrainSec, name='phonemeSyllableTrainSec'), 
@@ -54,7 +53,6 @@ urlpatterns = [
     path('nonWordRepSec/<int:id>', views.nonWordRepSec, name='nonWordRepSec'),
     path('nonWordRepSec/', views.nonWordRepSec, name='nonWordRepSec'), 
     path('nonWordReadingAccuracySec/', views.nonWordReadingAccuracySec, name='nonWordReadingAccuracySec'),
-    path('showScoresSec/', views.showScoresSec, name='showScoresSec'),
     path('showREC/', views.showREC, name='showREC'),
     path('showRECsec/', views.showRECsec, name='showRECsec')
 ]

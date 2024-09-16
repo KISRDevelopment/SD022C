@@ -57,7 +57,7 @@ def return_scores(df,obj1,obj2,obj3,obj4,obj5):
     return
     
 def return_scores_Sec(df,obj1,obj2,obj3,obj4): 
-    if ((obj1.get('correctAnswers')) >= df.iloc[r]['PSDS_Raw_grade']):
+    if ((obj1.get('correctAnswers')) >= df.iloc[10]['PSDS_Raw_grade']):
         obj1["Percentile_Number"] = df.iloc[10]['Percentile_Number']
         obj1["PSDS_Modified_standard"] = df.iloc[10]['PSDS_Modified_standard']
     else:   

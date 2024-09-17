@@ -943,7 +943,7 @@ def nonWordReadingAccuracySec(request):
 @login_required(login_url="/primary/login")
 def showREC(request):
     student = Student.objects.get(id = request.session['student'])
-    examiner = Examiner.objects.get(id = request.user.id)
+    examiner = Examiner.objects.get(user_id = request.user.id)
     finalReport_retrieve = finalReportPrimary.objects.filter(student_id = request.session['student'])
     print(finalReport_retrieve)
     if request.method == 'POST':

@@ -37,9 +37,14 @@ score_nonWrdRep = {}
 global score_nonWrdReadingAcc
 score_nonWrdReadingAcc = {} 
 
-def index (request):
-    return render (request,"primary/index.html")
 
+def index (request):
+    if request.user.is_authenticated:
+        return render(request,"primary/index.html", {
+        "students": Student.objects.filter(examiner_id=request.user.id),  "stage": (Examiner.objects.get(user_id=request.user.id).stage), "examiners": (Examiner.objects.get(user_id=request.user.id))
+        })
+    return render(request,"primary/index.html")
+    
 def adminPage (request):
     return render (request,"primary/adminPage.html")
 

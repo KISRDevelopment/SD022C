@@ -35,10 +35,10 @@
     <div class="navbar navbar-expand py-0 mb-5 bg-color-green ">
         <div class="container">
             <div class="dropdown">
-                <a class="link-light fs-4 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="link-light fs-4 dropdown-toggle text-decoration-none mb-2 mb-lg-0" href="#" role="button" id="dropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{user}}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkUser" id="styleDropDown">
                     <a class="dropdown-item d-flex justify-content-end fs-5 fw-bold" href="{% url 'primary:profile' %}" method="POST" id="styleDropDown" value={{Examiners.user_id}}>
                         الحساب
                         <li class="bi bi-person-fill mx-3"></li>
@@ -54,7 +54,7 @@
                 <div class="navbar navbar">
                     <div class="dropdown">
                         <a class="link-light fs-4 dropdown-toggle text-decoration-none mb-2 mb-lg-0 " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      الأدلة
+                            الأدلة
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="styleDropDown">
                             {% if examiners.stage == "PRIMARY" %}

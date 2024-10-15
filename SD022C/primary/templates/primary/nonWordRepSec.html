@@ -2,112 +2,136 @@
 <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
 <audio controls id="audio" hidden="hidden"></audio>
 <div class="container">
-    <div class="text-lg-green fs-2 mb-5 ">  اختبار تكرار الكلمات غير الحقيقية </div>
+    <div class="text-lg-green fs-2 mb-5 "> اختبار تكرار الكلمات غير الحقيقية </div>
     <div class="card my-3 mx-auto color-green" style="width:1250px; border-color:#568203;">
-        <div class=" d-grid" style="margin-top:10px; padding-right: 30px;" >
+        <div class=" d-grid" style="margin-top:10px; padding-right: 30px;">
             <p class="text-m-b" style="direction: rtl;">اضغط على الزر <i class="bi bi-headphones" style="font-size: 30px;"></i> لتشغيل الصوت</p>
         </div>
         <div class="container text-center mt-4" style="direction: rtl;">
-            <form hx-post="{% url 'primary:nonWordRepSec' %}" hx-target="#end" hx-swap="innerText"  class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;">
+            <form hx-post="{% url 'primary:nonWordRepSec' %}" hx-target="#end" hx-swap="innerText" class="form-horizontal col-12" id="questionsForm" style="float:right; direction: rtl;">
                 {% csrf_token %}
-                <div class="row" >
+                <div class="row">
                     <div class="col-6">
-                        <div class="container text-center" >
+                        <div class="container text-center">
                             <div class="row">
                                 <div class=" col-2">
-                                <ul class="list-group-green">
-                                    <li class="list-group-item" style="background-color: #48611d; border-color: #48611d; color:white;" aria-current="true">م</li>
-                                    <li class="list-group-item mt-4" style="border: 1px solid; border-color: #48611d;">1</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">2</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">3</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">4</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">5</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">6</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">7</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">8</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">9</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">10</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">11</li>
-                                    <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">12</li>
-                                </ul> 
+                                    <ul class="list-group-green">
+                                        <li class="list-group-item" style="background-color: #48611d; border-color: #48611d; color:white;" aria-current="true">م</li>
+                                        <li class="list-group-item mt-4" style="border: 1px solid; border-color: #48611d;">1</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">2</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">3</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">4</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">5</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">6</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">7</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">8</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">9</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">10</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">11</li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">12</li>
+                                    </ul>
                                 </div>
                                 <div class=" col-5">
-                                <ul class="list-group-text">
-                                    <li class="list-group-item pt-3" style="background-color:#48611d; border-color:#48611d; color:white;" aria-current="true">الفقرة</li>
-                                    <li  class="list-group-item mt-4" style="border: 1px solid; border-color: #48611d">مُنْزَعُفِرّا <a value="1" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">يُمَرْمِخُ <a value="2" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">غارمج <a value="3" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَارْسَمُ <a value="4" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">ضَغارِمُ <a value="5" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">تُقْنساتِ <a value="6" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">مَليخوبيدِ <a value="7" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">زِطْحَمِ <a value="8" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">صَوْلَفيطُ <a value="9" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَفَسْمَخُ <a value="10"type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">فَتْسَمَنخْ <a value="11"type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">كَابْيَكوحِ <a value="12"type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
+                                    <ul class="list-group-text">
+                                        <li class="list-group-item pt-3" style="background-color:#48611d; border-color:#48611d; color:white;" aria-current="true">الفقرة</li>
+                                        <li class="list-group-item mt-4" style="border: 1px solid; border-color: #48611d">مُنْزَعُفِرّا
+                                            <a value="1" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">يُمَرْمِخُ
+                                            <a value="2" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">غارمج
+                                            <a value="3" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَارْسَمُ
+                                            <a value="4" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">ضَغارِمُ
+                                            <a value="5" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">تُقْنساتِ
+                                            <a value="6" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">مَليخوبيدِ
+                                            <a value="7" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">زِطْحَمِ
+                                            <a value="8" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">صَوْلَفيطُ
+                                            <a value="9" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَفَسْمَخُ
+                                            <a value="10" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">فَتْسَمَنخْ
+                                            <a value="11" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">كَابْيَكوحِ
+                                            <a value="12" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
 
-                                </ul>                         
+                                    </ul>
                                 </div>
                                 <div class=" col-4">
-                                <ul class="list-group-answer">
-                                    <li class="list-group-item pt-3" style="background-color:#48611d; border-color: #48611d; color:white; width:130px; margin-right:9px;" aria-current="true">تسجيل الاجابة</li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="1" name = "selection" value="1" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="1"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="2" name = "selection" value="2" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="2"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="3" name = "selection" value="3" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="3"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="4" name = "selection" value="4" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="4"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="5" name = "selection" value="5" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="5"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="6" name = "selection" value="6" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="6"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="7" name = "selection" value="7" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="7"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="8" name = "selection" value="8" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="8"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="9" name = "selection" value="9" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="9"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="10" name = "selection" value="10" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="10"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="11" name = "selection" value="11" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: r#48611d;  border-radius:0px;"  for="11"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="12" name = "selection" value="12" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;"  for="12"></label>
-                                    </li>
-                                </ul>
+                                    <ul class="list-group-answer">
+                                        <li class="list-group-item pt-3" style="background-color:#48611d; border-color: #48611d; color:white; width:130px; margin-right:9px;" aria-current="true">تسجيل الاجابة</li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="1" name="selection" value="1" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="1"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="2" name="selection" value="2" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="2"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="3" name="selection" value="3" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="3"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="4" name="selection" value="4" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="4"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="5" name="selection" value="5" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="5"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="6" name="selection" value="6" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="6"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="7" name="selection" value="7" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="7"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="8" name="selection" value="8" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="8"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="9" name="selection" value="9" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="9"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="10" name="selection" value="10" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="10"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="11" name="selection" value="11" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: r#48611d;  border-radius:0px;" for="11"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="12" name="selection" value="12" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d;  border-radius:0px;" for="12"></label>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-6" >
-                        <div class="container text-center" >
+                    <div class="col-6">
+                        <div class="container text-center">
                             <div class="row">
                                 <div class=" col-2">
                                     <ul class="list-group-green">
@@ -123,92 +147,114 @@
                                         <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">21</li>
                                         <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">22</li>
                                         <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">23</li>
-                                    </ul> 
+                                    </ul>
                                 </div>
 
                                 <div class="col-5">
                                     <ul class="list-group-text ">
-                                    <li class="list-group-item pt-3" style="background-color: #48611d; border-color: #48611d; color:white;" aria-current="true">الفقرة</li>
-                                    <li  class="list-group-item mt-4" style="border: 1px solid; border-color: #48611d;">اسْتَظَخَّشْ <a value="13" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">نالومُنْخَمِلُ <a value="14" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">يَهفومَشرابورْ <a value="15" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">ضِفْخانِستِفْ <a value="16" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">فَرْماسَفيخُ <a value="17" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَرْليكوحَنْدوبْلا <a value="18" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">موكوراغينُسْ <a value="19" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">سِفيفَرْماخُ <a value="20" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">سيتوزاتوميزاتْ <a value="21" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">مُرْخِشاتِفّا <a value="22" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    <li  class="list-group-item" style="border: 1px solid; border-color: #48611d;">شَرْتوماكيوشيكْ <a value="23" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a></li>
-                                    </ul>    
-                                </div>  
+                                        <li class="list-group-item pt-3" style="background-color: #48611d; border-color: #48611d; color:white;" aria-current="true">الفقرة</li>
+                                        <li class="list-group-item mt-4" style="border: 1px solid; border-color: #48611d;">اسْتَظَخَّشْ
+                                            <a value="13" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">نالومُنْخَمِلُ
+                                            <a value="14" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">يَهفومَشرابورْ
+                                            <a value="15" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">ضِفْخانِستِفْ
+                                            <a value="16" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">فَرْماسَفيخُ
+                                            <a value="17" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">تَرْليكوحَنْدوبْلا
+                                            <a value="18" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">موكوراغينُسْ
+                                            <a value="19" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">سِفيفَرْماخُ
+                                            <a value="20" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">سيتوزاتوميزاتْ
+                                            <a value="21" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">مُرْخِشاتِفّا
+                                            <a value="22" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                        <li class="list-group-item" style="border: 1px solid; border-color: #48611d;">شَرْتوماكيوشيكْ
+                                            <a value="23" type="button" onclick="playAudio(this)"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
 
                                 <div class="col-4">
                                     <ul class="list-group-answer ">
-                                    <li class="list-group-item pt-3 " style="background-color: #48611d; border-color: #48611d; color:white; width:130px; margin-right:9px;" aria-current="true">تسجيل الاجابة</li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="13" name = "selection" value="13" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="13"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="14" name = "selection" value="14" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="14"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="15" name = "selection" value="15" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="15"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="16" name = "selection" value="16" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="16"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="17" name = "selection" value="17" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="17"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="18" name = "selection" value="18" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="18"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="19" name = "selection" value="19" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="19"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="20" name = "selection" value="20" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="20"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="21" name = "selection" value="21" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="21"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="22" name = "selection" value="22" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="22"></label>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input type="checkbox"  class="btn-check" id="23" name = "selection" value="23" autocomplete="off">
-                                        <label class="btn btn-outline-success" onclick="btn_clicked(this)" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;"  for="23"></label>
-                                    </li>
+                                        <li class="list-group-item pt-3 " style="background-color: #48611d; border-color: #48611d; color:white; width:130px; margin-right:9px;" aria-current="true">تسجيل الاجابة</li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="13" name="selection" value="13" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="13"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="14" name="selection" value="14" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="14"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="15" name="selection" value="15" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="15"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="16" name="selection" value="16" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="16"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="17" name="selection" value="17" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="17"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="18" name="selection" value="18" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="18"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="19" name="selection" value="19" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="19"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="20" name="selection" value="20" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="20"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="21" name="selection" value="21" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="21"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="22" name="selection" value="22" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="22"></label>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <input type="checkbox" class="btn-check" id="23" name="selection" value="23" autocomplete="off" onclick="btn_clicked(this)">
+                                            <label class="btn btn-outline-success" style=" width:130px; height: 50px; border-color: #48611d; border-radius:0px;" for="23"></label>
+                                        </li>
                                     </ul>
                                 </div>
-                            </div>   
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12" style="align-items: center;" >
+                <div class="col-12" style="align-items: center;">
                     <span class="input-group-text mx-auto d-grid" style="width:150px ;border-color:#48611d; background-color:#48611d; border-radius: 0%; direction: center; font-size:20px; font-weight:bolder; color:white;">الدرجة الكلية  / 23</span>
                     <label class="input-group-text mx-auto d-grid" id="result" style="width:150px ; border-color:#48611d; border-width: 2px; border-radius: 0%; direction: rtl; font-size:20px; font-weight:bolder;">----</label>
                     <input id="end" type="submit" name="form1-3" class=" btn-green d-grid mx-auto " value="تسليم الاختبار" data-toggle="modal" data-target="#ModalsubmitTest{{Students.id}}" style=" font-weight: bold; margin-top: 18px; margin-bottom: 20px;">
                 </div>
-            </form>        
+            </form>
         </div>
-    </div> 
+    </div>
 </div>
 
 <!-- modal for submit tst -->
-<div class="modal fade" id="ModalsubmitTest{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-    <form class="form-horizontal" action="" method="POST" >
+<div class="modal fade" id="ModalsubmitTest{{Students.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <form class="form-horizontal" action="" method="POST">
         {% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-3 shadow">
@@ -216,8 +262,8 @@
                     <h5 class="modal-title mb-0 w-100 text-center fs-2 fw-bolder"> هل أنت متأكد من تسليم الاختبار؟ </h5>
                 </div>
                 <div class="modal-body fs-5" style="direction: rtl;">
-                    <label for="submitTst" class="form-label" >يرجى الاختيار من القائمة </label>
-                    <select id="submitTst" name ="submitTst" class="form-select fs-5" Required>
+                    <label for="submitTst" class="form-label">يرجى الاختيار من القائمة </label>
+                    <select id="submitTst" name="submitTst" class="form-select fs-5" Required>
                         <option value="تم الانتهاء من بنود الاختبار كلها " selected>تم الانتهاء من بنود الاختبار كلها </option>
                         <option value="توقف لأسباب صحية أو شخصية خاصة بالطالب" >توقف لأسباب صحية أو شخصية خاصة بالطالب</option>
                         <option value="توقف لأسباب صحية أو شخصية خاصة بالفاحص">توقف لأسباب صحية أو شخصية خاصة بالفاحص</option>
@@ -226,7 +272,7 @@
                     </select>
                 </div>
                 <div class="modal-footer flex-nowrap p-0">
-                    <input id="submitDropDown" type="submit" name="form2-3" value=" تسليم الاختبار "  class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #48611d; border-color: #48611d; ">
+                    <input id="submitDropDown" type="submit" name="form2-3" value=" تسليم الاختبار " class="btn btn-danger fs-5 col-12 py-3 m-0 rounded-0 " style="background-color: #48611d; border-color: #48611d; ">
                 </div>
             </div>
         </div>
@@ -234,35 +280,65 @@
 </div>
 
 <script type="text/javascript">
-    counter=0;
-    count=0;
+    counter = 0;
+    count = 0;
     x = 0;
+    currentValue = 0;
+    lastValue = 0;
+    btnValue = 0;
 
-    function playAudio(btn){
-        if (btn.getAttribute('value')){
+    function playAudio(btn) {
+        if (btn.getAttribute('value')) {
             counter++;
-            if ( (counter - x)  > 3) {
+            if ((counter - x) > 3) {
                 console.log('reach 3 ');
-                document.getElementById('submitTst').value='الوصول الى الحد السقفي';
-                document.getElementById('end').click();            
-            } 
-        }    
+                document.getElementById('submitTst').value = 'الوصول الى الحد السقفي';
+                document.getElementById('end').click();
+            }
+        }
         audio.src = "/static/test3Sec/" + btn.getAttribute('value') + ".mp3";
         audio.play();
         btn.style.color = "blue";
     }
-    function btn_clicked(btn){
+
+    function btn_clicked(btn) {
+        btnValue = btn.getAttribute('value');
+        console.log("btnValue: " + btnValue);
+
+
+
+
         if (btn.style.backgroundColor == "") {
             x = counter;
             count++;
+            if (currentValue !== btnValue) {
+                lastValue = currentValue;
+                console.log("lastValue: " + lastValue);
+                currentValue = btnValue;
+                console.log("currentValue " + currentValue);
+            }
+
+
             btn.style.backgroundColor = "green";
             document.getElementById('result').innerText = count;
         } else {
             count = count - 1;
+            currentValue = lastValue;
+            console.log("currentValue: " + currentValue);
             btn.style.backgroundColor = "";
             document.getElementById('result').innerText = count;
         }
+
+        if ((currentValue - lastValue) > 3) {
+            console.log('reach 3 ');
+            document.getElementById('submitTst').value = 'الوصول الى الحد السقفي';
+            document.getElementById('end').click();
+            document.body.style.overflow = 'hidden';
+        }
+
         return count;
+
+
     }
 </script>
 
@@ -291,7 +367,7 @@
                     </div>
                 </div> -->
 
-                <!-- <div class="col">
+<!-- <div class="col">
                     <div class="card-body text-center mx-auto"  id="questions" >  
                         <div class="card" style="width: 300px; ">
                             <div class="card-body" > <a type="button" onclick="playAudio1()"> <i class="bi bi-headphones" style="font-size: 25px;"></i></a>

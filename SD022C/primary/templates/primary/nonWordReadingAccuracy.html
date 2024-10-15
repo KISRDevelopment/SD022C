@@ -296,18 +296,14 @@
     x = 0;
     currentValue = 0;
     lastValue = 0;
+    btnValue = 0;
 
     function btn_clicked(btn) {
-        currentValue = btn.getAttribute('value');
+        btnValue = btn.getAttribute('value');
 
 
 
-        if ((currentValue - lastValue) > 3) {
-            console.log('reach 3 ');
-            document.getElementById('submitTst').value = 'الوصول الى الحد السقفي';
-            document.getElementById('end').click();
-            document.body.style.overflow = "hidden";
-        }
+
 
         x = btn.getAttribute('value');
         console.log(btn.getAttribute('id'));
@@ -315,15 +311,28 @@
         if (btn.style.backgroundColor == "") {
 
             count++;
-            lastValue = btn.getAttribute('value');
+            if (currentValue !== btnValue) {
+                lastValue = currentValue;
+                console.log("lastValue: " + lastValue);
+                currentValue = btnValue;
+                console.log("currentValue " + currentValue);
+            }
             btn.style.backgroundColor = "green";
             document.getElementById('result').innerText = count;
 
         } else {
             count = count - 1;
-            lastValue = lastValue - 1;
+            currentValue = lastValue;
+            console.log("currentValue: " + currentValue);
             btn.style.backgroundColor = "";
             document.getElementById('result').innerText = count;
+        }
+
+        if ((currentValue - lastValue) > 3) {
+            console.log('reach 3 ');
+            document.getElementById('submitTst').value = 'الوصول الى الحد السقفي';
+            document.getElementById('end').click();
+            document.body.style.overflow = "hidden";
         }
         // return count;
     }

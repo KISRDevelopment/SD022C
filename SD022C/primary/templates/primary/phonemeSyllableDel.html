@@ -339,6 +339,7 @@
     i = 0;
     currentValue = 0;
     lastValue = 0;
+    btnValue = 0;
 
     function playAudio(btn) {
         if (btn.getAttribute('value') % 2 != 0) {
@@ -357,7 +358,30 @@
 
     function btn_clicked(btn) {
         console.log(btn.getAttribute('value'));
-        currentValue = btn.getAttribute('value');
+        btnValue = btn.getAttribute('value');
+
+
+
+        if (btn.style.backgroundColor == "") {
+            x = counter;
+            count++;
+            btn.style.backgroundColor = "green";
+            if (currentValue !== btnValue) {
+                lastValue = currentValue;
+                console.log("lastValue: " + lastValue);
+                currentValue = btnValue;
+                console.log("currentValue " + currentValue);
+            }
+
+            document.getElementById('result').innerText = count;
+            //document.getElementById('countt').innerText = count;
+        } else {
+            count = count - 1;
+            currentValue = lastValue;
+            console.log("currentValue: " + currentValue);
+            btn.style.backgroundColor = "";
+            document.getElementById('result').innerText = count;
+        }
 
         if ((currentValue - lastValue) > 3) {
             console.log('more than 3');
@@ -365,20 +389,6 @@
             document.getElementById('end').click();
             document.body.style.overflow = 'hidden';
 
-        }
-
-        if (btn.style.backgroundColor == "") {
-            x = counter;
-            count++;
-            btn.style.backgroundColor = "green";
-            lastValue = btn.getAttribute('value');
-            document.getElementById('result').innerText = count;
-            document.getElementById('countt').innerText = count;
-        } else {
-            count = count - 1;
-            lastValue = lastValue - 1;
-            btn.style.backgroundColor = "";
-            document.getElementById('result').innerText = count;
         }
         return count;
     }

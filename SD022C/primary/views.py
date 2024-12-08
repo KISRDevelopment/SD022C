@@ -175,13 +175,13 @@ def requestPage (request):
         print(message)
         
         send_mail(
-            "testname",
-            "testmessage",
+            f"{name} from {organization}",
+            f"Name:{name} \nOrganization:{organization} \nEmail:{email} \nMessage:\n{message}",
             "bmdashti@kisr.edu.kw",
             ['ccetphonologytest@gmail.com'],
             fail_silently=False
         )
-        print("sent")
+        print("Name:{name} \nOrganization:{organization} \nEmail:{email} \nMessage:\n{message}")
         
     
     return render(request,"primary/requestPage.html")

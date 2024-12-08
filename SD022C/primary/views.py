@@ -175,14 +175,16 @@ def requestPage (request):
         print(message)
         
         send_mail(
-            name,
-            message,
-            settings.EMAIL_HOST_USER,
-            [email]
+            "testname",
+            "testmessage",
+            "bmdashti@kisr.edu.kw",
+            ['ccetphonologytest@gmail.com'],
+            fail_silently=False
         )
+        print("sent")
         
     
-    return render (request,"primary/requestPage.html")
+    return render(request,"primary/requestPage.html")
 
 @login_required(login_url="/primary/login")
 def superusers (request):

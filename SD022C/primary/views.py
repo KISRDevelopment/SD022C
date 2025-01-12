@@ -16,6 +16,9 @@ from dateutil import relativedelta
 import pandas as pd
 from primary.utils import return_scores, return_scores_Sec
 import json
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 # Create your views here.
 global context_obj
@@ -163,7 +166,30 @@ def contact (request):
     return render (request,"primary/contact.html")
 
 def requestPage (request):
-    return render (request,"primary/requestPage.html")
+    print("call function")
+    if request.method == "POST":
+        print("if statement")
+        name = request.POST['nameBox']
+        organization = request.POST['orgBox']
+        email = request.POST['emailBox']
+        message = request.POST['textAreaBox']
+        
+        print(name)
+        print(organization)
+        print(email)
+        print(message)
+        
+        send_mail(
+            f"{name} from {organization}",
+            f"Name:{name} \nOrganization:{organization} \nEmail:{email} \nMessage:\n{message}",
+            "bmdashti@kisr.edu.kw",
+            ['ccetphonologytest@gmail.com'],
+            fail_silently=False
+        )
+        print("Name:{name} \nOrganization:{organization} \nEmail:{email} \nMessage:\n{message}")
+        
+    
+    return render(request,"primary/requestPage.html")
 
 @login_required(login_url="/primary/login")
 def superusers (request):

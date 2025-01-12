@@ -130,7 +130,9 @@
                     </ul>
                 </div>
                 <div class="col-4 d-flex justify-content-end">
+                    {% if examiners.stage == "PRIMARY" %}
                     <a href="https://kscdr.org.sa/ "><img src="{% static 'images/kscdrlogo.png' %}" width="250" height="60" class="rounded float-start" alt="kscdrlogo" style="filter: brightness(0) invert(1);"></a>
+                    {% endif %}
                 </div>
             </div>
         </footer>
